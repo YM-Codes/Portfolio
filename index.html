@@ -11,21 +11,17 @@
   --text:#f4f5f7;--t2:#8a94a8;--t3:#4d5669;--t4:#2d3444;
   --acc:#00d4ff;--acc2:#0099cc;--acc3:rgba(0,212,255,.06);
   --grn:#00e5a0;--pur:#8b5cf6;--amb:#f59e0b;
-  --gold:linear-gradient(135deg,#c9a84c,#f5d77a,#c9a84c);
   --bdr:rgba(255,255,255,.05);--bdr2:rgba(0,212,255,.12);
-  --r:8px;--r2:12px;
-  --glow:0 0 40px rgba(0,212,255,.08);
+  --r:8px;--r2:12px;--glow:0 0 40px rgba(0,212,255,.08);
   font-size:15px;
 }
 html{scroll-behavior:smooth}
 body{font-family:'SF Pro Display',-apple-system,'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
-body::before{content:'';position:fixed;inset:0;background:
-  radial-gradient(ellipse 60% 50% at 20% 20%,rgba(0,212,255,.03) 0,transparent 70%),
-  radial-gradient(ellipse 50% 60% at 80% 80%,rgba(139,92,246,.03) 0,transparent 70%);
-  pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 50% at 20% 20%,rgba(0,212,255,.03) 0,transparent 70%),radial-gradient(ellipse 50% 60% at 80% 80%,rgba(139,92,246,.03) 0,transparent 70%);pointer-events:none;z-index:0}
 ::selection{background:rgba(0,212,255,.2);color:#fff}
+#hero-canvas{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:0}
 
-/* ── NAV ── */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(6,6,8,.8);backdrop-filter:blur(24px) saturate(1.4);border-bottom:.5px solid var(--bdr)}
 .nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none}
 .nav-logo-mark{width:33px;height:33px;border-radius:9px;background:linear-gradient(135deg,var(--acc),var(--pur));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;letter-spacing:-.5px;position:relative;overflow:hidden;box-shadow:0 2px 16px rgba(0,212,255,.2)}
@@ -42,9 +38,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .btn-solid{padding:.42rem 1.3rem;background:linear-gradient(135deg,var(--acc),#0099dd);border-radius:var(--r);font-size:.68rem;font-weight:700;color:#000;text-decoration:none;transition:all .3s;letter-spacing:.03em;box-shadow:0 2px 16px rgba(0,212,255,.25)}
 .btn-solid:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(0,212,255,.35)}
 
-/* ── HERO ── */
+/* HERO */
 .hero{display:flex;align-items:center;padding:100px 2.5rem 80px;position:relative;overflow:hidden}
-#hero-canvas{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:0}
 .hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:.32rem .85rem;border:.5px solid var(--bdr2);border-radius:100px;background:var(--acc3);margin-bottom:1.4rem;backdrop-filter:blur(8px)}
 .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--grn);animation:blink 2s infinite;box-shadow:0 0 10px rgba(0,229,160,.5)}
@@ -54,14 +49,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
 .hero-h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:800;line-height:1.06;letter-spacing:-.06em;color:var(--text);margin-bottom:.5rem}
 .hero-h1 span{background:linear-gradient(135deg,var(--acc),#7dd3fc,var(--pur));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-role{font-size:.95rem;color:var(--t2);font-weight:400;margin-bottom:1.5rem;display:flex;align-items:center;gap:6px;min-height:1.6rem}
 .hero-desc{font-size:.88rem;color:var(--t2);line-height:1.9;max-width:580px;margin-bottom:2rem}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:2rem}
 .hero-actions .btn-solid{padding:.65rem 1.8rem;font-size:.78rem}
 .hero-actions .btn-ghost{padding:.65rem 1.3rem;font-size:.78rem}
 .hero-stack{display:flex;flex-wrap:wrap;gap:6px}
 
-/* ── METRICS PANEL ── */
+/* METRICS */
 .metrics-panel{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;overflow:hidden;position:relative;box-shadow:var(--glow)}
 .metrics-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,var(--acc),var(--pur),transparent);opacity:.5}
 .metrics-header{padding:1rem 1.25rem;border-bottom:.5px solid var(--bdr);display:flex;align-items:center;justify-content:space-between}
@@ -70,10 +64,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .metrics-live{display:flex;align-items:center;gap:5px;font-size:.58rem;color:var(--grn);font-weight:600;letter-spacing:.05em}
 .metrics-live::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--grn);animation:blink 2s infinite;display:block;box-shadow:0 0 6px rgba(0,229,160,.5)}
 .metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5px;background:var(--bdr)}
-.metric-cell{background:var(--s1);padding:1rem 1.15rem;position:relative;overflow:hidden;transition:all .35s;cursor:default}
+.metric-cell{background:var(--s1);padding:1rem 1.15rem;transition:all .35s;cursor:default}
 .metric-cell:hover{background:var(--s2)}
-.metric-cell:hover .mc-val{transform:scale(1.05)}
-.mc-val{font-size:1.5rem;font-weight:800;letter-spacing:-.06em;color:var(--text);line-height:1;transition:transform .35s}
+.mc-val{font-size:1.5rem;font-weight:800;letter-spacing:-.06em;color:var(--text);line-height:1}
 .mc-unit{font-size:.7rem;color:var(--acc);font-weight:700}
 .mc-label{font-size:.54rem;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem}
 .mc-change{font-size:.55rem;color:var(--grn);font-weight:600;margin-top:.15rem;display:flex;align-items:center;gap:3px}
@@ -86,24 +79,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--acc2),var(--acc));transition:width 1.5s cubic-bezier(.4,0,.2,1)}
 .bar-pct{font-size:.55rem;color:var(--t3);width:28px;text-align:right;flex-shrink:0;font-weight:600}
 
-/* ── SECTION ── */
+/* SECTION */
 .section{padding:5rem 2.5rem;position:relative}
 .section-inner{max-width:1100px;margin:0 auto}
 .section-tag{display:inline-flex;align-items:center;gap:7px;font-size:.58rem;font-weight:700;color:var(--acc);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.7rem}
 .section-tag::before{content:'';width:16px;height:1.5px;background:linear-gradient(90deg,var(--acc),var(--pur));display:block}
 .section-h{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-.05em;color:var(--text);margin-bottom:.4rem}
 .section-sub{font-size:.85rem;color:var(--t2);margin-bottom:2.5rem;max-width:550px;line-height:1.7}
+.section-divider{height:.5px;background:linear-gradient(90deg,transparent,var(--bdr),rgba(0,212,255,.08),var(--bdr),transparent);margin:0}
 
-/* ── ABOUT ── */
+/* ABOUT */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
 .about-text{font-size:.88rem;color:var(--t2);line-height:1.9}
 .about-text strong{color:var(--text);font-weight:700}
 .about-text .highlight{color:var(--acc);font-weight:600}
 
-/* ── DIVIDER ── */
-.section-divider{height:.5px;background:linear-gradient(90deg,transparent,var(--bdr),rgba(0,212,255,.08),var(--bdr),transparent);margin:0}
-
-/* ── TICKER ── */
+/* TICKER */
 .ticker-wrap{background:var(--s1);border-top:.5px solid var(--bdr);border-bottom:.5px solid var(--bdr);padding:.75rem 0;overflow:hidden}
 .ticker-inner{display:flex;gap:2.5rem;white-space:nowrap;animation:ticker 35s linear infinite}
 .ticker-inner:hover{animation-play-state:paused}
@@ -111,7 +102,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .tick-item span{color:var(--acc);font-size:.7rem}
 .tick-sep{color:var(--t4)}
 
-/* ── EXPERIENCE ── */
+/* EXPERIENCE */
 .exp-container{display:grid;grid-template-columns:220px 1fr;gap:3rem}
 .exp-nav{position:sticky;top:75px;align-self:start;display:flex;flex-direction:column;gap:2px}
 .exp-tab{background:none;border:none;border-left:2px solid var(--bdr);padding:.7rem 1.1rem;cursor:pointer;font-size:.72rem;font-weight:600;color:var(--t3);text-align:left;font-family:inherit;transition:all .3s;display:flex;flex-direction:column;gap:2px}
@@ -141,7 +132,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .etag{font-size:.56rem;font-weight:600;color:var(--t2);background:var(--s3);border:.5px solid var(--bdr);border-radius:4px;padding:.2rem .55rem;letter-spacing:.03em;transition:all .25s}
 .etag:hover{border-color:var(--bdr2);color:var(--text)}
 
-/* ── SKILLS ── */
+/* SKILLS */
 .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .skill-group{background:var(--s1);border:.5px solid var(--bdr);border-radius:12px;padding:1.25rem 1.4rem;transition:all .35s}
 .skill-group:hover{border-color:var(--bdr2);box-shadow:var(--glow)}
@@ -152,11 +143,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .skill-bar-fill{height:100%;background:linear-gradient(90deg,var(--acc2),var(--acc));width:0;border-radius:2px;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
 .skill-chips{display:flex;flex-wrap:wrap;gap:5px}
 .sc{font-size:.6rem;font-weight:600;color:var(--t2);background:var(--s2);border:.5px solid var(--bdr);border-radius:4px;padding:.2rem .55rem;transition:all .3s;cursor:default}
-.sc:hover{border-color:var(--bdr2);color:var(--text);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,212,255,.08)}
+.sc:hover{border-color:var(--bdr2);color:var(--text);transform:translateY(-2px)}
 .sc.hi{color:var(--acc);background:var(--acc3);border-color:var(--bdr2)}
-.sc.hi:hover{background:rgba(0,212,255,.12);box-shadow:0 4px 16px rgba(0,212,255,.15)}
 
-/* ── PROCESS ── */
+/* PROCESS */
 .process-track{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:1rem}
 .process-track::before{content:'';position:absolute;top:30px;left:12%;right:12%;height:1.5px;background:linear-gradient(90deg,var(--acc3),var(--bdr2),var(--acc3))}
 .process-step{text-align:center;position:relative;padding:0 .75rem}
@@ -165,44 +155,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .ps-title{font-size:.78rem;font-weight:800;color:var(--text);margin-bottom:.3rem}
 .ps-desc{font-size:.68rem;color:var(--t2);line-height:1.6}
 
-/* ── PROJECTS EDITORIAL LIST ── */
+/* PROJECTS */
 .proj-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:2.5rem}
 .pf-btn{padding:.38rem .95rem;border:.5px solid var(--bdr);border-radius:100px;font-size:.62rem;font-weight:600;color:var(--t3);background:none;cursor:pointer;transition:all .3s;font-family:inherit;letter-spacing:.03em}
 .pf-btn:hover{color:var(--text);border-color:var(--t3)}
 .pf-btn.active{background:linear-gradient(135deg,var(--acc),#0099dd);color:#000;border-color:transparent;box-shadow:0 2px 12px rgba(0,212,255,.2)}
 .proj-grid{display:flex;flex-direction:column}
-.proj-card{display:grid;grid-template-columns:80px 1fr auto;align-items:center;gap:2rem;padding:1.6rem 0;border-bottom:.5px solid var(--bdr);text-decoration:none;position:relative;transition:all .4s cubic-bezier(.16,1,.3,1);cursor:pointer}
+.proj-card{display:grid;grid-template-columns:80px 1fr auto;align-items:center;gap:2rem;padding:1.6rem 0;border-bottom:.5px solid var(--bdr);text-decoration:none;position:relative;transition:all .4s cubic-bezier(.16,1,.3,1)}
 .proj-card::before{content:'';position:absolute;inset:0 -2.5rem;background:linear-gradient(90deg,transparent,rgba(0,212,255,.03),transparent);opacity:0;transition:opacity .4s;pointer-events:none}
 .proj-card:hover::before{opacity:1}
 .proj-card:hover{padding-left:1rem}
 .proj-card:first-child{border-top:.5px solid var(--bdr)}
-.proj-hidden{display:none!important}
-#show-more-btn:hover{color:var(--text);border-color:rgba(255,255,255,.2);background:var(--s2)}
-/* number */
-.proj-num{font-size:2.8rem;font-weight:900;color:var(--t4);letter-spacing:-.08em;line-height:1;transition:all .4s;font-variant-numeric:tabular-nums}
+.proj-num{font-size:2.8rem;font-weight:900;color:var(--t4);letter-spacing:-.08em;line-height:1;transition:all .4s}
 .proj-card:hover .proj-num{color:var(--acc);text-shadow:0 0 30px rgba(0,212,255,.3)}
-/* middle */
 .proj-mid{display:flex;flex-direction:column;gap:.45rem}
 .proj-title{font-size:1.05rem;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1.2;transition:color .3s}
 .proj-card:hover .proj-title{color:var(--acc)}
-.proj-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
 .proj-desc{font-size:.72rem;color:var(--t2);line-height:1;max-width:520px}
 .proj-chips{display:flex;flex-wrap:wrap;gap:4px}
 .pchip{font-size:.52rem;font-weight:700;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.15rem .45rem;letter-spacing:.04em;text-transform:uppercase;transition:all .3s}
 .proj-card:hover .pchip{border-color:var(--bdr2);color:var(--t2)}
-/* right */
 .proj-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0}
 .proj-impact{font-size:.62rem;font-weight:700;color:var(--acc);white-space:nowrap}
 .proj-arr{width:38px;height:38px;border:.5px solid var(--bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--t3);transition:all .4s}
 .proj-card:hover .proj-arr{background:var(--acc);border-color:var(--acc);color:#000;transform:rotate(45deg)}
 .proj-feat-badge{font-size:.5rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.08);border:.5px solid rgba(245,158,11,.2);border-radius:100px;padding:.15rem .6rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
-@media(max-width:700px){
-  .proj-card{grid-template-columns:48px 1fr auto;gap:1rem;padding:1.2rem 0}
-  .proj-num{font-size:1.8rem}
-  .proj-right{display:none}
-}
+.proj-card.hidden{display:none}
 
-/* ── ARTICLES ── */
+/* ARTICLES */
 .art-scroll-outer{position:relative;margin-top:1.5rem}
 .art-scroll-outer::before,.art-scroll-outer::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:10;pointer-events:none}
 .art-scroll-outer::before{left:0;background:linear-gradient(90deg,var(--s1),transparent)}
@@ -217,13 +197,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .art-cat{font-size:.53rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);background:var(--acc3);border:.5px solid var(--bdr2);border-radius:100px;padding:.15rem .55rem}
 .art-num{font-size:.53rem;font-weight:700;color:var(--t4);letter-spacing:.08em}
 .art-vis{width:100%;height:48px;border-radius:6px;overflow:hidden;background:var(--s2)}
-.art-vis svg{width:100%;height:100%}
 .art-title{font-size:.78rem;font-weight:700;color:var(--text);line-height:1.5;letter-spacing:-.02em;flex:1;transition:color .25s}
 .art-card:hover .art-title{color:var(--acc)}
-.art-read{font-size:.56rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:4px;transition:color .25s}
+.art-read{font-size:.56rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);transition:color .25s}
 .art-card:hover .art-read{color:var(--acc)}
 
-/* ── AWARDS ── */
+/* AWARDS */
 .awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdr);border:.5px solid var(--bdr);border-radius:14px;overflow:hidden}
 .aw-card{background:var(--s1);padding:1.5rem;transition:all .35s;position:relative;overflow:hidden}
 .aw-card:hover{background:var(--s2)}
@@ -237,7 +216,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .aw-link{display:inline-flex;align-items:center;gap:3px;font-size:.58rem;font-weight:700;color:var(--acc);text-decoration:none;letter-spacing:.04em;margin-top:.75rem;transition:all .25s}
 .aw-link:hover{color:#33ddff;transform:translateX(2px)}
 
-/* ── CONTACT ── */
+/* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
 .contact-h{font-size:1.8rem;font-weight:800;letter-spacing:-.05em;color:var(--text);line-height:1.1;margin-bottom:.75rem}
 .contact-h span{background:linear-gradient(135deg,var(--acc),#7dd3fc,var(--pur));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -250,7 +229,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .ci-val{font-size:.78rem;color:var(--text);margin-top:.1rem;font-weight:500}
 .social-row{display:flex;gap:7px;margin-top:1.5rem}
 .soc-btn{width:36px;height:36px;border:.5px solid var(--bdr);border-radius:var(--r);display:flex;align-items:center;justify-content:center;color:var(--t2);text-decoration:none;font-size:.65rem;font-weight:700;transition:all .3s}
-.soc-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc3);transform:translateY(-3px);box-shadow:0 4px 16px rgba(0,212,255,.15)}
+.soc-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc3);transform:translateY(-3px)}
 .contact-form{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;padding:2rem;box-shadow:var(--glow)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
 .form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.75rem}
@@ -263,21 +242,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .form-submit:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(0,212,255,.35)}
 .form-note{font-size:.56rem;color:var(--t4);text-align:center;margin-top:.6rem}
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .footer-logo{font-size:.78rem;font-weight:800;letter-spacing:.04em;color:var(--text)}
 .footer-logo span{background:linear-gradient(135deg,var(--acc),var(--pur));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .footer-links{display:flex;gap:1.8rem}
-.footer-links a{font-size:.62rem;color:var(--t3);text-decoration:none;transition:color .25s;letter-spacing:.03em}
+.footer-links a{font-size:.62rem;color:var(--t3);text-decoration:none;transition:color .25s}
 .footer-links a:hover{color:var(--text)}
 .footer-copy{font-size:.56rem;color:var(--t4)}
-
 .scroll-top{position:fixed;bottom:1.5rem;right:1.5rem;width:40px;height:40px;background:linear-gradient(135deg,var(--acc),var(--pur));color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:.8rem;font-weight:800;display:none;align-items:center;justify-content:center;z-index:100;transition:all .3s;box-shadow:0 4px 20px rgba(0,212,255,.25)}
 .scroll-top.show{display:flex}
-.scroll-top:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,212,255,.35)}
+.scroll-top:hover{transform:translateY(-3px)}
 
-/* ── ANIMATIONS ── */
+/* ANIMATIONS */
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
@@ -288,20 +266,21 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
 .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.22s}.reveal.d3{transition-delay:.32s}
 
 @media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
   .exp-container{grid-template-columns:1fr}.exp-nav{flex-direction:row;flex-wrap:wrap;position:static;margin-bottom:1.5rem}
   .skills-grid{grid-template-columns:1fr}
-  .proj-grid{grid-template-columns:1fr}.proj-card.featured{grid-column:span 1}
-  .contact-grid{grid-template-columns:1fr}
   .awards-grid{grid-template-columns:1fr 1fr}
   .process-track{grid-template-columns:1fr 1fr;gap:1.5rem}.process-track::before{display:none}
   nav .nav-links{display:none}
   nav{padding:0 1.5rem}.hero,.section{padding-left:1.5rem;padding-right:1.5rem}
+  .proj-card{grid-template-columns:48px 1fr;gap:1rem}.proj-right{display:none}
 }
 @media(max-width:580px){.awards-grid{grid-template-columns:1fr}.ep-metrics{grid-template-columns:1fr 1fr}.process-track{grid-template-columns:1fr}.skills-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
+<canvas id="hero-canvas"></canvas>
 
 <nav>
   <a href="#home" class="nav-logo">
@@ -309,12 +288,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
     <div><div class="nav-logo-text">Yunus Miah</div><div class="nav-logo-sub">BI Analyst · Consultant</div></div>
   </a>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#writing">Writing</a>
-    <a href="#contact">Contact</a>
+    <a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#writing">Writing</a><a href="#contact">Contact</a>
   </div>
   <div class="nav-cta">
     <a href="assets/pdf/Yunus_Miah.pdf" class="btn-ghost" download>Download CV</a>
@@ -323,15 +297,12 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
 </nav>
 
 <section id="home" class="hero">
-  <canvas id="hero-canvas"></canvas>
   <div class="hero-inner">
     <div class="hero-badge reveal"><span class="badge-dot"></span><span class="badge-text">Available for Hire & Consulting</span></div>
     <div class="hero-greeting reveal">Hey, I'm Yunus <span>👋</span></div>
     <h1 class="hero-h1 reveal d1">I turn messy data<br>into <span>clear decisions</span>.</h1>
-    <div class="hero-role reveal d2" style="display:flex;align-items:center;gap:6px;min-height:1.6rem">
-      <span id="type-static" style="color:var(--t2)"></span>
-      <span id="type-hi" style="color:var(--acc);font-weight:700"></span>
-      <span id="type-cur" style="color:var(--acc);font-weight:300;animation:blink 1s steps(1) infinite">|</span>
+    <div style="display:flex;align-items:center;gap:6px;min-height:1.6rem;margin-bottom:1.5rem" class="reveal d2">
+      <span id="type-static" style="color:var(--t2)"></span><span id="type-hi" style="color:var(--acc);font-weight:700"></span><span style="color:var(--acc);font-weight:300;animation:blink 1s steps(1) infinite">|</span>
     </div>
     <p class="hero-desc reveal d2">Senior BI Analyst with ~4 years building enterprise data platforms, executive dashboards, and ML-powered insights that C-suite leaders actually trust. I've managed analytics for $200M+ ARR portfolios and I love making data tell a story.</p>
     <div class="hero-actions reveal d3">
@@ -347,7 +318,6 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
 
 <div class="ticker-wrap" id="impact"><div class="ticker-inner" id="ticker"></div></div>
 
-<!-- ABOUT -->
 <section class="section" id="about">
   <div class="section-inner">
     <div class="section-tag reveal">About Me</div>
@@ -357,13 +327,10 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
       <div class="about-text">
         <p style="margin-bottom:1.2rem">I'm Yunus, a <strong>Senior BI Analyst</strong> based in Dhaka, currently leading analytics at <span class="highlight">Optimizely</span> across a $200M+ ARR portfolio. I work with 10+ global teams to turn fragmented data into a <strong>single source of truth</strong> that execs actually rely on.</p>
         <p style="margin-bottom:1.2rem">Before Optimizely, I built the analytics backbone at <strong>ShopUp</strong> (one of Bangladesh's largest B2B platforms), helped retain 20K+ users at <strong>AponTech</strong> through ML-driven insights, and started my journey optimizing SQL queries at <strong>DataWorks</strong>.</p>
-        <p>What drives me? I believe <span class="highlight">data should simplify decisions, not complicate them</span>. Whether it's a Power BI dashboard for 400+ users or an ML model predicting churn, if it doesn't change how someone acts, it's just decoration. I'm also a <strong>PL-300 certified</strong> and <strong>SQLBI DAX Expert</strong>, and I write about all of this on my blog.</p>
+        <p>What drives me? I believe <span class="highlight">data should simplify decisions, not complicate them</span>. Whether it's a Power BI dashboard for 400+ users or an ML model predicting churn, if it doesn't change how someone acts, it's just decoration.</p>
       </div>
       <div class="metrics-panel">
-        <div class="metrics-header">
-          <span class="metrics-title">Career Dashboard</span>
-          <span class="metrics-live">Live</span>
-        </div>
+        <div class="metrics-header"><span class="metrics-title">Career Dashboard</span><span class="metrics-live">Live</span></div>
         <div class="metrics-grid">
           <div class="metric-cell"><div class="mc-val"><span id="cnt-arr">0</span><span class="mc-unit">M+</span></div><div class="mc-label">ARR Managed</div><div class="mc-change">Optimizely GTM</div></div>
           <div class="metric-cell"><div class="mc-val"><span id="cnt-dash">0</span><span class="mc-unit">+</span></div><div class="mc-label">Dashboards Built</div><div class="mc-change">400+ global users</div></div>
@@ -374,10 +341,10 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
         </div>
         <div class="metrics-chart-row">
           <div class="mcr-label">Core Strengths</div>
-          <div class="bar-row"><span class="bar-name">Power BI / DAX</span><div class="bar-track"><div class="bar-fill" style="width:0" data-w="96"></div></div><span class="bar-pct">96%</span></div>
-          <div class="bar-row"><span class="bar-name">SQL / Python</span><div class="bar-track"><div class="bar-fill" style="width:0" data-w="92"></div></div><span class="bar-pct">92%</span></div>
-          <div class="bar-row"><span class="bar-name">Analytics & ML</span><div class="bar-track"><div class="bar-fill" style="width:0" data-w="90"></div></div><span class="bar-pct">90%</span></div>
-          <div class="bar-row"><span class="bar-name">Data Engineering</span><div class="bar-track"><div class="bar-fill" style="width:0" data-w="88"></div></div><span class="bar-pct">88%</span></div>
+          <div class="bar-row"><span class="bar-name">Power BI / DAX</span><div class="bar-track"><div class="bar-fill" data-w="96"></div></div><span class="bar-pct">96%</span></div>
+          <div class="bar-row"><span class="bar-name">SQL / Python</span><div class="bar-track"><div class="bar-fill" data-w="92"></div></div><span class="bar-pct">92%</span></div>
+          <div class="bar-row"><span class="bar-name">Analytics & ML</span><div class="bar-track"><div class="bar-fill" data-w="90"></div></div><span class="bar-pct">90%</span></div>
+          <div class="bar-row"><span class="bar-name">Data Engineering</span><div class="bar-track"><div class="bar-fill" data-w="88"></div></div><span class="bar-pct">88%</span></div>
         </div>
       </div>
     </div>
@@ -386,7 +353,6 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
 
 <div class="section-divider"></div>
 
-<!-- PROCESS -->
 <section class="section" id="process">
   <div class="section-inner">
     <div class="section-tag reveal">My Process</div>
@@ -403,7 +369,6 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
 
 <div class="section-divider"></div>
 
-<!-- EXPERIENCE -->
 <section class="section" id="experience" style="background:var(--s1)">
   <div class="section-inner">
     <div class="section-tag reveal">Career</div>
@@ -440,7 +405,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
         </div>
         <div class="exp-panel" id="p-dw">
           <div class="ep-header"><div class="ep-role">Data Analyst Intern</div><div class="ep-company"><a href="https://datacrafters.io/" class="ep-co-name" target="_blank">DataWorks Ltd.</a><span class="ep-co-badge">Remote · Houston TX</span></div><div class="ep-period">May – Nov 2022 · Remote</div></div>
-          <p class="ep-desc">This is where it all started. Built ETL pipelines and optimized SQL queries, cutting execution time by 25% across 3 business units. Designed campaign KPI dashboards for cross-functional teams.</p>
+          <p class="ep-desc">Built ETL pipelines and optimized SQL queries, cutting execution time by 25% across 3 business units. Designed campaign KPI dashboards for cross-functional teams.</p>
           <ul class="ep-bullets"><li>Optimized 40+ SQL queries, reducing average execution time by 25%</li><li>Built ETL pipelines ingesting data from 5+ external sources into a central SQL Server warehouse</li><li>Designed campaign KPI dashboards enabling marketing teams to self-serve analysis</li></ul>
           <div class="ep-tags"><span class="etag">SQL</span><span class="etag">ETL</span><span class="etag">Power BI</span></div>
         </div>
@@ -449,7 +414,6 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
   </div>
 </section>
 
-<!-- SKILLS -->
 <section class="section" id="skills">
   <div class="section-inner">
     <div class="section-tag reveal">Expertise</div>
@@ -469,210 +433,108 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
 <!-- PROJECTS -->
 <section class="section" id="projects" style="background:var(--s1)">
   <div class="section-inner">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem">
       <div><div class="section-tag reveal">Portfolio</div><h2 class="section-h reveal d1">Selected Projects</h2></div>
-      <div class="proj-filters reveal d2"><button class="pf-btn active" data-f="all">All</button><button class="pf-btn" data-f="powerbi">Power BI</button><button class="pf-btn" data-f="python">Python / ML</button><button class="pf-btn" data-f="etl">ETL / Pipeline</button><button class="pf-btn" data-f="campaign">Campaign</button><button class="pf-btn" data-f="support">Support / Ops</button></div>
+      <div class="proj-filters reveal d2">
+        <button class="pf-btn active" data-f="all">All</button>
+        <button class="pf-btn" data-f="sales">Sales</button>
+        <button class="pf-btn" data-f="customer">Customer</button>
+        <button class="pf-btn" data-f="marketing">Marketing</button>
+        <button class="pf-btn" data-f="operation">Operation</button>
+      </div>
     </div>
+
     <div class="proj-grid reveal d2" id="proj-grid">
 
-      <a class="proj-card" data-tags="powerbi" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank">
+      <!-- SALES -->
+      <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank">
         <div class="proj-num">01</div>
         <div class="proj-mid"><div class="proj-title">Sales Sight 360 Dashboard</div><div class="proj-desc">Unified real-time sales analytics platform — operational backbone for 150+ DAU guiding $60M+ in B2B decisions.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div>
         <div class="proj-right"><span class="proj-feat-badge">★ Featured</span><span class="proj-impact">150+ DAU · $60M+</span><div class="proj-arr">↗</div></div>
       </a>
 
-      <a class="proj-card" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
+      <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes" target="_blank">
         <div class="proj-num">02</div>
-        <div class="proj-mid"><div class="proj-title">Campaign Finance Report</div><div class="proj-desc">Multi-channel analytics aligning Email, SMS & Push campaign performance with cost and billing accuracy.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">Reduced op. waste · ↑NRR</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">03</div>
-        <div class="proj-mid"><div class="proj-title">Customer Intelligence Report</div><div class="proj-desc">Tracks product adoption, cross-sell opportunities, and account health across multi-product portfolios.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Cross-sell · ↓Churn</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card" data-tags="python powerbi" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank">
-        <div class="proj-num">04</div>
-        <div class="proj-mid"><div class="proj-title">Retail Customer Analytics</div><div class="proj-desc">Customer segmentation, forecasting & behavioral trends integrating demographics, product, and outlet data.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">85%+ accuracy · 100K users</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">05</div>
-        <div class="proj-mid"><div class="proj-title">Retail Customer Metrics</div><div class="proj-desc">Segmentation analysis revealing purchasing preferences, favored offers, and outlet performance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Promo targeting</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card" data-tags="python" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank">
-        <div class="proj-num">06</div>
-        <div class="proj-mid"><div class="proj-title">Customer Cohort Analysis</div><div class="proj-desc">Cohort study evaluating churn, revenue, basket size, and spending patterns with RFM and CLV calculation.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">SQL</span><span class="pchip">RFM</span><span class="pchip">CLV</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑CLV · ↓Churn</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card" data-tags="powerbi" href="https://github.com/YM-Codes/Health_Care_Analytics" target="_blank">
-        <div class="proj-num">07</div>
-        <div class="proj-mid"><div class="proj-title">Healthcare Analytics Report</div><div class="proj-desc">KPI-driven analysis of patient outcomes, operational efficiency, and service quality.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">Multi-dept · Exec reporting</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card" data-tags="powerbi python" href="https://github.com/YM-Codes/Maven_Airlines_Analytics" target="_blank">
-        <div class="proj-num">08</div>
-        <div class="proj-mid"><div class="proj-title">Airlines Customer Analytics</div><div class="proj-desc">Operational efficiency, customer service, and technology analysis with strategic recommendations.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Python</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">Maven Challenge</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <!-- hidden by default, revealed by Show More -->
-      <a class="proj-card proj-hidden" data-tags="etl" href="https://github.com/YM-Codes/Playing-with-ETL" target="_blank">
-        <div class="proj-num">09</div>
-        <div class="proj-mid"><div class="proj-title">Playing with ETL</div><div class="proj-desc">Transforms data from GitHub, SharePoint & SQL Server into centralised storage via Azure Data Factory.</div><div class="proj-chips"><span class="pchip">Azure Data Factory</span><span class="pchip">SQL Server</span><span class="pchip">ETL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">5 hrs/week saved</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">10</div>
-        <div class="proj-mid"><div class="proj-title">Rise of Discipline</div><div class="proj-desc">Monitors operational discipline and compliance trends across teams with SLA adherence tracking.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Process adherence</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">11</div>
-        <div class="proj-mid"><div class="proj-title">Customer Tech Stack Report</div><div class="proj-desc">Analysis of customers' technology adoption, maturity, and competitive landscape.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Competitive insights</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">12</div>
-        <div class="proj-mid"><div class="proj-title">Customer Health Check – Support</div><div class="proj-desc">Support dashboard tracking ticket performance, SLA adherence, and satisfaction scores.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↓SLA violations</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">13</div>
-        <div class="proj-mid"><div class="proj-title">Customer Health Check – Performance</div><div class="proj-desc">Performance dashboard tracking operational ticket metrics, resolution times, and satisfaction.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Team efficiency</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">14</div>
-        <div class="proj-mid"><div class="proj-title">Partner Health Check – Performance</div><div class="proj-desc">Tracks partner support and operational KPIs for performance management and SLA compliance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Partner ops</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">15</div>
-        <div class="proj-mid"><div class="proj-title">Partner Health Check – Support</div><div class="proj-desc">Tracks partner support ticket metrics, response times, and SLA adherence.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Response times</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">16</div>
-        <div class="proj-mid"><div class="proj-title">Zendesk Reporting</div><div class="proj-desc">Consolidated reporting of Zendesk ticket metrics, workflow, and SLA performance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Ticket mgmt</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">17</div>
-        <div class="proj-mid"><div class="proj-title">Campaign Customer</div><div class="proj-desc">Campaign performance metrics including click rates, deliverability, bounce, and unsubscribe tracking.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↓Bounce rate</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">18</div>
-        <div class="proj-mid"><div class="proj-title">Campaign – Revenue</div><div class="proj-desc">Revenue and engagement tracking across SMS, Email, and Push with YoY/MoM trend analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Revenue visibility</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">19</div>
-        <div class="proj-mid"><div class="proj-title">Campaign Benchmark</div><div class="proj-desc">Compares campaign performance across customers and channels — click, open, bounce, unsubscribe.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Best practices</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">20</div>
-        <div class="proj-mid"><div class="proj-title">Campaign – Overages</div><div class="proj-desc">Tracks contract limits, usage, overages/underages for SMS and Email with forecasting.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↓Overage costs</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">21</div>
-        <div class="proj-mid"><div class="proj-title">Education Dashboard</div><div class="proj-desc">Tracks user engagement, certifications, ILT consumption, and subscription usage.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Cert adoption</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">22</div>
-        <div class="proj-mid"><div class="proj-title">AE Stack Rank</div><div class="proj-desc">Sales leader and AE performance tracking across quotas, bookings, and attainment rank.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Quota mgmt</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">23</div>
         <div class="proj-mid"><div class="proj-title">Pipeline Trend Dashboard</div><div class="proj-desc">Monitors pipeline health, coverage %, pacing, and rolling coverage metrics for sales teams.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
         <div class="proj-right"><span class="proj-impact">↑Forecast accuracy</span><div class="proj-arr">↗</div></div>
       </a>
 
-      <a class="proj-card proj-hidden" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">24</div>
-        <div class="proj-mid"><div class="proj-title">Campaign Lead Insights</div><div class="proj-desc">Tracks marketable vs non-marketable leads with source and segmentation analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Lead targeting</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">25</div>
+      <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">03</div>
         <div class="proj-mid"><div class="proj-title">Close Rate Analysis</div><div class="proj-desc">Tracks win rate across products, regions, and customer types to optimise deal conversion.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
         <div class="proj-right"><span class="proj-impact">↑Deal conversion</span><div class="proj-arr">↗</div></div>
       </a>
 
-      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">26</div>
-        <div class="proj-mid"><div class="proj-title">Opal Attach Dashboard</div><div class="proj-desc">Tracks product attachment rates, opportunity analysis, and territory breakdown.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Cross-sell</span><div class="proj-arr">↗</div></div>
+      <!-- CUSTOMER -->
+      <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">04</div>
+        <div class="proj-mid"><div class="proj-title">Customer Intelligence Report</div><div class="proj-desc">Tracks product adoption, cross-sell opportunities, and account health across multi-product portfolios.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Cross-sell · ↓Churn</span><div class="proj-arr">↗</div></div>
       </a>
 
-      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">27</div>
+      <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank">
+        <div class="proj-num">05</div>
+        <div class="proj-mid"><div class="proj-title">Retail Customer Analytics</div><div class="proj-desc">Customer segmentation, forecasting & behavioral trends integrating demographics, product, and outlet data.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">85%+ accuracy · 100K users</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank">
+        <div class="proj-num">06</div>
+        <div class="proj-mid"><div class="proj-title">Customer Cohort Analysis</div><div class="proj-desc">Cohort study evaluating churn, revenue, basket size, and spending patterns with RFM and CLV calculation.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">SQL</span><span class="pchip">RFM</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑CLV · ↓Churn</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <!-- MARKETING -->
+      <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">07</div>
+        <div class="proj-mid"><div class="proj-title">Campaign Finance Report</div><div class="proj-desc">Multi-channel analytics aligning Email, SMS & Push campaign performance with cost and billing accuracy.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↓Op. waste · ↑NRR</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">08</div>
+        <div class="proj-mid"><div class="proj-title">Campaign – Revenue</div><div class="proj-desc">Revenue and engagement tracking across SMS, Email, and Push with YoY/MoM trend analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Revenue visibility</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">09</div>
+        <div class="proj-mid"><div class="proj-title">Campaign Lead Insights</div><div class="proj-desc">Tracks marketable vs non-marketable leads with source and segmentation analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Lead targeting</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <!-- OPERATION -->
+      <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">10</div>
+        <div class="proj-mid"><div class="proj-title">Customer Health Check – Support</div><div class="proj-desc">Support dashboard tracking ticket performance, SLA adherence, and satisfaction scores.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↓SLA violations</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">11</div>
+        <div class="proj-mid"><div class="proj-title">Zendesk Reporting</div><div class="proj-desc">Consolidated reporting of Zendesk ticket metrics, workflow, and SLA performance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Ticket mgmt</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">12</div>
         <div class="proj-mid"><div class="proj-title">Partner Health Score Dashboard</div><div class="proj-desc">Consolidates partner performance, health metrics, ticket data, and SLA compliance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
         <div class="proj-right"><span class="proj-impact">↑Partner accountability</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi campaign support" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">28</div>
-        <div class="proj-mid"><div class="proj-title">Campaign Operation Request Dashboard</div><div class="proj-desc">Tracks requests, SLA adherence, team workload, and unassigned/past-SLA request trends.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑SLA compliance</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">29</div>
-        <div class="proj-mid"><div class="proj-title">ES ELT</div><div class="proj-desc">Tracks pipeline, bookings, revenue, gross margin, and TAM attach across customer segments.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↑Revenue planning</span><div class="proj-arr">↗</div></div>
-      </a>
-
-      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
-        <div class="proj-num">30</div>
-        <div class="proj-mid"><div class="proj-title">ONB – Onboarding Dashboard</div><div class="proj-desc">Monitors onboarding go-lives, project creation, satisfaction, and risk indicators across lines of business.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-impact">↓Onboarding risk</span><div class="proj-arr">↗</div></div>
       </a>
 
     </div>
 
     <div style="display:flex;justify-content:flex-end;margin-top:2rem" class="reveal d2">
-      <a href="https://github.com/YM-Codes" target="_blank" style="display:inline-flex;align-items:center;gap:.55rem;padding:.55rem 1.4rem;background:linear-gradient(135deg,var(--acc),#0099dd);border-radius:100px;font-size:.7rem;font-weight:700;color:#000;text-decoration:none;letter-spacing:.04em;transition:all .3s;box-shadow:0 2px 16px rgba(0,212,255,.2)">
-        View All Projects on GitHub ↗
-      </a>
+      <a href="https://github.com/YM-Codes" target="_blank" style="display:inline-flex;align-items:center;gap:.55rem;padding:.55rem 1.4rem;background:linear-gradient(135deg,var(--acc),#0099dd);border-radius:100px;font-size:.7rem;font-weight:700;color:#000;text-decoration:none;letter-spacing:.04em;transition:all .3s;box-shadow:0 2px 16px rgba(0,212,255,.2)">View All Projects on GitHub ↗</a>
     </div>
   </div>
 </section>
 
-<!-- WRITING -->
 <section class="section" id="writing" style="background:var(--s1);overflow:hidden">
   <div class="section-inner"><div class="section-tag reveal">Writing</div><h2 class="section-h reveal d1">Published Articles</h2><p class="section-sub reveal d2">10+ deep-dives on DAX, Power BI architecture, sales analytics & data governance</p></div>
   <div class="art-scroll-outer reveal d2"><div class="art-track-wrap" style="display:flex;flex-direction:column;gap:12px"></div></div>
 </section>
 
-<!-- RECOGNITION -->
 <section class="section" id="recognition">
   <div class="section-inner">
     <div class="section-tag reveal">Recognition</div>
@@ -689,7 +551,6 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="section" id="contact" style="background:var(--s1)">
   <div class="section-inner">
     <div class="section-tag reveal">Let's Connect</div>
@@ -713,7 +574,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
         <div style="margin-bottom:1.5rem"><div style="font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:.25rem">Send a Message</div><div style="font-size:.66rem;color:var(--t2)">I typically respond within 24 hours</div></div>
         <form action="https://formsubmit.co/ym16511042@gmail.com" method="POST">
           <div class="form-row"><div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div><div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required></div></div>
-          <div class="form-group"><label>What Brings You Here?</label><select name="role_type"><option value="">What brings you here?</option><option>Hiring</option><option>Consultancy</option><option>Freelance / Contract</option><option>Collaboration</option><option>Just a Chitchat</option></select></div>
+          <div class="form-group"><label>What Brings You Here?</label><select name="role_type"><option value="">Select...</option><option>Hiring</option><option>Consultancy</option><option>Freelance / Contract</option><option>Collaboration</option><option>Just a Chitchat</option></select></div>
           <div class="form-group"><label>Company</label><input type="text" name="company" placeholder="Company name"></div>
           <div class="form-group"><label>Message</label><textarea name="message" placeholder="Tell me about the opportunity, your data challenges, or what you're trying to build..."></textarea></div>
           <button type="submit" class="form-submit">Send Message →</button>
@@ -735,7 +596,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
 <button class="scroll-top" id="scroll-top">↑</button>
 
 <script>
-/* ── INTERACTIVE PARTICLES ── */
+/* PARTICLES */
 const canvas=document.getElementById('hero-canvas'),ctx=canvas.getContext('2d');
 let W,H,particles=[],mouse={x:-999,y:-999,radius:180};
 function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
@@ -744,54 +605,49 @@ window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
 window.addEventListener('mouseleave',()=>{mouse.x=-999;mouse.y=-999});
 class P{constructor(){this.reset()}
 reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*1.8+.5;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.a=Math.random()*.4+.1;this.baseA=this.a;this.pulse=Math.random()*Math.PI*2}
-draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,212,255,${this.a})`;ctx.fill();if(this.a>.4){ctx.beginPath();ctx.arc(this.x,this.y,this.r*2.5,0,Math.PI*2);ctx.fillStyle=`rgba(0,212,255,${this.a*.12})`;ctx.fill()}}
+draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,212,255,${this.a})`;ctx.fill()}
 update(){this.pulse+=.02;this.a=this.baseA+Math.sin(this.pulse)*.08;const dx=mouse.x-this.x,dy=mouse.y-this.y,d=Math.sqrt(dx*dx+dy*dy);if(d<mouse.radius){const f=(1-d/mouse.radius)*1.2;this.x-=(dx/d)*f;this.y-=(dy/d)*f;this.a=Math.min(this.baseA+.3,1)}this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}}
 for(let i=0;i<160;i++)particles.push(new P);
-function anim(){ctx.clearRect(0,0,W,H);if(mouse.x>0){const g=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,180);g.addColorStop(0,'rgba(0,212,255,.05)');g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(0,0,W,H)}particles.forEach(p=>{p.update();p.draw()});for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);const md1=Math.sqrt((mouse.x-particles[i].x)**2+(mouse.y-particles[i].y)**2),md2=Math.sqrt((mouse.x-particles[j].x)**2+(mouse.y-particles[j].y)**2);const near=md1<mouse.radius||md2<mouse.radius,mx=near?180:120,al=near?.12:.06;if(d<mx){ctx.beginPath();ctx.strokeStyle=`rgba(0,212,255,${al*(1-d/mx)})`;ctx.lineWidth=near?.7:.4;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke()}}requestAnimationFrame(anim)}anim();
+function anim(){ctx.clearRect(0,0,W,H);particles.forEach(p=>{p.update();p.draw()});for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);const md1=Math.sqrt((mouse.x-particles[i].x)**2+(mouse.y-particles[i].y)**2),md2=Math.sqrt((mouse.x-particles[j].x)**2+(mouse.y-particles[j].y)**2);const near=md1<mouse.radius||md2<mouse.radius,mx=near?180:120,al=near?.12:.06;if(d<mx){ctx.beginPath();ctx.strokeStyle=`rgba(0,212,255,${al*(1-d/mx)})`;ctx.lineWidth=near?.7:.4;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke()}}requestAnimationFrame(anim)}anim();
 
-/* ── COUNTERS ── */
+/* COUNTERS */
 function animC(el,t,d=1800){let s=null;function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/d,1);el.textContent=Math.round(p*t);if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 
-/* ── OBSERVER ── */
+/* OBSERVER */
 const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(!en.isIntersecting)return;en.target.classList.add('visible');if(en.target.id==='about'||en.target.closest('#about')){animC(document.getElementById('cnt-arr'),200);animC(document.getElementById('cnt-dash'),30);animC(document.getElementById('cnt-rows'),500);animC(document.getElementById('cnt-pipe'),20);animC(document.getElementById('cnt-churn'),12);animC(document.getElementById('cnt-acc'),85);en.target.querySelectorAll('.bar-fill[data-w]').forEach(f=>setTimeout(()=>f.style.width=f.dataset.w+'%',400))}en.target.querySelectorAll('.skill-bar-fill[data-p]').forEach(f=>setTimeout(()=>f.style.width=f.dataset.p+'%',300))})},{threshold:.08});
 document.querySelectorAll('.reveal,section').forEach(el=>obs.observe(el));
 
-/* ── EXP TABS ── */
+/* EXP TABS */
 document.querySelectorAll('.exp-tab').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.exp-tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.exp-panel').forEach(p=>p.classList.remove('active'));t.classList.add('active');document.getElementById('p-'+t.dataset.target).classList.add('active')})});
 
-/* ── PROJECT FILTER ── */
-document.querySelectorAll('.pf-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.pf-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.f;document.querySelectorAll('.proj-card').forEach(c=>{const match=f==='all'||c.dataset.tags.includes(f);c.style.opacity=match?'1':'.08';c.style.pointerEvents=match?'auto':'none';c.style.transition='all .35s';if(match&&showingAll)c.style.display='grid';else if(!match)c.style.display='';else if(!showingAll&&c.classList.contains('proj-hidden'))c.style.display='none'})})});
+/* PROJECT FILTER — uses data-cat attribute */
+document.querySelectorAll('.pf-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.f;
+    document.querySelectorAll('.proj-card').forEach(card=>{
+      card.style.display=(f==='all'||card.dataset.cat===f)?'grid':'none';
+    });
+  });
+});
 
-/* ── SHOW MORE ── */
-let showingAll=false;
-function toggleProjects(){
-  showingAll=!showingAll;
-  const hidden=document.querySelectorAll('.proj-hidden');
-  const btn=document.getElementById('show-more-label');
-  hidden.forEach(c=>{c.style.display=showingAll?'grid':'none'});
-  btn.textContent=showingAll?'Show Less ↑':'Show All 30 Projects ↓';
-}
-
-/* ── SPARKLINES ── */
-function spark(id,v,h){const el=document.getElementById(id);if(!el)return;const w=el.offsetWidth||200,mx=Math.max(...v),mn=Math.min(...v),rng=mx-mn||1;const pts=v.map((val,i)=>`${(i/(v.length-1))*w},${h-4-(val-mn)/rng*(h-8)+4}`).join(' ');el.innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><defs><linearGradient id="sg${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".2"/><stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/></linearGradient></defs><polygon points="0,${h} ${pts} ${w},${h}" fill="url(#sg${id})"/><polyline points="${pts}" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
-spark('spark-1',[10,28,22,44,60,52,78,72,95,115,150],40);spark('spark-2',[15,22,30,45,40,60,70,80,100],40);spark('spark-3',[10,18,25,30,35,42,50,60,75],40);spark('spark-4',[8,12,20,28,35,42,50,58,65],40);spark('spark-5',[5,10,8,18,22,28,32,38,50],40);spark('spark-6',[10,16,24,30,28,38,44,52,62],40);
-
-/* ── TICKER ── */
+/* TICKER */
 const items=[{val:'$200M+',label:'ARR Portfolio'},{val:'30+',label:'BI Dashboards'},{val:'500M+',label:'Rows Per Day'},{val:'400+',label:'Global Users'},{val:'$20M+',label:'Pipeline Found'},{val:'90%',label:'Data Quality'},{val:'−12%',label:'Churn Reduced'},{val:'85%+',label:'ML Accuracy'},{val:'PL-300',label:'Certified'},{val:'SQLBI',label:'DAX Expert'},{val:'40h+',label:'Saved Monthly'},{val:'~4yr',label:'BI Experience'}];
 const tick=document.getElementById('ticker'),html=items.map(i=>`<span class="tick-item"><span>${i.val}</span>${i.label}<span class="tick-sep">·</span></span>`).join('');tick.innerHTML=html+html;
 
-/* ── SCROLL TOP ── */
+/* SCROLL TOP */
 const st=document.getElementById('scroll-top');window.addEventListener('scroll',()=>{st.classList.toggle('show',window.scrollY>600)});st.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-/* ── NAV ACTIVE ── */
+/* NAV ACTIVE */
 window.addEventListener('scroll',()=>{let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id});document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur)})});
 
-/* ── TYPEWRITER ── */
-(function(){const phrases=[{s:'Expert in ',h:'Power BI & Advanced DAX'},{s:'Building ',h:'SSOT Data Governance'},{s:'Processing ',h:'500M+ Rows Per Day'},{s:'Driving ',h:'$200M+ ARR Analytics'},{s:'Delivering ',h:'ML-Powered Insights'},{s:'Certified ',h:'PL-300 & SQLBI DAX Expert'},{s:'Trusted by ',h:'C-Suite Stakeholders'},{s:'Open to ',h:'Remote / Relocation Globally'},{s:'Available for ',h:'Consulting Engagements'}];const sEl=document.getElementById('type-static'),hEl=document.getElementById('type-hi');let pi=0,ci=0,erasing=false;function step(){const{s,h}=phrases[pi],full=s+h;if(!erasing){ci++;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci>=full.length){setTimeout(()=>{erasing=true;step()},2200);return}}else{ci--;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci<=0){erasing=false;pi=(pi+1)%phrases.length;setTimeout(step,400);return}}setTimeout(step,erasing?32:75)}setTimeout(step,1200)})();
+/* TYPEWRITER */
+(function(){const phrases=[{s:'Expert in ',h:'Power BI & Advanced DAX'},{s:'Building ',h:'SSOT Data Governance'},{s:'Processing ',h:'500M+ Rows Per Day'},{s:'Driving ',h:'$200M+ ARR Analytics'},{s:'Delivering ',h:'ML-Powered Insights'},{s:'Certified ',h:'PL-300 & SQLBI DAX Expert'},{s:'Trusted by ',h:'C-Suite Stakeholders'},{s:'Open to ',h:'Remote / Relocation Globally'}];const sEl=document.getElementById('type-static'),hEl=document.getElementById('type-hi');let pi=0,ci=0,erasing=false;function step(){const{s,h}=phrases[pi],full=s+h;if(!erasing){ci++;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci>=full.length){setTimeout(()=>{erasing=true;step()},2200);return}}else{ci--;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci<=0){erasing=false;pi=(pi+1)%phrases.length;setTimeout(step,400);return}}setTimeout(step,erasing?32:75)}setTimeout(step,1200)})();
 
-/* ── ARTICLES ── */
+/* ARTICLES */
 const articles=[{num:'01',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2024/09/big-problem-small-solution-using.html',title:'Big Problem, Small Solution: Using USERELATIONSHIP',vis:'line'},{num:'02',cat:'Sales',url:'https://daxwithyunus.blogspot.com/2024/09/unlocking-sales-insights-analyzing-tads.html',title:'Analysing TADS, ADS, Shortfall & Projections',vis:'bars'},{num:'03',cat:'Inventory',url:'https://daxwithyunus.blogspot.com/2024/09/solving-inventory-woes-at-better-buys.html',title:'Solving Inventory Woes at Better Buys',vis:'blocks'},{num:'04',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2023/09/calendar-code-for-dax.html',title:'Why Every Analyst Needs a Calendar Table',vis:'heat'},{num:'05',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2022/11/the-road-to-power-bi-datamart-from-data.html',title:'The Road to Power BI Datamart',vis:'network'},{num:'06',cat:'Healthcare',url:'https://walkwithyunus.blogspot.com/2023/09/health-care-analytics-case-study.html',title:'Health Care Analytics Case Study',vis:'pulse'},{num:'07',cat:'Excel',url:'https://walkwithyunus.blogspot.com/2023/09/approaches-for-maximizing-use-of-excel.html',title:'Maximising Excel with Power BI',vis:'scatter'},{num:'08',cat:'Viz',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-visualization-charts.html',title:'Power BI Visualization Deep Dive',vis:'bars'},{num:'09',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-dashboards.html',title:'Dashboard Design & Best Practices',vis:'grid'},{num:'10',cat:'Architecture',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-datamart-illustration.html',title:'Power BI Datamart Illustration',vis:'network'}];
-function artVis(t){const c='#00d4ff';if(t==='bars')return`<svg viewBox="0 0 200 48">${[30,45,35,60,72,65,80,72,90,95].map((v,i)=>`<rect x="${i*20+3}" y="${44-(v/100)*38}" width="14" height="${(v/100)*38}" rx="2" fill="${c}" opacity="${.2+.7*(v/100)}"/>`).join('')}</svg>`;if(t==='line'){const pts=[40,55,48,70,65,82,75,92,85,98].map((v,i)=>`${i*20+5},${44-(v/100)*36}`).join(' ');return`<svg viewBox="0 0 200 48"><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"/><circle cx="185" cy="${44-(98/100)*36}" r="3" fill="${c}"/></svg>`}if(t==='blocks')return`<svg viewBox="0 0 200 48">${[0,1,2,3,4,5,6].map(i=>`<rect x="${i*27+3}" y="${4+i*2}" width="20" height="${40-i*4}" rx="2" fill="${c}" opacity="${.15+i*.12}"/>`).join('')}</svg>`;if(t==='heat')return`<svg viewBox="0 0 200 48">${Array.from({length:45},(_,i)=>`<rect x="${(i%9)*21+3}" y="${Math.floor(i/9)*10+2}" width="18" height="8" rx="2" fill="${c}" opacity="${.08+Math.abs(Math.sin(i*.9))*.5}"/>`).join('')}</svg>`;if(t==='pulse')return`<svg viewBox="0 0 200 48"><polyline points="0,24 25,24 35,6 48,42 60,24 85,24 98,12 112,38 124,24 200,24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"/></svg>`;if(t==='scatter')return`<svg viewBox="0 0 200 48">${Array.from({length:24},(_,i)=>`<circle cx="${(i*37+15)%190+5}" cy="${(i*23+8)%38+5}" r="${1.5+(i%3)*.8}" fill="${c}" opacity="${.25+(i%5)*.13}"/>`).join('')}</svg>`;if(t==='grid')return`<svg viewBox="0 0 200 48"><rect x="3" y="3" width="88" height="20" rx="3" fill="${c}" opacity=".15"/><rect x="96" y="3" width="101" height="20" rx="3" fill="${c}" opacity=".22"/><rect x="3" y="27" width="46" height="18" rx="3" fill="${c}" opacity=".28"/><rect x="53" y="27" width="144" height="18" rx="3" fill="${c}" opacity=".12"/></svg>`;return`<svg viewBox="0 0 200 48"><circle cx="100" cy="24" r="8" fill="${c}" opacity=".5"/>${[[24,10],[176,10],[24,38],[176,38],[58,24],[142,24]].map(([x,y])=>`<line x1="100" y1="24" x2="${x}" y2="${y}" stroke="${c}" stroke-width="1" opacity=".15"/><circle cx="${x}" cy="${y}" r="3.5" fill="${c}" opacity=".22"/>`).join('')}</svg>`}
+function artVis(t){const c='#00d4ff';if(t==='bars')return`<svg viewBox="0 0 200 48">${[30,45,35,60,72,65,80,72,90,95].map((v,i)=>`<rect x="${i*20+3}" y="${44-(v/100)*38}" width="14" height="${(v/100)*38}" rx="2" fill="${c}" opacity="${.2+.7*(v/100)}"/>`).join('')}</svg>`;if(t==='line'){const pts=[40,55,48,70,65,82,75,92,85,98].map((v,i)=>`${i*20+5},${44-(v/100)*36}`).join(' ');return`<svg viewBox="0 0 200 48"><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"/></svg>`}if(t==='blocks')return`<svg viewBox="0 0 200 48">${[0,1,2,3,4,5,6].map(i=>`<rect x="${i*27+3}" y="${4+i*2}" width="20" height="${40-i*4}" rx="2" fill="${c}" opacity="${.15+i*.12}"/>`).join('')}</svg>`;if(t==='heat')return`<svg viewBox="0 0 200 48">${Array.from({length:45},(_,i)=>`<rect x="${(i%9)*21+3}" y="${Math.floor(i/9)*10+2}" width="18" height="8" rx="2" fill="${c}" opacity="${.08+Math.abs(Math.sin(i*.9))*.5}"/>`).join('')}</svg>`;if(t==='pulse')return`<svg viewBox="0 0 200 48"><polyline points="0,24 25,24 35,6 48,42 60,24 85,24 98,12 112,38 124,24 200,24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"/></svg>`;if(t==='scatter')return`<svg viewBox="0 0 200 48">${Array.from({length:24},(_,i)=>`<circle cx="${(i*37+15)%190+5}" cy="${(i*23+8)%38+5}" r="${1.5+(i%3)*.8}" fill="${c}" opacity="${.25+(i%5)*.13}"/>`).join('')}</svg>`;if(t==='grid')return`<svg viewBox="0 0 200 48"><rect x="3" y="3" width="88" height="20" rx="3" fill="${c}" opacity=".15"/><rect x="96" y="3" width="101" height="20" rx="3" fill="${c}" opacity=".22"/><rect x="3" y="27" width="46" height="18" rx="3" fill="${c}" opacity=".28"/><rect x="53" y="27" width="144" height="18" rx="3" fill="${c}" opacity=".12"/></svg>`;return`<svg viewBox="0 0 200 48"><circle cx="100" cy="24" r="8" fill="${c}" opacity=".5"/>${[[24,10],[176,10],[24,38],[176,38],[58,24],[142,24]].map(([x,y])=>`<line x1="100" y1="24" x2="${x}" y2="${y}" stroke="${c}" stroke-width="1" opacity=".15"/><circle cx="${x}" cy="${y}" r="3.5" fill="${c}" opacity=".22"/>`).join('')}</svg>`}
 function makeArt(a){return`<a class="art-card" href="${a.url}" target="_blank"><div class="art-card-top"><span class="art-cat">${a.cat}</span><span class="art-num">${a.num}</span></div><div class="art-vis">${artVis(a.vis)}</div><div class="art-title">${a.title}</div><div class="art-read">Read article →</div></a>`}
 const tw=document.querySelector('.art-track-wrap');if(tw){['fwd','rev'].forEach((d,i)=>{const r=document.createElement('div');r.className=`art-track ${d}`;const s=i===0?articles.slice(0,5):articles.slice(5);r.innerHTML=s.map(makeArt).join('')+s.map(makeArt).join('');tw.appendChild(r)})}
 </script>
