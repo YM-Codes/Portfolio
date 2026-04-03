@@ -154,7 +154,7 @@ canvas.chart{width:100%;border-radius:2px}
 .pfb.a{background:var(--gold);color:#000;border-color:var(--gold)}
 
 /* project cards grid */
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bdr2)}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bdr2);border:.5px solid var(--bdr2);border-radius:8px;overflow:hidden}
 .proj-card{background:var(--bg2);padding:2rem;text-decoration:none;display:flex;flex-direction:column;gap:0;position:relative;overflow:hidden;transition:background .3s}
 .proj-card:hover{background:var(--bg3)}
 /* animated gold line from bottom */
@@ -179,8 +179,11 @@ canvas.chart{width:100%;border-radius:2px}
 .proj-card-impact{font-size:.65rem;font-weight:800;color:var(--gold);margin-top:.7rem;letter-spacing:.02em}
 /* wide card spans both columns */
 .proj-card.wide{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
-.proj-card.wide .proj-card-spark{height:120px;margin-bottom:0}
-.proj-card.wide .proj-card-right{display:flex;flex-direction:column;gap:0}
+.proj-card.wide .proj-card-spark{height:140px;margin-bottom:0;align-self:stretch}
+.proj-card.wide .proj-card-spark svg{width:100%;height:100%}
+.proj-card.wide .proj-card-right{display:flex;flex-direction:column}
+/* last odd card fills full width */
+.proj-card:last-child:nth-child(odd):not(.wide){grid-column:span 2}
 
 /* ━━ LIGHT MODE TEXT FIXES ━━ */
 [data-theme="light"] .ep-desc{color:var(--text2)}
@@ -224,8 +227,7 @@ canvas.chart{width:100%;border-radius:2px}
 
 
 /* ══ ARTICLES — scrolling cards ══ */
-#blog{padding:7rem 0;background:var(--bg2);overflow:hidden}
-.art-scroll-outer{position:relative;margin:0 -2.5rem}
+#blog{padding:7rem 0;background:var(--bg2);overflow:hidden}.art-scroll-outer{position:relative;margin:0 -2.5rem}
 .art-scroll-outer::before,.art-scroll-outer::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:10;pointer-events:none}
 .art-scroll-outer::before{left:0;background:linear-gradient(90deg,var(--bg2),transparent)}
 .art-scroll-outer::after{right:0;background:linear-gradient(-90deg,var(--bg2),transparent)}
@@ -322,7 +324,7 @@ footer{padding:1.5rem 0;border-top:.5px solid var(--bdr2)}
 .mdw a{padding:.6rem 1rem;color:var(--text2);text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.04em;transition:color .2s}
 .mdw a:hover{color:var(--text)}
 
-@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 @keyframes mq-rev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
 @keyframes dash{to{stroke-dashoffset:0}}
