@@ -44,7 +44,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 
 /* ── HERO ── */
 .hero{display:flex;align-items:center;padding:100px 2.5rem 80px;position:relative;overflow:hidden}
-.hero-canvas{position:absolute;inset:0;pointer-events:none}
+#hero-canvas{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:0}
 .hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:.32rem .85rem;border:.5px solid var(--bdr2);border-radius:100px;background:var(--acc3);margin-bottom:1.4rem;backdrop-filter:blur(8px)}
 .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--grn);animation:blink 2s infinite;box-shadow:0 0 10px rgba(0,229,160,.5)}
@@ -141,7 +141,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .etag{font-size:.56rem;font-weight:600;color:var(--t2);background:var(--s3);border:.5px solid var(--bdr);border-radius:4px;padding:.2rem .55rem;letter-spacing:.03em;transition:all .25s}
 .etag:hover{border-color:var(--bdr2);color:var(--text)}
 
-/* ── SKILLS (full width, no radar) ── */
+/* ── SKILLS ── */
 .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .skill-group{background:var(--s1);border:.5px solid var(--bdr);border-radius:12px;padding:1.25rem 1.4rem;transition:all .35s}
 .skill-group:hover{border-color:var(--bdr2);box-shadow:var(--glow)}
@@ -165,31 +165,42 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .ps-title{font-size:.78rem;font-weight:800;color:var(--text);margin-bottom:.3rem}
 .ps-desc{font-size:.68rem;color:var(--t2);line-height:1.6}
 
-/* ── PROJECTS ── */
-.proj-filters{display:flex;gap:6px;flex-wrap:wrap}
+/* ── PROJECTS EDITORIAL LIST ── */
+.proj-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:2.5rem}
 .pf-btn{padding:.38rem .95rem;border:.5px solid var(--bdr);border-radius:100px;font-size:.62rem;font-weight:600;color:var(--t3);background:none;cursor:pointer;transition:all .3s;font-family:inherit;letter-spacing:.03em}
 .pf-btn:hover{color:var(--text);border-color:var(--t3)}
 .pf-btn.active{background:linear-gradient(135deg,var(--acc),#0099dd);color:#000;border-color:transparent;box-shadow:0 2px 12px rgba(0,212,255,.2)}
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdr);border:.5px solid var(--bdr);border-radius:14px;overflow:hidden}
-.proj-card{background:var(--s1);padding:1.5rem;display:flex;flex-direction:column;gap:.7rem;text-decoration:none;transition:all .35s;position:relative;overflow:hidden}
-.proj-card:hover{background:var(--s2)}
-.proj-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(0,212,255,.05),transparent 60%);opacity:0;transition:opacity .4s}
+.proj-grid{display:flex;flex-direction:column}
+.proj-card{display:grid;grid-template-columns:80px 1fr auto;align-items:center;gap:2rem;padding:1.6rem 0;border-bottom:.5px solid var(--bdr);text-decoration:none;position:relative;transition:all .4s cubic-bezier(.16,1,.3,1);cursor:pointer}
+.proj-card::before{content:'';position:absolute;inset:0 -2.5rem;background:linear-gradient(90deg,transparent,rgba(0,212,255,.03),transparent);opacity:0;transition:opacity .4s;pointer-events:none}
 .proj-card:hover::before{opacity:1}
-.proj-card.featured{background:var(--s2);grid-column:span 2}
-.proj-card-top{display:flex;justify-content:space-between;align-items:flex-start}
-.proj-num{font-size:.56rem;font-weight:700;color:var(--t4);letter-spacing:.1em}
-.proj-arr{font-size:.68rem;color:var(--t3);transition:all .35s;display:flex;align-items:center;gap:2px}
-.proj-card:hover .proj-arr{color:var(--acc);transform:translate(3px,-3px)}
-.proj-spark{height:40px;margin:.1rem 0}
-.proj-spark svg{width:100%;height:100%}
-.proj-title{font-size:.88rem;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1.3;transition:color .3s}
+.proj-card:hover{padding-left:1rem}
+.proj-card:first-child{border-top:.5px solid var(--bdr)}
+.proj-hidden{display:none!important}
+#show-more-btn:hover{color:var(--text);border-color:rgba(255,255,255,.2);background:var(--s2)}
+/* number */
+.proj-num{font-size:2.8rem;font-weight:900;color:var(--t4);letter-spacing:-.08em;line-height:1;transition:all .4s;font-variant-numeric:tabular-nums}
+.proj-card:hover .proj-num{color:var(--acc);text-shadow:0 0 30px rgba(0,212,255,.3)}
+/* middle */
+.proj-mid{display:flex;flex-direction:column;gap:.45rem}
+.proj-title{font-size:1.05rem;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1.2;transition:color .3s}
 .proj-card:hover .proj-title{color:var(--acc)}
-.proj-card.featured .proj-title{font-size:1.05rem}
-.proj-desc{font-size:.73rem;color:var(--t2);line-height:1.7;flex:1}
+.proj-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.proj-desc{font-size:.72rem;color:var(--t2);line-height:1;max-width:520px}
 .proj-chips{display:flex;flex-wrap:wrap;gap:4px}
-.pchip{font-size:.53rem;font-weight:700;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.15rem .45rem;letter-spacing:.04em;text-transform:uppercase}
-.proj-impact{font-size:.63rem;font-weight:700;color:var(--acc);margin-top:.2rem}
-.proj-feat-badge{display:inline-flex;align-items:center;gap:5px;font-size:.54rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.08);border:.5px solid rgba(245,158,11,.15);border-radius:100px;padding:.15rem .6rem;letter-spacing:.06em;text-transform:uppercase}
+.pchip{font-size:.52rem;font-weight:700;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.15rem .45rem;letter-spacing:.04em;text-transform:uppercase;transition:all .3s}
+.proj-card:hover .pchip{border-color:var(--bdr2);color:var(--t2)}
+/* right */
+.proj-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0}
+.proj-impact{font-size:.62rem;font-weight:700;color:var(--acc);white-space:nowrap}
+.proj-arr{width:38px;height:38px;border:.5px solid var(--bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--t3);transition:all .4s}
+.proj-card:hover .proj-arr{background:var(--acc);border-color:var(--acc);color:#000;transform:rotate(45deg)}
+.proj-feat-badge{font-size:.5rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.08);border:.5px solid rgba(245,158,11,.2);border-radius:100px;padding:.15rem .6rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+@media(max-width:700px){
+  .proj-card{grid-template-columns:48px 1fr auto;gap:1rem;padding:1.2rem 0}
+  .proj-num{font-size:1.8rem}
+  .proj-right{display:none}
+}
 
 /* ── ARTICLES ── */
 .art-scroll-outer{position:relative;margin-top:1.5rem}
@@ -312,7 +323,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
 </nav>
 
 <section id="home" class="hero">
-  <canvas class="hero-canvas" id="hero-canvas"></canvas>
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-inner">
     <div class="hero-badge reveal"><span class="badge-dot"></span><span class="badge-text">Available for Hire & Consulting</span></div>
     <div class="hero-greeting reveal">Hey, I'm Yunus <span>👋</span></div>
@@ -460,15 +471,197 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
   <div class="section-inner">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
       <div><div class="section-tag reveal">Portfolio</div><h2 class="section-h reveal d1">Selected Projects</h2></div>
-      <div class="proj-filters reveal d2"><button class="pf-btn active" data-f="all">All</button><button class="pf-btn" data-f="powerbi">Power BI</button><button class="pf-btn" data-f="python">Python / ML</button><button class="pf-btn" data-f="etl">ETL / Pipeline</button></div>
+      <div class="proj-filters reveal d2"><button class="pf-btn active" data-f="all">All</button><button class="pf-btn" data-f="powerbi">Power BI</button><button class="pf-btn" data-f="python">Python / ML</button><button class="pf-btn" data-f="etl">ETL / Pipeline</button><button class="pf-btn" data-f="campaign">Campaign</button><button class="pf-btn" data-f="support">Support / Ops</button></div>
     </div>
     <div class="proj-grid reveal d2" id="proj-grid">
-      <a class="proj-card featured" data-tags="powerbi" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank"><div class="proj-card-top"><span class="proj-feat-badge">★ Featured</span><span class="proj-arr">View ↗</span></div><div class="proj-spark" id="spark-1"></div><div class="proj-title">Sales Sight 360 Dashboard</div><div class="proj-desc">End-to-end KPI platform with dimensional modeling and advanced DAX. Operational backbone for 150+ DAU at ShopUp, guiding $60M+ in business decisions.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">DAX</span><span class="pchip">Dimensional Model</span><span class="pchip">SQL</span></div><div class="proj-impact">150+ DAU · $60M+ decisions · Q4 2023 Best Team</div></a>
-      <a class="proj-card" data-tags="python" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank"><div class="proj-card-top"><span class="proj-num">02</span><span class="proj-arr">↗</span></div><div class="proj-spark" id="spark-2"></div><div class="proj-title">Retail Customer Analytics</div><div class="proj-desc">Churn prediction & segmentation via Random Forest & k-means on 100K+ users. 85%+ accuracy.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">scikit-learn</span><span class="pchip">Random Forest</span><span class="pchip">k-means</span></div><div class="proj-impact">100K+ users · 85% accuracy</div></a>
-      <a class="proj-card" data-tags="python" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank"><div class="proj-card-top"><span class="proj-num">03</span><span class="proj-arr">↗</span></div><div class="proj-spark" id="spark-3"></div><div class="proj-title">Customer Cohort Analysis</div><div class="proj-desc">Longitudinal churn, CLV & RFM analysis to identify high-risk segments and drive retention strategy.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">SQL</span><span class="pchip">RFM</span><span class="pchip">Cohort</span></div><div class="proj-impact">Exec-level · Actionable segments</div></a>
-      <a class="proj-card" data-tags="powerbi" href="https://github.com/YM-Codes/Health_Care_Analytics" target="_blank"><div class="proj-card-top"><span class="proj-num">04</span><span class="proj-arr">↗</span></div><div class="proj-spark" id="spark-4"></div><div class="proj-title">Healthcare Analytics Report</div><div class="proj-desc">Clinical KPI platform for patient outcomes, operational efficiency & quality across departments.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">DAX</span><span class="pchip">KPI Design</span></div><div class="proj-impact">Multi-dept · Exec reporting</div></a>
-      <a class="proj-card" data-tags="etl" href="https://github.com/YM-Codes/Playing-with-ETL" target="_blank"><div class="proj-card-top"><span class="proj-num">05</span><span class="proj-arr">↗</span></div><div class="proj-spark" id="spark-5"></div><div class="proj-title">Playing with ETL</div><div class="proj-desc">Apache Airflow DAG pipelines from GitHub, SharePoint & SQL Server with full error handling.</div><div class="proj-chips"><span class="pchip">Airflow</span><span class="pchip">Python</span><span class="pchip">SQL Server</span></div><div class="proj-impact">5 hrs/week saved</div></a>
-      <a class="proj-card" data-tags="python" href="https://github.com/YM-Codes/Maven_Airlines_Analytics" target="_blank"><div class="proj-card-top"><span class="proj-num">06</span><span class="proj-arr">↗</span></div><div class="proj-spark" id="spark-6"></div><div class="proj-title">Airlines Customer Analytics</div><div class="proj-desc">Maven challenge: NPS, operational efficiency & customer service with strategic recommendations.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Python</span><span class="pchip">NPS</span></div><div class="proj-impact">Maven Analytics Challenge</div></a>
+
+      <a class="proj-card" data-tags="powerbi" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank">
+        <div class="proj-num">01</div>
+        <div class="proj-mid"><div class="proj-title">Sales Sight 360 Dashboard</div><div class="proj-desc">Unified real-time sales analytics platform — operational backbone for 150+ DAU guiding $60M+ in B2B decisions.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-feat-badge">★ Featured</span><span class="proj-impact">150+ DAU · $60M+</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">02</div>
+        <div class="proj-mid"><div class="proj-title">Campaign Finance Report</div><div class="proj-desc">Multi-channel analytics aligning Email, SMS & Push campaign performance with cost and billing accuracy.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">Reduced op. waste · ↑NRR</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">03</div>
+        <div class="proj-mid"><div class="proj-title">Customer Intelligence Report</div><div class="proj-desc">Tracks product adoption, cross-sell opportunities, and account health across multi-product portfolios.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Cross-sell · ↓Churn</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-tags="python powerbi" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank">
+        <div class="proj-num">04</div>
+        <div class="proj-mid"><div class="proj-title">Retail Customer Analytics</div><div class="proj-desc">Customer segmentation, forecasting & behavioral trends integrating demographics, product, and outlet data.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">85%+ accuracy · 100K users</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">05</div>
+        <div class="proj-mid"><div class="proj-title">Retail Customer Metrics</div><div class="proj-desc">Segmentation analysis revealing purchasing preferences, favored offers, and outlet performance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Promo targeting</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-tags="python" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank">
+        <div class="proj-num">06</div>
+        <div class="proj-mid"><div class="proj-title">Customer Cohort Analysis</div><div class="proj-desc">Cohort study evaluating churn, revenue, basket size, and spending patterns with RFM and CLV calculation.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">SQL</span><span class="pchip">RFM</span><span class="pchip">CLV</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑CLV · ↓Churn</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-tags="powerbi" href="https://github.com/YM-Codes/Health_Care_Analytics" target="_blank">
+        <div class="proj-num">07</div>
+        <div class="proj-mid"><div class="proj-title">Healthcare Analytics Report</div><div class="proj-desc">KPI-driven analysis of patient outcomes, operational efficiency, and service quality.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">Multi-dept · Exec reporting</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card" data-tags="powerbi python" href="https://github.com/YM-Codes/Maven_Airlines_Analytics" target="_blank">
+        <div class="proj-num">08</div>
+        <div class="proj-mid"><div class="proj-title">Airlines Customer Analytics</div><div class="proj-desc">Operational efficiency, customer service, and technology analysis with strategic recommendations.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Python</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">Maven Challenge</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <!-- hidden by default, revealed by Show More -->
+      <a class="proj-card proj-hidden" data-tags="etl" href="https://github.com/YM-Codes/Playing-with-ETL" target="_blank">
+        <div class="proj-num">09</div>
+        <div class="proj-mid"><div class="proj-title">Playing with ETL</div><div class="proj-desc">Transforms data from GitHub, SharePoint & SQL Server into centralised storage via Azure Data Factory.</div><div class="proj-chips"><span class="pchip">Azure Data Factory</span><span class="pchip">SQL Server</span><span class="pchip">ETL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">5 hrs/week saved</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">10</div>
+        <div class="proj-mid"><div class="proj-title">Rise of Discipline</div><div class="proj-desc">Monitors operational discipline and compliance trends across teams with SLA adherence tracking.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Process adherence</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">11</div>
+        <div class="proj-mid"><div class="proj-title">Customer Tech Stack Report</div><div class="proj-desc">Analysis of customers' technology adoption, maturity, and competitive landscape.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Competitive insights</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">12</div>
+        <div class="proj-mid"><div class="proj-title">Customer Health Check – Support</div><div class="proj-desc">Support dashboard tracking ticket performance, SLA adherence, and satisfaction scores.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↓SLA violations</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">13</div>
+        <div class="proj-mid"><div class="proj-title">Customer Health Check – Performance</div><div class="proj-desc">Performance dashboard tracking operational ticket metrics, resolution times, and satisfaction.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Team efficiency</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">14</div>
+        <div class="proj-mid"><div class="proj-title">Partner Health Check – Performance</div><div class="proj-desc">Tracks partner support and operational KPIs for performance management and SLA compliance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Partner ops</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">15</div>
+        <div class="proj-mid"><div class="proj-title">Partner Health Check – Support</div><div class="proj-desc">Tracks partner support ticket metrics, response times, and SLA adherence.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Response times</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">16</div>
+        <div class="proj-mid"><div class="proj-title">Zendesk Reporting</div><div class="proj-desc">Consolidated reporting of Zendesk ticket metrics, workflow, and SLA performance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Ticket mgmt</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">17</div>
+        <div class="proj-mid"><div class="proj-title">Campaign Customer</div><div class="proj-desc">Campaign performance metrics including click rates, deliverability, bounce, and unsubscribe tracking.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↓Bounce rate</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">18</div>
+        <div class="proj-mid"><div class="proj-title">Campaign – Revenue</div><div class="proj-desc">Revenue and engagement tracking across SMS, Email, and Push with YoY/MoM trend analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Revenue visibility</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">19</div>
+        <div class="proj-mid"><div class="proj-title">Campaign Benchmark</div><div class="proj-desc">Compares campaign performance across customers and channels — click, open, bounce, unsubscribe.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Best practices</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">20</div>
+        <div class="proj-mid"><div class="proj-title">Campaign – Overages</div><div class="proj-desc">Tracks contract limits, usage, overages/underages for SMS and Email with forecasting.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↓Overage costs</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">21</div>
+        <div class="proj-mid"><div class="proj-title">Education Dashboard</div><div class="proj-desc">Tracks user engagement, certifications, ILT consumption, and subscription usage.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Cert adoption</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">22</div>
+        <div class="proj-mid"><div class="proj-title">AE Stack Rank</div><div class="proj-desc">Sales leader and AE performance tracking across quotas, bookings, and attainment rank.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Quota mgmt</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">23</div>
+        <div class="proj-mid"><div class="proj-title">Pipeline Trend Dashboard</div><div class="proj-desc">Monitors pipeline health, coverage %, pacing, and rolling coverage metrics for sales teams.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Forecast accuracy</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi campaign" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">24</div>
+        <div class="proj-mid"><div class="proj-title">Campaign Lead Insights</div><div class="proj-desc">Tracks marketable vs non-marketable leads with source and segmentation analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Lead targeting</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">25</div>
+        <div class="proj-mid"><div class="proj-title">Close Rate Analysis</div><div class="proj-desc">Tracks win rate across products, regions, and customer types to optimise deal conversion.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Deal conversion</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">26</div>
+        <div class="proj-mid"><div class="proj-title">Opal Attach Dashboard</div><div class="proj-desc">Tracks product attachment rates, opportunity analysis, and territory breakdown.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Cross-sell</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">27</div>
+        <div class="proj-mid"><div class="proj-title">Partner Health Score Dashboard</div><div class="proj-desc">Consolidates partner performance, health metrics, ticket data, and SLA compliance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Partner accountability</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi campaign support" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">28</div>
+        <div class="proj-mid"><div class="proj-title">Campaign Operation Request Dashboard</div><div class="proj-desc">Tracks requests, SLA adherence, team workload, and unassigned/past-SLA request trends.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑SLA compliance</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">29</div>
+        <div class="proj-mid"><div class="proj-title">ES ELT</div><div class="proj-desc">Tracks pipeline, bookings, revenue, gross margin, and TAM attach across customer segments.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↑Revenue planning</span><div class="proj-arr">↗</div></div>
+      </a>
+
+      <a class="proj-card proj-hidden" data-tags="powerbi support" href="https://github.com/YM-Codes" target="_blank">
+        <div class="proj-num">30</div>
+        <div class="proj-mid"><div class="proj-title">ONB – Onboarding Dashboard</div><div class="proj-desc">Monitors onboarding go-lives, project creation, satisfaction, and risk indicators across lines of business.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-impact">↓Onboarding risk</span><div class="proj-arr">↗</div></div>
+      </a>
+
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;margin-top:2rem" class="reveal d2">
+      <a href="https://github.com/YM-Codes" target="_blank" style="display:inline-flex;align-items:center;gap:.55rem;padding:.55rem 1.4rem;background:linear-gradient(135deg,var(--acc),#0099dd);border-radius:100px;font-size:.7rem;font-weight:700;color:#000;text-decoration:none;letter-spacing:.04em;transition:all .3s;box-shadow:0 2px 16px rgba(0,212,255,.2)">
+        View All Projects on GitHub ↗
+      </a>
     </div>
   </div>
 </section>
@@ -544,16 +737,16 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1)}
 <script>
 /* ── INTERACTIVE PARTICLES ── */
 const canvas=document.getElementById('hero-canvas'),ctx=canvas.getContext('2d');
-let W,H,particles=[],mouse={x:-999,y:-999,radius:150};
-function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight}
+let W,H,particles=[],mouse={x:-999,y:-999,radius:180};
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
 resize();window.addEventListener('resize',resize);
-canvas.parentElement.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
-canvas.parentElement.addEventListener('mouseleave',()=>{mouse.x=-999;mouse.y=-999});
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+window.addEventListener('mouseleave',()=>{mouse.x=-999;mouse.y=-999});
 class P{constructor(){this.reset()}
 reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*1.8+.5;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.a=Math.random()*.4+.1;this.baseA=this.a;this.pulse=Math.random()*Math.PI*2}
 draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,212,255,${this.a})`;ctx.fill();if(this.a>.4){ctx.beginPath();ctx.arc(this.x,this.y,this.r*2.5,0,Math.PI*2);ctx.fillStyle=`rgba(0,212,255,${this.a*.12})`;ctx.fill()}}
 update(){this.pulse+=.02;this.a=this.baseA+Math.sin(this.pulse)*.08;const dx=mouse.x-this.x,dy=mouse.y-this.y,d=Math.sqrt(dx*dx+dy*dy);if(d<mouse.radius){const f=(1-d/mouse.radius)*1.2;this.x-=(dx/d)*f;this.y-=(dy/d)*f;this.a=Math.min(this.baseA+.3,1)}this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}}
-for(let i=0;i<90;i++)particles.push(new P);
+for(let i=0;i<160;i++)particles.push(new P);
 function anim(){ctx.clearRect(0,0,W,H);if(mouse.x>0){const g=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,180);g.addColorStop(0,'rgba(0,212,255,.05)');g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(0,0,W,H)}particles.forEach(p=>{p.update();p.draw()});for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);const md1=Math.sqrt((mouse.x-particles[i].x)**2+(mouse.y-particles[i].y)**2),md2=Math.sqrt((mouse.x-particles[j].x)**2+(mouse.y-particles[j].y)**2);const near=md1<mouse.radius||md2<mouse.radius,mx=near?180:120,al=near?.12:.06;if(d<mx){ctx.beginPath();ctx.strokeStyle=`rgba(0,212,255,${al*(1-d/mx)})`;ctx.lineWidth=near?.7:.4;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke()}}requestAnimationFrame(anim)}anim();
 
 /* ── COUNTERS ── */
@@ -567,7 +760,17 @@ document.querySelectorAll('.reveal,section').forEach(el=>obs.observe(el));
 document.querySelectorAll('.exp-tab').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.exp-tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.exp-panel').forEach(p=>p.classList.remove('active'));t.classList.add('active');document.getElementById('p-'+t.dataset.target).classList.add('active')})});
 
 /* ── PROJECT FILTER ── */
-document.querySelectorAll('.pf-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.pf-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.f;document.querySelectorAll('.proj-card').forEach(c=>{const s=f==='all'||c.dataset.tags.includes(f);c.style.opacity=s?'1':'.1';c.style.pointerEvents=s?'auto':'none';c.style.transition='all .35s'})})});
+document.querySelectorAll('.pf-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.pf-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.f;document.querySelectorAll('.proj-card').forEach(c=>{const match=f==='all'||c.dataset.tags.includes(f);c.style.opacity=match?'1':'.08';c.style.pointerEvents=match?'auto':'none';c.style.transition='all .35s';if(match&&showingAll)c.style.display='grid';else if(!match)c.style.display='';else if(!showingAll&&c.classList.contains('proj-hidden'))c.style.display='none'})})});
+
+/* ── SHOW MORE ── */
+let showingAll=false;
+function toggleProjects(){
+  showingAll=!showingAll;
+  const hidden=document.querySelectorAll('.proj-hidden');
+  const btn=document.getElementById('show-more-label');
+  hidden.forEach(c=>{c.style.display=showingAll?'grid':'none'});
+  btn.textContent=showingAll?'Show Less ↑':'Show All 30 Projects ↓';
+}
 
 /* ── SPARKLINES ── */
 function spark(id,v,h){const el=document.getElementById(id);if(!el)return;const w=el.offsetWidth||200,mx=Math.max(...v),mn=Math.min(...v),rng=mx-mn||1;const pts=v.map((val,i)=>`${(i/(v.length-1))*w},${h-4-(val-mn)/rng*(h-8)+4}`).join(' ');el.innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><defs><linearGradient id="sg${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".2"/><stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/></linearGradient></defs><polygon points="0,${h} ${pts} ${w},${h}" fill="url(#sg${id})"/><polyline points="${pts}" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
