@@ -68,77 +68,45 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .hero-photo-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--grn);animation:blink 2s infinite;box-shadow:0 0 8px rgba(0,229,160,.5)}
 
 /* SCROLL PROGRESS */
-const scrollBar=document.getElementById('scroll-bar');
-window.addEventListener('scroll',()=>{
-  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
-  scrollBar.style.width=pct+'%';
-});
+#scroll-bar{position:fixed;top:0;left:0;height:2.5px;background:linear-gradient(90deg,var(--acc),var(--pur));width:0%;z-index:9999;transition:width .1s linear;box-shadow:0 0 10px rgba(0,212,255,.5)}
 
 /* CUSTOM CURSOR */
-const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
-let cx=0,cy=0,cx2=0,cy2=0;
-window.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY});
-(function curLoop(){cur.style.left=cx+'px';cur.style.top=cy+'px';cx2+=(cx-cx2)*.18;cy2+=(cy-cy2)*.18;cur2.style.left=cx2+'px';cur2.style.top=cy2+'px';requestAnimationFrame(curLoop)})();
+#cur,#cur2{position:fixed;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
+#cur{width:8px;height:8px;background:var(--acc);box-shadow:0 0 10px rgba(0,212,255,.8);transition:transform .1s,background .2s}
+#cur2{width:32px;height:32px;border:1.5px solid rgba(0,212,255,.4);transition:transform .35s cubic-bezier(.16,1,.3,1),width .3s,height .3s,border-color .3s}
+body:has(a:hover) #cur2,body:has(button:hover) #cur2{width:48px;height:48px;border-color:rgba(0,212,255,.7)}
+body:has(a:hover) #cur{background:var(--pur);transform:translate(-50%,-50%) scale(1.5)}
 
-/* RIPPLE ON BUTTONS */
-document.querySelectorAll('.btn-solid,.btn-ghost,.pf-btn,.form-submit').forEach(btn=>{
-  btn.addEventListener('click',e=>{
-    const r=document.createElement('span');r.className='ripple';
-    const rect=btn.getBoundingClientRect();
-    const size=Math.max(rect.width,rect.height);
-    r.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
-    btn.appendChild(r);setTimeout(()=>r.remove(),600);
-  });
-});
+/* Tilt cards */
+.tilt{transform-style:preserve-3d;transition:transform .15s ease-out}
 
-/* 3D TILT ON CARDS */
-document.querySelectorAll('.skill-group,.aw-card,.epm').forEach(card=>{
-  card.classList.add('tilt');
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    const x=((e.clientX-r.left)/r.width-.5)*14;
-    const y=((e.clientY-r.top)/r.height-.5)*-14;
-    card.style.transform=`perspective(600px) rotateY(${x}deg) rotateX(${y}deg) scale(1.03)`;
-  });
-  card.addEventListener('mouseleave',()=>{card.style.transform='perspective(600px) rotateY(0) rotateX(0) scale(1)'});
-});
+/* Ripple */
+.ripple{position:absolute;border-radius:50%;background:rgba(0,212,255,.25);transform:scale(0);animation:ripple-out .6s linear;pointer-events:none}
+@keyframes ripple-out{to{transform:scale(4);opacity:0}}
 
-/* MAGNETIC BUTTONS */
-document.querySelectorAll('.btn-solid,.btn-ghost').forEach(btn=>{
-  btn.addEventListener('mousemove',e=>{
-    const r=btn.getBoundingClientRect();
-    const x=(e.clientX-r.left-r.width/2)*.3;
-    const y=(e.clientY-r.top-r.height/2)*.3;
-    btn.style.transform=`translate(${x}px,${y}px)`;
-  });
-  btn.addEventListener('mouseleave',()=>{btn.style.transform='translate(0,0)'});
-});
+/* Magnetic btn */
+.btn-solid,.btn-ghost{position:relative;overflow:hidden}
 
-/* CLICK PARTICLE BURST */
-document.addEventListener('click',e=>{
-  for(let i=0;i<8;i++){
-    const p=document.createElement('div');
-    const angle=Math.random()*Math.PI*2;
-    const dist=30+Math.random()*50;
-    p.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:4px;height:4px;border-radius:50%;background:${Math.random()>.5?'var(--acc)':'var(--pur)'};pointer-events:none;z-index:9999;transition:all .6s cubic-bezier(.16,1,.3,1);opacity:1`;
-    document.body.appendChild(p);
-    requestAnimationFrame(()=>{
-      p.style.transform=`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`;
-      p.style.opacity='0';
-    });
-    setTimeout(()=>p.remove(),600);
-  }
-});
+/* Section number */
+.sec-num{position:absolute;right:2.5rem;top:3rem;font-size:5rem;font-weight:900;color:rgba(0,212,255,.04);letter-spacing:-.1em;pointer-events:none;user-select:none;font-variant-numeric:tabular-nums}
 
-/* STAGGER REVEAL CHILDREN */
-document.querySelectorAll('.skills-grid,.awards-grid').forEach(grid=>{
-  const children=[...grid.children];
-  children.forEach((c,i)=>{c.style.transitionDelay=`${i*.08}s`;c.classList.add('reveal')});
-});
+/* Glow text on hover for headings */
+.section-h{transition:text-shadow .4s}
+.section:hover .section-h{text-shadow:0 0 40px rgba(0,212,255,.08)}
 
-/* PROCESS LINE ANIMATION */
-const procObs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('animated')})},{threshold:.3});
-const pt=document.getElementById('process-track');if(pt)procObs.observe(pt);
+/* Award card shimmer */
+.aw-card::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(0,212,255,.06) 50%,transparent 60%);transform:translateX(-100%);transition:transform .6s}
+.aw-card:hover::after{transform:translateX(100%)}
+
+/* Skill chip pop */
+.sc,.etag,.pchip{transition:all .25s cubic-bezier(.16,1,.3,1)}
+
+/* Stat pulse */
+.astat{position:relative;overflow:hidden}
+.astat::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(0,212,255,.04),transparent);opacity:0;transition:opacity .4s}
+.astat:hover::after{opacity:1}
+
+@media(max-width:900px){#cur,#cur2{display:none}}
 
 /* TICKER */
 .ticker-wrap{background:var(--s1);border-top:.5px solid var(--bdr);border-bottom:.5px solid var(--bdr);padding:.75rem 0;overflow:hidden;position:relative;z-index:1}
@@ -186,11 +154,8 @@ const pt=document.getElementById('process-track');if(pt)procObs.observe(pt);
 .ps-title{font-size:.95rem;font-weight:800;color:var(--text);margin-bottom:.5rem;transition:color .3s;letter-spacing:-.02em}
 .process-step:hover .ps-title{color:var(--acc)}
 .ps-desc{font-size:.72rem;color:var(--t2);line-height:1.7;transition:color .3s}
-.process-step:hover .ps-desc{color:var(--t2)}
-.ps-step-line{position:absolute;top:52px;right:-50%;width:100%;height:1.5px;background:transparent;z-index:0}
-@keyframes ps-pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,.3)}50%{box-shadow:0 0 0 10px rgba(0,212,255,0)}}
-.process-step:hover .ps-icon{animation:ps-bounce .6s cubic-bezier(.16,1,.3,1)}
 @keyframes ps-bounce{0%{transform:scale(1) translateY(0)}40%{transform:scale(1.15) translateY(-10px)}70%{transform:scale(1.08) translateY(-6px)}100%{transform:scale(1.12) translateY(-6px)}}
+.process-step:hover .ps-icon{animation:ps-bounce .6s cubic-bezier(.16,1,.3,1)}
 
 /* EXPERIENCE */
 .exp-container{display:grid;grid-template-columns:220px 1fr;gap:3rem}
@@ -319,51 +284,6 @@ const pt=document.getElementById('process-track');if(pt)procObs.observe(pt);
 .form-submit:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(0,212,255,.35)}
 .form-note{font-size:.56rem;color:var(--t4);text-align:center;margin-top:.6rem}
 
-/* ── EXTRA INTERACTIONS ── */
-
-/* Scroll progress bar */
-#scroll-bar{position:fixed;top:0;left:0;height:2.5px;background:linear-gradient(90deg,var(--acc),var(--pur));width:0%;z-index:9999;transition:width .1s linear;box-shadow:0 0 10px rgba(0,212,255,.5)}
-
-/* Custom cursor */
-#cur,#cur2{position:fixed;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
-#cur{width:8px;height:8px;background:var(--acc);box-shadow:0 0 10px rgba(0,212,255,.8);transition:transform .1s,background .2s}
-#cur2{width:32px;height:32px;border:1.5px solid rgba(0,212,255,.4);transition:transform .35s cubic-bezier(.16,1,.3,1),width .3s,height .3s,border-color .3s}
-body:has(a:hover) #cur2,body:has(button:hover) #cur2{width:48px;height:48px;border-color:rgba(0,212,255,.7)}
-body:has(a:hover) #cur{background:var(--pur);transform:translate(-50%,-50%) scale(1.5)}
-
-/* Tilt cards */
-.tilt{transform-style:preserve-3d;transition:transform .15s ease-out}
-
-/* Ripple */
-.ripple{position:absolute;border-radius:50%;background:rgba(0,212,255,.25);transform:scale(0);animation:ripple-out .6s linear;pointer-events:none}
-@keyframes ripple-out{to{transform:scale(4);opacity:0}}
-
-/* Magnetic btn */
-.btn-solid,.btn-ghost{position:relative;overflow:hidden}
-
-/* Section number */
-.sec-num{position:absolute;right:2.5rem;top:3rem;font-size:5rem;font-weight:900;color:rgba(0,212,255,.04);letter-spacing:-.1em;pointer-events:none;user-select:none;font-variant-numeric:tabular-nums}
-
-/* Glow text on hover for headings */
-.section-h{transition:text-shadow .4s}
-.section:hover .section-h{text-shadow:0 0 40px rgba(0,212,255,.08)}
-
-/* Award card shimmer */
-.aw-card::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(0,212,255,.06) 50%,transparent 60%);transform:translateX(-100%);transition:transform .6s}
-.aw-card:hover::after{transform:translateX(100%)}
-
-/* Skill chip pop */
-.sc,.etag,.pchip{transition:all .25s cubic-bezier(.16,1,.3,1)}
-
-/* Floating label on proj cards */
-.proj-card{overflow:hidden}
-
-/* Stat pulse */
-.astat{position:relative;overflow:hidden}
-.astat::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(0,212,255,.04),transparent);opacity:0;transition:opacity .4s}
-.astat:hover::after{opacity:1}
-
-@media(max-width:900px){#cur,#cur2{display:none}}
 footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);position:relative;z-index:1}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .footer-logo{font-size:.78rem;font-weight:800;color:var(--text)}
@@ -438,7 +358,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
         <span id="type-hi" style="color:var(--acc);font-weight:700"></span>
         <span style="color:var(--acc);animation:blink 1s steps(1) infinite">|</span>
       </div>
-      <p class="hero-desc reveal d2">Senior BI Analyst with ~4 years building enterprise data platforms, executive dashboards, and ML-powered insights that C-suite leaders actually trust. Managing analytics for $200M+ ARR portfolios.</p>
+      <p class="hero-desc reveal d2">Senior BI Analyst with ~4 years building enterprise data platforms, executive dashboards, and ML-powered insights that C-suite leaders actually trust. Managing analytics for $400M+ ARR portfolios.</p>
       <div class="hero-actions reveal d3">
         <a href="#projects" class="btn-solid">See My Work ↓</a>
         <a href="#experience" class="btn-ghost">Work History</a>
@@ -466,13 +386,13 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
     <h2 class="section-h reveal d1">The Analyst Behind the Numbers</h2>
     <p class="section-sub reveal d2">Not just dashboards — I build the data culture that makes them matter.</p>
     <div class="about-text reveal d2">
-      <p style="margin-bottom:1.2rem">I'm Yunus, a <strong>Senior BI Analyst</strong> based in Dhaka, currently leading analytics at <span class="highlight">Optimizely</span> across a $200M+ ARR portfolio. I work with 10+ global teams to turn fragmented data into a <strong>single source of truth</strong> that execs actually rely on.</p>
-      <p style="margin-bottom:1.2rem">Before Optimizely, I built the analytics backbone at <strong>ShopUp</strong> (one of Bangladesh's largest B2B platforms), helped retain 20K+ users at <strong>AponTech</strong> through ML-driven insights, and started my journey optimizing SQL queries at <strong>DataWorks</strong>.</p>
-      <p>What drives me? I believe <span class="highlight">data should simplify decisions, not complicate them</span>. Whether it's a Power BI dashboard for 400+ users or an ML model predicting churn, if it doesn't change how someone acts, it's just decoration.</p>
+      <p style="margin-bottom:1.2rem">I'm Yunus, a <strong>Senior BI Analyst</strong> based in Dhaka, currently leading analytics at <span class="highlight">Optimizely</span> across a $400M+ ARR portfolio. I work with 10+ global teams to turn fragmented data into a <strong>single source of truth</strong> that execs actually rely on.</p>
+      <p style="margin-bottom:1.2rem">Before Optimizely, I built the analytics backbone at <strong>ShopUp</strong> (one of Bangladesh's largest B2B platforms, $195M+ GMV), helped retain 20K+ users at <strong>AponTech</strong> through ML-driven insights, and started my journey optimizing SQL queries at <strong>DataWorks</strong>.</p>
+      <p>What drives me? I believe <span class="highlight">data should simplify decisions, not complicate them</span>. Whether it's a Power BI dashboard for 550+ users or an ML model predicting churn, if it doesn't change how someone acts, it's just decoration.</p>
     </div>
     <div class="about-stats reveal d3">
       <div class="astat"><div class="astat-val"><span id="cnt-arr">0</span><span>M+</span></div><div class="astat-label">ARR Managed</div><div class="astat-sub">Optimizely GTM</div></div>
-      <div class="astat"><div class="astat-val"><span id="cnt-dash">0</span><span>+</span></div><div class="astat-label">Dashboards Built</div><div class="astat-sub">400+ global users</div></div>
+      <div class="astat"><div class="astat-val"><span id="cnt-dash">0</span><span>+</span></div><div class="astat-label">Dashboards Built</div><div class="astat-sub">550+ global users</div></div>
       <div class="astat"><div class="astat-val"><span id="cnt-rows">0</span><span>M+</span></div><div class="astat-label">Rows / Day</div><div class="astat-sub">Snowflake pipelines</div></div>
       <div class="astat"><div class="astat-val"><span id="cnt-pipe">0</span><span>M+</span></div><div class="astat-label">Pipeline Found</div><div class="astat-sub">Revenue insights</div></div>
     </div>
@@ -489,42 +409,22 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
     <p class="section-sub reveal d2">A proven approach, whether it's a 2-week sprint or a 6-month engagement.</p>
     <div class="process-track reveal d2" id="process-track">
       <div class="process-step">
-        <div class="ps-wrap">
-          <div class="ps-glow"></div>
-          <div class="ps-ring"></div>
-          <div class="ps-icon">🔍</div>
-          <div class="ps-num-badge">01</div>
-        </div>
+        <div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🔍</div><div class="ps-num-badge">01</div></div>
         <div class="ps-title">Discover</div>
         <div class="ps-desc">Understand your data landscape, pain points, and what success looks like.</div>
       </div>
       <div class="process-step">
-        <div class="ps-wrap">
-          <div class="ps-glow"></div>
-          <div class="ps-ring"></div>
-          <div class="ps-icon">🏗️</div>
-          <div class="ps-num-badge">02</div>
-        </div>
+        <div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🏗️</div><div class="ps-num-badge">02</div></div>
         <div class="ps-title">Architect</div>
         <div class="ps-desc">Design the data model, governance framework, and KPI structure.</div>
       </div>
       <div class="process-step">
-        <div class="ps-wrap">
-          <div class="ps-glow"></div>
-          <div class="ps-ring"></div>
-          <div class="ps-icon">🚀</div>
-          <div class="ps-num-badge">03</div>
-        </div>
+        <div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🚀</div><div class="ps-num-badge">03</div></div>
         <div class="ps-title">Build & Ship</div>
         <div class="ps-desc">Deliver dashboards, pipelines, and models in fast iterative sprints.</div>
       </div>
       <div class="process-step">
-        <div class="ps-wrap">
-          <div class="ps-glow"></div>
-          <div class="ps-ring"></div>
-          <div class="ps-icon">📈</div>
-          <div class="ps-num-badge">04</div>
-        </div>
+        <div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">📈</div><div class="ps-num-badge">04</div></div>
         <div class="ps-title">Scale</div>
         <div class="ps-desc">Train your team, document everything, and ensure long-term growth.</div>
       </div>
@@ -548,40 +448,87 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
         <button class="exp-tab" data-target="dw">DataWorks<span class="exp-tab-co">2022 · Internship</span></button>
       </div>
       <div>
+        <!-- OPTIMIZELY -->
         <div class="exp-panel active" id="p-opt">
           <div class="ep-role">Senior Business Intelligence Analyst</div>
           <div class="ep-company"><a href="https://www.optimizely.com/" class="ep-co-name" target="_blank">Optimizely</a><span class="ep-co-badge">Current Role</span></div>
           <div class="ep-period">Jan 2025 – Present · Dhaka (Remote, Global)</div>
-          <div class="ep-metrics"><div class="epm"><div class="epm-val"><sup>$</sup>200<sup>M+</sup></div><div class="epm-l">ARR Portfolio</div></div><div class="epm"><div class="epm-val">400<sup>+</sup></div><div class="epm-l">Global Users</div></div><div class="epm"><div class="epm-val">40<sup>h+</sup></div><div class="epm-l">Saved/Month</div></div><div class="epm"><div class="epm-val"><sup>$</sup>20<sup>M+</sup></div><div class="epm-l">Pipeline Found</div></div></div>
-          <p class="ep-desc">Leading BI strategy across 10+ departments on a $200M+ ARR portfolio. Built 30+ Power BI dashboards serving 400+ global users and established the org-wide SSOT data governance framework trusted by VP and C-suite stakeholders.</p>
-          <ul class="ep-bullets"><li>Architected SSOT data governance framework adopted across 10+ business units, unifying reporting for VP/C-suite</li><li>Engineered Snowflake ETL pipelines processing 500M+ rows/day with sub-second refresh for real-time GTM decisions</li><li>Identified $20M+ in pipeline gaps through cohort and funnel analytics, directly influencing GTM resource allocation</li><li>Mentored 5+ analysts in DAX, dimensional modeling, and BI best practices; drove CI/CD adoption for dashboards</li></ul>
+          <div class="ep-metrics">
+            <div class="epm"><div class="epm-val"><sup>$</sup>400<sup>M+</sup></div><div class="epm-l">ARR Portfolio</div></div>
+            <div class="epm"><div class="epm-val">550<sup>+</sup></div><div class="epm-l">Global Users</div></div>
+            <div class="epm"><div class="epm-val">65<sup>h+</sup></div><div class="epm-l">Saved/Month</div></div>
+            <div class="epm"><div class="epm-val"><sup>$</sup>20<sup>M+</sup></div><div class="epm-l">Pipeline Found</div></div>
+          </div>
+          <p class="ep-desc">Sole analytics owner and roadmap lead for 10+ departments across a $400M+ ARR portfolio. Built 45+ Power BI dashboards serving 550+ global users and established the org-wide north-star KPI framework and self-serve analytics platform trusted by VP and C-suite stakeholders.</p>
+          <ul class="ep-bullets">
+            <li>Architected BI Centre-of-Excellence and self-serve analytics platform; presented quarterly roadmap ratified by VP Analytics, serving 550+ users across 10+ business units</li>
+            <li>Defined enterprise north-star KPIs, semantic layer, and data-contract governance — standardising ARR, MRR, CLV, ARPU, NRR, CSAT, and Win Rate with data lineage, row-level security, and GDPR controls</li>
+            <li>Ran 15+ concurrent A/B experiments with full statistical power analysis and Bayesian hypothesis testing — improving retention modelling accuracy by 18% and cutting churn-risk identification lag by 2+ weeks</li>
+            <li>Architected Snowflake / dbt ETL/ELT pipelines processing 500M+ rows/day at sub-second query response — certified star-schema dimensional models with CI/CD (GitHub Actions) and UAT sign-off</li>
+            <li>Surfaced $20M+ in previously untracked quarterly pipeline gaps via root-cause analysis across SQL, Python, and Power BI — delivered through executive data storytelling in C-suite reviews</li>
+            <li>Mentored 5+ analysts in DAX, dimensional modeling, and BI best practices; drove CI/CD adoption cutting dashboard failure rates by 40–50% and analyst ramp time by 3 weeks</li>
+          </ul>
           <div class="ep-tags"><span class="etag">Power BI</span><span class="etag">Advanced DAX</span><span class="etag">Snowflake</span><span class="etag">Python</span><span class="etag">SQL</span><span class="etag">dbt</span><span class="etag">Salesforce</span><span class="etag">A/B Testing</span><span class="etag">CI/CD</span><span class="etag">SSOT Governance</span></div>
         </div>
+        <!-- SHOPUP -->
         <div class="exp-panel" id="p-shop">
           <div class="ep-role">Sales Data Analyst (Expert)</div>
-          <div class="ep-company"><a href="https://shopup.org/" class="ep-co-name" target="_blank">Mokam CPG — ShopUp</a><span class="ep-co-badge">B2B · $60M+</span></div>
+          <div class="ep-company"><a href="https://shopup.org/" class="ep-co-name" target="_blank">Mokam CPG — ShopUp</a><span class="ep-co-badge">B2B · $195M+ GMV</span></div>
           <div class="ep-period">Oct 2023 – Dec 2024 · Dhaka</div>
-          <div class="ep-metrics"><div class="epm"><div class="epm-val"><sup>$</sup>60<sup>M+</sup></div><div class="epm-l">Decisions</div></div><div class="epm"><div class="epm-val">150<sup>+</sup></div><div class="epm-l">DAU</div></div><div class="epm"><div class="epm-val">90<sup>%</sup></div><div class="epm-l">Quality Gain</div></div><div class="epm"><div class="epm-val">−12<sup>%</sup></div><div class="epm-l">MoM Churn</div></div></div>
-          <p class="ep-desc">Guided $60M+ in B2B operational decisions. Deployed 30+ dashboards with 150+ DAU; achieved 90% metric discrepancy reduction via governance and decreased MoM churn by 12% through ML-driven segmentation.</p>
-          <ul class="ep-bullets"><li>Reduced manual data prep by 50% (~25 hrs/week) via automated ETL pipelines using Python and SQL</li><li>Deployed Sales Sight 360, an end-to-end KPI platform that became the operational backbone for 6 departments</li><li>Won Q4 2023 Best Performing Team award; received Pace Over Perfection Award in 2024</li><li>Implemented Atlan-based data catalog reducing onboarding time by 60%</li></ul>
+          <div class="ep-metrics">
+            <div class="epm"><div class="epm-val"><sup>$</sup>195<sup>M+</sup></div><div class="epm-l">Annual GMV</div></div>
+            <div class="epm"><div class="epm-val">150<sup>+</sup></div><div class="epm-l">DAU</div></div>
+            <div class="epm"><div class="epm-val">90<sup>%</sup></div><div class="epm-l">Quality Gain</div></div>
+            <div class="epm"><div class="epm-val">−12<sup>%</sup></div><div class="epm-l">MoM Churn</div></div>
+          </div>
+          <p class="ep-desc">Owned analytics underpinning $195M+ in B2B annual GMV. Deployed 25+ dashboards with 150+ DAU; achieved 90% metric discrepancy reduction via data contracts and decreased MoM churn by 12% through ML-driven segmentation.</p>
+          <ul class="ep-bullets">
+            <li>Reduced manual data prep by 50% (~25 hrs/week) via automated ETL pipelines using Python, Azure Data Factory, and SQL</li>
+            <li>Deployed Sales Sight 360, an end-to-end KPI platform that became the operational backbone for 6 departments with 150+ DAU</li>
+            <li>Built slow-moving stock prediction models using time-series analysis — auto-alerting departments 30 days ahead, freeing 45% of warehouse capacity</li>
+            <li>Won Q4 2023 Best Performing Team award; received Pace Over Perfection Award in 2024 for 35% efficiency gains</li>
+            <li>Implemented Atlan-based data catalog reducing onboarding time by 60%; delivered 35% deposit growth YoY via credit risk analytics</li>
+          </ul>
           <div class="ep-tags"><span class="etag">Power BI</span><span class="etag">DAX</span><span class="etag">ETL</span><span class="etag">SQL</span><span class="etag">Atlan</span><span class="etag">Cohort Analysis</span><span class="etag">RFM</span></div>
         </div>
+        <!-- APONTECH -->
         <div class="exp-panel" id="p-apon">
           <div class="ep-role">Associate Data Analyst</div>
           <div class="ep-company"><a href="http://www.apon-wellbeing.com/" class="ep-co-name" target="_blank">AponTech Ltd</a><span class="ep-co-badge">Healthcare / Retail</span></div>
           <div class="ep-period">Dec 2022 – Sep 2023 · Dhaka</div>
-          <div class="ep-metrics"><div class="epm"><div class="epm-val">20<sup>K+</sup></div><div class="epm-l">Users Retained</div></div><div class="epm"><div class="epm-val">85<sup>%+</sup></div><div class="epm-l">ML Accuracy</div></div><div class="epm"><div class="epm-val">+50<sup>%</sup></div><div class="epm-l">Basket Size</div></div><div class="epm"><div class="epm-val"><sup>$</sup>150<sup>K</sup></div><div class="epm-l">Leakage Plugged</div></div></div>
+          <div class="ep-metrics">
+            <div class="epm"><div class="epm-val">20<sup>K+</sup></div><div class="epm-l">Users Retained</div></div>
+            <div class="epm"><div class="epm-val">85<sup>%+</sup></div><div class="epm-l">ML Accuracy</div></div>
+            <div class="epm"><div class="epm-val">+50<sup>%</sup></div><div class="epm-l">Basket Size</div></div>
+            <div class="epm"><div class="epm-val"><sup>$</sup>150<sup>K</sup></div><div class="epm-l">Leakage Plugged</div></div>
+          </div>
           <p class="ep-desc">Retained 20,000+ users; grew basket size 50% ($16→$24) via ML-driven segmentation. Predictive models at 85%+ accuracy and automated anomaly detection eliminating ~$150K annual revenue leakage.</p>
-          <ul class="ep-bullets"><li>Built churn prediction model with Random Forest achieving 85%+ accuracy on 100K+ users</li><li>Grew average basket size from $16 to $24 (+50%) using k-means segmentation</li><li>Automated anomaly detection pipeline that flagged $150K in annual revenue leakage</li><li>Built interactive Power BI dashboards for healthcare KPIs, improving reporting turnaround by 40%</li></ul>
-          <div class="ep-tags"><span class="etag">Python</span><span class="etag">scikit-learn</span><span class="etag">SQL</span><span class="etag">Power BI</span><span class="etag">Random Forest</span><span class="etag">k-means</span></div>
+          <ul class="ep-bullets">
+            <li>Built churn prediction model with XGBoost / Random Forest achieving 85%+ accuracy on 100K+ users</li>
+            <li>Grew average basket size from $16 to $24 (+50%) using k-means segmentation and lifecycle analytics</li>
+            <li>Automated anomaly detection pipeline that flagged $150K in annual revenue leakage</li>
+            <li>Built interactive Power BI dashboards for healthcare KPIs, improving reporting turnaround by 40%</li>
+          </ul>
+          <div class="ep-tags"><span class="etag">Python</span><span class="etag">scikit-learn</span><span class="etag">XGBoost</span><span class="etag">SQL</span><span class="etag">Power BI</span><span class="etag">Random Forest</span><span class="etag">k-means</span></div>
         </div>
+        <!-- DATAWORKS -->
         <div class="exp-panel" id="p-dw">
           <div class="ep-role">Data Analyst Intern</div>
           <div class="ep-company"><a href="https://datacrafters.io/" class="ep-co-name" target="_blank">DataWorks Ltd.</a><span class="ep-co-badge">Remote · Houston TX</span></div>
           <div class="ep-period">May – Nov 2022 · Remote</div>
-          <div class="ep-metrics"><div class="epm"><div class="epm-val">40<sup>+</sup></div><div class="epm-l">SQL Optimized</div></div><div class="epm"><div class="epm-val">25<sup>%</sup></div><div class="epm-l">Query Time Cut</div></div><div class="epm"><div class="epm-val">5<sup>+</sup></div><div class="epm-l">Data Sources</div></div><div class="epm"><div class="epm-val">3</div><div class="epm-l">Business Units</div></div></div>
+          <div class="ep-metrics">
+            <div class="epm"><div class="epm-val">40<sup>+</sup></div><div class="epm-l">SQL Optimized</div></div>
+            <div class="epm"><div class="epm-val">25<sup>%</sup></div><div class="epm-l">Query Time Cut</div></div>
+            <div class="epm"><div class="epm-val">5<sup>+</sup></div><div class="epm-l">Data Sources</div></div>
+            <div class="epm"><div class="epm-val">3</div><div class="epm-l">Business Units</div></div>
+          </div>
           <p class="ep-desc">Built ETL pipelines and optimized SQL queries, cutting execution time by 25% across 3 business units. Designed campaign KPI dashboards for cross-functional teams.</p>
-          <ul class="ep-bullets"><li>Optimized 40+ SQL queries, reducing average execution time by 25%</li><li>Built ETL pipelines ingesting data from 5+ external sources into a central SQL Server warehouse</li><li>Designed campaign KPI dashboards enabling marketing teams to self-serve analysis</li><li>Collaborated with cross-functional stakeholders to define data requirements and deliver actionable reporting</li></ul>
+          <ul class="ep-bullets">
+            <li>Optimized 40+ SQL queries, reducing average execution time by 25%</li>
+            <li>Built ETL pipelines ingesting data from 5+ external sources into a central SQL Server warehouse</li>
+            <li>Designed campaign KPI dashboards enabling marketing teams to self-serve analysis</li>
+            <li>Collaborated with cross-functional stakeholders to define data requirements and deliver actionable reporting</li>
+          </ul>
           <div class="ep-tags"><span class="etag">SQL</span><span class="etag">ETL</span><span class="etag">Power BI</span></div>
         </div>
       </div>
@@ -622,8 +569,8 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
     <div class="proj-grid reveal d2" id="proj-grid">
       <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank">
         <div class="proj-num">01</div>
-        <div class="proj-mid"><div class="proj-title">Sales Sight 360 Dashboard</div><div class="proj-desc">Unified real-time sales analytics platform — operational backbone for 150+ DAU guiding $60M+ in B2B decisions.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div>
-        <div class="proj-right"><span class="proj-feat-badge">★ Featured</span><span class="proj-impact">150+ DAU · $60M+</span><div class="proj-arr">↗</div></div>
+        <div class="proj-mid"><div class="proj-title">Sales Sight 360 Dashboard</div><div class="proj-desc">Unified real-time sales analytics platform — operational backbone for 150+ DAU guiding $195M+ in B2B decisions.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div>
+        <div class="proj-right"><span class="proj-feat-badge">★ Featured</span><span class="proj-impact">150+ DAU · $195M+</span><div class="proj-arr">↗</div></div>
       </a>
       <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/PipelineTrendDash" target="_blank">
         <div class="proj-num">02</div>
@@ -704,9 +651,9 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
     <h2 class="section-h reveal d1">Awards & Certifications</h2>
     <p class="section-sub reveal d2">Proof that the work speaks for itself.</p>
     <div class="awards-grid reveal d2">
-      <div class="aw-card"><div class="aw-icon">🏆</div><div class="aw-year">Optimizely · 2025</div><div class="aw-title">Formal Bonusly Recognition</div><div class="aw-desc">Peer-nominated for exceptional BI impact on the $200M+ ARR analytics framework across 10+ departments.</div><a href="https://github.com/YM-Codes/Opti_Recognition_Bonusly" class="aw-link" target="_blank">View Award ↗</a></div>
-      <div class="aw-card"><div class="aw-icon">⭐</div><div class="aw-year">Optimizely · 2025</div><div class="aw-title">Cross-Channel Peer Recognition</div><div class="aw-desc">Acknowledged by 5+ teams for data quality advocacy and governance impact across 400+ global BI users.</div><a href="https://github.com/YM-Codes/Opti_Recognition_Others" class="aw-link" target="_blank">View Award ↗</a></div>
-      <div class="aw-card"><div class="aw-icon">🥇</div><div class="aw-year">ShopUp · Q4 2023</div><div class="aw-title">Best Performing Team</div><div class="aw-desc">Sales Sight 360, operational backbone for 150+ DAU guiding $60M+ in business decisions.</div><a href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard" class="aw-link" target="_blank">View Project ↗</a></div>
+      <div class="aw-card"><div class="aw-icon">🏆</div><div class="aw-year">Optimizely · 2025</div><div class="aw-title">Formal Bonusly Recognition</div><div class="aw-desc">Peer-nominated for exceptional BI impact on the $400M+ ARR analytics framework across 10+ departments.</div><a href="https://github.com/YM-Codes/Opti_Recognition_Bonusly" class="aw-link" target="_blank">View Award ↗</a></div>
+      <div class="aw-card"><div class="aw-icon">⭐</div><div class="aw-year">Optimizely · 2025</div><div class="aw-title">Cross-Channel Peer Recognition</div><div class="aw-desc">Acknowledged by 5+ teams for data quality advocacy and governance impact across 550+ global BI users.</div><a href="https://github.com/YM-Codes/Opti_Recognition_Others" class="aw-link" target="_blank">View Award ↗</a></div>
+      <div class="aw-card"><div class="aw-icon">🥇</div><div class="aw-year">ShopUp · Q4 2023</div><div class="aw-title">Best Performing Team</div><div class="aw-desc">Sales Sight 360, operational backbone for 150+ DAU guiding $195M+ in annual GMV decisions.</div><a href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard" class="aw-link" target="_blank">View Project ↗</a></div>
       <div class="aw-card"><div class="aw-icon">⚡</div><div class="aw-year">ShopUp · 2024</div><div class="aw-title">Pace Over Perfection Award</div><div class="aw-desc">35% efficiency gain via rapid automation and pipeline delivery across 10+ cross-functional teams.</div><a href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Acknowledgment.pdf" class="aw-link" target="_blank">View ↗</a></div>
       <div class="aw-card"><div class="aw-icon">🎓</div><div class="aw-year">Microsoft · 2023</div><div class="aw-title">PL-300 Power BI Certified</div><div class="aw-desc">Microsoft Certified Power BI Data Analyst. Credential ID: 3BB17D0B5D0736D4</div><a href="https://learn.microsoft.com/api/credentials/share/en-us/YunusMiah-6407/3BB17D0B5D0736D4" class="aw-link" target="_blank">Verify ↗</a></div>
       <div class="aw-card"><div class="aw-icon">📊</div><div class="aw-year">SQLBI · 2022</div><div class="aw-title">DAX Expert Certification</div><div class="aw-desc">SQLBI DAX Expert, one of the most rigorous Power BI certifications globally.</div><a href="https://www.sqlbi.com/cert/segvw8ij-220528/" class="aw-link" target="_blank">Verify ↗</a></div>
@@ -774,12 +721,85 @@ update(){this.pulse+=.02;this.a=this.baseA+Math.sin(this.pulse)*.08;const dx=mou
 for(let i=0;i<160;i++)particles.push(new P);
 function anim(){ctx.clearRect(0,0,W,H);particles.forEach(p=>{p.update();p.draw()});for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);const md1=Math.sqrt((mouse.x-particles[i].x)**2+(mouse.y-particles[i].y)**2),md2=Math.sqrt((mouse.x-particles[j].x)**2+(mouse.y-particles[j].y)**2);const near=md1<mouse.radius||md2<mouse.radius,mx=near?180:120,al=near?.12:.06;if(d<mx){ctx.beginPath();ctx.strokeStyle=`rgba(0,212,255,${al*(1-d/mx)})`;ctx.lineWidth=near?.7:.4;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke()}}requestAnimationFrame(anim)}anim();
 
+/* SCROLL PROGRESS */
+const scrollBar=document.getElementById('scroll-bar');
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  scrollBar.style.width=pct+'%';
+});
+
+/* CUSTOM CURSOR */
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let cx=0,cy=0,cx2=0,cy2=0;
+window.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY});
+(function curLoop(){cur.style.left=cx+'px';cur.style.top=cy+'px';cx2+=(cx-cx2)*.18;cy2+=(cy-cy2)*.18;cur2.style.left=cx2+'px';cur2.style.top=cy2+'px';requestAnimationFrame(curLoop)})();
+
+/* RIPPLE ON BUTTONS */
+document.querySelectorAll('.btn-solid,.btn-ghost,.pf-btn,.form-submit').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    const r=document.createElement('span');r.className='ripple';
+    const rect=btn.getBoundingClientRect();
+    const size=Math.max(rect.width,rect.height);
+    r.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+    btn.appendChild(r);setTimeout(()=>r.remove(),600);
+  });
+});
+
+/* 3D TILT ON CARDS */
+document.querySelectorAll('.skill-group,.aw-card,.epm').forEach(card=>{
+  card.classList.add('tilt');
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-.5)*14;
+    const y=((e.clientY-r.top)/r.height-.5)*-14;
+    card.style.transform=`perspective(600px) rotateY(${x}deg) rotateX(${y}deg) scale(1.03)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='perspective(600px) rotateY(0) rotateX(0) scale(1)'});
+});
+
+/* MAGNETIC BUTTONS */
+document.querySelectorAll('.btn-solid,.btn-ghost').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)*.3;
+    const y=(e.clientY-r.top-r.height/2)*.3;
+    btn.style.transform=`translate(${x}px,${y}px)`;
+  });
+  btn.addEventListener('mouseleave',()=>{btn.style.transform='translate(0,0)'});
+});
+
+/* CLICK PARTICLE BURST */
+document.addEventListener('click',e=>{
+  for(let i=0;i<8;i++){
+    const p=document.createElement('div');
+    const angle=Math.random()*Math.PI*2;
+    const dist=30+Math.random()*50;
+    p.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:4px;height:4px;border-radius:50%;background:${Math.random()>.5?'var(--acc)':'var(--pur)'};pointer-events:none;z-index:9999;transition:all .6s cubic-bezier(.16,1,.3,1);opacity:1`;
+    document.body.appendChild(p);
+    requestAnimationFrame(()=>{
+      p.style.transform=`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`;
+      p.style.opacity='0';
+    });
+    setTimeout(()=>p.remove(),600);
+  }
+});
+
+/* STAGGER REVEAL CHILDREN */
+document.querySelectorAll('.skills-grid,.awards-grid').forEach(grid=>{
+  const children=[...grid.children];
+  children.forEach((c,i)=>{c.style.transitionDelay=`${i*.08}s`;c.classList.add('reveal')});
+});
+
+/* PROCESS LINE ANIMATION */
+const procObs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('animated')})},{threshold:.3});
+const pt=document.getElementById('process-track');if(pt)procObs.observe(pt);
+
 /* COUNTERS */
 function animC(el,t,d=1800){let s=null;function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/d,1);el.textContent=Math.round(p*t);if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 
 /* OBSERVER */
 let aboutDone=false;
-const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(!en.isIntersecting)return;en.target.classList.add('visible');if((en.target.id==='about'||en.target.closest('#about'))&&!aboutDone){aboutDone=true;animC(document.getElementById('cnt-arr'),200);animC(document.getElementById('cnt-dash'),30);animC(document.getElementById('cnt-rows'),500);animC(document.getElementById('cnt-pipe'),20)}en.target.querySelectorAll('.skill-bar-fill[data-p]').forEach(f=>setTimeout(()=>f.style.width=f.dataset.p+'%',300))})},{threshold:.1});
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(!en.isIntersecting)return;en.target.classList.add('visible');if((en.target.id==='about'||en.target.closest('#about'))&&!aboutDone){aboutDone=true;animC(document.getElementById('cnt-arr'),400);animC(document.getElementById('cnt-dash'),45);animC(document.getElementById('cnt-rows'),500);animC(document.getElementById('cnt-pipe'),20)}en.target.querySelectorAll('.skill-bar-fill[data-p]').forEach(f=>setTimeout(()=>f.style.width=f.dataset.p+'%',300))})},{threshold:.1});
 document.querySelectorAll('.reveal,section').forEach(el=>obs.observe(el));
 
 /* EXP TABS */
@@ -789,7 +809,7 @@ document.querySelectorAll('.exp-tab').forEach(t=>{t.addEventListener('click',()=
 document.querySelectorAll('.pf-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.f;document.querySelectorAll('.proj-card').forEach(card=>{card.style.display=(f==='all'||card.dataset.cat===f)?'grid':'none'})})});
 
 /* TICKER */
-const items=[{val:'$200M+',label:'ARR Portfolio'},{val:'30+',label:'BI Dashboards'},{val:'500M+',label:'Rows Per Day'},{val:'400+',label:'Global Users'},{val:'$20M+',label:'Pipeline Found'},{val:'90%',label:'Data Quality'},{val:'−12%',label:'Churn Reduced'},{val:'85%+',label:'ML Accuracy'},{val:'PL-300',label:'Certified'},{val:'SQLBI',label:'DAX Expert'},{val:'40h+',label:'Saved Monthly'},{val:'~4yr',label:'BI Experience'}];
+const items=[{val:'$400M+',label:'ARR Portfolio'},{val:'45+',label:'BI Dashboards'},{val:'500M+',label:'Rows Per Day'},{val:'550+',label:'Global Users'},{val:'$20M+',label:'Pipeline Found'},{val:'90%',label:'Data Quality'},{val:'−12%',label:'Churn Reduced'},{val:'85%+',label:'ML Accuracy'},{val:'PL-300',label:'Certified'},{val:'SQLBI',label:'DAX Expert'},{val:'65h+',label:'Saved Monthly'},{val:'~4yr',label:'BI Experience'}];
 const tick=document.getElementById('ticker'),html=items.map(i=>`<span class="tick-item"><span>${i.val}</span>${i.label}<span class="tick-sep">·</span></span>`).join('');tick.innerHTML=html+html;
 
 /* SCROLL TOP */
@@ -799,7 +819,7 @@ const st=document.getElementById('scroll-top');window.addEventListener('scroll',
 window.addEventListener('scroll',()=>{let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id});document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur)})});
 
 /* TYPEWRITER */
-(function(){const phrases=[{s:'Expert in ',h:'Power BI & Advanced DAX'},{s:'Building ',h:'SSOT Data Governance'},{s:'Processing ',h:'500M+ Rows Per Day'},{s:'Driving ',h:'$200M+ ARR Analytics'},{s:'Delivering ',h:'ML-Powered Insights'},{s:'Certified ',h:'PL-300 & SQLBI DAX Expert'},{s:'Trusted by ',h:'C-Suite Stakeholders'},{s:'Open to ',h:'Remote / Relocation Globally'}];const sEl=document.getElementById('type-static'),hEl=document.getElementById('type-hi');let pi=0,ci=0,erasing=false;function step(){const{s,h}=phrases[pi],full=s+h;if(!erasing){ci++;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci>=full.length){setTimeout(()=>{erasing=true;step()},2200);return}}else{ci--;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci<=0){erasing=false;pi=(pi+1)%phrases.length;setTimeout(step,400);return}}setTimeout(step,erasing?32:75)}setTimeout(step,1200)})();
+(function(){const phrases=[{s:'Expert in ',h:'Power BI & Advanced DAX'},{s:'Building ',h:'SSOT Data Governance'},{s:'Processing ',h:'500M+ Rows Per Day'},{s:'Driving ',h:'$400M+ ARR Analytics'},{s:'Delivering ',h:'ML-Powered Insights'},{s:'Certified ',h:'PL-300 & SQLBI DAX Expert'},{s:'Trusted by ',h:'C-Suite Stakeholders'},{s:'Surfaced ',h:'$20M+ in Untracked Pipeline'},{s:'Running ',h:'15+ Concurrent A/B Experiments'},{s:'Architecting ',h:'Snowflake & dbt Pipelines'},{s:'Retained ',h:'20,000+ High-Value Users'},{s:'Mentoring ',h:'5+ Analysts Across Teams'},{s:'Turning ',h:'Raw Data into Revenue Decisions'},{s:'Open to ',h:'Remote / Relocation Globally'}];const sEl=document.getElementById('type-static'),hEl=document.getElementById('type-hi');let pi=0,ci=0,erasing=false;function step(){const{s,h}=phrases[pi],full=s+h;if(!erasing){ci++;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci>=full.length){setTimeout(()=>{erasing=true;step()},2200);return}}else{ci--;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci<=0){erasing=false;pi=(pi+1)%phrases.length;setTimeout(step,400);return}}setTimeout(step,erasing?32:75)}setTimeout(step,1200)})();
 
 /* ARTICLES */
 const articles=[{num:'01',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2024/09/big-problem-small-solution-using.html',title:'Big Problem, Small Solution: Using USERELATIONSHIP',vis:'line'},{num:'02',cat:'Sales',url:'https://daxwithyunus.blogspot.com/2024/09/unlocking-sales-insights-analyzing-tads.html',title:'Analysing TADS, ADS, Shortfall & Projections',vis:'bars'},{num:'03',cat:'Inventory',url:'https://daxwithyunus.blogspot.com/2024/09/solving-inventory-woes-at-better-buys.html',title:'Solving Inventory Woes at Better Buys',vis:'blocks'},{num:'04',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2023/09/calendar-code-for-dax.html',title:'Why Every Analyst Needs a Calendar Table',vis:'heat'},{num:'05',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2022/11/the-road-to-power-bi-datamart-from-data.html',title:'The Road to Power BI Datamart',vis:'network'},{num:'06',cat:'Healthcare',url:'https://walkwithyunus.blogspot.com/2023/09/health-care-analytics-case-study.html',title:'Health Care Analytics Case Study',vis:'pulse'},{num:'07',cat:'Excel',url:'https://walkwithyunus.blogspot.com/2023/09/approaches-for-maximizing-use-of-excel.html',title:'Maximising Excel with Power BI',vis:'scatter'},{num:'08',cat:'Viz',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-visualization-charts.html',title:'Power BI Visualization Deep Dive',vis:'bars'},{num:'09',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-dashboards.html',title:'Dashboard Design & Best Practices',vis:'grid'},{num:'10',cat:'Architecture',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-datamart-illustration.html',title:'Power BI Datamart Illustration',vis:'network'}];
