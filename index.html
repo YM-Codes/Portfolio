@@ -50,7 +50,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
 .hero-h1{font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:800;line-height:1.08;letter-spacing:-.06em;color:var(--text);margin-bottom:.6rem}
 .hero-h1 span{background:linear-gradient(135deg,var(--acc),#7dd3fc,var(--pur));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-type{display:flex;align-items:center;gap:6px;min-height:1.6rem;margin-bottom:1.4rem;font-size:.9rem}
+.hero-type{display:flex;align-items:center;gap:6px;min-height:1.6rem;margin-bottom:1.4rem;font-size:.9rem;white-space:nowrap;overflow:visible;flex-wrap:nowrap}
 .hero-desc{font-size:.87rem;color:var(--t2);line-height:1.9;max-width:540px;margin-bottom:1.8rem}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1.8rem}
 .hero-actions .btn-solid{padding:.65rem 1.8rem;font-size:.78rem}
@@ -70,12 +70,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 /* SCROLL PROGRESS */
 #scroll-bar{position:fixed;top:0;left:0;height:2.5px;background:linear-gradient(90deg,var(--acc),var(--pur));width:0%;z-index:9999;transition:width .1s linear;box-shadow:0 0 10px rgba(0,212,255,.5)}
 
-/* CUSTOM CURSOR */
-#cur,#cur2{position:fixed;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
-#cur{width:8px;height:8px;background:var(--acc);box-shadow:0 0 10px rgba(0,212,255,.8);transition:transform .1s,background .2s}
-#cur2{width:32px;height:32px;border:1.5px solid rgba(0,212,255,.4);transition:transform .35s cubic-bezier(.16,1,.3,1),width .3s,height .3s,border-color .3s}
-body:has(a:hover) #cur2,body:has(button:hover) #cur2{width:48px;height:48px;border-color:rgba(0,212,255,.7)}
-body:has(a:hover) #cur{background:var(--pur);transform:translate(-50%,-50%) scale(1.5)}
+
 
 /* Tilt cards */
 .tilt{transform-style:preserve-3d;transition:transform .15s ease-out}
@@ -106,7 +101,7 @@ body:has(a:hover) #cur{background:var(--pur);transform:translate(-50%,-50%) scal
 .astat::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(0,212,255,.04),transparent);opacity:0;transition:opacity .4s}
 .astat:hover::after{opacity:1}
 
-@media(max-width:900px){#cur,#cur2{display:none}}
+
 
 /* TICKER */
 .ticker-wrap{background:var(--s1);border-top:.5px solid var(--bdr);border-bottom:.5px solid var(--bdr);padding:.75rem 0;overflow:hidden;position:relative;z-index:1}
@@ -328,8 +323,6 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
 <body>
 
 <div id="scroll-bar"></div>
-<div id="cur"></div>
-<div id="cur2"></div>
 <canvas id="hero-canvas"></canvas>
 
 <nav>
@@ -459,14 +452,12 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
             <div class="epm"><div class="epm-val">65<sup>h+</sup></div><div class="epm-l">Saved/Month</div></div>
             <div class="epm"><div class="epm-val"><sup>$</sup>20<sup>M+</sup></div><div class="epm-l">Pipeline Found</div></div>
           </div>
-          <p class="ep-desc">Sole analytics owner and roadmap lead for 10+ departments across a $400M+ ARR portfolio. Built 45+ Power BI dashboards serving 550+ global users and established the org-wide north-star KPI framework and self-serve analytics platform trusted by VP and C-suite stakeholders.</p>
+          <p class="ep-desc">Sole analytics owner across a $400M+ ARR portfolio — built the intelligence layer that 550+ users across 10 departments rely on daily to make pricing, retention, and growth decisions.</p>
           <ul class="ep-bullets">
-            <li>Architected BI Centre-of-Excellence and self-serve analytics platform; presented quarterly roadmap ratified by VP Analytics, serving 550+ users across 10+ business units</li>
-            <li>Defined enterprise north-star KPIs, semantic layer, and data-contract governance — standardising ARR, MRR, CLV, ARPU, NRR, CSAT, and Win Rate with data lineage, row-level security, and GDPR controls</li>
-            <li>Ran 15+ concurrent A/B experiments with full statistical power analysis and Bayesian hypothesis testing — improving retention modelling accuracy by 18% and cutting churn-risk identification lag by 2+ weeks</li>
-            <li>Architected Snowflake / dbt ETL/ELT pipelines processing 500M+ rows/day at sub-second query response — certified star-schema dimensional models with CI/CD (GitHub Actions) and UAT sign-off</li>
-            <li>Surfaced $20M+ in previously untracked quarterly pipeline gaps via root-cause analysis across SQL, Python, and Power BI — delivered through executive data storytelling in C-suite reviews</li>
-            <li>Mentored 5+ analysts in DAX, dimensional modeling, and BI best practices; drove CI/CD adoption cutting dashboard failure rates by 40–50% and analyst ramp time by 3 weeks</li>
+            <li>Surfaced $20M+ in untracked quarterly pipeline through root-cause diagnostics, directly reshaping C-suite GTM strategy</li>
+            <li>Eliminated 6+ months of cross-team metric conflict by defining the enterprise north-star KPI framework — ARR, NRR, CLV, ARPU, Win Rate — with full data lineage and GDPR controls</li>
+            <li>Ran 15+ concurrent A/B experiments with Bayesian hypothesis testing, lifting retention model accuracy by 18% and accelerating churn identification by 2+ weeks</li>
+            <li>Freed 65+ hours of monthly manual reporting by delivering 45+ self-serve Power BI dashboards — so leaders spend time deciding, not extracting</li>
           </ul>
           <div class="ep-tags"><span class="etag">Power BI</span><span class="etag">Advanced DAX</span><span class="etag">Snowflake</span><span class="etag">Python</span><span class="etag">SQL</span><span class="etag">dbt</span><span class="etag">Salesforce</span><span class="etag">A/B Testing</span><span class="etag">CI/CD</span><span class="etag">SSOT Governance</span></div>
         </div>
@@ -478,38 +469,36 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
           <div class="ep-metrics">
             <div class="epm"><div class="epm-val"><sup>$</sup>195<sup>M+</sup></div><div class="epm-l">Annual GMV</div></div>
             <div class="epm"><div class="epm-val">150<sup>+</sup></div><div class="epm-l">DAU</div></div>
-            <div class="epm"><div class="epm-val">90<sup>%</sup></div><div class="epm-l">Quality Gain</div></div>
+            <div class="epm"><div class="epm-val">90<sup>%</sup></div><div class="epm-l">Metric Accuracy</div></div>
             <div class="epm"><div class="epm-val">−12<sup>%</sup></div><div class="epm-l">MoM Churn</div></div>
           </div>
-          <p class="ep-desc">Owned analytics underpinning $195M+ in B2B annual GMV. Deployed 25+ dashboards with 150+ DAU; achieved 90% metric discrepancy reduction via data contracts and decreased MoM churn by 12% through ML-driven segmentation.</p>
+          <p class="ep-desc">Strategic data partner to VP Sales, Supply Chain, and Finance at one of Bangladesh's largest B2B platforms — turning fragmented marketplace data into operational decisions across $195M+ in annual GMV.</p>
           <ul class="ep-bullets">
-            <li>Reduced manual data prep by 50% (~25 hrs/week) via automated ETL pipelines using Python, Azure Data Factory, and SQL</li>
-            <li>Deployed Sales Sight 360, an end-to-end KPI platform that became the operational backbone for 6 departments with 150+ DAU</li>
-            <li>Built slow-moving stock prediction models using time-series analysis — auto-alerting departments 30 days ahead, freeing 45% of warehouse capacity</li>
-            <li>Won Q4 2023 Best Performing Team award; received Pace Over Perfection Award in 2024 for 35% efficiency gains</li>
-            <li>Implemented Atlan-based data catalog reducing onboarding time by 60%; delivered 35% deposit growth YoY via credit risk analytics</li>
+            <li>Built Sales Sight 360 — an end-to-end KPI platform adopted as the operational backbone by 6 departments, with 150+ daily active users guiding frontline and executive decisions</li>
+            <li>Reduced MoM churn by 12% through cohort analysis, RFM segmentation, and lifecycle intelligence that identified high-risk accounts before they lapsed</li>
+            <li>Cut metric discrepancies by 90% by implementing data contracts and a governed data catalog — ending the "whose numbers are right?" problem across 5 regions</li>
+            <li>Recovered 45% of idle warehouse capacity by building inventory prediction models that auto-alerted restocking 30 days ahead, unlocking 20% incremental sales from reactivated stock</li>
           </ul>
-          <div class="ep-tags"><span class="etag">Power BI</span><span class="etag">DAX</span><span class="etag">ETL</span><span class="etag">SQL</span><span class="etag">Atlan</span><span class="etag">Cohort Analysis</span><span class="etag">RFM</span></div>
+          <div class="ep-tags"><span class="etag">Power BI</span><span class="etag">Advanced DAX</span><span class="etag">Python</span><span class="etag">SQL</span><span class="etag">Azure Data Factory</span><span class="etag">Atlan</span><span class="etag">Cohort Analysis</span><span class="etag">RFM</span><span class="etag">Time-Series</span></div>
         </div>
         <!-- APONTECH -->
         <div class="exp-panel" id="p-apon">
           <div class="ep-role">Associate Data Analyst</div>
-          <div class="ep-company"><a href="http://www.apon-wellbeing.com/" class="ep-co-name" target="_blank">AponTech Ltd</a><span class="ep-co-badge">Healthcare / Retail</span></div>
+          <div class="ep-company"><a href="http://www.apon-wellbeing.com/" class="ep-co-name" target="_blank">AponTech Ltd</a><span class="ep-co-badge">Healthcare / eCommerce</span></div>
           <div class="ep-period">Dec 2022 – Sep 2023 · Dhaka</div>
           <div class="ep-metrics">
             <div class="epm"><div class="epm-val">20<sup>K+</sup></div><div class="epm-l">Users Retained</div></div>
             <div class="epm"><div class="epm-val">85<sup>%+</sup></div><div class="epm-l">ML Accuracy</div></div>
-            <div class="epm"><div class="epm-val">+50<sup>%</sup></div><div class="epm-l">Basket Size</div></div>
-            <div class="epm"><div class="epm-val"><sup>$</sup>150<sup>K</sup></div><div class="epm-l">Leakage Plugged</div></div>
+            <div class="epm"><div class="epm-val">+50<sup>%</sup></div><div class="epm-l">Basket Growth</div></div>
+            <div class="epm"><div class="epm-val"><sup>$</sup>150<sup>K</sup></div><div class="epm-l">Leakage Stopped</div></div>
           </div>
-          <p class="ep-desc">Retained 20,000+ users; grew basket size 50% ($16→$24) via ML-driven segmentation. Predictive models at 85%+ accuracy and automated anomaly detection eliminating ~$150K annual revenue leakage.</p>
+          <p class="ep-desc">Sole analyst for a 100K+ user eCommerce app — applied ML and behavioural analytics to directly grow revenue, retain high-value customers, and eliminate silent losses the business didn't know existed.</p>
           <ul class="ep-bullets">
-            <li>Built churn prediction model with XGBoost / Random Forest achieving 85%+ accuracy on 100K+ users</li>
-            <li>Grew average basket size from $16 to $24 (+50%) using k-means segmentation and lifecycle analytics</li>
-            <li>Automated anomaly detection pipeline that flagged $150K in annual revenue leakage</li>
-            <li>Built interactive Power BI dashboards for healthcare KPIs, improving reporting turnaround by 40%</li>
+            <li>Grew average basket size 50% — from $16 to $24 — by building k-means customer segments and targeting each with tailored promotional strategies</li>
+            <li>Retained 20,000+ high-value users through churn prediction models (XGBoost, 85%+ accuracy) that gave the team a 2-week early-warning window to intervene</li>
+            <li>Stopped $150K in annual revenue leakage by automating anomaly detection across transactions — replacing 10+ hours of weekly manual review</li>
           </ul>
-          <div class="ep-tags"><span class="etag">Python</span><span class="etag">scikit-learn</span><span class="etag">XGBoost</span><span class="etag">SQL</span><span class="etag">Power BI</span><span class="etag">Random Forest</span><span class="etag">k-means</span></div>
+          <div class="ep-tags"><span class="etag">Python</span><span class="etag">XGBoost</span><span class="etag">scikit-learn</span><span class="etag">SQL</span><span class="etag">Power BI</span><span class="etag">k-means</span><span class="etag">Lifecycle Analytics</span></div>
         </div>
         <!-- DATAWORKS -->
         <div class="exp-panel" id="p-dw">
@@ -517,19 +506,18 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
           <div class="ep-company"><a href="https://datacrafters.io/" class="ep-co-name" target="_blank">DataWorks Ltd.</a><span class="ep-co-badge">Remote · Houston TX</span></div>
           <div class="ep-period">May – Nov 2022 · Remote</div>
           <div class="ep-metrics">
-            <div class="epm"><div class="epm-val">40<sup>+</sup></div><div class="epm-l">SQL Optimized</div></div>
-            <div class="epm"><div class="epm-val">25<sup>%</sup></div><div class="epm-l">Query Time Cut</div></div>
-            <div class="epm"><div class="epm-val">5<sup>+</sup></div><div class="epm-l">Data Sources</div></div>
+            <div class="epm"><div class="epm-val">40<sup>+</sup></div><div class="epm-l">Queries Tuned</div></div>
+            <div class="epm"><div class="epm-val">−25<sup>%</sup></div><div class="epm-l">Execution Time</div></div>
+            <div class="epm"><div class="epm-val">5<sup>+</sup></div><div class="epm-l">Sources Unified</div></div>
             <div class="epm"><div class="epm-val">3</div><div class="epm-l">Business Units</div></div>
           </div>
-          <p class="ep-desc">Built ETL pipelines and optimized SQL queries, cutting execution time by 25% across 3 business units. Designed campaign KPI dashboards for cross-functional teams.</p>
+          <p class="ep-desc">First data role — built production ETL pipelines and self-serve dashboards for a US-based consultancy serving 3 business units, establishing early foundations in data quality, governance, and stakeholder communication.</p>
           <ul class="ep-bullets">
-            <li>Optimized 40+ SQL queries, reducing average execution time by 25%</li>
-            <li>Built ETL pipelines ingesting data from 5+ external sources into a central SQL Server warehouse</li>
-            <li>Designed campaign KPI dashboards enabling marketing teams to self-serve analysis</li>
-            <li>Collaborated with cross-functional stakeholders to define data requirements and deliver actionable reporting</li>
+            <li>Cut average query execution time by 25% by tuning 40+ legacy SQL stored procedures — reducing reporting latency across 3 business units</li>
+            <li>Unified 5+ external data sources into a central warehouse, enabling campaign teams to self-serve analysis instead of raising ad-hoc requests</li>
+            <li>Introduced data quality documentation and lineage standards that were adopted as the team's UAT baseline across 6 analysts</li>
           </ul>
-          <div class="ep-tags"><span class="etag">SQL</span><span class="etag">ETL</span><span class="etag">Power BI</span></div>
+          <div class="ep-tags"><span class="etag">SQL</span><span class="etag">ETL</span><span class="etag">Power BI</span><span class="etag">Data Quality</span><span class="etag">DAX</span></div>
         </div>
       </div>
     </div>
@@ -728,11 +716,7 @@ window.addEventListener('scroll',()=>{
   scrollBar.style.width=pct+'%';
 });
 
-/* CUSTOM CURSOR */
-const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
-let cx=0,cy=0,cx2=0,cy2=0;
-window.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY});
-(function curLoop(){cur.style.left=cx+'px';cur.style.top=cy+'px';cx2+=(cx-cx2)*.18;cy2+=(cy-cy2)*.18;cur2.style.left=cx2+'px';cur2.style.top=cy2+'px';requestAnimationFrame(curLoop)})();
+
 
 /* RIPPLE ON BUTTONS */
 document.querySelectorAll('.btn-solid,.btn-ghost,.pf-btn,.form-submit').forEach(btn=>{
@@ -819,7 +803,7 @@ const st=document.getElementById('scroll-top');window.addEventListener('scroll',
 window.addEventListener('scroll',()=>{let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id});document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur)})});
 
 /* TYPEWRITER */
-(function(){const phrases=[{s:'Expert in ',h:'Power BI & Advanced DAX'},{s:'Building ',h:'SSOT Data Governance'},{s:'Processing ',h:'500M+ Rows Per Day'},{s:'Driving ',h:'$400M+ ARR Analytics'},{s:'Delivering ',h:'ML-Powered Insights'},{s:'Certified ',h:'PL-300 & SQLBI DAX Expert'},{s:'Trusted by ',h:'C-Suite Stakeholders'},{s:'Surfaced ',h:'$20M+ in Untracked Pipeline'},{s:'Running ',h:'15+ Concurrent A/B Experiments'},{s:'Architecting ',h:'Snowflake & dbt Pipelines'},{s:'Retained ',h:'20,000+ High-Value Users'},{s:'Mentoring ',h:'5+ Analysts Across Teams'},{s:'Turning ',h:'Raw Data into Revenue Decisions'},{s:'Open to ',h:'Remote / Relocation Globally'}];const sEl=document.getElementById('type-static'),hEl=document.getElementById('type-hi');let pi=0,ci=0,erasing=false;function step(){const{s,h}=phrases[pi],full=s+h;if(!erasing){ci++;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci>=full.length){setTimeout(()=>{erasing=true;step()},2200);return}}else{ci--;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci<=0){erasing=false;pi=(pi+1)%phrases.length;setTimeout(step,400);return}}setTimeout(step,erasing?32:75)}setTimeout(step,1200)})();
+(function(){const phrases=[{s:'The analyst who ',h:"found $20M+ your team didn't know existed"},{s:'Expert in ',h:'Power BI & Advanced DAX'},{s:'45+ dashboards. ',h:'One north-star. Zero metric wars.'},{s:'Processing ',h:'500M+ rows/day — sub-second, always fresh'},{s:'Not a generalist — ',h:'a commercial intelligence specialist'},{s:'From $16 to $24 — ',h:'50% basket growth via ML segmentation'},{s:'Bayesian. Causal. ',h:'A/B testing that actually holds up.'},{s:'Building ',h:'SSOT governance that ends metric wars'},{s:'PL-300 + SQLBI — ',h:'top 1% of DAX practitioners globally'},{s:'Springer-published. ',h:'ML research on dementia detection.'},{s:'550+ users. ',h:'One platform. Zero Monday ad-hoc requests.'},{s:'Trusted by ',h:'VP & C-suite stakeholders globally'},{s:'Churn down 12% — ',h:'by cohort, RFM & lifecycle intelligence'},{s:'Dhaka-based. ',h:'UK · EU · US timezone. Open to relocate.'},{s:'Built zero-to-one ',h:'analytics infra for a $400M+ ARR portfolio'}];const sEl=document.getElementById('type-static'),hEl=document.getElementById('type-hi');let pi=0,ci=0,erasing=false;function step(){const{s,h}=phrases[pi],full=s+h;if(!erasing){ci++;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci>=full.length){setTimeout(()=>{erasing=true;step()},2200);return}}else{ci--;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci<=0){erasing=false;pi=(pi+1)%phrases.length;setTimeout(step,400);return}}setTimeout(step,erasing?32:75)}setTimeout(step,1200)})();
 
 /* ARTICLES */
 const articles=[{num:'01',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2024/09/big-problem-small-solution-using.html',title:'Big Problem, Small Solution: Using USERELATIONSHIP',vis:'line'},{num:'02',cat:'Sales',url:'https://daxwithyunus.blogspot.com/2024/09/unlocking-sales-insights-analyzing-tads.html',title:'Analysing TADS, ADS, Shortfall & Projections',vis:'bars'},{num:'03',cat:'Inventory',url:'https://daxwithyunus.blogspot.com/2024/09/solving-inventory-woes-at-better-buys.html',title:'Solving Inventory Woes at Better Buys',vis:'blocks'},{num:'04',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2023/09/calendar-code-for-dax.html',title:'Why Every Analyst Needs a Calendar Table',vis:'heat'},{num:'05',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2022/11/the-road-to-power-bi-datamart-from-data.html',title:'The Road to Power BI Datamart',vis:'network'},{num:'06',cat:'Healthcare',url:'https://walkwithyunus.blogspot.com/2023/09/health-care-analytics-case-study.html',title:'Health Care Analytics Case Study',vis:'pulse'},{num:'07',cat:'Excel',url:'https://walkwithyunus.blogspot.com/2023/09/approaches-for-maximizing-use-of-excel.html',title:'Maximising Excel with Power BI',vis:'scatter'},{num:'08',cat:'Viz',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-visualization-charts.html',title:'Power BI Visualization Deep Dive',vis:'bars'},{num:'09',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-dashboards.html',title:'Dashboard Design & Best Practices',vis:'grid'},{num:'10',cat:'Architecture',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-datamart-illustration.html',title:'Power BI Datamart Illustration',vis:'network'}];
