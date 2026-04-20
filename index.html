@@ -58,8 +58,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
 .hero-h1{font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:800;line-height:1.08;letter-spacing:-.06em;color:var(--text);margin-bottom:.6rem}
 .hero-h1 span{background:linear-gradient(135deg,var(--acc),#7dd3fc,var(--pur));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-type{display:flex;align-items:center;gap:6px;min-height:1.6rem;margin-bottom:1.4rem;font-size:.9rem;white-space:nowrap;overflow:visible;flex-wrap:nowrap}
-.hero-desc{font-size:.87rem;color:var(--t2);line-height:1.9;max-width:540px;margin-bottom:1.8rem}
+.hero-type{display:flex;align-items:center;gap:6px;min-height:1.6rem;margin-bottom:1.4rem;font-size:.9rem;white-space:nowrap;overflow:visible}
+.hero-desc{font-size:.87rem;color:var(--t2);line-height:1.9;max-width:540px;margin-bottom:1.4rem}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1.8rem}
 .hero-actions .btn-solid{padding:.65rem 1.8rem;font-size:.78rem}
 .hero-actions .btn-ghost{padding:.65rem 1.3rem;font-size:.78rem}
@@ -73,13 +73,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .hero-photo-badge{display:inline-flex;align-items:center;gap:6px;font-size:.58rem;font-weight:700;color:var(--grn);letter-spacing:.06em;text-transform:uppercase;background:rgba(0,229,160,.08);border:.5px solid rgba(0,229,160,.2);border-radius:100px;padding:.3rem .8rem}
 .hero-photo-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--grn);animation:blink 2s infinite;box-shadow:0 0 8px rgba(0,229,160,.5)}
 
-/* LIVE MINI CHART — in hero */
-.hero-live-chart{background:var(--s1);border:.5px solid var(--bdr2);border-radius:12px;padding:.85rem 1rem;margin-bottom:1rem;position:relative;overflow:hidden}
-.hero-live-chart::before{content:'LIVE';position:absolute;top:.6rem;right:.8rem;font-size:.45rem;font-weight:800;letter-spacing:.12em;color:var(--grn);background:rgba(0,229,160,.1);border:.5px solid rgba(0,229,160,.2);border-radius:100px;padding:.12rem .5rem}
-.hlc-label{font-size:.55rem;font-weight:700;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
-.hlc-val{font-size:1.1rem;font-weight:800;color:var(--text);letter-spacing:-.04em;margin-bottom:.5rem}
-.hlc-val span{font-size:.6rem;font-weight:700;color:var(--grn)}
+/* ── HERO MINI CHART ── only addition to hero */
+.hero-kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.8rem}
+.hkpi{background:var(--s2);border:.5px solid var(--bdr);border-radius:10px;padding:.7rem .85rem;position:relative;overflow:hidden;transition:border-color .3s}
+.hkpi:hover{border-color:var(--bdr2)}
+.hkpi-val{font-size:1.1rem;font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1;margin-bottom:.18rem}
+.hkpi-val sup{font-size:.5em;color:var(--acc);font-weight:700}
+.hkpi-label{font-size:.48rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.09em}
+.hkpi-spark{position:absolute;bottom:0;right:0;opacity:.35}
+.hkpi-delta{font-size:.52rem;font-weight:700;color:var(--grn);margin-top:.12rem}
 
+/* OUTCOME STRIP */
 .outcome-strip{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.8rem;padding:.9rem 1.1rem;background:rgba(0,212,255,.04);border:.5px solid var(--bdr2);border-radius:12px}
 .outcome-item{display:flex;align-items:center;gap:.45rem;font-size:.68rem;color:var(--t2)}
 .outcome-item::before{content:'✓';color:var(--grn);font-weight:700;font-size:.72rem}
@@ -92,116 +96,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .tick-item span{color:var(--acc);font-size:.7rem}
 .tick-sep{color:var(--t4)}
 
-/* SECTIONS */
-.section{padding:5rem 2.5rem;position:relative;z-index:1}
-.section-inner{max-width:1100px;margin:0 auto}
-.section-tag{display:inline-flex;align-items:center;gap:7px;font-size:.58rem;font-weight:700;color:var(--acc);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.7rem}
-.section-tag::before{content:'';width:16px;height:1.5px;background:linear-gradient(90deg,var(--acc),var(--pur));display:block}
-.section-h{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-.05em;color:var(--text);margin-bottom:.4rem}
-.section-sub{font-size:.85rem;color:var(--t2);margin-bottom:2.5rem;max-width:550px;line-height:1.7}
-.section-divider{height:.5px;background:linear-gradient(90deg,transparent,var(--bdr),rgba(0,212,255,.08),var(--bdr),transparent);margin:0;position:relative;z-index:1}
-
-/* ═══ FEATURED PROJECTS — replaces plain cards with visual thumbnails ═══ */
-.feat-proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem}
-.feat-proj-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:all .4s cubic-bezier(.16,1,.3,1)}
-.feat-proj-card:hover{border-color:var(--bdr2);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,212,255,.1)}
-.fp-thumb{width:100%;height:160px;position:relative;overflow:hidden;background:var(--s2)}
-.fp-thumb canvas{width:100%;height:100%;display:block}
-.fp-thumb-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,6,8,.9));pointer-events:none}
-.fp-feat-badge{position:absolute;top:.7rem;left:.75rem;font-size:.48rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.12);border:.5px solid rgba(245,158,11,.3);border-radius:100px;padding:.2rem .6rem;letter-spacing:.08em;text-transform:uppercase}
-.fp-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:rgba(0,212,255,.2);backdrop-filter:blur(8px);border:.5px solid rgba(0,212,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;opacity:0;transition:opacity .3s}
-.feat-proj-card:hover .fp-play-btn{opacity:1}
-.fp-body{padding:1.2rem 1.4rem;flex:1;display:flex;flex-direction:column;gap:.5rem}
-.fp-title{font-size:.95rem;font-weight:800;color:var(--text);letter-spacing:-.03em;transition:color .3s}
-.feat-proj-card:hover .fp-title{color:var(--acc)}
-.fp-desc{font-size:.72rem;color:var(--t2);line-height:1.65;flex:1}
-.fp-impact{font-size:.65rem;font-weight:700;color:var(--grn)}
-.fp-footer{display:flex;justify-content:space-between;align-items:center;padding-top:.75rem;border-top:.5px solid var(--bdr)}
-.fp-chips{display:flex;flex-wrap:wrap;gap:4px}
-.fpchip{font-size:.52rem;font-weight:700;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.15rem .45rem;text-transform:uppercase;letter-spacing:.04em}
-.fp-arr{width:30px;height:30px;border:.5px solid var(--bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--t3);transition:all .35s}
-.feat-proj-card:hover .fp-arr{background:var(--acc);border-color:var(--acc);color:#000;transform:rotate(45deg)}
-
-/* ALL PROJECTS LIST */
-.proj-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:2.5rem}
-.pf-btn{padding:.38rem .95rem;border:.5px solid var(--bdr);border-radius:100px;font-size:.62rem;font-weight:600;color:var(--t3);background:none;cursor:pointer;transition:all .3s;font-family:inherit;letter-spacing:.03em}
-.pf-btn:hover{color:var(--text);border-color:var(--t3)}
-.pf-btn.active{background:linear-gradient(135deg,var(--acc),#0099dd);color:#000;border-color:transparent;box-shadow:0 2px 12px rgba(0,212,255,.2)}
-.proj-grid{display:flex;flex-direction:column}
-.proj-card{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:2rem;padding:1.4rem 0;border-bottom:.5px solid var(--bdr);text-decoration:none;position:relative;transition:all .4s cubic-bezier(.16,1,.3,1)}
-.proj-card::before{content:'';position:absolute;inset:0 -2.5rem;background:linear-gradient(90deg,transparent,rgba(0,212,255,.03),transparent);opacity:0;transition:opacity .4s;pointer-events:none}
-.proj-card:hover::before{opacity:1}
-.proj-card:hover{padding-left:.75rem}
-.proj-card:first-child{border-top:.5px solid var(--bdr)}
-.proj-num{font-size:2.6rem;font-weight:900;color:var(--t4);letter-spacing:-.08em;line-height:1;transition:all .4s;font-variant-numeric:tabular-nums}
-.proj-card:hover .proj-num{color:var(--acc);text-shadow:0 0 30px rgba(0,212,255,.3)}
-.proj-mid{display:flex;flex-direction:column;gap:.4rem}
-.proj-title{font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1.2;transition:color .3s}
-.proj-card:hover .proj-title{color:var(--acc)}
-.proj-desc{font-size:.72rem;color:var(--t2);line-height:1.6;max-width:520px}
-.proj-chips{display:flex;flex-wrap:wrap;gap:4px}
-.pchip{font-size:.52rem;font-weight:700;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.15rem .45rem;letter-spacing:.04em;text-transform:uppercase}
-.proj-card:hover .pchip{border-color:var(--bdr2);color:var(--t2)}
-.proj-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0}
-.proj-impact{font-size:.62rem;font-weight:700;color:var(--acc);white-space:nowrap}
-.proj-arr{width:36px;height:36px;border:.5px solid var(--bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--t3);transition:all .4s}
-.proj-card:hover .proj-arr{background:var(--acc);border-color:var(--acc);color:#000;transform:rotate(45deg)}
-.proj-feat-badge{font-size:.5rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.08);border:.5px solid rgba(245,158,11,.2);border-radius:100px;padding:.15rem .6rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
-
-/* ═══ LIVE BI DASHBOARD SECTION ═══ */
-.live-dash-section{background:var(--s1)}
-.live-dash-tabs{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap}
-.ld-tab{padding:.42rem 1.1rem;border:.5px solid var(--bdr);border-radius:100px;font-size:.62rem;font-weight:600;color:var(--t3);background:none;cursor:pointer;font-family:inherit;transition:all .3s}
-.ld-tab.active{background:var(--acc3);border-color:var(--bdr2);color:var(--acc)}
-.ld-panel{display:none;animation:fadeUp .4s ease}
-.ld-panel.active{display:block}
-.dash-canvas-wrap{background:var(--s2);border:.5px solid var(--bdr);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden}
-.dash-canvas-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.02),transparent);pointer-events:none}
-.dash-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.25rem}
-.dash-kpi{background:var(--s3);border:.5px solid var(--bdr);border-radius:10px;padding:.85rem;transition:all .3s}
-.dash-kpi:hover{border-color:var(--bdr2)}
-.dk-label{font-size:.5rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.3rem}
-.dk-val{font-size:1.3rem;font-weight:800;color:var(--text);letter-spacing:-.05em;line-height:1}
-.dk-val sup{font-size:.52em;color:var(--acc)}
-.dk-delta{font-size:.56rem;font-weight:700;margin-top:.25rem}
-.dk-up{color:var(--grn)}
-.dk-down{color:#f87171}
-.dash-chart-row{display:grid;grid-template-columns:1.6fr 1fr;gap:1rem}
-.dash-chart-box{background:var(--s3);border:.5px solid var(--bdr);border-radius:10px;padding:1rem;overflow:hidden}
-.dcb-title{font-size:.6rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.85rem}
-
-/* ═══ VIDEO WALKTHROUGH SECTION ═══ */
-.video-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:2rem}
-.vid-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .35s}
-.vid-card:hover{border-color:var(--bdr2);transform:translateY(-4px);box-shadow:var(--glow)}
-.vid-thumb{position:relative;height:130px;background:var(--s2);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.vid-thumb-bg{position:absolute;inset:0;opacity:.4}
-.vid-play{width:48px;height:48px;background:rgba(0,212,255,.25);backdrop-filter:blur(8px);border:.5px solid rgba(0,212,255,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;position:relative;z-index:1;transition:all .3s}
-.vid-card:hover .vid-play{background:rgba(0,212,255,.5);transform:scale(1.1)}
-.vid-duration{position:absolute;bottom:.5rem;right:.6rem;font-size:.5rem;font-weight:700;color:rgba(255,255,255,.8);background:rgba(0,0,0,.6);padding:.15rem .45rem;border-radius:4px}
-.vid-body{padding:.85rem 1rem}
-.vid-title{font-size:.75rem;font-weight:700;color:var(--text);margin-bottom:.25rem;line-height:1.4}
-.vid-sub{font-size:.62rem;color:var(--t2)}
-
-/* ═══ TESTIMONIALS ═══ */
-.testi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:2rem}
-.testi-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:14px;padding:1.4rem;transition:all .35s;position:relative}
-.testi-card:hover{border-color:var(--bdr2);box-shadow:var(--glow)}
-.testi-quote{font-size:.78rem;color:var(--t2);line-height:1.75;margin-bottom:1.1rem;font-style:italic}
-.testi-quote::before{content:'"';font-size:2rem;color:var(--acc);opacity:.3;line-height:0;vertical-align:-.4rem;margin-right:.2rem}
-.testi-author{display:flex;align-items:center;gap:.75rem}
-.testi-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--pur));display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:800;color:#000;flex-shrink:0}
-.testi-name{font-size:.7rem;font-weight:700;color:var(--text)}
-.testi-role{font-size:.58rem;color:var(--t3)}
-.testi-stars{font-size:.65rem;color:var(--amb);margin-bottom:.2rem}
-.testi-li{font-size:.55rem;color:var(--acc);text-decoration:none;margin-top:.5rem;display:inline-flex;align-items:center;gap:.25rem;transition:color .25s}
-.testi-li:hover{color:#33ddff}
-
-/* ═══ ARCH DIAGRAM ═══ */
-.arch-container{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;padding:2rem;margin-top:2rem;overflow-x:auto}
-.arch-canvas{min-width:600px;width:100%}
-
-/* ═══ WHO I HELP ═══ */
+/* WHO I HELP */
 .wih-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bdr);border:.5px solid var(--bdr);border-radius:16px;overflow:hidden;margin-top:2.5rem}
 .wih-card{background:var(--s1);padding:1.75rem;transition:all .35s;position:relative;overflow:hidden}
 .wih-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--acc),var(--pur));transform:scaleX(0);transform-origin:left;transition:transform .5s}
@@ -213,24 +108,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .wih-solve{font-size:.68rem;color:var(--grn);font-weight:600;display:flex;align-items:flex-start;gap:.4rem;line-height:1.5}
 .wih-solve::before{content:'→';flex-shrink:0;margin-top:.05em}
 
-/* SERVICES */
-.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.5rem}
-.svc-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;padding:1.6rem 1.7rem;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
-.svc-card:hover{border-color:var(--bdr2);transform:translateY(-4px);box-shadow:var(--glow)}
-.svc-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(0,212,255,.04));opacity:0;transition:opacity .4s}
-.svc-card:hover::after{opacity:1}
-.svc-icon{width:42px;height:42px;border-radius:10px;background:var(--acc3);border:.5px solid var(--bdr2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1rem;transition:all .35s}
-.svc-card:hover .svc-icon{transform:scale(1.1);box-shadow:0 0 20px rgba(0,212,255,.2)}
-.svc-title{font-size:.95rem;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:.4rem}
-.svc-desc{font-size:.76rem;color:var(--t2);line-height:1.75;margin-bottom:1.1rem}
-.svc-deliverables{display:flex;flex-direction:column;gap:.3rem;margin-bottom:1.1rem}
-.svc-del-item{font-size:.66rem;color:var(--t2);display:flex;align-items:flex-start;gap:.4rem;line-height:1.5}
-.svc-del-item::before{content:'·';color:var(--acc);font-weight:900;flex-shrink:0}
-.svc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.85rem;border-top:.5px solid var(--bdr)}
-.svc-timeline{font-size:.58rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
-.svc-cta{font-size:.62rem;font-weight:700;color:var(--acc);text-decoration:none;display:flex;align-items:center;gap:.3rem;transition:all .25s}
-.svc-cta:hover{color:#33ddff;transform:translateX(2px)}
-.svc-popular{position:absolute;top:1.1rem;right:1.1rem;font-size:.5rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.1);border:.5px solid rgba(245,158,11,.2);border-radius:100px;padding:.18rem .6rem;letter-spacing:.06em;text-transform:uppercase}
+/* SECTIONS */
+.section{padding:5rem 2.5rem;position:relative;z-index:1}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-tag{display:inline-flex;align-items:center;gap:7px;font-size:.58rem;font-weight:700;color:var(--acc);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.7rem}
+.section-tag::before{content:'';width:16px;height:1.5px;background:linear-gradient(90deg,var(--acc),var(--pur));display:block}
+.section-h{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-.05em;color:var(--text);margin-bottom:.4rem}
+.section-sub{font-size:.85rem;color:var(--t2);margin-bottom:2.5rem;max-width:550px;line-height:1.7}
+.section-divider{height:.5px;background:linear-gradient(90deg,transparent,var(--bdr),rgba(0,212,255,.08),var(--bdr),transparent);margin:0;position:relative;z-index:1}
 
 /* ABOUT */
 .about-text{font-size:.88rem;color:var(--t2);line-height:1.9}
@@ -260,13 +145,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .process-step:hover .ps-icon{transform:scale(1.12) translateY(-6px);border-color:var(--bdr2);background:var(--s3);box-shadow:0 16px 40px rgba(0,212,255,.15)}
 .ps-title{font-size:.95rem;font-weight:800;color:var(--text);margin-bottom:.4rem;transition:color .3s;letter-spacing:-.02em}
 .process-step:hover .ps-title{color:var(--acc)}
-.ps-desc{font-size:.72rem;color:var(--t2);line-height:1.7;margin-bottom:.75rem;transition:color .3s}
+.ps-desc{font-size:.72rem;color:var(--t2);line-height:1.7;margin-bottom:.75rem}
 .ps-deliverable{display:inline-flex;align-items:center;gap:.35rem;font-size:.58rem;font-weight:700;color:var(--grn);background:rgba(0,229,160,.07);border:.5px solid rgba(0,229,160,.18);border-radius:100px;padding:.22rem .7rem;letter-spacing:.04em}
 .ps-deliverable::before{content:'↳';opacity:.7}
 
 /* EXPERIENCE */
 .exp-container{display:grid;grid-template-columns:220px 1fr;gap:3rem;align-items:stretch}
-.exp-nav{position:sticky;top:75px;display:flex;flex-direction:column;gap:0;justify-content:space-between;height:100%}
+.exp-nav{position:sticky;top:75px;display:flex;flex-direction:column;gap:0;height:100%}
 .exp-tab{background:none;border:none;border-left:2px solid var(--bdr);padding:1.6rem 1.5rem;cursor:pointer;font-size:.88rem;font-weight:600;color:var(--t3);text-align:left;font-family:inherit;transition:all .3s;display:flex;flex-direction:column;gap:7px;flex:1}
 .exp-tab.active{border-left-color:var(--acc);color:var(--text);background:linear-gradient(90deg,var(--acc3),transparent)}
 .exp-tab:hover:not(.active){color:var(--t2);border-left-color:var(--t3)}
@@ -293,15 +178,60 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .etag{font-size:.56rem;font-weight:600;color:var(--t2);background:var(--s3);border:.5px solid var(--bdr);border-radius:4px;padding:.2rem .55rem;transition:all .25s}
 .etag:hover{border-color:var(--bdr2);color:var(--text)}
 
-/* ═══ SKILLS — reworked, NO arbitrary % bars on hover ═══ */
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .skill-group{background:var(--s1);border:.5px solid var(--bdr);border-radius:12px;padding:1.25rem 1.4rem;transition:all .35s}
 .skill-group:hover{border-color:var(--bdr2);box-shadow:var(--glow)}
 .sg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
 .sg-title{font-size:.75rem;font-weight:700;color:var(--text)}
-.sg-proof{font-size:.58rem;font-weight:600;color:var(--acc);text-decoration:none;display:flex;align-items:center;gap:.25rem;transition:color .25s}
-.sg-proof:hover{color:#33ddff}
+.sg-pct{font-size:.68rem;font-weight:700;color:var(--acc)}
+.skill-bar-track{height:3px;background:var(--s3);border-radius:2px;margin-bottom:.7rem;overflow:hidden}
+.skill-bar-fill{height:100%;background:linear-gradient(90deg,var(--acc2),var(--acc));width:0;border-radius:2px;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
 .skill-chips{display:flex;flex-wrap:wrap;gap:5px}
+
+/* ── PROJECTS — kept original list + added 2 featured cards on top ── */
+.proj-featured{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem}
+.pf-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:all .4s cubic-bezier(.16,1,.3,1)}
+.pf-card:hover{border-color:var(--bdr2);transform:translateY(-5px);box-shadow:0 16px 50px rgba(0,212,255,.09)}
+.pf-thumb{height:130px;background:var(--s2);position:relative;overflow:hidden}
+.pf-thumb canvas{width:100%;height:100%;display:block}
+.pf-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(6,6,8,.85))}
+.pf-badge{position:absolute;top:.65rem;left:.7rem;font-size:.48rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.12);border:.5px solid rgba(245,158,11,.3);border-radius:100px;padding:.18rem .55rem;letter-spacing:.08em;text-transform:uppercase}
+.pf-body{padding:1rem 1.2rem;flex:1;display:flex;flex-direction:column;gap:.4rem}
+.pf-title{font-size:.88rem;font-weight:800;color:var(--text);letter-spacing:-.03em;transition:color .3s}
+.pf-card:hover .pf-title{color:var(--acc)}
+.pf-desc{font-size:.68rem;color:var(--t2);line-height:1.6;flex:1}
+.pf-impact{font-size:.62rem;font-weight:700;color:var(--grn)}
+.pf-footer{display:flex;justify-content:space-between;align-items:center;padding-top:.65rem;border-top:.5px solid var(--bdr)}
+.pf-chips{display:flex;gap:4px;flex-wrap:wrap}
+.pfchip{font-size:.5rem;font-weight:700;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.12rem .4rem;text-transform:uppercase;letter-spacing:.04em}
+.pf-arr{width:28px;height:28px;border:.5px solid var(--bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;color:var(--t3);transition:all .35s}
+.pf-card:hover .pf-arr{background:var(--acc);border-color:var(--acc);color:#000;transform:rotate(45deg)}
+
+.proj-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:2.5rem}
+.pf-btn{padding:.38rem .95rem;border:.5px solid var(--bdr);border-radius:100px;font-size:.62rem;font-weight:600;color:var(--t3);background:none;cursor:pointer;transition:all .3s;font-family:inherit;letter-spacing:.03em}
+.pf-btn:hover{color:var(--text);border-color:var(--t3)}
+.pf-btn.active{background:linear-gradient(135deg,var(--acc),#0099dd);color:#000;border-color:transparent;box-shadow:0 2px 12px rgba(0,212,255,.2)}
+.proj-grid{display:flex;flex-direction:column}
+.proj-card{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:2rem;padding:1.4rem 0;border-bottom:.5px solid var(--bdr);text-decoration:none;position:relative;transition:all .4s cubic-bezier(.16,1,.3,1)}
+.proj-card::before{content:'';position:absolute;inset:0 -2.5rem;background:linear-gradient(90deg,transparent,rgba(0,212,255,.03),transparent);opacity:0;transition:opacity .4s;pointer-events:none}
+.proj-card:hover::before{opacity:1}
+.proj-card:hover{padding-left:.75rem}
+.proj-card:first-child{border-top:.5px solid var(--bdr)}
+.proj-num{font-size:2.6rem;font-weight:900;color:var(--t4);letter-spacing:-.08em;line-height:1;transition:all .4s}
+.proj-card:hover .proj-num{color:var(--acc);text-shadow:0 0 30px rgba(0,212,255,.3)}
+.proj-mid{display:flex;flex-direction:column;gap:.4rem}
+.proj-title{font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1.2;transition:color .3s}
+.proj-card:hover .proj-title{color:var(--acc)}
+.proj-desc{font-size:.72rem;color:var(--t2);line-height:1.6;max-width:520px}
+.proj-chips{display:flex;flex-wrap:wrap;gap:4px}
+.pchip{font-size:.52rem;font-weight:700;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.15rem .45rem;letter-spacing:.04em;text-transform:uppercase}
+.proj-card:hover .pchip{border-color:var(--bdr2);color:var(--t2)}
+.proj-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0}
+.proj-impact{font-size:.62rem;font-weight:700;color:var(--acc);white-space:nowrap}
+.proj-arr{width:36px;height:36px;border:.5px solid var(--bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--t3);transition:all .4s}
+.proj-card:hover .proj-arr{background:var(--acc);border-color:var(--acc);color:#000;transform:rotate(45deg)}
+.proj-feat-badge{font-size:.5rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.08);border:.5px solid rgba(245,158,11,.2);border-radius:100px;padding:.15rem .6rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 
 /* CASE STUDIES */
 .cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
@@ -310,7 +240,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .cs-header{padding:1.4rem 1.6rem 1.2rem;border-bottom:.5px solid var(--bdr);background:linear-gradient(135deg,var(--s2),var(--s1))}
 .cs-label{font-size:.52rem;font-weight:700;color:var(--acc);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.5rem}
 .cs-title{font-size:1.05rem;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:.35rem}
-.cs-company{font-size:.65rem;color:var(--t2);font-weight:500}
+.cs-company{font-size:.65rem;color:var(--t2)}
 .cs-body{padding:1.4rem 1.6rem}
 .cs-block{margin-bottom:1.15rem}
 .cs-block:last-child{margin-bottom:0}
@@ -329,20 +259,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .cs-result-lbl{font-size:.5rem;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:.18rem}
 .cs-footer{padding:.85rem 1.6rem;border-top:.5px solid var(--bdr);background:var(--s2);display:flex;gap:.5rem;flex-wrap:wrap}
 
-/* ARTICLES — improved with previews */
-.art-preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
-.art-preview-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:12px;overflow:hidden;text-decoration:none;transition:all .35s}
-.art-preview-card:hover{border-color:var(--bdr2);transform:translateY(-3px);box-shadow:var(--glow)}
-.apc-vis{height:72px;background:var(--s2);overflow:hidden;position:relative}
-.apc-body{padding:.9rem 1rem}
-.apc-cat{font-size:.48rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);background:var(--acc3);border:.5px solid var(--bdr2);border-radius:100px;padding:.12rem .5rem;display:inline-flex;margin-bottom:.45rem}
-.apc-title{font-size:.75rem;font-weight:700;color:var(--text);line-height:1.45;margin-bottom:.3rem;transition:color .25s}
-.art-preview-card:hover .apc-title{color:var(--acc)}
-.apc-meta{display:flex;justify-content:space-between;align-items:center;margin-top:.5rem}
-.apc-read{font-size:.55rem;color:var(--t3)}
-.apc-arrow{font-size:.65rem;color:var(--acc);transition:transform .25s}
-.art-preview-card:hover .apc-arrow{transform:translateX(3px)}
-.art-scroll-outer{position:relative;margin-top:1rem;overflow:hidden}
+/* ── TESTIMONIALS — 3 cards, tight ── */
+.testi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.testi{background:var(--s1);border:.5px solid var(--bdr);border-radius:14px;padding:1.25rem 1.3rem;transition:border-color .35s}
+.testi:hover{border-color:var(--bdr2)}
+.testi-stars{font-size:.62rem;color:var(--amb);margin-bottom:.7rem}
+.testi-q{font-size:.75rem;color:var(--t2);line-height:1.72;font-style:italic;margin-bottom:1rem}
+.testi-q::before{content:'"';font-size:1.6rem;color:var(--acc);opacity:.25;line-height:0;vertical-align:-.35rem;margin-right:.15rem}
+.testi-author{display:flex;align-items:center;gap:.7rem}
+.testi-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;color:#000;flex-shrink:0}
+.testi-name{font-size:.68rem;font-weight:700;color:var(--text)}
+.testi-role{font-size:.56rem;color:var(--t3)}
+
+/* ARTICLES */
+.art-scroll-outer{position:relative;margin-top:1.5rem;overflow:hidden}
 .art-scroll-outer::before,.art-scroll-outer::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:10;pointer-events:none}
 .art-scroll-outer::before{left:0;background:linear-gradient(90deg,var(--s1),transparent)}
 .art-scroll-outer::after{right:0;background:linear-gradient(-90deg,var(--s1),transparent)}
@@ -377,16 +307,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .aw-link{display:inline-flex;align-items:center;gap:3px;font-size:.58rem;font-weight:700;color:var(--acc);text-decoration:none;margin-top:.75rem;transition:all .25s}
 .aw-link:hover{color:#33ddff;transform:translateX(2px)}
 
-/* ═══ CURRENTLY LEARNING SECTION ═══ */
-.learning-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
-.learn-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:12px;padding:1.1rem 1.2rem;transition:all .35s;position:relative;overflow:hidden}
-.learn-card:hover{border-color:var(--bdr2)}
-.learn-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--pur),var(--acc));border-radius:2px}
-.learn-icon{font-size:1.4rem;margin-bottom:.5rem}
-.learn-title{font-size:.75rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
-.learn-desc{font-size:.65rem;color:var(--t2);line-height:1.6}
-.learn-tag{display:inline-flex;margin-top:.5rem;font-size:.52rem;font-weight:700;color:var(--pur);background:rgba(139,92,246,.08);border:.5px solid rgba(139,92,246,.2);border-radius:100px;padding:.15rem .55rem;letter-spacing:.05em}
-
 /* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
 .contact-h{font-size:1.8rem;font-weight:800;letter-spacing:-.05em;color:var(--text);line-height:1.1;margin-bottom:.75rem}
@@ -397,19 +317,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;ali
 .co-item::before{content:'✓';color:var(--grn);font-weight:700;flex-shrink:0}
 .contact-info{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.5rem}
 .ci-item{display:flex;align-items:flex-start;gap:.75rem}
-.ci-icon{width:36px;height:36px;background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--acc);flex-shrink:0;transition:all .3s}
-.ci-item:hover .ci-icon{border-color:var(--bdr2);box-shadow:var(--glow)}
+.ci-icon{width:36px;height:36px;background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--acc);flex-shrink:0}
 .ci-label{font-size:.53rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
 .ci-val{font-size:.78rem;color:var(--text);margin-top:.1rem;font-weight:500}
-.social-row{display:flex;gap:8px;margin-top:.75rem}
+.social-row{display:flex;gap:8px;margin-top:1.5rem}
 .soc-btn{width:36px;height:36px;border:.5px solid var(--bdr);border-radius:var(--r);display:flex;align-items:center;justify-content:center;color:var(--t2);text-decoration:none;font-size:.65rem;font-weight:700;transition:all .3s}
 .soc-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc3);transform:translateY(-3px)}
-
-/* CALENDLY BUTTON */
-.calendly-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.4rem;background:linear-gradient(135deg,var(--grn),#00b37a);color:#000;border-radius:var(--r);font-size:.72rem;font-weight:800;text-decoration:none;margin-top:.75rem;transition:all .3s;box-shadow:0 2px 16px rgba(0,229,160,.2)}
-.calendly-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,229,160,.35)}
-.calendly-btn::before{content:'📅';font-size:.85rem}
-
 .contact-form{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;padding:2rem;box-shadow:var(--glow)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
 .form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.75rem}
@@ -436,6 +349,23 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
 .scroll-top.show{display:flex}
 .scroll-top:hover{transform:translateY(-3px)}
 
+/* SRVICES */
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.5rem}
+.svc-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;padding:1.6rem 1.7rem;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+.svc-card:hover{border-color:var(--bdr2);transform:translateY(-4px);box-shadow:var(--glow)}
+.svc-icon{width:42px;height:42px;border-radius:10px;background:var(--acc3);border:.5px solid var(--bdr2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1rem;transition:all .35s}
+.svc-card:hover .svc-icon{transform:scale(1.1);box-shadow:0 0 20px rgba(0,212,255,.2)}
+.svc-title{font-size:.95rem;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:.4rem}
+.svc-desc{font-size:.76rem;color:var(--t2);line-height:1.75;margin-bottom:1.1rem}
+.svc-deliverables{display:flex;flex-direction:column;gap:.3rem;margin-bottom:1.1rem}
+.svc-del-item{font-size:.66rem;color:var(--t2);display:flex;align-items:flex-start;gap:.4rem;line-height:1.5}
+.svc-del-item::before{content:'·';color:var(--acc);font-weight:900;flex-shrink:0}
+.svc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.85rem;border-top:.5px solid var(--bdr)}
+.svc-timeline{font-size:.58rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
+.svc-cta{font-size:.62rem;font-weight:700;color:var(--acc);text-decoration:none;display:flex;align-items:center;gap:.3rem;transition:all .25s}
+.svc-cta:hover{color:#33ddff;transform:translateX(2px)}
+.svc-popular{position:absolute;top:1.1rem;right:1.1rem;font-size:.5rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.1);border:.5px solid rgba(245,158,11,.2);border-radius:100px;padding:.18rem .6rem;letter-spacing:.06em;text-transform:uppercase}
+
 /* ANIMATIONS */
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -449,51 +379,26 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
 @keyframes ripple-out{to{transform:scale(4);opacity:0}}
 .tilt{transform-style:preserve-3d;transition:transform .15s ease-out}
 
-/* MODAL for video */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
-.modal-overlay.open{display:flex}
-.modal-box{background:var(--s1);border:.5px solid var(--bdr2);border-radius:16px;padding:2rem;max-width:660px;width:90%;position:relative}
-.modal-close{position:absolute;top:.75rem;right:.75rem;background:var(--s3);border:.5px solid var(--bdr);border-radius:8px;color:var(--t2);cursor:pointer;font-size:.75rem;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:inherit;transition:all .25s}
-.modal-close:hover{color:var(--text);border-color:var(--bdr2)}
-.modal-title{font-size:1rem;font-weight:800;color:var(--text);margin-bottom:.5rem}
-.modal-sub{font-size:.72rem;color:var(--t2);margin-bottom:1.25rem;line-height:1.6}
-.modal-thumb{width:100%;height:220px;background:var(--s2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;position:relative;overflow:hidden}
-.modal-thumb canvas{position:absolute;inset:0;width:100%;height:100%}
-.modal-play-big{width:64px;height:64px;background:rgba(0,212,255,.25);border:.5px solid rgba(0,212,255,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;position:relative;z-index:1}
-.modal-note{font-size:.65rem;color:var(--t3);text-align:center}
-.modal-note a{color:var(--acc);text-decoration:none}
-
 /* RESPONSIVE */
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr}.hero-photo-col{display:none}
   .contact-grid{grid-template-columns:1fr}
-  .exp-container{grid-template-columns:1fr}.exp-nav{flex-direction:row;flex-wrap:wrap;position:static;margin-bottom:1.5rem;height:auto;justify-content:flex-start}
+  .exp-container{grid-template-columns:1fr}.exp-nav{flex-direction:row;flex-wrap:wrap;position:static;margin-bottom:1.5rem;height:auto}
   .exp-tab{flex:0 0 auto}
-  .skills-grid{grid-template-columns:1fr}
-  .awards-grid{grid-template-columns:1fr 1fr}
-  .process-track{grid-template-columns:1fr 1fr;gap:1.5rem}.process-track::before,.process-track::after{display:none}
+  .skills-grid{grid-template-columns:1fr}.awards-grid{grid-template-columns:1fr 1fr}
+  .process-track{grid-template-columns:1fr 1fr}.process-track::before,.process-track::after{display:none}
   nav .nav-links{display:none}
   nav{padding:0 1.5rem}.hero,.section{padding-left:1.5rem;padding-right:1.5rem}
   .proj-card{grid-template-columns:48px 1fr;gap:1rem}.proj-right{display:none}
   .about-stats{grid-template-columns:1fr 1fr}
-  .wih-grid{grid-template-columns:1fr}
-  .svc-grid{grid-template-columns:1fr}
-  .cs-grid{grid-template-columns:1fr}
-  .feat-proj-grid{grid-template-columns:1fr}
-  .testi-grid{grid-template-columns:1fr}
-  .video-grid{grid-template-columns:1fr}
-  .learning-grid{grid-template-columns:1fr 1fr}
-  .art-preview-grid{grid-template-columns:1fr 1fr}
+  .wih-grid{grid-template-columns:1fr}.svc-grid{grid-template-columns:1fr}.cs-grid{grid-template-columns:1fr}
+  .proj-featured{grid-template-columns:1fr}.testi-row{grid-template-columns:1fr}.hero-kpi-strip{grid-template-columns:1fr 1fr}
 }
 @media(max-width:580px){
   .awards-grid{grid-template-columns:1fr}.ep-metrics{grid-template-columns:1fr 1fr}
   .process-track{grid-template-columns:1fr}.skills-grid{grid-template-columns:1fr}
-  .about-stats{grid-template-columns:1fr 1fr}
-  .cs-results-grid{grid-template-columns:repeat(2,1fr)}
-  .dash-kpis{grid-template-columns:1fr 1fr}
-  .dash-chart-row{grid-template-columns:1fr}
-  .learning-grid{grid-template-columns:1fr}
-  .art-preview-grid{grid-template-columns:1fr}
+  .about-stats{grid-template-columns:1fr 1fr}.cs-results-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-kpi-strip{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -504,7 +409,6 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
   <div class="hero-orb orb2"></div>
   <div class="hero-orb orb3"></div>
 </div>
-
 <div id="scroll-bar"></div>
 
 <nav>
@@ -514,16 +418,15 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
   </a>
   <div class="nav-links">
     <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#live-bi">Live BI</a>
     <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#writing">Writing</a>
     <a href="#contact">Contact</a>
   </div>
   <div class="nav-cta">
     <a href="assets/pdf/Yunus_Miah.pdf" class="btn-ghost" download>Download CV</a>
-    <a href="#contact" class="btn-solid">Book a Free Audit →</a>
+    <a href="#contact" class="btn-solid">Let's Talk →</a>
   </div>
 </nav>
 
@@ -541,23 +444,37 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
       </div>
       <p class="hero-desc reveal d2">Senior BI Analyst with 4+ years building enterprise data platforms, executive dashboards, and ML-powered insights that C-suite leaders actually trust. Managing analytics for $400M+ ARR portfolios.</p>
 
-      <!-- LIVE MINI DASHBOARD PREVIEW — proves BI skills in the hero itself -->
-      <div class="hero-live-chart reveal d2" id="hero-mini-dash">
-        <div class="hlc-label">ARR Trend — Optimizely Portfolio</div>
-        <div class="hlc-val">$400M+ <span>↑ 23% YoY</span></div>
-        <canvas id="hero-sparkline" height="52" style="width:100%;display:block"></canvas>
-      </div>
-
-      <div class="outcome-strip reveal d2">
-        <span class="outcome-item">Single source of truth your execs rely on</span>
-        <span class="outcome-item">Dashboards shipped in days, not months</span>
-        <span class="outcome-item">Metric conflicts eliminated permanently</span>
-        <span class="outcome-item">Revenue you didn't know was leaking — found</span>
+      <!-- ── 4 live KPI cards with mini sparklines — proves BI in the hero ── -->
+      <div class="hero-kpi-strip reveal d2">
+        <div class="hkpi">
+          <div class="hkpi-val"><sup>$</sup>400<sup>M+</sup></div>
+          <div class="hkpi-label">ARR Managed</div>
+          <div class="hkpi-delta">↑ 23% YoY</div>
+          <canvas class="hkpi-spark" id="sp1" width="60" height="28"></canvas>
+        </div>
+        <div class="hkpi">
+          <div class="hkpi-val">550<sup>+</sup></div>
+          <div class="hkpi-label">Dashboard Users</div>
+          <div class="hkpi-delta">↑ 10 depts</div>
+          <canvas class="hkpi-spark" id="sp2" width="60" height="28"></canvas>
+        </div>
+        <div class="hkpi">
+          <div class="hkpi-val"><sup>$</sup>20<sup>M+</sup></div>
+          <div class="hkpi-label">Pipeline Found</div>
+          <div class="hkpi-delta">↑ Untracked Q</div>
+          <canvas class="hkpi-spark" id="sp3" width="60" height="28"></canvas>
+        </div>
+        <div class="hkpi">
+          <div class="hkpi-val">65<sup>h+</sup></div>
+          <div class="hkpi-label">Saved / Month</div>
+          <div class="hkpi-delta">↓ Manual work</div>
+          <canvas class="hkpi-spark" id="sp4" width="60" height="28"></canvas>
+        </div>
       </div>
 
       <div class="hero-actions reveal d3">
-        <a href="#contact" class="btn-solid">Book a Free Data Audit →</a>
-        <a href="#live-bi" class="btn-ghost">See Live Dashboards</a>
+        <a href="#projects" class="btn-solid">See My Work ↓</a>
+        <a href="#experience" class="btn-ghost">Work History</a>
         <a href="assets/pdf/Yunus_Miah.pdf" class="btn-ghost" download>↓ CV</a>
       </div>
       <div class="hero-stack reveal d3">
@@ -582,10 +499,10 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
     <h2 class="section-h reveal d1">The problems I was built to solve</h2>
     <p class="section-sub reveal d2">I work best with teams that have data — but aren't getting decisions from it.</p>
     <div class="wih-grid reveal d2">
-      <div class="wih-card"><div class="wih-persona">Revenue & GTM Leaders</div><div class="wih-problem">"We have Salesforce, a BI tool, and three different pipeline numbers. Nobody trusts any of them."</div><div class="wih-desc">Your team has data — but no agreement on what it means. Every Monday starts with reconciling spreadsheets instead of making decisions. Forecast calls feel like guesswork.</div><div class="wih-solve">I build the north-star KPI framework — ARR, NRR, Win Rate, ARPU — with full data lineage. One number. One truth. C-suite confidence.</div></div>
-      <div class="wih-card"><div class="wih-persona">Scale-up Founders & Ops Leads</div><div class="wih-problem">"Decisions are made on gut feel or week-old exports. We're growing fast but flying blind."</div><div class="wih-desc">You've outgrown your spreadsheet era but haven't built the intelligence layer yet. The data exists — it's just scattered, stale, and siloed across 5 tools.</div><div class="wih-solve">I architect and build your unified analytics platform — from raw data to self-serve dashboards that your team actually uses daily.</div></div>
-      <div class="wih-card"><div class="wih-persona">Finance & Supply Chain Teams</div><div class="wih-problem">"Manual reporting takes 40+ hours a month. Errors slip through. We can't move fast enough."</div><div class="wih-desc">Your analysts are doing copy-paste work instead of analysis. Reports are built on fragile Excel files with formulas nobody dares touch.</div><div class="wih-solve">I automate your entire reporting stack — eliminating manual errors, freeing your team, and delivering real-time visibility into the numbers that drive operations.</div></div>
-      <div class="wih-card"><div class="wih-persona">Data Teams Being Asked To Do More</div><div class="wih-problem">"Every department has their own dashboard. None of them agree. Nobody knows what's canonical."</div><div class="wih-desc">You have analysts — but no governance. Every dashboard tells a slightly different story. You're spending more time explaining why numbers disagree than actually using them.</div><div class="wih-solve">I define SSOT architecture, set data contracts, and build governance frameworks that permanently end the "whose numbers are right?" conversation.</div></div>
+      <div class="wih-card"><div class="wih-persona">Revenue & GTM Leaders</div><div class="wih-problem">"We have Salesforce, a BI tool, and three different pipeline numbers. Nobody trusts any of them."</div><div class="wih-desc">Your team has data — but no agreement on what it means. Every Monday starts with reconciling spreadsheets instead of making decisions.</div><div class="wih-solve">I build the north-star KPI framework — ARR, NRR, Win Rate, ARPU — with full data lineage. One number. One truth.</div></div>
+      <div class="wih-card"><div class="wih-persona">Scale-up Founders & Ops Leads</div><div class="wih-problem">"Decisions are made on gut feel or week-old exports. We're growing fast but flying blind."</div><div class="wih-desc">You've outgrown spreadsheets but haven't built the intelligence layer yet. The data exists — it's scattered, stale, and siloed.</div><div class="wih-solve">I architect and build your unified analytics platform — from raw data to self-serve dashboards your team uses daily.</div></div>
+      <div class="wih-card"><div class="wih-persona">Finance & Supply Chain Teams</div><div class="wih-problem">"Manual reporting takes 40+ hours a month. Errors slip through. We can't move fast enough."</div><div class="wih-desc">Your analysts are doing copy-paste work instead of analysis. Reports are built on fragile Excel files nobody dares touch.</div><div class="wih-solve">I automate your entire reporting stack — eliminating manual errors and delivering real-time visibility.</div></div>
+      <div class="wih-card"><div class="wih-persona">Data Teams Being Asked To Do More</div><div class="wih-problem">"Every department has their own dashboard. None of them agree. Nobody knows what's canonical."</div><div class="wih-desc">You have analysts — but no governance. Every dashboard tells a slightly different story.</div><div class="wih-solve">I define SSOT architecture, set data contracts, and build governance frameworks that permanently end metric wars.</div></div>
     </div>
   </div>
 </section>
@@ -614,116 +531,17 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
 
 <div class="section-divider"></div>
 
-<!-- ═══════════════════════════════════════════════════════
-     LIVE BI DASHBOARD — interactive data viz on the page
-═══════════════════════════════════════════════════════ -->
-<section class="section live-dash-section" id="live-bi">
-  <div class="section-inner">
-    <div class="section-tag reveal">Live BI</div>
-    <h2 class="section-h reveal d1">Interactive Analytics — built right here</h2>
-    <p class="section-sub reveal d2">Not just screenshots. Real data visualizations built with the same principles I apply to enterprise BI — explore, filter, and drill down.</p>
-
-    <div class="live-dash-tabs reveal d2">
-      <button class="ld-tab active" onclick="switchDash('arr')">ARR & Pipeline</button>
-      <button class="ld-tab" onclick="switchDash('cohort')">Cohort Analysis</button>
-      <button class="ld-tab" onclick="switchDash('churn')">Churn Model</button>
-    </div>
-
-    <!-- ARR DASHBOARD -->
-    <div class="ld-panel active reveal d3" id="ld-arr">
-      <div class="dash-canvas-wrap">
-        <div class="dash-kpis">
-          <div class="dash-kpi"><div class="dk-label">Total ARR</div><div class="dk-val"><sup>$</sup>400<sup>M+</sup></div><div class="dk-delta dk-up">↑ 23% YoY</div></div>
-          <div class="dash-kpi"><div class="dk-label">Pipeline Found</div><div class="dk-val"><sup>$</sup>20<sup>M+</sup></div><div class="dk-delta dk-up">↑ Untracked Q</div></div>
-          <div class="dash-kpi"><div class="dk-label">NRR</div><div class="dk-val">118<sup>%</sup></div><div class="dk-delta dk-up">↑ 3pp QoQ</div></div>
-          <div class="dash-kpi"><div class="dk-label">Churn Rate</div><div class="dk-val">2.8<sup>%</sup></div><div class="dk-delta dk-up">↓ 1.2pp YoY</div></div>
-        </div>
-        <div class="dash-chart-row">
-          <div class="dash-chart-box">
-            <div class="dcb-title">Monthly ARR Trend — $M</div>
-            <canvas id="arr-chart" height="160"></canvas>
-          </div>
-          <div class="dash-chart-box">
-            <div class="dcb-title">Pipeline by Region</div>
-            <canvas id="pipe-chart" height="160"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- COHORT DASHBOARD -->
-    <div class="ld-panel" id="ld-cohort">
-      <div class="dash-canvas-wrap">
-        <div class="dash-kpis">
-          <div class="dash-kpi"><div class="dk-label">Users Retained</div><div class="dk-val">20<sup>K+</sup></div><div class="dk-delta dk-up">Via XGBoost model</div></div>
-          <div class="dash-kpi"><div class="dk-label">Avg Basket</div><div class="dk-val"><sup>$</sup>24</div><div class="dk-delta dk-up">↑ 50% from $16</div></div>
-          <div class="dash-kpi"><div class="dk-label">ML Accuracy</div><div class="dk-val">85<sup>%+</sup></div><div class="dk-delta dk-up">XGBoost churn</div></div>
-          <div class="dash-kpi"><div class="dk-label">Leakage Stopped</div><div class="dk-val"><sup>$</sup>150<sup>K</sup></div><div class="dk-delta dk-up">Annual recovery</div></div>
-        </div>
-        <div class="dash-chart-row">
-          <div class="dash-chart-box">
-            <div class="dcb-title">Cohort Retention Heatmap — Months 1–9</div>
-            <canvas id="cohort-chart" height="160"></canvas>
-          </div>
-          <div class="dash-chart-box">
-            <div class="dcb-title">RFM Segment Distribution</div>
-            <canvas id="rfm-chart" height="160"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CHURN MODEL DASHBOARD -->
-    <div class="ld-panel" id="ld-churn">
-      <div class="dash-canvas-wrap">
-        <div class="dash-kpis">
-          <div class="dash-kpi"><div class="dk-label">Model Precision</div><div class="dk-val">87<sup>%</sup></div><div class="dk-delta dk-up">XGBoost</div></div>
-          <div class="dash-kpi"><div class="dk-label">Early Warning</div><div class="dk-val">2<sup>wk</sup></div><div class="dk-delta dk-up">Before churn event</div></div>
-          <div class="dash-kpi"><div class="dk-label">A/B Experiments</div><div class="dk-val">15<sup>+</sup></div><div class="dk-delta dk-up">Bayesian design</div></div>
-          <div class="dash-kpi"><div class="dk-label">Retention Lift</div><div class="dk-val">+18<sup>%</sup></div><div class="dk-delta dk-up">Model accuracy</div></div>
-        </div>
-        <div class="dash-chart-row">
-          <div class="dash-chart-box">
-            <div class="dcb-title">Churn Probability Distribution</div>
-            <canvas id="churn-chart" height="160"></canvas>
-          </div>
-          <div class="dash-chart-box">
-            <div class="dcb-title">Feature Importance — Top 8 Signals</div>
-            <canvas id="feat-chart" height="160"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ═══ DATA ARCHITECTURE DIAGRAM ═══ -->
-<section class="section" id="architecture" style="background:var(--s1)">
-  <div class="section-inner">
-    <div class="section-tag reveal">Tech Stack</div>
-    <h2 class="section-h reveal d1">How the data flows</h2>
-    <p class="section-sub reveal d2">The full-stack architecture I've designed and owned at Optimizely — from raw source to C-suite dashboard.</p>
-    <div class="arch-container reveal d2">
-      <canvas class="arch-canvas" id="arch-canvas" height="240"></canvas>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
 <!-- PROCESS -->
 <section class="section" id="process">
   <div class="section-inner">
     <div class="section-tag reveal">My Process</div>
     <h2 class="section-h reveal d1">How I Work</h2>
-    <p class="section-sub reveal d2">A proven 4-step approach with concrete deliverables — whether it's a 2-week sprint or a 6-month engagement.</p>
+    <p class="section-sub reveal d2">A proven approach, whether it's a 2-week sprint or a 6-month engagement.</p>
     <div class="process-track reveal d2" id="process-track">
-      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🔍</div><div class="ps-num-badge">01</div></div><div class="ps-title">Discover</div><div class="ps-desc">Understand your data landscape, pain points, and what a successful outcome looks like for your team.</div><div class="ps-deliverable">Data Audit + KPI Blueprint</div></div>
-      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🏗️</div><div class="ps-num-badge">02</div></div><div class="ps-title">Architect</div><div class="ps-desc">Design the data model, governance framework, and KPI structure before a single line of code is written.</div><div class="ps-deliverable">Data Model + Governance Doc</div></div>
-      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🚀</div><div class="ps-num-badge">03</div></div><div class="ps-title">Build & Ship</div><div class="ps-desc">Deliver dashboards, pipelines, and ML models in fast iterative sprints — with stakeholder reviews at every step.</div><div class="ps-deliverable">Live Dashboards + Pipeline</div></div>
-      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">📈</div><div class="ps-num-badge">04</div></div><div class="ps-title">Scale</div><div class="ps-desc">Train your team, document everything, and set up governance guardrails that keep quality high long after handoff.</div><div class="ps-deliverable">Training + Full Runbooks</div></div>
+      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🔍</div><div class="ps-num-badge">01</div></div><div class="ps-title">Discover</div><div class="ps-desc">Understand your data landscape, pain points, and what success looks like.</div><div class="ps-deliverable">Data Audit + KPI Blueprint</div></div>
+      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🏗️</div><div class="ps-num-badge">02</div></div><div class="ps-title">Architect</div><div class="ps-desc">Design the data model, governance framework, and KPI structure.</div><div class="ps-deliverable">Data Model + Governance Doc</div></div>
+      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🚀</div><div class="ps-num-badge">03</div></div><div class="ps-title">Build & Ship</div><div class="ps-desc">Deliver dashboards, pipelines, and models in fast iterative sprints.</div><div class="ps-deliverable">Live Dashboards + Pipeline</div></div>
+      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">📈</div><div class="ps-num-badge">04</div></div><div class="ps-title">Scale</div><div class="ps-desc">Train your team, document everything, and ensure long-term growth.</div><div class="ps-deliverable">Training + Full Runbooks</div></div>
     </div>
   </div>
 </section>
@@ -737,10 +555,10 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
     <h2 class="section-h reveal d1">What I do for clients</h2>
     <p class="section-sub reveal d2">From a focused 2-week audit to a full-stack BI transformation. All engagements include documentation and knowledge transfer.</p>
     <div class="svc-grid reveal d2">
-      <div class="svc-card"><span class="svc-popular">Most Popular</span><div class="svc-icon">📊</div><div class="svc-title">BI Build & Modernisation</div><div class="svc-desc">I design and build your entire Power BI analytics layer — from data model to self-serve dashboards your business team actually uses without asking the data team for help.</div><div class="svc-deliverables"><div class="svc-del-item">Power BI dashboards with Advanced DAX measures</div><div class="svc-del-item">Star-schema data model & Snowflake integration</div><div class="svc-del-item">Row-level security & GDPR-compliant access controls</div><div class="svc-del-item">Self-service documentation & user training</div></div><div class="svc-footer"><span class="svc-timeline">⏱ 2–6 weeks</span><a href="#contact" class="svc-cta">Start a conversation →</a></div></div>
+      <div class="svc-card"><span class="svc-popular">Most Popular</span><div class="svc-icon">📊</div><div class="svc-title">BI Build & Modernisation</div><div class="svc-desc">I design and build your entire Power BI analytics layer — from data model to self-serve dashboards your business team actually uses.</div><div class="svc-deliverables"><div class="svc-del-item">Power BI dashboards with Advanced DAX measures</div><div class="svc-del-item">Star-schema data model & Snowflake integration</div><div class="svc-del-item">Row-level security & GDPR-compliant access controls</div><div class="svc-del-item">Self-service documentation & user training</div></div><div class="svc-footer"><span class="svc-timeline">⏱ 2–6 weeks</span><a href="#contact" class="svc-cta">Start a conversation →</a></div></div>
       <div class="svc-card"><div class="svc-icon">🗺️</div><div class="svc-title">Data Strategy & Governance</div><div class="svc-desc">I audit your current data stack, define your north-star KPI framework, and build the governance infrastructure that eliminates metric disagreements permanently.</div><div class="svc-deliverables"><div class="svc-del-item">North-star KPI framework (ARR, NRR, CLV, ARPU)</div><div class="svc-del-item">SSOT architecture design & data lineage mapping</div><div class="svc-del-item">Data contracts + governed catalog (Atlan)</div><div class="svc-del-item">Stakeholder alignment workshop & rollout plan</div></div><div class="svc-footer"><span class="svc-timeline">⏱ 2–4 weeks</span><a href="#contact" class="svc-cta">Book a free audit →</a></div></div>
-      <div class="svc-card"><div class="svc-icon">🤖</div><div class="svc-title">ML & Advanced Analytics</div><div class="svc-desc">I build the predictive models that give your team advance warning — so you can act on churn signals, inventory gaps, and revenue risk before they become problems.</div><div class="svc-deliverables"><div class="svc-del-item">Churn prediction models (XGBoost / Bayesian)</div><div class="svc-del-item">RFM segmentation & CLV modelling</div><div class="svc-del-item">A/B experiment design, execution & analysis</div><div class="svc-del-item">Anomaly detection & automated alerting</div></div><div class="svc-footer"><span class="svc-timeline">⏱ 3–8 weeks</span><a href="#contact" class="svc-cta">Start a conversation →</a></div></div>
-      <div class="svc-card"><div class="svc-icon">🧭</div><div class="svc-title">Fractional BI Lead</div><div class="svc-desc">Need senior analytics leadership without the full-time hire? I embed in your team on a monthly retainer — owning strategy, mentoring analysts, and keeping your data quality bar high.</div><div class="svc-deliverables"><div class="svc-del-item">Weekly data strategy & prioritisation sessions</div><div class="svc-del-item">Analyst mentoring & code / model reviews</div><div class="svc-del-item">Exec-level dashboard reviews & storytelling</div><div class="svc-del-item">Ongoing governance, monitoring & maintenance</div></div><div class="svc-footer"><span class="svc-timeline">⏱ Monthly retainer</span><a href="#contact" class="svc-cta">Let's discuss scope →</a></div></div>
+      <div class="svc-card"><div class="svc-icon">🤖</div><div class="svc-title">ML & Advanced Analytics</div><div class="svc-desc">I build the predictive models that give your team advance warning — churn signals, inventory gaps, and revenue risk before they become problems.</div><div class="svc-deliverables"><div class="svc-del-item">Churn prediction models (XGBoost / Bayesian)</div><div class="svc-del-item">RFM segmentation & CLV modelling</div><div class="svc-del-item">A/B experiment design, execution & analysis</div><div class="svc-del-item">Anomaly detection & automated alerting</div></div><div class="svc-footer"><span class="svc-timeline">⏱ 3–8 weeks</span><a href="#contact" class="svc-cta">Start a conversation →</a></div></div>
+      <div class="svc-card"><div class="svc-icon">🧭</div><div class="svc-title">Fractional BI Lead</div><div class="svc-desc">Senior analytics leadership without the full-time hire. I embed in your team on a monthly retainer — owning strategy, mentoring analysts, keeping quality high.</div><div class="svc-deliverables"><div class="svc-del-item">Weekly data strategy & prioritisation sessions</div><div class="svc-del-item">Analyst mentoring & code / model reviews</div><div class="svc-del-item">Exec-level dashboard reviews & storytelling</div><div class="svc-del-item">Ongoing governance, monitoring & maintenance</div></div><div class="svc-footer"><span class="svc-timeline">⏱ Monthly retainer</span><a href="#contact" class="svc-cta">Let's discuss scope →</a></div></div>
     </div>
   </div>
 </section>
@@ -840,75 +658,73 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
   </div>
 </section>
 
-<!-- SKILLS — reworked without arbitrary % bars -->
+<!-- SKILLS -->
 <section class="section" id="skills" style="background:var(--s1)">
   <div class="section-inner">
     <div class="section-tag reveal">Expertise</div>
     <h2 class="section-h reveal d1">Technical Skills</h2>
-    <p class="section-sub reveal d2">Built through real enterprise delivery. Every skill below has a linked proof-of-work.</p>
+    <p class="section-sub reveal d2">Built through real enterprise delivery, not just tutorials.</p>
     <div class="skills-grid reveal d2">
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">BI & Visualisation</span><a href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard" class="sg-proof" target="_blank">↗ See proof</a></div><div class="skill-chips"><span class="sc hi">Power BI</span><span class="sc hi">Advanced DAX</span><span class="sc">Tableau</span><span class="sc">Looker</span><span class="sc">Embedded Analytics</span><span class="sc">Self-Service BI</span></div></div>
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">Programming & SQL</span><a href="https://github.com/YM-Codes" class="sg-proof" target="_blank">↗ See proof</a></div><div class="skill-chips"><span class="sc hi">SQL (T-SQL)</span><span class="sc hi">Python</span><span class="sc">pandas</span><span class="sc">NumPy</span><span class="sc">scikit-learn</span><span class="sc">Git · CI/CD</span></div></div>
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">Analytics & Data Science</span><a href="https://github.com/YM-Codes/Retail_Customer_Analytics" class="sg-proof" target="_blank">↗ See proof</a></div><div class="skill-chips"><span class="sc hi">Forecasting</span><span class="sc hi">Cohort Analysis</span><span class="sc">A/B Testing</span><span class="sc">CLV</span><span class="sc">ML Modeling</span><span class="sc">Segmentation</span></div></div>
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">Data Engineering</span><a href="https://github.com/YM-Codes" class="sg-proof" target="_blank">↗ See proof</a></div><div class="skill-chips"><span class="sc hi">ETL / ELT</span><span class="sc hi">Snowflake</span><span class="sc">dbt</span><span class="sc">Airflow</span><span class="sc">Azure Data Factory</span><span class="sc">Dimensional Modeling</span></div></div>
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">Cloud & Platforms</span><a href="https://github.com/YM-Codes" class="sg-proof" target="_blank">↗ See proof</a></div><div class="skill-chips"><span class="sc hi">Azure</span><span class="sc">AWS · GCP</span><span class="sc">Databricks</span><span class="sc">Salesforce</span><span class="sc">Atlan</span><span class="sc">Confluence</span></div></div>
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">Strategy & Leadership</span><a href="#case-studies" class="sg-proof">↗ See proof</a></div><div class="skill-chips"><span class="sc hi">SSOT Architecture</span><span class="sc hi">Data Governance</span><span class="sc">OKR Design</span><span class="sc">Exec Storytelling</span><span class="sc">GTM Analytics</span><span class="sc">Mentorship</span></div></div>
+      <div class="skill-group"><div class="sg-header"><span class="sg-title">BI & Visualisation</span><span class="sg-pct">96%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="96"></div></div><div class="skill-chips"><span class="sc hi">Power BI</span><span class="sc hi">Advanced DAX</span><span class="sc">Tableau</span><span class="sc">Looker</span><span class="sc">Embedded Analytics</span><span class="sc">Self-Service BI</span></div></div>
+      <div class="skill-group"><div class="sg-header"><span class="sg-title">Programming & SQL</span><span class="sg-pct">92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="92"></div></div><div class="skill-chips"><span class="sc hi">SQL (T-SQL)</span><span class="sc hi">Python</span><span class="sc">pandas</span><span class="sc">NumPy</span><span class="sc">scikit-learn</span><span class="sc">Git · CI/CD</span></div></div>
+      <div class="skill-group"><div class="sg-header"><span class="sg-title">Analytics & Data Science</span><span class="sg-pct">90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="90"></div></div><div class="skill-chips"><span class="sc hi">Forecasting</span><span class="sc hi">Cohort Analysis</span><span class="sc">A/B Testing</span><span class="sc">CLV</span><span class="sc">ML Modeling</span><span class="sc">Segmentation</span></div></div>
+      <div class="skill-group"><div class="sg-header"><span class="sg-title">Data Engineering</span><span class="sg-pct">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="88"></div></div><div class="skill-chips"><span class="sc hi">ETL / ELT</span><span class="sc hi">Snowflake</span><span class="sc">dbt</span><span class="sc">Airflow</span><span class="sc">Azure Data Factory</span><span class="sc">Dimensional Modeling</span></div></div>
+      <div class="skill-group"><div class="sg-header"><span class="sg-title">Cloud & Platforms</span><span class="sg-pct">82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="82"></div></div><div class="skill-chips"><span class="sc hi">Azure</span><span class="sc">AWS · GCP</span><span class="sc">Databricks</span><span class="sc">Salesforce</span><span class="sc">Atlan</span><span class="sc">Confluence</span></div></div>
+      <div class="skill-group"><div class="sg-header"><span class="sg-title">Strategy & Leadership</span><span class="sg-pct">90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="90"></div></div><div class="skill-chips"><span class="sc hi">SSOT Architecture</span><span class="sc hi">Data Governance</span><span class="sc">OKR Design</span><span class="sc">Exec Storytelling</span><span class="sc">GTM Analytics</span><span class="sc">Mentorship</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FEATURED PROJECTS — visual thumbnails ═══ -->
+<!-- PROJECTS -->
 <section class="section" id="projects">
   <div class="section-inner">
-    <div class="section-tag reveal">Portfolio</div>
-    <h2 class="section-h reveal d1">Featured Projects</h2>
-    <p class="section-sub reveal d2">Top 4 engagements — each with live chart previews, outcomes, and context. See all 12 below or on GitHub.</p>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem">
+      <div><div class="section-tag reveal">Portfolio</div><h2 class="section-h reveal d1">Selected Projects</h2></div>
+      <div class="proj-filters reveal d2">
+        <button class="pf-btn active" data-f="all">All</button>
+        <button class="pf-btn" data-f="sales">Sales</button>
+        <button class="pf-btn" data-f="customer">Customer</button>
+        <button class="pf-btn" data-f="marketing">Marketing</button>
+        <button class="pf-btn" data-f="operation">Operation</button>
+      </div>
+    </div>
 
-    <div class="feat-proj-grid reveal d2">
-      <a class="feat-proj-card" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank">
-        <div class="fp-thumb"><canvas id="fpc1"></canvas><div class="fp-thumb-overlay"></div><div class="fp-feat-badge">★ Featured · ShopUp</div><div class="fp-play-btn" onclick="openVid(event,0)">▶</div></div>
-        <div class="fp-body"><div class="fp-title">Sales Sight 360 Dashboard</div><div class="fp-desc">Unified real-time sales analytics platform — the operational backbone for 150+ daily active users guiding $195M+ in B2B decisions across 6 departments.</div><div class="fp-impact">↑ 150+ DAU · $195M+ GMV · −90% metric discrepancy</div><div class="fp-footer"><div class="fp-chips"><span class="fpchip">Power BI</span><span class="fpchip">DAX</span><span class="fpchip">Snowflake</span></div><div class="fp-arr">↗</div></div></div>
+    <!-- 2 featured cards with visual chart thumbnails -->
+    <div class="proj-featured reveal d2">
+      <a class="pf-card" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank">
+        <div class="pf-thumb"><canvas id="ft1"></canvas><div class="pf-overlay"></div><div class="pf-badge">★ Featured · ShopUp</div></div>
+        <div class="pf-body">
+          <div class="pf-title">Sales Sight 360 Dashboard</div>
+          <div class="pf-desc">Unified real-time sales analytics platform — operational backbone for 150+ DAU guiding $195M+ in annual B2B decisions across 6 departments.</div>
+          <div class="pf-impact">150+ DAU · $195M+ GMV · −90% metric discrepancy</div>
+          <div class="pf-footer"><div class="pf-chips"><span class="pfchip">Power BI</span><span class="pfchip">DAX</span><span class="pfchip">Snowflake</span></div><div class="pf-arr">↗</div></div>
+        </div>
       </a>
-      <a class="feat-proj-card" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank">
-        <div class="fp-thumb"><canvas id="fpc2"></canvas><div class="fp-thumb-overlay"></div><div class="fp-feat-badge">★ Featured · AponTech</div><div class="fp-play-btn" onclick="openVid(event,1)">▶</div></div>
-        <div class="fp-body"><div class="fp-title">Retail Customer Analytics & ML</div><div class="fp-desc">XGBoost churn model + k-means segmentation for 100K+ users. 85%+ accuracy, 2-week early warning, $150K annual leakage stopped.</div><div class="fp-impact">↑ 50% basket · 20K+ retained · $150K recovered</div><div class="fp-footer"><div class="fp-chips"><span class="fpchip">Python</span><span class="fpchip">XGBoost</span><span class="fpchip">Power BI</span></div><div class="fp-arr">↗</div></div></div>
-      </a>
-      <a class="feat-proj-card" href="https://github.com/YM-Codes/PipelineTrendDash" target="_blank">
-        <div class="fp-thumb"><canvas id="fpc3"></canvas><div class="fp-thumb-overlay"></div><div class="fp-feat-badge">★ Featured · Optimizely</div><div class="fp-play-btn" onclick="openVid(event,2)">▶</div></div>
-        <div class="fp-body"><div class="fp-title">Pipeline Trend Dashboard</div><div class="fp-desc">Monitors pipeline health, coverage %, pacing, and rolling coverage metrics. Surfaced $20M+ in untracked quarterly pipeline reshaping GTM strategy.</div><div class="fp-impact">$20M+ pipeline found · ↑ forecast accuracy</div><div class="fp-footer"><div class="fp-chips"><span class="fpchip">Power BI</span><span class="fpchip">DAX</span><span class="fpchip">Salesforce</span></div><div class="fp-arr">↗</div></div></div>
-      </a>
-      <a class="feat-proj-card" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank">
-        <div class="fp-thumb"><canvas id="fpc4"></canvas><div class="fp-thumb-overlay"></div><div class="fp-feat-badge">★ Featured · ShopUp</div><div class="fp-play-btn" onclick="openVid(event,3)">▶</div></div>
-        <div class="fp-body"><div class="fp-title">Customer Cohort Analysis</div><div class="fp-desc">Cohort study evaluating churn, revenue, basket size, and spending patterns with RFM and CLV calculation across 150+ DAU segments.</div><div class="fp-impact">−12% MoM churn · ↑ CLV · RFM segmentation</div><div class="fp-footer"><div class="fp-chips"><span class="fpchip">Python</span><span class="fpchip">SQL</span><span class="fpchip">RFM</span></div><div class="fp-arr">↗</div></div></div>
+      <a class="pf-card" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank">
+        <div class="pf-thumb"><canvas id="ft2"></canvas><div class="pf-overlay"></div><div class="pf-badge">★ Featured · AponTech</div></div>
+        <div class="pf-body">
+          <div class="pf-title">Retail Customer Analytics & ML</div>
+          <div class="pf-desc">XGBoost churn model + k-means segmentation for 100K+ users. 85%+ accuracy, 2-week early warning, $150K annual leakage stopped.</div>
+          <div class="pf-impact">↑ 50% basket · 20K+ retained · $150K recovered</div>
+          <div class="pf-footer"><div class="pf-chips"><span class="pfchip">Python</span><span class="pfchip">XGBoost</span><span class="pfchip">Power BI</span></div><div class="pf-arr">↗</div></div>
+        </div>
       </a>
     </div>
 
-    <!-- ALL PROJECTS -->
-    <div style="margin-top:2.5rem">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem">
-        <div style="font-size:.78rem;font-weight:700;color:var(--text)">All Projects</div>
-        <div class="proj-filters">
-          <button class="pf-btn active" data-f="all">All</button>
-          <button class="pf-btn" data-f="sales">Sales</button>
-          <button class="pf-btn" data-f="customer">Customer</button>
-          <button class="pf-btn" data-f="marketing">Marketing</button>
-          <button class="pf-btn" data-f="operation">Operation</button>
-        </div>
-      </div>
-      <div class="proj-grid" id="proj-grid">
-        <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank"><div class="proj-num">01</div><div class="proj-mid"><div class="proj-title">Sales Sight 360 Dashboard</div><div class="proj-desc">Unified real-time sales analytics platform — operational backbone for 150+ DAU guiding $195M+ in B2B decisions.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-feat-badge">★ Featured</span><span class="proj-impact">150+ DAU · $195M+</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/PipelineTrendDash" target="_blank"><div class="proj-num">02</div><div class="proj-mid"><div class="proj-title">Pipeline Trend Dashboard</div><div class="proj-desc">Monitors pipeline health, coverage %, pacing, and rolling coverage metrics for sales teams.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Forecast accuracy</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/Close_Rate_Analysis" target="_blank"><div class="proj-num">03</div><div class="proj-mid"><div class="proj-title">Close Rate Analysis</div><div class="proj-desc">Tracks win rate across products, regions, and customer types to optimise deal conversion.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Deal conversion</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Customer_Intelligence_Report" target="_blank"><div class="proj-num">04</div><div class="proj-mid"><div class="proj-title">Customer Intelligence Report</div><div class="proj-desc">Tracks product adoption, cross-sell opportunities, and account health across multi-product portfolios.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span></div></div><div class="proj-right"><span class="proj-impact">↑Cross-sell · ↓Churn</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank"><div class="proj-num">05</div><div class="proj-mid"><div class="proj-title">Retail Customer Analytics</div><div class="proj-desc">Customer segmentation, forecasting & behavioral trends integrating demographics, product, and outlet data.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">85%+ accuracy · 100K users</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank"><div class="proj-num">06</div><div class="proj-mid"><div class="proj-title">Customer Cohort Analysis</div><div class="proj-desc">Cohort study evaluating churn, revenue, basket size, and spending patterns with RFM and CLV calculation.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">SQL</span><span class="pchip">RFM</span></div></div><div class="proj-right"><span class="proj-impact">↑CLV · ↓Churn</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Finance_Report" target="_blank"><div class="proj-num">07</div><div class="proj-mid"><div class="proj-title">Campaign Finance Report</div><div class="proj-desc">Multi-channel analytics aligning Email, SMS & Push campaign performance with cost and billing accuracy.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span></div></div><div class="proj-right"><span class="proj-impact">↓Op. waste · ↑NRR</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Revenue_Reporting" target="_blank"><div class="proj-num">08</div><div class="proj-mid"><div class="proj-title">Campaign – Revenue</div><div class="proj-desc">Revenue and engagement tracking across SMS, Email, and Push with YoY/MoM trend analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Revenue visibility</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Lead_Insights" target="_blank"><div class="proj-num">09</div><div class="proj-mid"><div class="proj-title">Campaign Lead Insights</div><div class="proj-desc">Tracks marketable vs non-marketable leads with source and segmentation analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Lead targeting</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes/Customer_Health_Check_Support" target="_blank"><div class="proj-num">10</div><div class="proj-mid"><div class="proj-title">Customer Health Check – Support</div><div class="proj-desc">Support dashboard tracking ticket performance, SLA adherence, and satisfaction scores.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↓SLA violations</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes/Zendesk_reporting" target="_blank"><div class="proj-num">11</div><div class="proj-mid"><div class="proj-title">Zendesk Reporting</div><div class="proj-desc">Consolidated reporting of Zendesk ticket metrics, workflow, and SLA performance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Ticket mgmt</span><div class="proj-arr">↗</div></div></a>
-        <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes" target="_blank"><div class="proj-num">12</div><div class="proj-mid"><div class="proj-title">Partner Health Score Dashboard</div><div class="proj-desc">Consolidates partner performance, health metrics, ticket data, and SLA compliance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Partner accountability</span><div class="proj-arr">↗</div></div></a>
-      </div>
+    <!-- Original full list unchanged -->
+    <div class="proj-grid reveal d2" id="proj-grid">
+      <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank"><div class="proj-num">01</div><div class="proj-mid"><div class="proj-title">Sales Sight 360 Dashboard</div><div class="proj-desc">Unified real-time sales analytics platform — operational backbone for 150+ DAU guiding $195M+ in B2B decisions.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-feat-badge">★ Featured</span><span class="proj-impact">150+ DAU · $195M+</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/PipelineTrendDash" target="_blank"><div class="proj-num">02</div><div class="proj-mid"><div class="proj-title">Pipeline Trend Dashboard</div><div class="proj-desc">Monitors pipeline health, coverage %, pacing, and rolling coverage metrics for sales teams.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Forecast accuracy</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/Close_Rate_Analysis" target="_blank"><div class="proj-num">03</div><div class="proj-mid"><div class="proj-title">Close Rate Analysis</div><div class="proj-desc">Tracks win rate across products, regions, and customer types to optimise deal conversion.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Deal conversion</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Customer_Intelligence_Report" target="_blank"><div class="proj-num">04</div><div class="proj-mid"><div class="proj-title">Customer Intelligence Report</div><div class="proj-desc">Tracks product adoption, cross-sell opportunities, and account health across multi-product portfolios.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span></div></div><div class="proj-right"><span class="proj-impact">↑Cross-sell · ↓Churn</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank"><div class="proj-num">05</div><div class="proj-mid"><div class="proj-title">Retail Customer Analytics</div><div class="proj-desc">Customer segmentation, forecasting & behavioral trends integrating demographics, product, and outlet data.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">85%+ accuracy · 100K users</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank"><div class="proj-num">06</div><div class="proj-mid"><div class="proj-title">Customer Cohort Analysis</div><div class="proj-desc">Cohort study evaluating churn, revenue, basket size, and spending patterns with RFM and CLV calculation.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">SQL</span><span class="pchip">RFM</span></div></div><div class="proj-right"><span class="proj-impact">↑CLV · ↓Churn</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Finance_Report" target="_blank"><div class="proj-num">07</div><div class="proj-mid"><div class="proj-title">Campaign Finance Report</div><div class="proj-desc">Multi-channel analytics aligning Email, SMS & Push campaign performance with cost and billing accuracy.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span></div></div><div class="proj-right"><span class="proj-impact">↓Op. waste · ↑NRR</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Revenue_Reporting" target="_blank"><div class="proj-num">08</div><div class="proj-mid"><div class="proj-title">Campaign – Revenue</div><div class="proj-desc">Revenue and engagement tracking across SMS, Email, and Push with YoY/MoM trend analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Revenue visibility</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Lead_Insights" target="_blank"><div class="proj-num">09</div><div class="proj-mid"><div class="proj-title">Campaign Lead Insights</div><div class="proj-desc">Tracks marketable vs non-marketable leads with source and segmentation analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Lead targeting</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes/Customer_Health_Check_Support" target="_blank"><div class="proj-num">10</div><div class="proj-mid"><div class="proj-title">Customer Health Check – Support</div><div class="proj-desc">Support dashboard tracking ticket performance, SLA adherence, and satisfaction scores.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↓SLA violations</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes/Zendesk_reporting" target="_blank"><div class="proj-num">11</div><div class="proj-mid"><div class="proj-title">Zendesk Reporting</div><div class="proj-desc">Consolidated reporting of Zendesk ticket metrics, workflow, and SLA performance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Ticket mgmt</span><div class="proj-arr">↗</div></div></a>
+      <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes" target="_blank"><div class="proj-num">12</div><div class="proj-mid"><div class="proj-title">Partner Health Score Dashboard</div><div class="proj-desc">Consolidates partner performance, health metrics, ticket data, and SLA compliance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Partner accountability</span><div class="proj-arr">↗</div></div></a>
     </div>
     <div style="display:flex;justify-content:flex-end;margin-top:2rem" class="reveal d2">
       <a href="https://github.com/YM-Codes" target="_blank" style="display:inline-flex;align-items:center;gap:.55rem;padding:.55rem 1.4rem;background:linear-gradient(135deg,var(--acc),#0099dd);border-radius:100px;font-size:.7rem;font-weight:700;color:#000;text-decoration:none;letter-spacing:.04em;box-shadow:0 2px 16px rgba(0,212,255,.2)">View All Projects on GitHub ↗</a>
@@ -916,32 +732,8 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
   </div>
 </section>
 
-<!-- ═══ VIDEO WALKTHROUGHS ═══ -->
-<section class="section" id="walkthroughs" style="background:var(--s1)">
-  <div class="section-inner">
-    <div class="section-tag reveal">Dashboard Walkthroughs</div>
-    <h2 class="section-h reveal d1">See the dashboards in action</h2>
-    <p class="section-sub reveal d2">Short walkthroughs showing how each dashboard works — the decisions it enables, not just the features it has.</p>
-    <div class="video-grid reveal d2">
-      <div class="vid-card" onclick="openVid(event,0)">
-        <div class="vid-thumb"><canvas id="vt1" style="position:absolute;inset:0;width:100%;height:100%"></canvas><div class="vid-play">▶</div><div class="vid-duration">1:24</div></div>
-        <div class="vid-body"><div class="vid-title">Sales Sight 360 — Full Walkthrough</div><div class="vid-sub">How 6 departments unified on one truth at ShopUp</div></div>
-      </div>
-      <div class="vid-card" onclick="openVid(event,1)">
-        <div class="vid-thumb"><canvas id="vt2" style="position:absolute;inset:0;width:100%;height:100%"></canvas><div class="vid-play">▶</div><div class="vid-duration">1:08</div></div>
-        <div class="vid-body"><div class="vid-title">Churn Model — How the XGBoost model works</div><div class="vid-sub">14 signals → 2-week early warning window</div></div>
-      </div>
-      <div class="vid-card" onclick="openVid(event,2)">
-        <div class="vid-thumb"><canvas id="vt3" style="position:absolute;inset:0;width:100%;height:100%"></canvas><div class="vid-play">▶</div><div class="vid-duration">0:58</div></div>
-        <div class="vid-body"><div class="vid-title">Pipeline Dashboard — $20M discovery</div><div class="vid-sub">Root-cause analysis that reshaped C-suite GTM</div></div>
-      </div>
-    </div>
-    <p style="font-size:.68rem;color:var(--t3);text-align:center;margin-top:1rem">Full walkthroughs available on request — <a href="#contact" style="color:var(--acc);text-decoration:none">book a call to see live demos →</a></p>
-  </div>
-</section>
-
 <!-- CASE STUDIES -->
-<section class="section" id="case-studies">
+<section class="section" id="case-studies" style="background:var(--s1)">
   <div class="section-inner">
     <div class="section-tag reveal">Deep Dives</div>
     <h2 class="section-h reveal d1">Case Studies</h2>
@@ -950,8 +742,8 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
       <div class="cs-card">
         <div class="cs-header"><div class="cs-label">Case Study 01 · Sales · Power BI · Governance</div><div class="cs-title">Sales Sight 360</div><div class="cs-company">ShopUp (Mokam CPG) · B2B · $195M+ Annual GMV</div></div>
         <div class="cs-body">
-          <div class="cs-block"><div class="cs-block-label problem">The Problem</div><div class="cs-block-text">Six departments at ShopUp were each running their own sales reports from different data pulls. VP Sales, Supply Chain, and Finance were routinely disagreeing on GMV figures — sometimes by millions — in the same meeting. There was no single version of the truth, no data governance, and no unified view of the $195M+ in annual B2B transactions.</div></div>
-          <div class="cs-block"><div class="cs-block-label solution">The Approach</div><div class="cs-block-text">I audited every existing report, mapped 8+ data sources, and ran a KPI alignment workshop with all department heads. I then built a governed Snowflake data layer with data contracts, before constructing Sales Sight 360 — a unified Power BI platform with a single star-schema model, consistent DAX measures, and role-level access per department. Delivered in 6 sprints over 10 weeks.</div></div>
+          <div class="cs-block"><div class="cs-block-label problem">The Problem</div><div class="cs-block-text">Six departments at ShopUp were each running their own sales reports from different data pulls. VP Sales, Supply Chain, and Finance were routinely disagreeing on GMV figures — sometimes by millions — in the same meeting. There was no single version of the truth, no data governance, and no unified view of the $195M+ in annual B2B transactions flowing through the platform.</div></div>
+          <div class="cs-block"><div class="cs-block-label solution">The Approach</div><div class="cs-block-text">I started by auditing every existing report, mapping the 8+ data sources, and running a KPI alignment workshop with all department heads. I then built a governed Snowflake data layer with data contracts, before constructing Sales Sight 360 — a unified Power BI platform with a single star-schema model, consistent DAX measures, and role-level access per department. Delivered in 6 sprints over 10 weeks.</div></div>
           <div class="cs-block"><div class="cs-block-label results">Results</div><div class="cs-results-grid"><div class="cs-result-item"><div class="cs-result-val">150<small>+ DAU</small></div><div class="cs-result-lbl">Daily Active Users</div></div><div class="cs-result-item"><div class="cs-result-val">90<small>%</small></div><div class="cs-result-lbl">Metric discrepancy eliminated</div></div><div class="cs-result-item"><div class="cs-result-val">−12<small>%</small></div><div class="cs-result-lbl">MoM churn reduction</div></div><div class="cs-result-item"><div class="cs-result-val">45<small>%</small></div><div class="cs-result-lbl">Warehouse capacity recovered</div></div></div></div>
         </div>
         <div class="cs-footer"><span class="etag">Power BI</span><span class="etag">Advanced DAX</span><span class="etag">Snowflake</span><span class="etag">Data Contracts</span><span class="etag">Atlan</span><span class="etag">RFM</span></div>
@@ -969,63 +761,44 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
   </div>
 </section>
 
-<!-- ═══ TESTIMONIALS ═══ -->
-<section class="section" id="testimonials" style="background:var(--s1)">
+<!-- TESTIMONIALS — 3 tight cards, no new section just slotted after case studies -->
+<section class="section" id="testimonials">
   <div class="section-inner">
-    <div class="section-tag reveal">Social Proof</div>
-    <h2 class="section-h reveal d1">What colleagues & stakeholders say</h2>
-    <p class="section-sub reveal d2">Peer recognition from LinkedIn — the people who worked alongside the dashboards and the models.</p>
-    <div class="testi-grid reveal d2">
-      <div class="testi-card">
+    <div class="section-tag reveal">What People Say</div>
+    <h2 class="section-h reveal d1">Peer & Stakeholder Reviews</h2>
+    <p class="section-sub reveal d2">From the people who worked alongside the dashboards and the models.</p>
+    <div class="testi-row reveal d2">
+      <div class="testi">
         <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote">Yunus didn't just build dashboards — he changed how our entire GTM team thinks about data. The north-star KPI framework he designed ended months of internal metric wars in one rollout. That level of thinking is rare.</div>
-        <div class="testi-author"><div class="testi-avatar">SK</div><div><div class="testi-name">Sarah K.</div><div class="testi-role">VP Sales Operations · Optimizely</div><a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-li" target="_blank">↗ LinkedIn</a></div></div>
+        <div class="testi-q">Yunus didn't just build dashboards — he changed how our GTM team thinks about data. The north-star KPI framework ended months of metric wars in one rollout. That level of thinking is rare.</div>
+        <div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,var(--acc),#0099dd)">SK</div><div><div class="testi-name">Sarah K.</div><div class="testi-role">VP Sales Operations · Optimizely</div></div></div>
       </div>
-      <div class="testi-card">
+      <div class="testi">
         <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote">The churn model he built gave us a 2-week warning window we'd never had before. We were able to save accounts we would have lost. The $150K leakage detection alone paid for the engagement many times over.</div>
-        <div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,var(--grn),#007a55)">AR</div><div><div class="testi-name">Arif R.</div><div class="testi-role">Head of Product · AponTech</div><a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-li" target="_blank">↗ LinkedIn</a></div></div>
+        <div class="testi-q">The churn model gave us a 2-week warning window we'd never had before. We saved accounts we would have lost. The $150K leakage detection alone paid for the engagement many times over.</div>
+        <div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,var(--grn),#007a55)">AR</div><div><div class="testi-name">Arif R.</div><div class="testi-role">Head of Product · AponTech</div></div></div>
       </div>
-      <div class="testi-card">
+      <div class="testi">
         <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote">Sales Sight 360 became the single dashboard everyone opened at the start of their day. 150+ users across 6 departments — all aligned on one truth. That's not a BI project. That's a culture shift.</div>
-        <div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,var(--pur),#5b3bac)">MH</div><div><div class="testi-name">Minhaj H.</div><div class="testi-role">VP Sales · ShopUp (Mokam)</div><a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-li" target="_blank">↗ LinkedIn</a></div></div>
+        <div class="testi-q">Sales Sight 360 became the one dashboard everyone opened at the start of their day. 150+ users across 6 departments, all aligned on one truth. That's not a BI project — that's a culture shift.</div>
+        <div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,var(--pur),#5b3bac)">MH</div><div><div class="testi-name">Minhaj H.</div><div class="testi-role">VP Sales · ShopUp (Mokam)</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WRITING — improved with article previews -->
-<section class="section" id="writing" style="overflow:hidden">
+<!-- WRITING -->
+<section class="section" id="writing" style="overflow:hidden;background:var(--s1)">
   <div class="section-inner">
     <div class="section-tag reveal">Writing</div>
     <h2 class="section-h reveal d1">Published Articles</h2>
-    <p class="section-sub reveal d2">10+ deep-dives on DAX, Power BI architecture, sales analytics & data governance — read by practitioners across 40+ countries.</p>
-    <!-- Featured 3 article previews -->
-    <div class="art-preview-grid reveal d2">
-      <a class="art-preview-card" href="https://daxwithyunus.blogspot.com/2024/09/big-problem-small-solution-using.html" target="_blank">
-        <div class="apc-vis"><canvas id="apv1" style="position:absolute;inset:0;width:100%;height:100%"></canvas></div>
-        <div class="apc-body"><span class="apc-cat">DAX</span><div class="apc-title">Big Problem, Small Solution: Using USERELATIONSHIP in Power BI</div><div class="apc-meta"><span class="apc-read">8 min read</span><span class="apc-arrow">→</span></div></div>
-      </a>
-      <a class="art-preview-card" href="https://daxwithyunus.blogspot.com/2024/09/unlocking-sales-insights-analyzing-tads.html" target="_blank">
-        <div class="apc-vis" style="position:relative"><canvas id="apv2" style="position:absolute;inset:0;width:100%;height:100%"></canvas></div>
-        <div class="apc-body"><span class="apc-cat">Sales</span><div class="apc-title">Analysing TADS, ADS, Shortfall & Projections for Sales Leaders</div><div class="apc-meta"><span class="apc-read">12 min read</span><span class="apc-arrow">→</span></div></div>
-      </a>
-      <a class="art-preview-card" href="https://walkwithyunus.blogspot.com/2023/09/health-care-analytics-case-study.html" target="_blank">
-        <div class="apc-vis" style="position:relative"><canvas id="apv3" style="position:absolute;inset:0;width:100%;height:100%"></canvas></div>
-        <div class="apc-body"><span class="apc-cat">Healthcare</span><div class="apc-title">Healthcare Analytics Case Study — Turning Patient Data into Decisions</div><div class="apc-meta"><span class="apc-read">10 min read</span><span class="apc-arrow">→</span></div></div>
-      </a>
-    </div>
+    <p class="section-sub reveal d2">10+ deep-dives on DAX, Power BI architecture, sales analytics & data governance</p>
   </div>
-  <!-- scrolling rest -->
   <div class="art-scroll-outer reveal d2"><div class="art-track-wrap" style="display:flex;flex-direction:column;gap:12px"></div></div>
-  <div class="section-inner" style="margin-top:1.5rem">
-    <a href="https://daxwithyunus.blogspot.com" target="_blank" style="display:inline-flex;align-items:center;gap:.55rem;padding:.5rem 1.2rem;border:.5px solid var(--bdr2);border-radius:100px;font-size:.65rem;font-weight:700;color:var(--acc);text-decoration:none;transition:all .3s">Read all articles on the blog ↗</a>
-  </div>
 </section>
 
 <!-- RECOGNITION -->
-<section class="section" id="recognition" style="background:var(--s1)">
+<section class="section" id="recognition">
   <div class="section-inner">
     <div class="section-tag reveal">Recognition</div>
     <h2 class="section-h reveal d1">Awards & Certifications</h2>
@@ -1041,30 +814,14 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
   </div>
 </section>
 
-<!-- ═══ CURRENTLY LEARNING ═══ -->
-<section class="section" id="learning">
-  <div class="section-inner">
-    <div class="section-tag reveal">Growth Mindset</div>
-    <h2 class="section-h reveal d1">Currently exploring</h2>
-    <p class="section-sub reveal d2">Senior analysts who stay ahead of the tooling curve deliver more value. Here's what I'm actively learning and building with now.</p>
-    <div class="learning-grid reveal d2">
-      <div class="learn-card"><div class="learn-icon">🏗️</div><div class="learn-title">Microsoft Fabric</div><div class="learn-desc">End-to-end analytics platform unifying data lake, data warehouse, and BI in one SaaS layer — the future of the Snowflake + Power BI stack.</div><span class="learn-tag">Active</span></div>
-      <div class="learn-card"><div class="learn-icon">🤖</div><div class="learn-title">AI-Powered Analytics</div><div class="learn-desc">Integrating LLM-driven insight generation into BI workflows — natural language querying, automated narrative generation, and anomaly explanation.</div><span class="learn-tag">Experimenting</span></div>
-      <div class="learn-card"><div class="learn-icon">📐</div><div class="learn-title">Causal Inference</div><div class="learn-desc">Moving beyond correlation — applying DoWhy and CausalML to answer "what caused this?" rather than just "what happened?" for exec-level root cause analysis.</div><span class="learn-tag">Deep dive</span></div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
 <!-- CONTACT -->
 <section class="section" id="contact">
   <div class="section-inner">
     <div class="section-tag reveal">Let's Connect</div>
     <div class="contact-grid reveal d1">
       <div>
-        <h2 class="contact-h">Let's solve your<br><span>data problem</span>.</h2>
-        <p class="contact-sub">Whether you're dealing with metric wars, a reporting backlog, or a revenue leak you can't quite see — book a free 30-minute audit call and let's figure out exactly what's going on.</p>
+        <h2 class="contact-h">Ready for your next<br><span>data leap?</span></h2>
+        <p class="contact-sub">Whether you're hiring for a senior BI role, need consulting on a data strategy, or just want to talk dashboards, I'd love to hear from you.</p>
         <div class="contact-outcomes">
           <div class="co-item">A clear diagnosis of your biggest data bottleneck</div>
           <div class="co-item">A prioritised action plan you can use immediately</div>
@@ -1075,8 +832,6 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
           <div class="ci-item"><div class="ci-icon">✉</div><div><div class="ci-label">Email</div><div class="ci-val">yunus_miah@outlook.com</div></div></div>
           <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-label">Location</div><div class="ci-val">Dhaka, Bangladesh · Remote OK · Open to Relocation</div></div></div>
         </div>
-        <!-- CALENDLY BOOKING LINK — replaces public phone number -->
-        <a href="https://calendly.com/yunus-miah" class="calendly-btn" target="_blank">Book a free 30-min audit call</a>
         <div class="social-row">
           <a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="soc-btn" target="_blank">in</a>
           <a href="https://github.com/YM-Codes" class="soc-btn" target="_blank">gh</a>
@@ -1085,24 +840,16 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
         </div>
       </div>
       <div class="contact-form">
-        <div style="margin-bottom:1.5rem"><div style="font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:.25rem">Send a message</div><div style="font-size:.66rem;color:var(--t2)">I typically respond within 24 hours</div></div>
+        <div style="margin-bottom:1.5rem"><div style="font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:.25rem">Send a Message</div><div style="font-size:.66rem;color:var(--t2)">I typically respond within 24 hours</div></div>
         <form action="https://formsubmit.co/ym16511042@gmail.com" method="POST">
           <div class="form-row"><div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div><div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required></div></div>
-          <div class="form-group"><label>What brings you here?</label>
-            <select name="role_type">
-              <option value="">Select the best fit...</option>
-              <option>Hiring — full-time / contract role</option>
-              <option>BI Build & Modernisation project</option>
-              <option>Data Strategy & Governance</option>
-              <option>ML & Advanced Analytics</option>
-              <option>Fractional BI Lead / retainer</option>
-              <option>Collaboration or partnership</option>
-            </select>
+          <div class="form-group"><label>What Brings You Here?</label>
+            <select name="role_type"><option value="">Select...</option><option>Hiring</option><option>Consultancy</option><option>Freelance / Contract</option><option>Collaboration</option><option>Just a Chitchat</option></select>
           </div>
           <div class="form-group"><label>Company</label><input type="text" name="company" placeholder="Company name (optional)"></div>
-          <div class="form-group"><label>Tell me about the challenge</label><textarea name="message" placeholder="What's the data problem you're trying to solve? What does a great outcome look like?"></textarea></div>
+          <div class="form-group"><label>Message</label><textarea name="message" placeholder="What's on your mind?"></textarea></div>
           <button type="submit" class="form-submit">Send Message →</button>
-          <div class="form-note">Goes directly to yunus_miah@outlook.com · No spam, ever.</div>
+          <div class="form-note">Goes directly to yunus_miah@outlook.com</div>
         </form>
       </div>
     </div>
@@ -1113,7 +860,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
   <div class="footer-inner">
     <div class="footer-logo">Yunus <span>Miah</span></div>
     <div class="footer-links">
-      <a href="#about">About</a><a href="#services">Services</a><a href="#live-bi">Live BI</a><a href="#experience">Work</a><a href="#projects">Projects</a><a href="#case-studies">Case Studies</a><a href="#recognition">Awards</a><a href="#contact">Contact</a><a href="assets/pdf/Yunus_Miah.pdf" download>CV</a>
+      <a href="#about">About</a><a href="#experience">Work</a><a href="#projects">Projects</a><a href="#recognition">Awards</a><a href="#contact">Contact</a><a href="assets/pdf/Yunus_Miah.pdf" download>CV</a>
     </div>
     <span class="footer-copy">© 2025 Yunus Miah · Built with data and caffeine ☕</span>
   </div>
@@ -1121,435 +868,127 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
 
 <button class="scroll-top" id="scroll-top">↑</button>
 
-<!-- VIDEO MODAL -->
-<div class="modal-overlay" id="vid-modal" onclick="closeModal(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="document.getElementById('vid-modal').classList.remove('open')">✕</button>
-    <div class="modal-title" id="modal-title"></div>
-    <div class="modal-sub" id="modal-sub"></div>
-    <div class="modal-thumb"><canvas id="modal-canvas" style="position:absolute;inset:0;width:100%;height:100%"></canvas><div class="modal-play-big">▶</div></div>
-    <div class="modal-note">Full walkthrough available on request — <a href="#contact" onclick="document.getElementById('vid-modal').classList.remove('open')">book a call →</a></div>
-  </div>
-</div>
-
 <script>
-/* ═══ SCROLL PROGRESS ═══ */
-const scrollBar=document.getElementById('scroll-bar');
-window.addEventListener('scroll',()=>{const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;scrollBar.style.width=pct+'%'});
+/* SCROLL PROGRESS */
+window.addEventListener('scroll',()=>{
+  document.getElementById('scroll-bar').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+});
 
-/* ═══ RIPPLE ═══ */
-document.querySelectorAll('.btn-solid,.btn-ghost,.pf-btn,.form-submit,.ld-tab').forEach(btn=>{btn.addEventListener('click',e=>{const r=document.createElement('span');r.className='ripple';const rect=btn.getBoundingClientRect();const size=Math.max(rect.width,rect.height);r.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;btn.appendChild(r);setTimeout(()=>r.remove(),600)})});
+/* RIPPLE */
+document.querySelectorAll('.btn-solid,.btn-ghost,.pf-btn,.form-submit').forEach(b=>{b.addEventListener('click',e=>{const r=document.createElement('span');r.className='ripple';const rc=b.getBoundingClientRect(),s=Math.max(rc.width,rc.height);r.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-rc.left-s/2}px;top:${e.clientY-rc.top-s/2}px`;b.appendChild(r);setTimeout(()=>r.remove(),600)})});
 
-/* ═══ 3D TILT ═══ */
-document.querySelectorAll('.skill-group,.aw-card,.epm,.wih-card,.svc-card,.cs-result-item,.testi-card,.learn-card').forEach(card=>{card.classList.add('tilt');card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=((e.clientX-r.left)/r.width-.5)*12;const y=((e.clientY-r.top)/r.height-.5)*-12;card.style.transform=`perspective(600px) rotateY(${x}deg) rotateX(${y}deg) scale(1.02)`});card.addEventListener('mouseleave',()=>{card.style.transform='perspective(600px) rotateY(0) rotateX(0) scale(1)'})});
+/* TILT */
+document.querySelectorAll('.skill-group,.aw-card,.epm,.wih-card,.svc-card,.cs-result-item,.testi,.hkpi').forEach(c=>{c.classList.add('tilt');c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.transform=`perspective(600px) rotateY(${((e.clientX-r.left)/r.width-.5)*10}deg) rotateX(${((e.clientY-r.top)/r.height-.5)*-10}deg) scale(1.02)`});c.addEventListener('mouseleave',()=>{c.style.transform=''})});
 
-/* ═══ CLICK BURST ═══ */
-document.addEventListener('click',e=>{for(let i=0;i<8;i++){const p=document.createElement('div');const angle=Math.random()*Math.PI*2;const dist=30+Math.random()*50;p.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:4px;height:4px;border-radius:50%;background:${Math.random()>.5?'var(--acc)':'var(--pur)'};pointer-events:none;z-index:9999;transition:all .6s cubic-bezier(.16,1,.3,1);opacity:1`;document.body.appendChild(p);requestAnimationFrame(()=>{p.style.transform=`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`;p.style.opacity='0'});setTimeout(()=>p.remove(),600)}});
+/* COUNTERS */
+function animC(el,t){let s=null;(function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/1800,1);el.textContent=Math.round(p*t);if(p<1)requestAnimationFrame(step)})(performance.now())}
 
-/* ═══ COUNTERS ═══ */
-function animC(el,t,d=1800){let s=null;function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/d,1);el.textContent=Math.round(p*t);if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
-
-/* ═══ REVEAL OBSERVER ═══ */
-let aboutDone=false;
-const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(!en.isIntersecting)return;en.target.classList.add('visible');if((en.target.id==='about'||en.target.closest('#about'))&&!aboutDone){aboutDone=true;animC(document.getElementById('cnt-arr'),400);animC(document.getElementById('cnt-dash'),45);animC(document.getElementById('cnt-rows'),500);animC(document.getElementById('cnt-pipe'),20)}})},{threshold:.1});
+/* OBSERVER */
+let done=false;
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(!en.isIntersecting)return;en.target.classList.add('visible');if(en.target.closest('#about')&&!done){done=true;animC(document.getElementById('cnt-arr'),400);animC(document.getElementById('cnt-dash'),45);animC(document.getElementById('cnt-rows'),500);animC(document.getElementById('cnt-pipe'),20)}en.target.querySelectorAll('.skill-bar-fill[data-p]').forEach(f=>setTimeout(()=>f.style.width=f.dataset.p+'%',300))})},{threshold:.1});
 document.querySelectorAll('.reveal,section').forEach(el=>obs.observe(el));
-document.querySelectorAll('.skills-grid,.awards-grid,.wih-grid,.svc-grid,.cs-grid,.testi-grid,.learning-grid').forEach(grid=>{[...grid.children].forEach((c,i)=>{c.style.transitionDelay=`${i*.08}s`;c.classList.add('reveal')})});
+document.querySelectorAll('.skills-grid,.awards-grid,.wih-grid,.svc-grid,.cs-grid,.testi-row').forEach(g=>[...g.children].forEach((c,i)=>{c.style.transitionDelay=`${i*.08}s`;c.classList.add('reveal')}));
 
-/* ═══ PROCESS ANIMATION ═══ */
-const procObs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('animated')})},{threshold:.3});
-const pt=document.getElementById('process-track');if(pt)procObs.observe(pt);
+/* PROCESS */
+const pio=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('animated')}),{threshold:.3});
+const pt=document.getElementById('process-track');if(pt)pio.observe(pt);
 
-/* ═══ EXP TABS ═══ */
-document.querySelectorAll('.exp-tab').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.exp-tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.exp-panel').forEach(p=>p.classList.remove('active'));t.classList.add('active');document.getElementById('p-'+t.dataset.target).classList.add('active')})});
+/* EXP TABS */
+document.querySelectorAll('.exp-tab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.exp-tab,.exp-panel').forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById('p-'+t.dataset.target).classList.add('active')}));
 
-/* ═══ PROJECT FILTER ═══ */
-document.querySelectorAll('.pf-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.f;document.querySelectorAll('.proj-card').forEach(card=>{card.style.display=(f==='all'||card.dataset.cat===f)?'grid':'none'})})});
+/* PROJECT FILTER */
+document.querySelectorAll('.pf-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.pf-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.f;document.querySelectorAll('.proj-card').forEach(c=>c.style.display=(f==='all'||c.dataset.cat===f)?'grid':'none')}));
 
-/* ═══ TICKER ═══ */
-const items=[{val:'$400M+',label:'ARR Portfolio'},{val:'45+',label:'BI Dashboards'},{val:'500M+',label:'Rows Per Day'},{val:'550+',label:'Global Users'},{val:'$20M+',label:'Pipeline Found'},{val:'90%',label:'Data Quality'},{val:'−12%',label:'Churn Reduced'},{val:'85%+',label:'ML Accuracy'},{val:'PL-300',label:'Certified'},{val:'SQLBI',label:'DAX Expert'},{val:'65h+',label:'Saved Monthly'},{val:'~4yr',label:'BI Experience'}];
-const tick=document.getElementById('ticker'),html=items.map(i=>`<span class="tick-item"><span>${i.val}</span>${i.label}<span class="tick-sep">·</span></span>`).join('');tick.innerHTML=html+html;
-
-/* ═══ SCROLL TOP ═══ */
+/* SCROLL TOP */
 const st=document.getElementById('scroll-top');
 window.addEventListener('scroll',()=>st.classList.toggle('show',window.scrollY>600));
 st.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-/* ═══ NAV ACTIVE ═══ */
-window.addEventListener('scroll',()=>{let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id});document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur)})});
+/* NAV ACTIVE */
+window.addEventListener('scroll',()=>{let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id});document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur))});
 
-/* ═══ TYPEWRITER ═══ */
-(function(){const phrases=[{s:'The analyst who ',h:"found $20M+ your team didn't know existed"},{s:'Expert in ',h:'Power BI & Advanced DAX'},{s:'45+ dashboards. ',h:'One north-star. Zero metric wars.'},{s:'Processing ',h:'500M+ rows/day — sub-second, always fresh'},{s:'Not a generalist — ',h:'a commercial intelligence specialist'},{s:'From $16 to $24 — ',h:'50% basket growth via ML segmentation'},{s:'Bayesian. Causal. ',h:'A/B testing that actually holds up.'},{s:'Building ',h:'SSOT governance that ends metric wars'},{s:'PL-300 + SQLBI — ',h:'top 1% of DAX practitioners globally'},{s:'550+ users. ',h:'One platform. Zero Monday ad-hoc requests.'}];const sEl=document.getElementById('type-static'),hEl=document.getElementById('type-hi');let pi=0,ci=0,erasing=false;function step(){const{s,h}=phrases[pi],full=s+h;if(!erasing){ci++;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci>=full.length){setTimeout(()=>{erasing=true;step()},2200);return}}else{ci--;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci<=0){erasing=false;pi=(pi+1)%phrases.length;setTimeout(step,400);return}}setTimeout(step,erasing?32:75)}setTimeout(step,1200)})();
+/* TYPEWRITER */
+(function(){const p=[{s:'Senior BI Analyst with ',h:'4+ years · $400M+ ARR'},{s:'Expert in ',h:'Power BI & Advanced DAX'},{s:'45+ dashboards. ',h:'Zero metric wars.'},{s:'Processing ',h:'500M+ rows/day in Snowflake'},{s:'PL-300 + SQLBI — ',h:'top 1% of DAX practitioners'},{s:'Surfaced ',h:'$20M+ pipeline you didn\'t know existed'},{s:'Churn down 12% — ',h:'cohort, RFM & lifecycle intelligence'}];const sEl=document.getElementById('type-static'),hEl=document.getElementById('type-hi');let pi=0,ci=0,er=false;function step(){const{s,h}=p[pi],full=s+h;if(!er){ci++;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci>=full.length){setTimeout(()=>{er=true;step()},2200);return}}else{ci--;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci<=0){er=false;pi=(pi+1)%p.length;setTimeout(step,400);return}}setTimeout(step,er?32:75)}setTimeout(step,1200)})();
 
-/* ═══════════════════════════════════════════
-   CANVAS / CHART DRAWING HELPERS
-═══════════════════════════════════════════ */
-function dpr(){return window.devicePixelRatio||1}
+/* TICKER */
+const items=[{val:'$400M+',label:'ARR Portfolio'},{val:'45+',label:'BI Dashboards'},{val:'500M+',label:'Rows Per Day'},{val:'550+',label:'Global Users'},{val:'$20M+',label:'Pipeline Found'},{val:'90%',label:'Data Quality'},{val:'−12%',label:'Churn Reduced'},{val:'85%+',label:'ML Accuracy'},{val:'PL-300',label:'Certified'},{val:'SQLBI',label:'DAX Expert'},{val:'65h+',label:'Saved Monthly'},{val:'~4yr',label:'BI Experience'}];
+const tick=document.getElementById('ticker'),html=items.map(i=>`<span class="tick-item"><span>${i.val}</span>${i.label}<span class="tick-sep">·</span></span>`).join('');
+tick.innerHTML=html+html;
 
-function initCanvas(el){
-  if(!el)return null;
-  const r=el.getBoundingClientRect();
-  const w=r.width||el.offsetWidth||el.parentElement.offsetWidth||300;
-  const h=el.height||el.offsetHeight||160;
-  el.width=w*dpr();el.height=h*dpr();
-  const ctx=el.getContext('2d');ctx.scale(dpr(),dpr());
-  return{ctx,w,h};
-}
-
-/* ── HERO SPARKLINE ── */
-function drawHeroSparkline(){
-  const el=document.getElementById('hero-sparkline');
-  if(!el)return;
-  const r=el.parentElement.getBoundingClientRect();
-  el.width=(r.width||300)*dpr();el.height=52*dpr();
-  const ctx=el.getContext('2d');ctx.scale(dpr(),dpr());
-  const w=r.width||300,h=52;
-  const data=[280,295,305,318,328,342,355,368,385,400];
-  const min=Math.min(...data)-10,max=Math.max(...data)+5;
-  const xS=w/(data.length-1),yS=h/(max-min);
-  const pts=data.map((v,i)=>({x:i*xS,y:h-(v-min)*yS}));
-  const grad=ctx.createLinearGradient(0,0,0,h);
-  grad.addColorStop(0,'rgba(0,212,255,.18)');grad.addColorStop(1,'rgba(0,212,255,0)');
-  ctx.beginPath();ctx.moveTo(pts[0].x,h);
-  pts.forEach(p=>ctx.lineTo(p.x,p.y));
-  ctx.lineTo(pts[pts.length-1].x,h);ctx.closePath();
-  ctx.fillStyle=grad;ctx.fill();
-  ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
-  pts.forEach(p=>ctx.lineTo(p.x,p.y));
-  ctx.strokeStyle='#00d4ff';ctx.lineWidth=2;ctx.stroke();
-  const last=pts[pts.length-1];
-  ctx.beginPath();ctx.arc(last.x,last.y,4,0,Math.PI*2);
-  ctx.fillStyle='#00d4ff';ctx.fill();
-  ctx.beginPath();ctx.arc(last.x,last.y,8,0,Math.PI*2);
-  ctx.fillStyle='rgba(0,212,255,.2)';ctx.fill();
-}
-
-/* ── GENERIC BAR CHART ── */
-function drawBars(id,labels,vals,color='#00d4ff'){
-  const el=document.getElementById(id);if(!el)return;
-  const I=initCanvas(el);if(!I)return;
-  const{ctx,w,h}=I;
-  const pad={t:10,r:10,b:22,l:38};
-  const cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
-  const mx=Math.max(...vals)*1.15;
-  const bw=cw/vals.length*.6,gap=cw/vals.length;
-  ctx.fillStyle='rgba(255,255,255,.04)';
-  [.25,.5,.75,1].forEach(f=>{const y=pad.t+ch*(1-f);ctx.fillRect(pad.l,y,cw,1)});
-  vals.forEach((v,i)=>{
-    const x=pad.l+i*gap+(gap-bw)/2;
-    const bh=(v/mx)*ch;const y=pad.t+ch-bh;
-    const g=ctx.createLinearGradient(0,y,0,y+bh);
-    g.addColorStop(0,color);g.addColorStop(1,color.replace('ff','44'));
-    ctx.fillStyle=g;
-    ctx.beginPath();ctx.roundRect(x,y,bw,bh,3);ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.4)';ctx.font=`${9*dpr()>1?9:9}px system-ui`;
-    ctx.textAlign='center';ctx.fillText(labels[i],x+bw/2,h-4);
-  });
-}
-
-/* ── LINE CHART ── */
-function drawLine(id,vals,color='#00d4ff',fill=true){
-  const el=document.getElementById(id);if(!el)return;
-  const I=initCanvas(el);if(!I)return;
-  const{ctx,w,h}=I;
-  const pad={t:10,r:10,b:10,l:10};
-  const cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
-  const mn=Math.min(...vals)*.95,mx=Math.max(...vals)*1.05;
-  const xS=cw/(vals.length-1),yS=ch/(mx-mn);
-  const pts=vals.map((v,i)=>({x:pad.l+i*xS,y:pad.t+ch-(v-mn)*yS}));
-  if(fill){
-    const g=ctx.createLinearGradient(0,pad.t,0,h);
-    g.addColorStop(0,color.replace('#','rgba(').replace(/(..)(..)(..)$/,(a,r,g2,b)=>`${parseInt(r,16)},${parseInt(g2,16)},${parseInt(b,16)},.18)`));
-    g.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.beginPath();ctx.moveTo(pts[0].x,h);
-    pts.forEach(p=>ctx.lineTo(p.x,p.y));
-    ctx.lineTo(pts[pts.length-1].x,h);ctx.closePath();
-    ctx.fillStyle=g;ctx.fill();
-  }
-  ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));
-  ctx.strokeStyle=color;ctx.lineWidth=2;ctx.lineJoin='round';ctx.stroke();
-}
-
-/* ── DONUT ── */
-function drawDonut(id,vals,colors){
-  const el=document.getElementById(id);if(!el)return;
-  const I=initCanvas(el);if(!I)return;
-  const{ctx,w,h}=I;
-  const cx=w/2,cy=h/2,or=Math.min(w,h)/2-8,ir=or*.55;
-  const total=vals.reduce((a,b)=>a+b,0);
-  let start=-Math.PI/2;
-  vals.forEach((v,i)=>{
-    const angle=(v/total)*Math.PI*2;
-    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,or,start,start+angle);
-    ctx.fillStyle=colors[i];ctx.fill();
-    start+=angle;
-  });
-  ctx.beginPath();ctx.arc(cx,cy,ir,0,Math.PI*2);
-  ctx.fillStyle='#0f1116';ctx.fill();
-}
-
-/* ── HEATMAP ── */
-function drawHeatmap(id){
-  const el=document.getElementById(id);if(!el)return;
-  const I=initCanvas(el);if(!I)return;
-  const{ctx,w,h}=I;
-  const rows=6,cols=9;
-  const cw=w/cols,rh=h/rows;
-  const base=[100,82,71,64,58,53,49,46,43];
-  for(let r=0;r<rows;r++){
-    for(let c=0;c<cols;c++){
-      const v=Math.max(0,base[c]-r*3+(Math.random()*4-2))/100;
-      const alpha=.08+v*.65;
-      ctx.fillStyle=`rgba(0,212,255,${alpha.toFixed(2)})`;
-      ctx.fillRect(c*cw+1,r*rh+1,cw-2,rh-2);
-      ctx.fillStyle=`rgba(255,255,255,${v>.5?.7:.35})`;
-      ctx.font='8px system-ui';ctx.textAlign='center';
-      ctx.fillText(Math.round(v*100)+'%',c*cw+cw/2,r*rh+rh/2+3);
-    }
-  }
-}
-
-/* ── FEATURED PROJECT THUMBNAILS ── */
-function drawFeatThumb(id,type){
-  const el=document.getElementById(id);if(!el)return;
-  const r=el.parentElement.getBoundingClientRect();
-  el.width=(r.width||280)*dpr();el.height=160*dpr();
-  const ctx=el.getContext('2d');ctx.scale(dpr(),dpr());
-  const w=r.width||280,h=160;
-  if(type==='bars'){
-    const vals=[45,68,52,80,73,90,85,95,88,100];
-    const bw=w/vals.length*.5,gap=w/vals.length;
-    vals.forEach((v,i)=>{
-      const bh=(v/100)*(h-20),y=h-bh-10;
-      const g=ctx.createLinearGradient(0,y,0,y+bh);
-      g.addColorStop(0,'#00d4ff');g.addColorStop(1,'rgba(0,212,255,.2)');
-      ctx.fillStyle=g;
-      ctx.beginPath();if(ctx.roundRect)ctx.roundRect(i*gap+(gap-bw)/2,y,bw,bh,2);
-      else ctx.rect(i*gap+(gap-bw)/2,y,bw,bh);
-      ctx.fill();
-    });
-  } else if(type==='heatmap'){
-    drawHeatmap(id);
-  } else if(type==='line'){
-    const vals2=[30,45,42,60,55,75,70,88,82,95];
-    drawLine(id,vals2,'#00e5a0');
-  } else if(type==='donut'){
-    drawDonut(id,[35,28,22,15],['#00d4ff','#8b5cf6','#00e5a0','#f59e0b']);
-  }
-}
-
-/* ── VIDEO THUMBNAIL CANVASES ── */
-function drawVidThumb(id,type){
-  const el=document.getElementById(id);if(!el)return;
-  const r=el.getBoundingClientRect();
-  el.width=(r.width||200)*dpr();el.height=(r.height||130)*dpr();
-  const ctx=el.getContext('2d');ctx.scale(dpr(),dpr());
-  const w=r.width||200,h=r.height||130;
-  const g=ctx.createLinearGradient(0,0,w,h);
-  if(type===0){g.addColorStop(0,'#0a1520');g.addColorStop(1,'#0f2535');}
-  else if(type===1){g.addColorStop(0,'#100a20');g.addColorStop(1,'#1a0f35');}
-  else{g.addColorStop(0,'#0a1a10');g.addColorStop(1,'#0f2518');}
-  ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
-  const colors=['#00d4ff','#8b5cf6','#00e5a0'];
-  const data=[40,60,50,75,65,85,80,90,85,95];
-  const bw=w/data.length*.45,gap=w/data.length;
-  data.forEach((v,i)=>{
-    const bh=(v/100)*(h-15);
-    ctx.fillStyle=colors[type]+'66';
-    ctx.fillRect(i*gap+(gap-bw)/2,h-bh-5,bw,bh);
-  });
-  ctx.strokeStyle=colors[type];ctx.lineWidth=1.5;
-  ctx.beginPath();data.forEach((v,i)=>{
-    const x=i*gap+gap/2,y=h-(v/100)*(h-15)-5;
-    i?ctx.lineTo(x,y):ctx.moveTo(x,y);
-  });ctx.stroke();
-}
-
-/* ── ARTICLE PREVIEW THUMBNAILS ── */
-function drawArtPreview(id,type){
-  const el=document.getElementById(id);if(!el)return;
-  const r=el.parentElement.getBoundingClientRect();
-  el.width=(r.width||260)*dpr();el.height=72*dpr();
-  const ctx=el.getContext('2d');ctx.scale(dpr(),dpr());
-  const w=r.width||260,h=72;
-  ctx.fillStyle='#0f1116';ctx.fillRect(0,0,w,h);
-  if(type==='line'){
-    const v=[30,45,42,60,55,75,70,88,82,95];
-    const xS=(w-20)/(v.length-1);
-    ctx.beginPath();v.forEach((val,i)=>{
-      const x=10+i*xS,y=h-10-(val/100)*(h-20);
-      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
-    });ctx.strokeStyle='#00d4ff44';ctx.lineWidth=2;ctx.stroke();
-  } else if(type==='bars'){
-    [40,65,50,80,70,90].forEach((v,i)=>{
-      const bw=(w-20)/6*.6,gap=(w-20)/6;
-      const bh=(v/100)*(h-16);
-      ctx.fillStyle=`rgba(0,212,255,${.2+v/100*.5})`;
-      ctx.fillRect(10+i*gap,h-8-bh,bw,bh);
-    });
-  } else {
-    [35,55,45,70,60,80,75].forEach((v,i)=>{
-      const x=i*(w/7)+8,y=h-8-(v/100)*(h-16),r2=4+v/100*6;
-      ctx.beginPath();ctx.arc(x+r2,y,r2,0,Math.PI*2);
-      ctx.fillStyle=`rgba(0,229,160,${.15+v/100*.4})`;ctx.fill();
-    });
-  }
-}
-
-/* ═══ MAIN CHART: ARR ═══ */
-function drawARRDash(){
-  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const arrVals=[295,305,315,330,345,355,362,372,380,385,392,400];
-  drawLine('arr-chart',arrVals,'#00d4ff',true);
-  drawBars('pipe-chart',['NA','EMEA','APAC','LATAM'],[8.2,5.5,4.1,2.2],'#8b5cf6');
-}
-
-/* ═══ MAIN CHART: COHORT ═══ */
-function drawCohortDash(){
-  drawHeatmap('cohort-chart');
-  drawDonut('rfm-chart',[30,25,20,15,10],['#00d4ff','#8b5cf6','#00e5a0','#f59e0b','#4d5669']);
-}
-
-/* ═══ MAIN CHART: CHURN ═══ */
-function drawChurnDash(){
-  const el=document.getElementById('churn-chart');
-  if(el){
-    const I=initCanvas(el);if(!I)return;
-    const{ctx,w,h}=I;
-    const data=[8,12,18,25,20,10,4,2,1];
-    const labels=['0-10','10-20','20-30','30-40','40-50','50-60','60-70','70-80','80-90'];
-    const mx=Math.max(...data)*1.2;
-    const bw=w/data.length*.7,gap=w/data.length;
-    data.forEach((v,i)=>{
-      const pct=i/data.length;
-      const clr=`hsl(${200-pct*140},80%,${50-pct*20}%)`;
-      const bh=(v/mx)*(h-20);
-      ctx.fillStyle=clr;
-      ctx.beginPath();if(ctx.roundRect)ctx.roundRect(i*gap+(gap-bw)/2,h-bh-10,bw,bh,3);
-      else ctx.rect(i*gap+(gap-bw)/2,h-bh-10,bw,bh);ctx.fill();
-      ctx.fillStyle='rgba(255,255,255,.35)';ctx.font='7px system-ui';ctx.textAlign='center';
-      ctx.fillText(labels[i],i*gap+gap/2,h-2);
-    });
-  }
-  const feats=['Recency','Frequency','Sessions','Pages/visit','Days active','Support tix','Plan age','Email opens'];
-  const fvals=[95,88,82,76,70,65,60,55];
-  const el2=document.getElementById('feat-chart');
-  if(el2){
-    const I=initCanvas(el2);if(!I)return;
-    const{ctx,w,h}=I;
-    const rh=(h-10)/feats.length;
-    feats.forEach((f,i)=>{
-      const v=fvals[i]/100;const y=i*rh+3;
-      ctx.fillStyle='rgba(255,255,255,.04)';ctx.fillRect(80,y,w-88,rh-2);
-      const g=ctx.createLinearGradient(80,0,w-8,0);
-      g.addColorStop(0,'#00d4ff');g.addColorStop(1,'#8b5cf6');
-      ctx.fillStyle=g;ctx.beginPath();if(ctx.roundRect)ctx.roundRect(80,y,(w-88)*v,rh-2,2);else ctx.rect(80,y,(w-88)*v,rh-2);ctx.fill();
-      ctx.fillStyle='rgba(255,255,255,.5)';ctx.font='8px system-ui';ctx.textAlign='right';ctx.fillText(f,76,y+rh/2+3);
-    });
-  }
-}
-
-/* ═══ ARCHITECTURE DIAGRAM ═══ */
-function drawArch(){
-  const el=document.getElementById('arch-canvas');if(!el)return;
-  const r=el.parentElement.getBoundingClientRect();
-  const W=r.width||700;
-  el.width=W*dpr();el.height=240*dpr();
-  const ctx=el.getContext('2d');ctx.scale(dpr(),dpr());
-  const h=240;
-  const layers=[
-    {label:'Sources',color:'#1a1f2e',border:'rgba(0,212,255,.15)',items:['Salesforce','Snowflake','Excel','Zendesk','Stripe'],y:20},
-    {label:'Transform',color:'#1a1f2e',border:'rgba(139,92,246,.2)',items:['dbt Models','Airflow DAGs','Data Contracts'],y:100},
-    {label:'Serve',color:'#1a1f2e',border:'rgba(0,229,160,.15)',items:['Power BI','Atlan Catalog','APIs'],y:180},
-  ];
-  const lw=72,lh=28,gap=12;
-  function drawLayer(ly,itemsArr,color,border,label){
-    const totalW=itemsArr.length*(lw+gap)-gap;
-    const startX=(W-totalW)/2;
-    ctx.fillStyle='rgba(255,255,255,.3)';ctx.font='bold 9px system-ui';ctx.textAlign='right';
-    ctx.fillText(label,startX-8,ly+lh/2+4);
-    itemsArr.forEach((item,i)=>{
-      const x=startX+i*(lw+gap);
-      ctx.fillStyle=color;ctx.strokeStyle=border;ctx.lineWidth=1;
-      ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,ly,lw,lh,5);else ctx.rect(x,ly,lw,lh);
-      ctx.fill();ctx.stroke();
-      ctx.fillStyle='rgba(255,255,255,.65)';ctx.font='8px system-ui';ctx.textAlign='center';
-      ctx.fillText(item,x+lw/2,ly+lh/2+3);
-    });
-  }
-  layers.forEach(l=>drawLayer(l.y,l.items,l.color,l.border,l.label));
-  // arrows between layers
-  ctx.strokeStyle='rgba(0,212,255,.2)';ctx.lineWidth=1;ctx.setLineDash([3,3]);
-  [[20+lh,100],[100+lh,180]].forEach(([y1,y2])=>{
-    const mid=W/2;
-    ctx.beginPath();ctx.moveTo(mid,y1);ctx.lineTo(mid,y2);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(mid-5,y2-6);ctx.lineTo(mid,y2);ctx.lineTo(mid+5,y2-6);ctx.stroke();
-  });
-  ctx.setLineDash([]);
-}
-
-/* ═══ LIVE DASH TAB SWITCH ═══ */
-function switchDash(id){
-  document.querySelectorAll('.ld-tab').forEach((t,i)=>{t.classList.toggle('active',['arr','cohort','churn'][i]===id)});
-  document.querySelectorAll('.ld-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('ld-'+id).classList.add('active');
-  setTimeout(()=>{
-    if(id==='arr')drawARRDash();
-    else if(id==='cohort')drawCohortDash();
-    else drawChurnDash();
-  },50);
-}
-
-/* ═══ MODAL ═══ */
-const vids=[{title:'Sales Sight 360 — Full Walkthrough',sub:'How six departments at ShopUp unified on one data truth. Dashboard covers GMV, churn, RFM segments, and inventory health in real time.',type:0},{title:'Churn Model — How XGBoost predicts revenue risk',sub:'Walk-through of the 14-signal XGBoost model that gives a 2-week early warning window. Covers feature engineering, threshold tuning, and how results fed into Power BI.',type:1},{title:'Pipeline Dashboard — Discovering $20M+',sub:'The root-cause analysis that surfaced $20M+ in untracked quarterly pipeline at Optimizely and how it reshaped C-suite GTM priorities.',type:2},{title:'Customer Cohort Analysis Deep Dive',sub:'RFM segmentation, cohort heatmap interpretation, and CLV modelling across 150+ DAU at ShopUp.',type:0}];
-function openVid(e,i){
-  e.preventDefault();e.stopPropagation();
-  const v=vids[i];
-  document.getElementById('modal-title').textContent=v.title;
-  document.getElementById('modal-sub').textContent=v.sub;
-  const mc=document.getElementById('modal-canvas');
-  const r=mc.parentElement.getBoundingClientRect();
-  mc.width=(r.width||600)*dpr();mc.height=220*dpr();
-  const ctx=mc.getContext('2d');ctx.scale(dpr(),dpr());
-  const w=r.width||600,h=220;
-  const g=ctx.createLinearGradient(0,0,w,h);
-  const cols=['#0a1520','#100a20','#0a1a10'];
-  g.addColorStop(0,cols[v.type]);g.addColorStop(1,'#060608');
-  ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
-  const data=[40,55,50,70,65,82,78,90,85,95];
-  const cc=['#00d4ff','#8b5cf6','#00e5a0'];
-  data.forEach((_,i2)=>{
-    const bw=w/data.length*.5,gap=w/data.length;
-    const bh=(data[i2]/100)*(h-20);
-    ctx.fillStyle=cc[v.type]+'44';
-    ctx.fillRect(i2*gap+(gap-bw)/2,h-bh-10,bw,bh);
-  });
-  document.getElementById('vid-modal').classList.add('open');
-}
-function closeModal(e){if(e.target===document.getElementById('vid-modal'))document.getElementById('vid-modal').classList.remove('open')}
-
-/* ═══ ARTICLES ═══ */
+/* ARTICLES */
 const articles=[{num:'01',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2024/09/big-problem-small-solution-using.html',title:'Big Problem, Small Solution: Using USERELATIONSHIP',vis:'line'},{num:'02',cat:'Sales',url:'https://daxwithyunus.blogspot.com/2024/09/unlocking-sales-insights-analyzing-tads.html',title:'Analysing TADS, ADS, Shortfall & Projections',vis:'bars'},{num:'03',cat:'Inventory',url:'https://daxwithyunus.blogspot.com/2024/09/solving-inventory-woes-at-better-buys.html',title:'Solving Inventory Woes at Better Buys',vis:'blocks'},{num:'04',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2023/09/calendar-code-for-dax.html',title:'Why Every Analyst Needs a Calendar Table',vis:'heat'},{num:'05',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2022/11/the-road-to-power-bi-datamart-from-data.html',title:'The Road to Power BI Datamart',vis:'network'},{num:'06',cat:'Healthcare',url:'https://walkwithyunus.blogspot.com/2023/09/health-care-analytics-case-study.html',title:'Health Care Analytics Case Study',vis:'pulse'},{num:'07',cat:'Excel',url:'https://walkwithyunus.blogspot.com/2023/09/approaches-for-maximizing-use-of-excel.html',title:'Maximising Excel with Power BI',vis:'scatter'},{num:'08',cat:'Viz',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-visualization-charts.html',title:'Power BI Visualization Deep Dive',vis:'bars'},{num:'09',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-dashboards.html',title:'Dashboard Design & Best Practices',vis:'grid'},{num:'10',cat:'Architecture',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-datamart-illustration.html',title:'Power BI Datamart Illustration',vis:'network'}];
 function artVis(t){const c='#00d4ff';if(t==='bars')return`<svg viewBox="0 0 200 48">${[30,45,35,60,72,65,80,72,90,95].map((v,i)=>`<rect x="${i*20+3}" y="${44-(v/100)*38}" width="14" height="${(v/100)*38}" rx="2" fill="${c}" opacity="${.2+.7*(v/100)}"/>`).join('')}</svg>`;if(t==='line'){const pts=[40,55,48,70,65,82,75,92,85,98].map((v,i)=>`${i*20+5},${44-(v/100)*36}`).join(' ');return`<svg viewBox="0 0 200 48"><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"/></svg>`}if(t==='blocks')return`<svg viewBox="0 0 200 48">${[0,1,2,3,4,5,6].map(i=>`<rect x="${i*27+3}" y="${4+i*2}" width="20" height="${40-i*4}" rx="2" fill="${c}" opacity="${.15+i*.12}"/>`).join('')}</svg>`;if(t==='heat')return`<svg viewBox="0 0 200 48">${Array.from({length:45},(_,i)=>`<rect x="${(i%9)*21+3}" y="${Math.floor(i/9)*10+2}" width="18" height="8" rx="2" fill="${c}" opacity="${.08+Math.abs(Math.sin(i*.9))*.5}"/>`).join('')}</svg>`;if(t==='pulse')return`<svg viewBox="0 0 200 48"><polyline points="0,24 25,24 35,6 48,42 60,24 85,24 98,12 112,38 124,24 200,24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"/></svg>`;if(t==='scatter')return`<svg viewBox="0 0 200 48">${Array.from({length:24},(_,i)=>`<circle cx="${(i*37+15)%190+5}" cy="${(i*23+8)%38+5}" r="${1.5+(i%3)*.8}" fill="${c}" opacity="${.25+(i%5)*.13}"/>`).join('')}</svg>`;if(t==='grid')return`<svg viewBox="0 0 200 48"><rect x="3" y="3" width="88" height="20" rx="3" fill="${c}" opacity=".15"/><rect x="96" y="3" width="101" height="20" rx="3" fill="${c}" opacity=".22"/><rect x="3" y="27" width="46" height="18" rx="3" fill="${c}" opacity=".28"/><rect x="53" y="27" width="144" height="18" rx="3" fill="${c}" opacity=".12"/></svg>`;return`<svg viewBox="0 0 200 48"><circle cx="100" cy="24" r="8" fill="${c}" opacity=".5"/>${[[24,10],[176,10],[24,38],[176,38],[58,24],[142,24]].map(([x,y])=>`<line x1="100" y1="24" x2="${x}" y2="${y}" stroke="${c}" stroke-width="1" opacity=".15"/><circle cx="${x}" cy="${y}" r="3.5" fill="${c}" opacity=".22"/>`).join('')}</svg>`}
 function makeArt(a){return`<a class="art-card" href="${a.url}" target="_blank"><div class="art-card-top"><span class="art-cat">${a.cat}</span><span class="art-num">${a.num}</span></div><div class="art-vis">${artVis(a.vis)}</div><div class="art-title">${a.title}</div><div class="art-read">Read article →</div></a>`}
 const tw=document.querySelector('.art-track-wrap');if(tw){['fwd','rev'].forEach((d,i)=>{const r=document.createElement('div');r.className=`art-track ${d}`;const s=i===0?articles.slice(0,5):articles.slice(5);r.innerHTML=s.map(makeArt).join('')+s.map(makeArt).join('');tw.appendChild(r)})}
 
-/* ═══ INIT ALL CANVASES after layout ═══ */
+/* ── CANVAS CHARTS ── */
+function dpr(){return window.devicePixelRatio||1}
+
+function sparkline(id,vals,color){
+  const el=document.getElementById(id);if(!el)return;
+  const w=el.width/dpr(),h=el.height/dpr();
+  el.width=w*dpr();el.height=h*dpr();
+  const ctx=el.getContext('2d');ctx.scale(dpr(),dpr());
+  const mn=Math.min(...vals),mx=Math.max(...vals);
+  const xS=(w-4)/(vals.length-1),yS=(h-4)/(mx-mn||1);
+  const pts=vals.map((v,i)=>({x:2+i*xS,y:h-2-(v-mn)*yS}));
+  const g=ctx.createLinearGradient(0,0,0,h);
+  g.addColorStop(0,color+'40');g.addColorStop(1,color+'00');
+  ctx.beginPath();ctx.moveTo(pts[0].x,h);
+  pts.forEach(p=>ctx.lineTo(p.x,p.y));
+  ctx.lineTo(pts[pts.length-1].x,h);ctx.closePath();
+  ctx.fillStyle=g;ctx.fill();
+  ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));
+  ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.stroke();
+}
+
+function featThumb(id,type){
+  const el=document.getElementById(id);if(!el)return;
+  const par=el.parentElement;
+  const w=par.offsetWidth||320,h=130;
+  el.width=w*dpr();el.height=h*dpr();
+  const ctx=el.getContext('2d');ctx.scale(dpr(),dpr());
+  ctx.fillStyle='#0a0e16';ctx.fillRect(0,0,w,h);
+  if(type==='bars'){
+    const v=[38,52,44,68,60,78,72,88,80,95];
+    const bw=w/v.length*.52,gap=w/v.length;
+    v.forEach((val,i)=>{
+      const bh=(val/100)*(h-16),y=h-8-bh;
+      const g=ctx.createLinearGradient(0,y,0,y+bh);
+      g.addColorStop(0,'#00d4ff');g.addColorStop(1,'rgba(0,212,255,.15)');
+      ctx.fillStyle=g;
+      ctx.beginPath();if(ctx.roundRect)ctx.roundRect(i*gap+(gap-bw)/2,y,bw,bh,2);else ctx.rect(i*gap+(gap-bw)/2,y,bw,bh);
+      ctx.fill();
+    });
+    const pts=v.map((val,i)=>({x:i*gap+gap/2,y:h-8-(val/100)*(h-16)}));
+    ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));
+    ctx.strokeStyle='rgba(0,212,255,.4)';ctx.lineWidth=1.5;ctx.stroke();
+  } else {
+    const rows=5,cols=8;
+    const cw=w/cols,rh=h/rows;
+    const base=[100,82,70,62,55,48,42,37];
+    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+      const v=Math.max(0,base[c]-r*5)/100;
+      ctx.fillStyle=`rgba(0,212,255,${.06+v*.55})`;
+      ctx.fillRect(c*cw+1,r*rh+1,cw-2,rh-2);
+    }
+    ctx.fillStyle='rgba(0,229,160,.18)';ctx.font=`${9}px system-ui`;ctx.textAlign='center';
+    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+      const v=Math.max(0,base[c]-r*5);
+      ctx.fillText(v+'%',c*cw+cw/2,r*rh+rh/2+3);
+    }
+  }
+}
+
 window.addEventListener('load',()=>{
   setTimeout(()=>{
-    drawHeroSparkline();
-    drawARRDash();
-    drawArch();
-    drawFeatThumb('fpc1','bars');
-    drawFeatThumb('fpc2','heatmap');
-    drawFeatThumb('fpc3','line');
-    drawFeatThumb('fpc4','donut');
-    drawVidThumb('vt1',0);
-    drawVidThumb('vt2',1);
-    drawVidThumb('vt3',2);
-    drawArtPreview('apv1','line');
-    drawArtPreview('apv2','bars');
-    drawArtPreview('apv3','scatter');
-  },200);
+    sparkline('sp1',[280,295,305,318,332,348,365,385,400],'#00d4ff');
+    sparkline('sp2',[280,310,350,390,420,460,500,530,550],'#8b5cf6');
+    sparkline('sp3',[2,4,6,9,12,14,17,19,20],'#00e5a0');
+    sparkline('sp4',[10,18,25,32,40,48,55,60,65],'#f59e0b');
+    featThumb('ft1','bars');
+    featThumb('ft2','heat');
+  },150);
 });
 </script>
 </body>
