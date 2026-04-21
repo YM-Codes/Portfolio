@@ -156,34 +156,50 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
 .prob-result::before{content:'↑';background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:3px;padding:.1rem .3rem;font-size:.5rem}
 
 /* ── CAREER TIMELINE ── */
-.timeline{position:relative;padding-left:2.5rem;margin-top:3rem}
-.timeline::before{content:'';position:absolute;left:0;top:12px;bottom:0;width:1.5px;background:var(--t4)}
-.timeline::after{content:'';position:absolute;left:0;top:12px;width:1.5px;height:0;background:var(--gold);transition:height 2s cubic-bezier(.4,0,.2,1)}
-.timeline.drawn::after{height:calc(100% - 12px)}
-.t-entry{position:relative;margin-bottom:3.5rem;opacity:0;transform:translateX(-16px);transition:opacity .6s ease,transform .6s ease}
+.timeline{position:relative;padding-left:2.8rem;margin-top:3rem}
+.timeline::before{content:'';position:absolute;left:0;top:12px;bottom:0;width:2px;background:linear-gradient(180deg,var(--t4) 0%,transparent 100%)}
+.timeline-line{position:absolute;left:0;top:12px;width:2px;height:0;background:linear-gradient(180deg,var(--gold),var(--teal));transition:height 2.4s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(232,160,32,.3)}
+.timeline.drawn .timeline-line{height:calc(100% - 12px)}
+.t-entry{position:relative;margin-bottom:3.5rem;opacity:0;transform:translateX(-24px) translateY(8px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .t-entry.v{opacity:1;transform:none}
-.t-dot{position:absolute;left:-2.85rem;top:8px;width:14px;height:14px;border-radius:50%;background:var(--s1);border:2px solid var(--t4);transition:border-color .4s,box-shadow .4s;z-index:1}
-.t-entry.v .t-dot{border-color:var(--gold);box-shadow:0 0 0 4px rgba(232,160,32,.12)}
-.t-period{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
-.t-role{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:800;letter-spacing:-.03em;color:var(--text);margin-bottom:.25rem}
-.t-company{display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem}
-.t-co-name{font-size:.75rem;font-weight:600;color:var(--gold);letter-spacing:.03em;text-decoration:none}
+.t-entry:nth-child(2){transition-delay:.12s}
+.t-entry:nth-child(3){transition-delay:.22s}
+.t-entry:nth-child(4){transition-delay:.32s}
+.t-dot{position:absolute;left:-3.1rem;top:6px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:2px solid var(--t4);transition:all .5s cubic-bezier(.34,1.56,.64,1);z-index:2;display:flex;align-items:center;justify-content:center}
+.t-dot::after{content:'';width:6px;height:6px;border-radius:50%;background:var(--t4);transition:all .5s cubic-bezier(.34,1.56,.64,1)}
+.t-entry.v .t-dot{border-color:var(--gold);box-shadow:0 0 0 5px rgba(232,160,32,.1),0 0 16px rgba(232,160,32,.2);transform:scale(1.1)}
+.t-entry.v .t-dot::after{background:var(--gold)}
+.t-entry-inner{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;padding:1.75rem;transition:border-color .4s,box-shadow .4s}
+.t-entry.v .t-entry-inner{border-color:rgba(232,160,32,.1)}
+.t-entry-inner:hover{border-color:var(--gold-bdr);box-shadow:0 8px 32px rgba(232,160,32,.06)}
+.t-entry-inner::before{content:'';position:absolute;top:10px;left:-2.6rem;right:auto;width:2.1rem;height:.5px;background:linear-gradient(90deg,transparent,var(--gold-bdr));transition:opacity .5s}
+.t-period{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+.t-period-badge{background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:100px;padding:.1rem .5rem;color:var(--gold);font-size:.44rem;letter-spacing:.08em}
+.t-role{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:800;letter-spacing:-.03em;color:var(--text);margin-bottom:.3rem;line-height:1.1}
+.t-company{display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.t-co-name{font-size:.78rem;font-weight:600;color:var(--gold);letter-spacing:.03em;text-decoration:none;transition:opacity .2s}
+.t-co-name:hover{opacity:.8}
 .t-co-badge{font-family:'Space Mono',monospace;font-size:.44rem;font-weight:400;color:var(--t3);background:var(--s2);border:.5px solid var(--bdr);border-radius:100px;padding:.14rem .55rem;letter-spacing:.06em;text-transform:uppercase}
 .t-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1.2rem}
-.t-block{background:var(--s2);border:.5px solid var(--bdr);border-radius:10px;padding:1rem;transition:border-color .3s}
+.t-block{background:var(--s2);border:.5px solid var(--bdr);border-radius:10px;padding:1rem;transition:border-color .3s,transform .3s}
+.t-block:hover{transform:translateY(-2px)}
 .t-block-icon{font-size:.8rem;margin-bottom:.4rem}
 .t-block-label{font-family:'Space Mono',monospace;font-size:.47rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35rem}
-.t-block-label.problem{color:var(--red);opacity:.8}
+.t-block-label.problem{color:var(--red);opacity:.85}
 .t-block-label.solution{color:var(--teal);opacity:.9}
 .t-block-label.outcome{color:var(--gold);opacity:.9}
 .t-block-text{font-size:.72rem;color:var(--t2);line-height:1.65}
 .t-metrics{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
-.tmet{background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);padding:.45rem .75rem;display:flex;flex-direction:column;align-items:center;gap:.1rem;min-width:80px}
-.tmet-val{font-family:'Space Mono',monospace;font-size:.85rem;font-weight:700;color:var(--text);letter-spacing:-.03em;line-height:1}
+.tmet{background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);padding:.5rem .8rem;display:flex;flex-direction:column;align-items:center;gap:.1rem;min-width:82px;transition:all .3s;position:relative;overflow:hidden}
+.tmet::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.tmet:hover::before{transform:scaleX(1)}
+.tmet:hover{border-color:var(--gold-bdr);transform:translateY(-2px)}
+.tmet-val{font-family:'Space Mono',monospace;font-size:.88rem;font-weight:700;color:var(--text);letter-spacing:-.03em;line-height:1}
 .tmet-val em{font-style:normal;font-size:.6em;color:var(--gold)}
 .tmet-lbl{font-family:'Space Mono',monospace;font-size:.42rem;color:var(--t3);text-transform:uppercase;letter-spacing:.07em}
 .t-tags{display:flex;flex-wrap:wrap;gap:4px}
-.ttag{font-family:'Space Mono',monospace;font-size:.46rem;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.14rem .5rem;letter-spacing:.04em;text-transform:uppercase}
+.ttag{font-family:'Space Mono',monospace;font-size:.46rem;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.14rem .5rem;letter-spacing:.04em;text-transform:uppercase;transition:all .2s}
+.ttag:hover{color:var(--gold);border-color:var(--gold-bdr)}
 
 /* ── SKILLS ── */
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
@@ -428,31 +444,100 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
 @keyframes char-up{from{transform:translateY(110%)}to{transform:translateY(0)}}
 
 /* ── RESPONSIVE ── */
+/* Tablet landscape */
+@media(max-width:1100px){
+  .hero{gap:2.5rem}
+  .hero-viz{min-width:0}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .proj-featured{grid-template-columns:1fr 1fr}
+}
+/* Tablet portrait / small laptop */
 @media(max-width:1000px){
-  .hero{grid-template-columns:1fr}.hero-viz{display:none}
+  :root{font-size:17px}
+  .hero{grid-template-columns:1fr;padding:90px 2rem 60px}.hero-viz{display:none}
+  nav{padding:0 1.5rem}.nav-links{display:none}
+  .section{padding:4rem 1.5rem}
   .t-blocks{grid-template-columns:1fr 1fr}
   .contact-grid{grid-template-columns:1fr}
   .cs-body{grid-template-columns:1fr}
   .cs-col{border-right:none;border-bottom:.5px solid var(--bdr)}
   .cs-col:last-child{border-bottom:none}
-  nav{padding:0 1.5rem}.nav-links{display:none}
-  .section{padding:4rem 1.5rem}
-  .hero{padding:100px 1.5rem 60px}
-  .skills-grid{grid-template-columns:1fr 1fr}
   .problems-grid{grid-template-columns:1fr}
-  .testi-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr 1fr}
   .awards-grid{grid-template-columns:1fr 1fr}
-  .svc-grid{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .proj-featured{grid-template-columns:1fr}
   .proj-item{grid-template-columns:50px 1fr}
   .proj-impact-col,.proj-arr{display:none}
+  .now-grid{grid-template-columns:1fr 1fr}
+  .edu-grid{grid-template-columns:1fr}
+  .hero-kpis{grid-template-columns:repeat(4,1fr)}
 }
-@media(max-width:600px){
-  .hero-kpis{grid-template-columns:1fr 1fr}
-  .skills-grid{grid-template-columns:1fr}
-  .awards-grid{grid-template-columns:1fr}
+/* Large mobile / phablet */
+@media(max-width:768px){
+  :root{font-size:16px}
+  .section{padding:3.5rem 1.25rem}
+  .hero{padding:80px 1.25rem 50px}
+  .hero-name{font-size:clamp(2.6rem,10vw,3.8rem)}
+  .hero-kpis{grid-template-columns:1fr 1fr;gap:.6rem}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:8px}
+  .hero-actions .btn-gold,.hero-actions .btn-outline{width:100%;text-align:center;justify-content:center;display:flex}
+  .section-h{font-size:clamp(1.6rem,6vw,2.2rem)}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
   .t-blocks{grid-template-columns:1fr}
   .t-metrics{gap:.4rem}
   .tmet{min-width:70px}
+  .cs-card-header{grid-template-columns:1fr}.cs-big-num{display:none}
+  .cs-footer{flex-direction:column;align-items:flex-start}
+  .now-grid{grid-template-columns:1fr}
+  .timeline{padding-left:2rem}
+  .t-dot{left:-2.4rem;width:14px;height:14px}
+  .t-entry-inner::before{display:none}
+  nav{height:54px}
+  .nav-right .btn-outline{display:none}
+  .marquee-wrap{display:none}
+}
+/* Mobile */
+@media(max-width:480px){
+  :root{font-size:15px}
+  .section{padding:3rem 1rem}
+  .hero{padding:72px 1rem 44px}
+  .hero-name{font-size:clamp(2.4rem,12vw,3.2rem)}
+  .hero-kpis{grid-template-columns:1fr 1fr;gap:.5rem}
+  .kpi{padding:.7rem .75rem}
+  .kpi-val{font-size:.92rem}
+  .hero-tags{gap:4px}
+  .skills-grid{grid-template-columns:1fr}
+  .awards-grid{grid-template-columns:1fr}
+  .edu-grid{grid-template-columns:1fr}
+  .proj-featured{grid-template-columns:1fr}
+  .pfc-metrics{display:none}
+  .form-row{grid-template-columns:1fr}
+  .footer-links{display:none}
+  .footer-inner{flex-direction:column;align-items:flex-start;gap:.5rem}
+  .contact-form{padding:1.5rem 1.25rem}
+  .svc-banner{flex-direction:column;align-items:flex-start}
+  .t-role{font-size:1rem}
+  .cs-results{gap:1rem}
+  .csr-val{font-size:.9rem}
+  #stbtn{bottom:1rem;right:1rem;width:36px;height:36px}
+}
+/* Very small mobile */
+@media(max-width:360px){
+  :root{font-size:14px}
+  .hero-kpis{grid-template-columns:1fr 1fr}
+  .hero-actions .btn-gold,.hero-actions .btn-outline{font-size:.6rem}
+}
+/* Large / wide screens */
+@media(min-width:1400px){
+  .section-inner{max-width:1240px}
+  .hero{padding:110px 4rem 90px;max-width:1400px;margin:0 auto}
+}
+@media(min-width:1800px){
+  :root{font-size:19px}
+  .section-inner{max-width:1400px}
 }
 </style>
 </head>
@@ -597,74 +682,96 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
     <h2 class="section-h r d1">4 years. 4 companies.<br><em>Measurable outcomes every time.</em></h2>
     <p class="section-sub r d2">Every role: a real business problem, a technical solution I built, and a result that mattered.</p>
     <div class="timeline" id="timeline">
+      <div class="timeline-line" id="timeline-line"></div>
+
+      <!-- OPTIMIZELY -->
       <div class="t-entry">
         <div class="t-dot"></div>
-        <div class="t-period mono">Jan 2025 – Present · Dhaka (Remote, Global)</div>
-        <div class="t-role">Senior Business Intelligence Analyst</div>
-        <div class="t-company"><a href="https://www.optimizely.com/" class="t-co-name" target="_blank">Optimizely</a><span class="t-co-badge">Current · SaaS</span><span class="t-co-badge">$400M+ ARR</span></div>
-        <div class="t-blocks">
-          <div class="t-block"><div class="t-block-icon">⚡</div><div class="t-block-label problem">The Situation</div><div class="t-block-text">10+ departments running separate analytics. Leadership lacked a trusted single view of the $400M+ ARR portfolio. 6+ months of cross-team metric conflict with no resolution.</div></div>
-          <div class="t-block"><div class="t-block-icon">🔧</div><div class="t-block-label solution">What I Built</div><div class="t-block-text">45+ self-serve Power BI dashboards with enterprise KPI framework (ARR, NRR, CLV, ARPU, Win Rate), full data lineage, Snowflake integration, GDPR controls, and 15+ controlled retention experiments.</div></div>
-          <div class="t-block"><div class="t-block-icon">📈</div><div class="t-block-label outcome">The Outcome</div><div class="t-block-text">$20M+ in untracked pipeline surfaced. 550+ users adopted the platform across 10 departments. 65+ hours of monthly manual reporting eliminated. Retention model accuracy improved 18%.</div></div>
+        <div class="t-entry-inner">
+          <div class="t-period"><span>Jan 2025 – Present · Dhaka (Remote, Global)</span><span class="t-period-badge">Current</span></div>
+          <div class="t-role">Senior Business Intelligence Analyst</div>
+          <div class="t-company"><a href="https://www.optimizely.com/" class="t-co-name" target="_blank">Optimizely</a><span class="t-co-badge">SaaS</span><span class="t-co-badge">$400M+ ARR</span></div>
+          <div class="t-blocks">
+            <div class="t-block"><div class="t-block-icon">⚡</div><div class="t-block-label problem">The Situation</div><div class="t-block-text">10+ departments running separate analytics. Leadership lacked a trusted single view of the $400M+ ARR portfolio. 6+ months of cross-team metric conflict with no resolution.</div></div>
+            <div class="t-block"><div class="t-block-icon">🔧</div><div class="t-block-label solution">What I Built</div><div class="t-block-text">45+ self-serve Power BI dashboards with enterprise KPI framework (ARR, NRR, CLV, ARPU, Win Rate), full data lineage, Snowflake integration, GDPR controls, and 15+ controlled retention experiments.</div></div>
+            <div class="t-block"><div class="t-block-icon">📈</div><div class="t-block-label outcome">The Outcome</div><div class="t-block-text">$20M+ in untracked pipeline surfaced. 550+ users adopted the platform across 10 departments. 65+ hours of monthly manual reporting eliminated. Retention model accuracy improved 18%.</div></div>
+          </div>
+          <div class="t-metrics">
+            <div class="tmet"><div class="tmet-val"><em>$</em>400<em>M+</em></div><div class="tmet-lbl">ARR Portfolio</div></div>
+            <div class="tmet"><div class="tmet-val">550<em>+</em></div><div class="tmet-lbl">Users</div></div>
+            <div class="tmet"><div class="tmet-val">65<em>h+</em></div><div class="tmet-lbl">Saved / Mo</div></div>
+            <div class="tmet"><div class="tmet-val"><em>$</em>20<em>M+</em></div><div class="tmet-lbl">Pipeline Found</div></div>
+            <div class="tmet"><div class="tmet-val">18<em>%</em></div><div class="tmet-lbl">Model Accuracy ↑</div></div>
+          </div>
+          <div class="t-tags"><span class="ttag">Power BI</span><span class="ttag">Advanced DAX</span><span class="ttag">Snowflake</span><span class="ttag">Python</span><span class="ttag">SQL</span><span class="ttag">dbt</span><span class="ttag">Salesforce</span><span class="ttag">A/B Testing</span><span class="ttag">SSOT Governance</span></div>
         </div>
-        <div class="t-metrics">
-          <div class="tmet"><div class="tmet-val"><em>$</em>400<em>M+</em></div><div class="tmet-lbl">ARR Portfolio</div></div>
-          <div class="tmet"><div class="tmet-val">550<em>+</em></div><div class="tmet-lbl">Users</div></div>
-          <div class="tmet"><div class="tmet-val">65<em>h+</em></div><div class="tmet-lbl">Saved / Mo</div></div>
-          <div class="tmet"><div class="tmet-val"><em>$</em>20<em>M+</em></div><div class="tmet-lbl">Pipeline Found</div></div>
-          <div class="tmet"><div class="tmet-val">18<em>%</em></div><div class="tmet-lbl">Model Accuracy ↑</div></div>
-        </div>
-        <div class="t-tags"><span class="ttag">Power BI</span><span class="ttag">Advanced DAX</span><span class="ttag">Snowflake</span><span class="ttag">Python</span><span class="ttag">SQL</span><span class="ttag">dbt</span><span class="ttag">Salesforce</span><span class="ttag">A/B Testing</span><span class="ttag">SSOT Governance</span></div>
       </div>
+
+      <!-- SHOPUP -->
       <div class="t-entry">
         <div class="t-dot"></div>
-        <div class="t-period mono">Oct 2023 – Dec 2024 · Dhaka</div>
-        <div class="t-role">Sales Data Analyst (Expert)</div>
-        <div class="t-company"><a href="https://shopup.org/" class="t-co-name" target="_blank">Mokam CPG — ShopUp</a><span class="t-co-badge">B2B Distribution</span><span class="t-co-badge">$195M+ GMV</span></div>
-        <div class="t-blocks">
-          <div class="t-block"><div class="t-block-icon">⚡</div><div class="t-block-label problem">The Situation</div><div class="t-block-text">6 departments running conflicting reports from different data pulls. VP Sales, Supply Chain and Finance disagreed on GMV figures by millions in the same meeting. No governance, no single truth.</div></div>
-          <div class="t-block"><div class="t-block-icon">🔧</div><div class="t-block-label solution">What I Built</div><div class="t-block-text">Sales Sight 360 — a governed Snowflake data layer with data contracts, unified Power BI platform (star-schema model, consistent DAX measures), cohort intelligence, and inventory forecasting system.</div></div>
-          <div class="t-block"><div class="t-block-icon">📈</div><div class="t-block-label outcome">The Outcome</div><div class="t-block-text">150+ daily active users. 90% of cross-regional metric discrepancies eliminated. MoM churn reduced 12%. 45% idle warehouse capacity recovered. 20% incremental sales from reactivated stock.</div></div>
+        <div class="t-entry-inner">
+          <div class="t-period"><span>Oct 2023 – Dec 2024 · Dhaka</span></div>
+          <div class="t-role">Sales Data Analyst (Expert)</div>
+          <div class="t-company"><a href="https://shopup.org/" class="t-co-name" target="_blank">Mokam CPG — ShopUp</a><span class="t-co-badge">B2B Distribution</span><span class="t-co-badge">$195M+ GMV</span></div>
+          <div class="t-blocks">
+            <div class="t-block"><div class="t-block-icon">⚡</div><div class="t-block-label problem">The Situation</div><div class="t-block-text">6 departments running conflicting reports from different data pulls. VP Sales, Supply Chain and Finance disagreed on GMV figures by millions in the same meeting. No governance, no single truth.</div></div>
+            <div class="t-block"><div class="t-block-icon">🔧</div><div class="t-block-label solution">What I Built</div><div class="t-block-text">Sales Sight 360 — a governed Snowflake data layer with data contracts, unified Power BI platform (star-schema model, consistent DAX measures), cohort intelligence, and inventory forecasting system.</div></div>
+            <div class="t-block"><div class="t-block-icon">📈</div><div class="t-block-label outcome">The Outcome</div><div class="t-block-text">150+ daily active users. 90% of cross-regional metric discrepancies eliminated. MoM churn reduced 12%. 45% idle warehouse capacity recovered. 20% incremental sales from reactivated stock.</div></div>
+          </div>
+          <div class="t-metrics">
+            <div class="tmet"><div class="tmet-val"><em>$</em>195<em>M+</em></div><div class="tmet-lbl">Annual GMV</div></div>
+            <div class="tmet"><div class="tmet-val">150<em>+</em></div><div class="tmet-lbl">Daily Users</div></div>
+            <div class="tmet"><div class="tmet-val">90<em>%</em></div><div class="tmet-lbl">Data Accuracy ↑</div></div>
+            <div class="tmet"><div class="tmet-val">−12<em>%</em></div><div class="tmet-lbl">MoM Churn</div></div>
+            <div class="tmet"><div class="tmet-val">45<em>%</em></div><div class="tmet-lbl">Warehouse Recov.</div></div>
+          </div>
+          <div class="t-tags"><span class="ttag">Power BI</span><span class="ttag">Advanced DAX</span><span class="ttag">Python</span><span class="ttag">SQL</span><span class="ttag">Azure Data Factory</span><span class="ttag">Atlan</span><span class="ttag">Cohort Analysis</span><span class="ttag">RFM</span><span class="ttag">Time-Series</span></div>
         </div>
-        <div class="t-metrics">
-          <div class="tmet"><div class="tmet-val"><em>$</em>195<em>M+</em></div><div class="tmet-lbl">Annual GMV</div></div>
-          <div class="tmet"><div class="tmet-val">150<em>+</em></div><div class="tmet-lbl">Daily Users</div></div>
-          <div class="tmet"><div class="tmet-val">90<em>%</em></div><div class="tmet-lbl">Data Accuracy ↑</div></div>
-          <div class="tmet"><div class="tmet-val">−12<em>%</em></div><div class="tmet-lbl">MoM Churn</div></div>
-          <div class="tmet"><div class="tmet-val">45<em>%</em></div><div class="tmet-lbl">Warehouse Recov.</div></div>
-        </div>
-        <div class="t-tags"><span class="ttag">Power BI</span><span class="ttag">Advanced DAX</span><span class="ttag">Python</span><span class="ttag">SQL</span><span class="ttag">Azure Data Factory</span><span class="ttag">Atlan</span><span class="ttag">Cohort Analysis</span><span class="ttag">RFM</span><span class="ttag">Time-Series</span></div>
       </div>
+
+      <!-- APONTECH -->
       <div class="t-entry">
         <div class="t-dot"></div>
-        <div class="t-period mono">Dec 2022 – Sep 2023 · Dhaka</div>
-        <div class="t-role">Associate Data Analyst</div>
-        <div class="t-company"><a href="http://www.apon-wellbeing.com/" class="t-co-name" target="_blank">AponTech Ltd</a><span class="t-co-badge">Healthcare eCommerce</span><span class="t-co-badge">100K+ Users</span></div>
-        <div class="t-blocks">
-          <div class="t-block"><div class="t-block-icon">⚡</div><div class="t-block-label problem">The Situation</div><div class="t-block-text">High-value users leaving silently — no early-warning system. Churn discovered after the fact. $150K leaking annually through undetected transaction anomalies. All customers treated identically.</div></div>
-          <div class="t-block"><div class="t-block-icon">🔧</div><div class="t-block-label solution">What I Built</div><div class="t-block-text">Customer intelligence segmentation (6 behavioural cohorts), a behavioral risk scoring model (85%+ accuracy, 2-week early warning window), and automated transaction monitoring.</div></div>
-          <div class="t-block"><div class="t-block-icon">📈</div><div class="t-block-label outcome">The Outcome</div><div class="t-block-text">20,000+ high-value users retained. Average basket grew 50% ($16 → $24) through targeted segment promotions. $150K in annual revenue leakage stopped.</div></div>
+        <div class="t-entry-inner">
+          <div class="t-period"><span>Dec 2022 – Sep 2023 · Dhaka</span></div>
+          <div class="t-role">Associate Data Analyst</div>
+          <div class="t-company"><a href="http://www.apon-wellbeing.com/" class="t-co-name" target="_blank">AponTech Ltd</a><span class="t-co-badge">Healthcare eCommerce</span><span class="t-co-badge">100K+ Users</span></div>
+          <div class="t-blocks">
+            <div class="t-block"><div class="t-block-icon">⚡</div><div class="t-block-label problem">The Situation</div><div class="t-block-text">High-value users leaving silently — no early-warning system. Churn discovered after the fact. $150K leaking annually through undetected transaction anomalies. All customers treated identically.</div></div>
+            <div class="t-block"><div class="t-block-icon">🔧</div><div class="t-block-label solution">What I Built</div><div class="t-block-text">Customer intelligence segmentation (6 behavioural cohorts), a behavioral risk scoring model (85%+ accuracy, 2-week early warning window), and automated transaction monitoring.</div></div>
+            <div class="t-block"><div class="t-block-icon">📈</div><div class="t-block-label outcome">The Outcome</div><div class="t-block-text">20,000+ high-value users retained. Average basket grew 50% ($16 → $24) through targeted segment promotions. $150K in annual revenue leakage stopped.</div></div>
+          </div>
+          <div class="t-metrics">
+            <div class="tmet"><div class="tmet-val">20<em>K+</em></div><div class="tmet-lbl">Users Retained</div></div>
+            <div class="tmet"><div class="tmet-val">85<em>%+</em></div><div class="tmet-lbl">Score Accuracy</div></div>
+            <div class="tmet"><div class="tmet-val">+50<em>%</em></div><div class="tmet-lbl">Basket Growth</div></div>
+            <div class="tmet"><div class="tmet-val"><em>$</em>150<em>K</em></div><div class="tmet-lbl">Leakage Stopped</div></div>
+          </div>
+          <div class="t-tags"><span class="ttag">Python</span><span class="ttag">Behavioral Analytics</span><span class="ttag">SQL</span><span class="ttag">Power BI</span><span class="ttag">Customer Intelligence</span><span class="ttag">Lifecycle Analytics</span></div>
         </div>
-        <div class="t-metrics">
-          <div class="tmet"><div class="tmet-val">20<em>K+</em></div><div class="tmet-lbl">Users Retained</div></div>
-          <div class="tmet"><div class="tmet-val">85<em>%+</em></div><div class="tmet-lbl">Score Accuracy</div></div>
-          <div class="tmet"><div class="tmet-val">+50<em>%</em></div><div class="tmet-lbl">Basket Growth</div></div>
-          <div class="tmet"><div class="tmet-val"><em>$</em>150<em>K</em></div><div class="tmet-lbl">Leakage Stopped</div></div>
-        </div>
-        <div class="t-tags"><span class="ttag">Python</span><span class="ttag">Behavioral Analytics</span><span class="ttag">SQL</span><span class="ttag">Power BI</span><span class="ttag">Customer Intelligence</span><span class="ttag">Lifecycle Analytics</span></div>
       </div>
+
+      <!-- DATAWORKS -->
       <div class="t-entry">
         <div class="t-dot"></div>
-        <div class="t-period mono">May – Nov 2022 · Remote · Houston TX</div>
-        <div class="t-role">Data Analyst Intern</div>
-        <div class="t-company"><a href="https://datacrafters.io/" class="t-co-name" target="_blank">DataWorks Ltd.</a><span class="t-co-badge">Internship</span></div>
-        <div class="t-metrics">
-          <div class="tmet"><div class="tmet-val">40<em>+</em></div><div class="tmet-lbl">Queries Tuned</div></div>
-          <div class="tmet"><div class="tmet-val">−25<em>%</em></div><div class="tmet-lbl">Exec. Time</div></div>
-          <div class="tmet"><div class="tmet-val">5<em>+</em></div><div class="tmet-lbl">Sources Unified</div></div>
-          <div class="tmet"><div class="tmet-val">3</div><div class="tmet-lbl">Business Units</div></div>
+        <div class="t-entry-inner">
+          <div class="t-period"><span>May – Nov 2022 · Remote · Houston TX</span><span class="t-period-badge">First Role</span></div>
+          <div class="t-role">Data Analyst Intern</div>
+          <div class="t-company"><a href="https://datacrafters.io/" class="t-co-name" target="_blank">DataWorks Ltd.</a><span class="t-co-badge">Analytics Consultancy</span><span class="t-co-badge">Houston, TX (Remote)</span></div>
+          <div class="t-blocks">
+            <div class="t-block"><div class="t-block-icon">⚡</div><div class="t-block-label problem">The Situation</div><div class="t-block-text">Three business units operating with siloed, poorly-documented data pipelines. Reporting was slow, query performance was degraded, and cross-unit analysis was nearly impossible without manual data wrangling.</div></div>
+            <div class="t-block"><div class="t-block-icon">🔧</div><div class="t-block-label solution">What I Built</div><div class="t-block-text">Tuned 40+ production SQL queries, unified 5+ data sources into a centralised reporting layer, and built Power BI dashboards that gave each business unit a clean, shared view of their KPIs for the first time.</div></div>
+            <div class="t-block"><div class="t-block-icon">📈</div><div class="t-block-label outcome">The Outcome</div><div class="t-block-text">Query execution time reduced by 25%. Cross-unit reporting became self-serve. This internship laid the foundation — every enterprise system I've built since traces back to the discipline I learned here.</div></div>
+          </div>
+          <div class="t-metrics">
+            <div class="tmet"><div class="tmet-val">40<em>+</em></div><div class="tmet-lbl">Queries Tuned</div></div>
+            <div class="tmet"><div class="tmet-val">−25<em>%</em></div><div class="tmet-lbl">Exec. Time</div></div>
+            <div class="tmet"><div class="tmet-val">5<em>+</em></div><div class="tmet-lbl">Sources Unified</div></div>
+            <div class="tmet"><div class="tmet-val">3</div><div class="tmet-lbl">Business Units</div></div>
+          </div>
+          <div class="t-tags"><span class="ttag">SQL</span><span class="ttag">ETL</span><span class="ttag">Power BI</span><span class="ttag">Data Quality</span><span class="ttag">DAX</span><span class="ttag">Query Optimisation</span></div>
         </div>
-        <div class="t-tags"><span class="ttag">SQL</span><span class="ttag">ETL</span><span class="ttag">Power BI</span><span class="ttag">Data Quality</span><span class="ttag">DAX</span></div>
       </div>
     </div>
   </div>
@@ -741,6 +848,40 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
         </div>
         <div class="pfc-footer">
           <div class="proj-chips"><span class="tag">SQL</span><span class="tag">Behavioral Analytics</span><span class="tag">RFM</span></div>
+          <div class="pfc-arr">↗</div>
+        </div>
+      </a>
+      <a class="proj-feat-card" data-cat="sales" href="https://github.com/YM-Codes/PipelineTrendDash" target="_blank">
+        <div class="pfc-top">
+          <div class="pfc-num">03</div>
+          <div class="pfc-badges"><span class="proj-feat">★ Featured</span><span class="tag">Power BI</span><span class="tag">SQL</span></div>
+        </div>
+        <div class="pfc-title">Pipeline Trend Dashboard</div>
+        <div class="pfc-desc">Real-time sales pipeline health monitor for GTM leadership. Tracks coverage %, pacing against target, and rolling 90-day coverage across segments and regions — giving sales leadership a reliable forecast signal at any point in the quarter.</div>
+        <div class="pfc-metrics">
+          <div class="pfc-met"><div class="pfc-met-val">↑</div><div class="pfc-met-lbl">Forecast Accuracy</div></div>
+          <div class="pfc-met"><div class="pfc-met-val">Real-time</div><div class="pfc-met-lbl">Pipeline Visibility</div></div>
+          <div class="pfc-met"><div class="pfc-met-val">GTM</div><div class="pfc-met-lbl">Decision Support</div></div>
+        </div>
+        <div class="pfc-footer">
+          <div class="proj-chips"><span class="tag">DAX</span><span class="tag">Salesforce</span><span class="tag">Snowflake</span></div>
+          <div class="pfc-arr">↗</div>
+        </div>
+      </a>
+      <a class="proj-feat-card" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Revenue_Reporting" target="_blank">
+        <div class="pfc-top">
+          <div class="pfc-num">04</div>
+          <div class="pfc-badges"><span class="proj-feat">★ Featured</span><span class="tag">Power BI</span><span class="tag">SQL</span></div>
+        </div>
+        <div class="pfc-title">Campaign Revenue Reporting</div>
+        <div class="pfc-desc">Multi-channel revenue and engagement tracking across Email, SMS and Push — with YoY/MoM trend analysis and full channel attribution. Built to give marketing teams a clear answer to "which campaign actually drove revenue?" without relying on platform-native reporting.</div>
+        <div class="pfc-metrics">
+          <div class="pfc-met"><div class="pfc-met-val">3</div><div class="pfc-met-lbl">Channels Unified</div></div>
+          <div class="pfc-met"><div class="pfc-met-val">↑</div><div class="pfc-met-lbl">Revenue Visibility</div></div>
+          <div class="pfc-met"><div class="pfc-met-val">YoY/MoM</div><div class="pfc-met-lbl">Trend Tracking</div></div>
+        </div>
+        <div class="pfc-footer">
+          <div class="proj-chips"><span class="tag">DAX</span><span class="tag">Snowflake</span><span class="tag">Attribution</span></div>
           <div class="pfc-arr">↗</div>
         </div>
       </a>
@@ -827,9 +968,48 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
     <div class="section-label r"><span class="label-num">06</span><span class="label-text">Peer Reviews</span></div>
     <h2 class="section-h r d1">What the people<br>who <em>worked alongside</em> the work say.</h2>
     <div class="testi-grid r d2">
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">Yunus didn't just build dashboards — he changed how our GTM team thinks about data. The north-star KPI framework ended months of metric wars in one rollout. That level of thinking is rare.</div><div class="testi-author"><div class="testi-av" style="background:#E8A020">SK</div><div><div class="testi-name">Sarah K.</div><div class="testi-role">VP Sales Operations · Optimizely</div><a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-verify" target="_blank">Verify on LinkedIn</a></div></div></div>
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">The risk scoring system gave us a 2-week warning window we'd never had before. We saved accounts we would have lost. The $150K leakage detection alone paid for the engagement many times over.</div><div class="testi-author"><div class="testi-av" style="background:#00C4AF;color:#000">AR</div><div><div class="testi-name">Arif R.</div><div class="testi-role">Head of Product · AponTech</div><a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-verify" target="_blank">Verify on LinkedIn</a></div></div></div>
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">Sales Sight 360 became the one dashboard everyone opened at the start of their day. 150+ users across 6 departments, all aligned on one truth. That's not a BI project — that's a culture shift.</div><div class="testi-author"><div class="testi-av" style="background:#7C6AFF;color:#fff">MH</div><div><div class="testi-name">Minhaj H.</div><div class="testi-role">VP Sales · ShopUp (Mokam)</div><a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-verify" target="_blank">Verify on LinkedIn</a></div></div></div>
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-q">Yunus played a crucial role in transforming complex data into actionable insights, driving informed decision-making across our distribution operations. His expertise in Power BI and advanced DAX helped streamline our performance metrics — from sales targets to SLA confirmations — greatly improving operational efficiency.</div>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#E8A020">ZR</div>
+          <div>
+            <div class="testi-name">Md. Zahir Raihan</div>
+            <div class="testi-role">Head of Distribution Planning & Strategy · Mokam CPG, ShopUp</div>
+            <a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-verify" target="_blank">Verify on LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-q">Yunus is a keen data analyst, who creatively solves problems and properly documents them for future reference. He has good exposure to Azure and SQL and I would recommend him for anything to do with data.</div>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#00C4AF;color:#000">GD</div>
+          <div>
+            <div class="testi-name">Govindarajan D</div>
+            <div class="testi-role">Data Engineer & Architect · Philips</div>
+            <a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-verify" target="_blank">Verify on LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-q">Very dedicated and focused on the analysis. Smart use of modern analytical tools that gives a different advantage for decision making. The data interpretation and going deep in nature helped him to be error-free. Wish for the best of him.</div>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#7C6AFF;color:#fff">JJ</div>
+          <div>
+            <div class="testi-name">Jahan Jeb</div>
+            <div class="testi-role">Head of Supply Chain · AponTech Ltd.</div>
+            <a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-verify" target="_blank">Verify on LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem" class="r d3">
+      <a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" target="_blank" class="btn-outline" style="padding:.65rem 1.75rem;font-size:.62rem;display:inline-flex;align-items:center;gap:.5rem">
+        <span style="width:14px;height:14px;background:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230077B5'%3E%3Cpath d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/%3E%3C/svg%3E\") center/contain no-repeat;display:inline-block;flex-shrink:0"></span>
+        View all recommendations on LinkedIn ↗
+      </a>
     </div>
   </div>
 </section>
@@ -863,10 +1043,10 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
     <div class="edu-grid r d2">
       <div class="edu-card">
         <div class="edu-period">2018 – 2022</div>
-        <div class="edu-degree">BSc in Computer Science & Engineering</div>
-        <div class="edu-school">University of Asia Pacific · Dhaka, Bangladesh</div>
-        <div class="edu-desc">Focused on software systems, data structures, and algorithmic thinking. Final-year thesis on data pipeline optimisation for high-volume transactional systems.</div>
-        <div class="edu-tags"><span class="ttag">Data Structures</span><span class="ttag">Algorithms</span><span class="ttag">Database Systems</span><span class="ttag">Software Engineering</span></div>
+        <div class="edu-degree">B.Sc. in Information and Communication Engineering</div>
+        <div class="edu-school">Bangladesh University of Professionals (BUP) · Dhaka, Bangladesh</div>
+        <div class="edu-desc">Studied telecommunications, signal processing, networks, and digital systems — with a strong software and data foundation. Developed an analytical mindset that now shapes how I architect data solutions: systems thinking, first principles, and rigorous documentation.</div>
+        <div class="edu-tags"><span class="ttag">ICE Engineering</span><span class="ttag">Networks</span><span class="ttag">Digital Systems</span><span class="ttag">Signal Processing</span></div>
       </div>
       <div class="edu-card">
         <div class="edu-period">Continuous · 2022 – Present</div>
@@ -1380,7 +1560,19 @@ const obs=new IntersectionObserver(entries=>{
 document.querySelectorAll('.r,.t-entry').forEach(el=>obs.observe(el));
 
 /* ── TIMELINE DRAW ── */
-const tlObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('drawn')})},{threshold:.05});
+const tlObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('drawn');
+      const line=document.getElementById('timeline-line');
+      if(line){
+        const tl=document.getElementById('timeline');
+        const fullH=tl?tl.scrollHeight-12:0;
+        line.style.height=fullH+'px';
+      }
+    }
+  });
+},{threshold:.05});
 const tl=document.getElementById('timeline');if(tl)tlObs.observe(tl);
 
 /* ── PROJECT FILTER ── */
