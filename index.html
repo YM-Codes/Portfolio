@@ -364,6 +364,65 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
 #stbtn.show{display:flex}
 #stbtn:hover{transform:translateY(-3px)}
 
+/* ── KPI COUNTER ── */
+.kpi-val .count-num{display:inline-block}
+
+/* ── FEATURED PROJECTS ── */
+.proj-featured{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.proj-feat-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;padding:1.75rem;text-decoration:none;position:relative;overflow:hidden;transition:all .35s;display:flex;flex-direction:column;gap:1rem}
+.proj-feat-card:hover{border-color:var(--gold-bdr);transform:translateY(-4px);box-shadow:0 12px 40px rgba(232,160,32,.08)}
+.proj-feat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,160,32,.04),transparent);pointer-events:none}
+.pfc-top{display:flex;align-items:center;justify-content:space-between}
+.pfc-num{font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--t4);letter-spacing:-.06em;line-height:1;transition:color .4s}
+.proj-feat-card:hover .pfc-num{color:var(--gold)}
+.pfc-badges{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.pfc-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:800;color:var(--text);letter-spacing:-.02em;line-height:1.25;transition:color .3s}
+.proj-feat-card:hover .pfc-title{color:var(--gold)}
+.pfc-desc{font-size:.76rem;color:var(--t2);line-height:1.7;flex:1}
+.pfc-metrics{display:flex;gap:.75rem;flex-wrap:wrap;padding-top:.85rem;border-top:.5px solid var(--bdr)}
+.pfc-met{display:flex;flex-direction:column;gap:.1rem}
+.pfc-met-val{font-family:'Space Mono',monospace;font-size:.8rem;font-weight:700;color:var(--text);line-height:1}
+.pfc-met-lbl{font-family:'Space Mono',monospace;font-size:.42rem;color:var(--t3);text-transform:uppercase;letter-spacing:.07em}
+.pfc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;border-top:.5px solid var(--bdr)}
+.pfc-arr{width:32px;height:32px;border:.5px solid var(--bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:.65rem;transition:all .35s;flex-shrink:0}
+.proj-feat-card:hover .pfc-arr{background:var(--gold);border-color:var(--gold);color:#000;transform:rotate(45deg)}
+
+/* ── SHOW MORE ── */
+.proj-more-wrap{overflow:hidden;transition:max-height .6s cubic-bezier(.4,0,.2,1);max-height:0}
+.proj-more-wrap.open{max-height:2000px}
+.show-more-btn{display:flex;align-items:center;gap:.6rem;margin:1.5rem auto 0;background:none;border:.5px solid var(--bdr);border-radius:100px;padding:.5rem 1.4rem;font-family:'Space Mono',monospace;font-size:.56rem;font-weight:700;color:var(--t2);cursor:pointer;transition:all .3s;letter-spacing:.06em;text-transform:uppercase}
+.show-more-btn:hover{border-color:var(--gold-bdr);color:var(--text)}
+.show-more-btn .smb-icon{transition:transform .4s;display:inline-block}
+.show-more-btn.open .smb-icon{transform:rotate(180deg)}
+
+/* ── EDUCATION ── */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
+.edu-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:14px;padding:1.5rem;transition:all .35s;position:relative;overflow:hidden}
+.edu-card:hover{border-color:var(--gold-bdr);transform:translateY(-2px)}
+.edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.edu-card:hover::before{transform:scaleX(1)}
+.edu-period{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.edu-degree{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:.2rem;line-height:1.3}
+.edu-school{font-size:.78rem;font-weight:600;color:var(--gold);margin-bottom:.5rem}
+.edu-desc{font-size:.72rem;color:var(--t2);line-height:1.7}
+.edu-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:.75rem}
+
+/* ── CURRENTLY THINKING ── */
+.now-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.now-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:14px;padding:1.35rem;transition:all .35s;position:relative}
+.now-card:hover{border-color:var(--gold-bdr);transform:translateY(-3px)}
+.now-type{font-family:'Space Mono',monospace;font-size:.48rem;font-weight:700;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}
+.now-type-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.now-title{font-family:'Fraunces',serif;font-size:.9rem;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:.35rem;letter-spacing:-.01em}
+.now-by{font-size:.68rem;color:var(--gold);font-weight:600;margin-bottom:.4rem}
+.now-note{font-size:.7rem;color:var(--t2);line-height:1.65;font-style:italic}
+.now-tag{font-family:'Space Mono',monospace;font-size:.46rem;color:var(--teal);background:var(--teal2);border:.5px solid rgba(0,196,175,.15);border-radius:100px;padding:.14rem .55rem;display:inline-flex;margin-top:.6rem}
+
+/* ── TESTI LINKEDIN BADGE ── */
+.testi-verify{display:inline-flex;align-items:center;gap:.3rem;font-family:'Space Mono',monospace;font-size:.46rem;color:var(--t3);text-decoration:none;margin-top:.5rem;transition:color .25s;letter-spacing:.03em}
+.testi-verify:hover{color:var(--gold)}
+.testi-verify::before{content:'';width:10px;height:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230077B5'%3E%3Cpath d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/%3E%3C/svg%3E") center/contain no-repeat;flex-shrink:0}
+
 /* ── ANIMATIONS ── */
 @keyframes fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes char-up{from{transform:translateY(110%)}to{transform:translateY(0)}}
@@ -440,10 +499,10 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
     <div id="hero-typewriter"><span class="tw-prefix">&gt;&nbsp;</span><span class="tw-word" id="tw-text"></span><span class="tw-cursor" id="tw-cursor">|</span></div>
     <p class="hero-desc">I turn fragmented business data into intelligence that <strong>executives trust</strong> and teams act on. 4+ years building enterprise analytics platforms that directly drive revenue, retention, and operational efficiency.</p>
     <div class="hero-kpis">
-      <div class="kpi"><div class="kpi-val"><em>$</em>400<em>M+</em></div><div class="kpi-label">ARR Managed</div><div class="kpi-delta">↑ 23% YoY</div></div>
-      <div class="kpi"><div class="kpi-val">550<em>+</em></div><div class="kpi-label">Dashboard Users</div><div class="kpi-delta">↑ 10 Depts</div></div>
-      <div class="kpi"><div class="kpi-val"><em>$</em>20<em>M+</em></div><div class="kpi-label">Pipeline Found</div><div class="kpi-delta">↑ Hidden Q</div></div>
-      <div class="kpi"><div class="kpi-val">65<em>h</em></div><div class="kpi-label">Saved / Month</div><div class="kpi-delta">↓ Manual Work</div></div>
+      <div class="kpi"><div class="kpi-val"><em>$</em><span class="count-num" data-target="400" data-suffix="M+">0</span></div><div class="kpi-label">ARR Managed</div><div class="kpi-delta">↑ 23% YoY</div></div>
+      <div class="kpi"><div class="kpi-val"><span class="count-num" data-target="550" data-suffix="+">0</span></div><div class="kpi-label">Dashboard Users</div><div class="kpi-delta">↑ 10 Depts</div></div>
+      <div class="kpi"><div class="kpi-val"><em>$</em><span class="count-num" data-target="20" data-suffix="M+">0</span></div><div class="kpi-label">Pipeline Found</div><div class="kpi-delta">↑ Hidden Q</div></div>
+      <div class="kpi"><div class="kpi-val"><span class="count-num" data-target="65" data-suffix="h">0</span></div><div class="kpi-label">Saved / Month</div><div class="kpi-delta">↓ Manual Work</div></div>
     </div>
     <div class="hero-actions">
       <a href="#projects" class="btn-gold">View My Work ↓</a>
@@ -646,21 +705,67 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
         <button class="pf-btn" data-f="operation">Operations</button>
       </div>
     </div>
-    <div class="proj-list r d2" id="proj-list">
-      <a class="proj-item" data-cat="sales" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank"><div class="proj-n">01</div><div class="proj-main"><div class="proj-title">Sales Sight 360 Dashboard</div><div class="proj-context">Unified real-time platform guiding $195M+ in annual B2B decisions. Resolved 6-department metric conflict and became the operational backbone for daily decision-making.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Snowflake</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-feat">★ Featured</span><span class="proj-impact">150+ DAU · $195M+</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="customer" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank"><div class="proj-n">02</div><div class="proj-main"><div class="proj-title">Retail Customer Analytics & Intelligence</div><div class="proj-context">Behavioral risk scoring + customer segmentation for 100K+ users. 85%+ accuracy early-warning system. $150K annual revenue leakage stopped.</div><div class="proj-chips"><span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">Behavioral Analytics</span></div></div><div class="proj-impact-col"><span class="proj-feat">★ Featured</span><span class="proj-impact">↑ 50% basket · 20K retained</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="sales" href="https://github.com/YM-Codes/PipelineTrendDash" target="_blank"><div class="proj-n">03</div><div class="proj-main"><div class="proj-title">Pipeline Trend Dashboard</div><div class="proj-context">Real-time pipeline health, coverage %, pacing and rolling coverage for sales leadership. Improved forecast accuracy and GTM decisions.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Forecast accuracy</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="sales" href="https://github.com/YM-Codes/Close_Rate_Analysis" target="_blank"><div class="proj-n">04</div><div class="proj-main"><div class="proj-title">Win Rate & Close Rate Analysis</div><div class="proj-context">Tracks win rate across products, regions, and customer types. Identified deal patterns that improved conversion strategy across the sales team.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Deal conversion</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="customer" href="https://github.com/YM-Codes/Customer_Intelligence_Report" target="_blank"><div class="proj-n">05</div><div class="proj-main"><div class="proj-title">Customer Intelligence Report</div><div class="proj-context">Product adoption tracking, cross-sell opportunity analysis, and account health scoring across multi-product portfolios.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">Snowflake</span><span class="tag">DAX</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Cross-sell · ↓ Churn</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="customer" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank"><div class="proj-n">06</div><div class="proj-main"><div class="proj-title">Customer Cohort & Lifecycle Analysis</div><div class="proj-context">Cohort study evaluating churn patterns, revenue trajectories, basket size, and spending behaviour with RFM and CLV calculation.</div><div class="proj-chips"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">RFM</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ CLV · ↓ Churn</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Finance_Report" target="_blank"><div class="proj-n">07</div><div class="proj-main"><div class="proj-title">Campaign Finance & Efficiency Report</div><div class="proj-context">Multi-channel analytics aligning Email, SMS & Push campaign performance with cost and billing accuracy. Reduced operational waste.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">Snowflake</span><span class="tag">DAX</span></div></div><div class="proj-impact-col"><span class="proj-impact">↓ Op waste · ↑ NRR</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Revenue_Reporting" target="_blank"><div class="proj-n">08</div><div class="proj-main"><div class="proj-title">Campaign Revenue Reporting</div><div class="proj-context">Revenue and engagement tracking across SMS, Email, and Push with YoY/MoM trend analysis and channel attribution.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Revenue visibility</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Lead_Insights" target="_blank"><div class="proj-n">09</div><div class="proj-main"><div class="proj-title">Campaign Lead Intelligence</div><div class="proj-context">Tracks marketable vs non-marketable leads with source analysis, enabling sharper targeting and reduced cost-per-acquisition.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Lead targeting</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="operation" href="https://github.com/YM-Codes/Customer_Health_Check_Support" target="_blank"><div class="proj-n">10</div><div class="proj-main"><div class="proj-title">Support Health & SLA Dashboard</div><div class="proj-context">Ticket performance, SLA adherence and satisfaction score tracking. Flagged SLA violations before they escalated into churn risk.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↓ SLA violations</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="operation" href="https://github.com/YM-Codes/Zendesk_reporting" target="_blank"><div class="proj-n">11</div><div class="proj-main"><div class="proj-title">Zendesk Operations Report</div><div class="proj-context">Consolidated Zendesk ticket metrics, workflow performance, and SLA compliance reporting across support teams.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Ticket management</span></div><div class="proj-arr">↗</div></a>
-      <a class="proj-item" data-cat="operation" href="https://github.com/YM-Codes" target="_blank"><div class="proj-n">12</div><div class="proj-main"><div class="proj-title">Partner Health Score Dashboard</div><div class="proj-context">Consolidates partner performance, health metrics, ticket data and SLA compliance into a single accountability view.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Partner accountability</span></div><div class="proj-arr">↗</div></a>
+
+    <!-- FEATURED TWO -->
+    <div class="proj-featured r d2">
+      <a class="proj-feat-card" data-cat="sales" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank">
+        <div class="pfc-top">
+          <div class="pfc-num">01</div>
+          <div class="pfc-badges"><span class="proj-feat">★ Flagship</span><span class="tag">Power BI</span><span class="tag">Snowflake</span></div>
+        </div>
+        <div class="pfc-title">Sales Sight 360 Dashboard</div>
+        <div class="pfc-desc">Unified real-time platform guiding $195M+ in annual B2B decisions. Ended 6 months of cross-department metric conflict. Became the single operational backbone for 6 teams — opened every morning by 150+ users.</div>
+        <div class="pfc-metrics">
+          <div class="pfc-met"><div class="pfc-met-val">150+</div><div class="pfc-met-lbl">Daily Users</div></div>
+          <div class="pfc-met"><div class="pfc-met-val">$195M+</div><div class="pfc-met-lbl">GMV Guided</div></div>
+          <div class="pfc-met"><div class="pfc-met-val">90%</div><div class="pfc-met-lbl">Discrepancy Gone</div></div>
+          <div class="pfc-met"><div class="pfc-met-val">−12%</div><div class="pfc-met-lbl">MoM Churn</div></div>
+        </div>
+        <div class="pfc-footer">
+          <div class="proj-chips"><span class="tag">DAX</span><span class="tag">SQL</span><span class="tag">dbt</span><span class="tag">Atlan</span></div>
+          <div class="pfc-arr">↗</div>
+        </div>
+      </a>
+      <a class="proj-feat-card" data-cat="customer" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank">
+        <div class="pfc-top">
+          <div class="pfc-num">02</div>
+          <div class="pfc-badges"><span class="proj-feat">★ Flagship</span><span class="tag">Python</span><span class="tag">Power BI</span></div>
+        </div>
+        <div class="pfc-title">Retail Customer Analytics & Intelligence</div>
+        <div class="pfc-desc">Behavioral risk scoring + 6-cohort customer segmentation for 100K+ users. Built an 85%+ accuracy early-warning model that gave the team a 2-week intervention window — and stopped $150K annual revenue leakage cold.</div>
+        <div class="pfc-metrics">
+          <div class="pfc-met"><div class="pfc-met-val">20K+</div><div class="pfc-met-lbl">Users Retained</div></div>
+          <div class="pfc-met"><div class="pfc-met-val">+50%</div><div class="pfc-met-lbl">Basket Growth</div></div>
+          <div class="pfc-met"><div class="pfc-met-val">85%+</div><div class="pfc-met-lbl">Model Accuracy</div></div>
+          <div class="pfc-met"><div class="pfc-met-val">$150K</div><div class="pfc-met-lbl">Leakage Stopped</div></div>
+        </div>
+        <div class="pfc-footer">
+          <div class="proj-chips"><span class="tag">SQL</span><span class="tag">Behavioral Analytics</span><span class="tag">RFM</span></div>
+          <div class="pfc-arr">↗</div>
+        </div>
+      </a>
     </div>
-    <div style="text-align:right;margin-top:2rem" class="r d2">
+
+    <!-- REST OF PROJECTS — COLLAPSIBLE -->
+    <div class="proj-more-wrap" id="proj-more-wrap">
+      <div class="proj-list" id="proj-list" style="margin-top:1rem">
+        <a class="proj-item" data-cat="sales" href="https://github.com/YM-Codes/PipelineTrendDash" target="_blank"><div class="proj-n">03</div><div class="proj-main"><div class="proj-title">Pipeline Trend Dashboard</div><div class="proj-context">Real-time pipeline health, coverage %, pacing and rolling coverage for sales leadership. Improved forecast accuracy and GTM decisions.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Forecast accuracy</span></div><div class="proj-arr">↗</div></a>
+        <a class="proj-item" data-cat="sales" href="https://github.com/YM-Codes/Close_Rate_Analysis" target="_blank"><div class="proj-n">04</div><div class="proj-main"><div class="proj-title">Win Rate & Close Rate Analysis</div><div class="proj-context">Tracks win rate across products, regions, and customer types. Identified deal patterns that improved conversion strategy across the sales team.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Deal conversion</span></div><div class="proj-arr">↗</div></a>
+        <a class="proj-item" data-cat="customer" href="https://github.com/YM-Codes/Customer_Intelligence_Report" target="_blank"><div class="proj-n">05</div><div class="proj-main"><div class="proj-title">Customer Intelligence Report</div><div class="proj-context">Product adoption tracking, cross-sell opportunity analysis, and account health scoring across multi-product portfolios.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">Snowflake</span><span class="tag">DAX</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Cross-sell · ↓ Churn</span></div><div class="proj-arr">↗</div></a>
+        <a class="proj-item" data-cat="customer" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank"><div class="proj-n">06</div><div class="proj-main"><div class="proj-title">Customer Cohort & Lifecycle Analysis</div><div class="proj-context">Cohort study evaluating churn patterns, revenue trajectories, basket size, and spending behaviour with RFM and CLV calculation.</div><div class="proj-chips"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">RFM</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ CLV · ↓ Churn</span></div><div class="proj-arr">↗</div></a>
+        <a class="proj-item" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Finance_Report" target="_blank"><div class="proj-n">07</div><div class="proj-main"><div class="proj-title">Campaign Finance & Efficiency Report</div><div class="proj-context">Multi-channel analytics aligning Email, SMS & Push campaign performance with cost and billing accuracy. Reduced operational waste.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">Snowflake</span><span class="tag">DAX</span></div></div><div class="proj-impact-col"><span class="proj-impact">↓ Op waste · ↑ NRR</span></div><div class="proj-arr">↗</div></a>
+        <a class="proj-item" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Revenue_Reporting" target="_blank"><div class="proj-n">08</div><div class="proj-main"><div class="proj-title">Campaign Revenue Reporting</div><div class="proj-context">Revenue and engagement tracking across SMS, Email, and Push with YoY/MoM trend analysis and channel attribution.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Revenue visibility</span></div><div class="proj-arr">↗</div></a>
+        <a class="proj-item" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Lead_Insights" target="_blank"><div class="proj-n">09</div><div class="proj-main"><div class="proj-title">Campaign Lead Intelligence</div><div class="proj-context">Tracks marketable vs non-marketable leads with source analysis, enabling sharper targeting and reduced cost-per-acquisition.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Lead targeting</span></div><div class="proj-arr">↗</div></a>
+        <a class="proj-item" data-cat="operation" href="https://github.com/YM-Codes/Customer_Health_Check_Support" target="_blank"><div class="proj-n">10</div><div class="proj-main"><div class="proj-title">Support Health & SLA Dashboard</div><div class="proj-context">Ticket performance, SLA adherence and satisfaction score tracking. Flagged SLA violations before they escalated into churn risk.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↓ SLA violations</span></div><div class="proj-arr">↗</div></a>
+        <a class="proj-item" data-cat="operation" href="https://github.com/YM-Codes/Zendesk_reporting" target="_blank"><div class="proj-n">11</div><div class="proj-main"><div class="proj-title">Zendesk Operations Report</div><div class="proj-context">Consolidated Zendesk ticket metrics, workflow performance, and SLA compliance reporting across support teams.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Ticket management</span></div><div class="proj-arr">↗</div></a>
+        <a class="proj-item" data-cat="operation" href="https://github.com/YM-Codes" target="_blank"><div class="proj-n">12</div><div class="proj-main"><div class="proj-title">Partner Health Score Dashboard</div><div class="proj-context">Consolidates partner performance, health metrics, ticket data and SLA compliance into a single accountability view.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Partner accountability</span></div><div class="proj-arr">↗</div></a>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;flex-wrap:wrap;gap:1rem" class="r d3">
+      <button class="show-more-btn" id="show-more-btn">
+        <span>Show 10 more projects</span><span class="smb-icon">↓</span>
+      </button>
       <a href="https://github.com/YM-Codes" target="_blank" class="btn-gold" style="padding:.65rem 1.75rem;font-size:.66rem">View All on GitHub ↗</a>
     </div>
   </div>
@@ -722,9 +827,9 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
     <div class="section-label r"><span class="label-num">06</span><span class="label-text">Peer Reviews</span></div>
     <h2 class="section-h r d1">What the people<br>who <em>worked alongside</em> the work say.</h2>
     <div class="testi-grid r d2">
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">Yunus didn't just build dashboards — he changed how our GTM team thinks about data. The north-star KPI framework ended months of metric wars in one rollout. That level of thinking is rare.</div><div class="testi-author"><div class="testi-av" style="background:#E8A020">SK</div><div><div class="testi-name">Sarah K.</div><div class="testi-role">VP Sales Operations · Optimizely</div></div></div></div>
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">The risk scoring system gave us a 2-week warning window we'd never had before. We saved accounts we would have lost. The $150K leakage detection alone paid for the engagement many times over.</div><div class="testi-author"><div class="testi-av" style="background:#00C4AF;color:#000">AR</div><div><div class="testi-name">Arif R.</div><div class="testi-role">Head of Product · AponTech</div></div></div></div>
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">Sales Sight 360 became the one dashboard everyone opened at the start of their day. 150+ users across 6 departments, all aligned on one truth. That's not a BI project — that's a culture shift.</div><div class="testi-author"><div class="testi-av" style="background:#7C6AFF;color:#fff">MH</div><div><div class="testi-name">Minhaj H.</div><div class="testi-role">VP Sales · ShopUp (Mokam)</div></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">Yunus didn't just build dashboards — he changed how our GTM team thinks about data. The north-star KPI framework ended months of metric wars in one rollout. That level of thinking is rare.</div><div class="testi-author"><div class="testi-av" style="background:#E8A020">SK</div><div><div class="testi-name">Sarah K.</div><div class="testi-role">VP Sales Operations · Optimizely</div><a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-verify" target="_blank">Verify on LinkedIn</a></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">The risk scoring system gave us a 2-week warning window we'd never had before. We saved accounts we would have lost. The $150K leakage detection alone paid for the engagement many times over.</div><div class="testi-author"><div class="testi-av" style="background:#00C4AF;color:#000">AR</div><div><div class="testi-name">Arif R.</div><div class="testi-role">Head of Product · AponTech</div><a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-verify" target="_blank">Verify on LinkedIn</a></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">Sales Sight 360 became the one dashboard everyone opened at the start of their day. 150+ users across 6 departments, all aligned on one truth. That's not a BI project — that's a culture shift.</div><div class="testi-author"><div class="testi-av" style="background:#7C6AFF;color:#fff">MH</div><div><div class="testi-name">Minhaj H.</div><div class="testi-role">VP Sales · ShopUp (Mokam)</div><a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="testi-verify" target="_blank">Verify on LinkedIn</a></div></div></div>
     </div>
   </div>
 </section>
@@ -750,10 +855,70 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
   </div>
 </section>
 
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="section-inner">
+    <div class="section-label r"><span class="label-num">08</span><span class="label-text">Education</span></div>
+    <h2 class="section-h r d1">Academic<br><em>foundation.</em></h2>
+    <div class="edu-grid r d2">
+      <div class="edu-card">
+        <div class="edu-period">2018 – 2022</div>
+        <div class="edu-degree">BSc in Computer Science & Engineering</div>
+        <div class="edu-school">University of Asia Pacific · Dhaka, Bangladesh</div>
+        <div class="edu-desc">Focused on software systems, data structures, and algorithmic thinking. Final-year thesis on data pipeline optimisation for high-volume transactional systems.</div>
+        <div class="edu-tags"><span class="ttag">Data Structures</span><span class="ttag">Algorithms</span><span class="ttag">Database Systems</span><span class="ttag">Software Engineering</span></div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-period">Continuous · 2022 – Present</div>
+        <div class="edu-degree">Self-Directed Professional Development</div>
+        <div class="edu-school">Microsoft · SQLBI · Coursera · DataCamp</div>
+        <div class="edu-desc">PL-300 Power BI Certified (Microsoft), DAX Expert (SQLBI), Advanced SQL, Data Engineering pipelines, and Statistical modelling — all applied in live production environments, not sandboxes.</div>
+        <div class="edu-tags"><span class="ttag">PL-300</span><span class="ttag">SQLBI DAX</span><span class="ttag">Statistics</span><span class="ttag">ML Fundamentals</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CURRENTLY THINKING -->
+<section class="section" id="now" style="background:var(--s1)">
+  <div class="section-inner">
+    <div class="section-label r"><span class="label-num">09</span><span class="label-text">Right Now</span></div>
+    <h2 class="section-h r d1">What I'm reading,<br><em>building & thinking about.</em></h2>
+    <p class="section-sub r d2">A practitioner who's stopped learning is just someone with an old toolkit.</p>
+    <div class="now-grid r d2">
+      <div class="now-card">
+        <div class="now-type"><span class="now-type-dot"></span>Reading</div>
+        <div class="now-title">Designing Data-Intensive Applications</div>
+        <div class="now-by">Martin Kleppmann</div>
+        <div class="now-note">Going deep on how distributed systems actually fail — and why that matters for every data pipeline I design. The chapter on replication lag alone changed how I think about Snowflake staging.</div>
+        <span class="now-tag">Data Engineering</span>
+      </div>
+      <div class="now-card">
+        <div class="now-type"><span class="now-type-dot"></span>Exploring</div>
+        <div class="now-title">Semantic Layer Architecture in dbt + Snowflake</div>
+        <div class="now-by">Personal R&D</div>
+        <div class="now-note">Testing whether a governed semantic layer can fully replace the BI data model for complex multi-tenant SaaS analytics. Early results are promising — especially for SSOT governance at scale.</div>
+        <span class="now-tag">dbt · Snowflake · BI</span>
+      </div>
+      <div class="now-card">
+        <div class="now-type"><span class="now-type-dot"></span>Thinking About</div>
+        <div class="now-title">The problem with "self-serve" analytics</div>
+        <div class="now-by">An ongoing argument with myself</div>
+        <div class="now-note">Most self-serve BI fails not because of tooling — but because nobody governed the underlying definitions. I'm writing a framework for data contracts that actually get adopted by non-technical teams.</div>
+        <span class="now-tag">Data Strategy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- RECOGNITION -->
 <section class="section" id="recognition">
   <div class="section-inner">
-    <div class="section-label r"><span class="label-num">08</span><span class="label-text">Recognition</span></div>
+    <div class="section-label r"><span class="label-num">10</span><span class="label-text">Recognition</span></div>
     <h2 class="section-h r d1">Awards &<br><em>Certifications.</em></h2>
     <div class="awards-grid r d2">
       <div class="aw-card"><div class="aw-icon">🏆</div><div class="aw-year">Optimizely · 2025</div><div class="aw-title">Formal Bonusly Recognition</div><div class="aw-desc">Peer-nominated for exceptional BI impact on the $400M+ ARR analytics framework across 10+ departments.</div><a href="https://github.com/YM-Codes/Opti_Recognition_Bonusly" class="aw-link" target="_blank">View Award ↗</a></div>
@@ -769,7 +934,7 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
 <!-- ARTICLES -->
 <section class="section" id="writing" style="overflow:hidden;background:var(--s1)">
   <div class="section-inner">
-    <div class="section-label r"><span class="label-num">09</span><span class="label-text">Writing</span></div>
+    <div class="section-label r"><span class="label-num">11</span><span class="label-text">Writing</span></div>
     <h2 class="section-h r d1">10+ articles on<br><em>DAX, Power BI & data strategy.</em></h2>
   </div>
   <div class="art-outer r d2"><div id="art-wrap" style="display:flex;flex-direction:column;gap:10px"></div></div>
@@ -778,7 +943,7 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
 <!-- CONTACT -->
 <section class="section" id="contact">
   <div class="section-inner">
-    <div class="section-label r"><span class="label-num">10</span><span class="label-text">Let's Connect</span></div>
+    <div class="section-label r"><span class="label-num">12</span><span class="label-text">Let's Connect</span></div>
     <div class="contact-grid r d1">
       <div>
         <h2 class="contact-h">Ready for your<br>next <em>data leap?</em></h2>
@@ -828,6 +993,36 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
 <button id="stbtn">↑</button>
 
 <script>
+/* ── KPI COUNTER ANIMATION ── */
+(function(){
+  function animateCount(el){
+    const target=+el.dataset.target;
+    const suffix=el.dataset.suffix||'';
+    const dur=1800;let start=null;
+    function step(ts){
+      if(!start)start=ts;
+      const p=Math.min((ts-start)/dur,1);
+      const ease=1-Math.pow(1-p,4);
+      el.textContent=Math.round(ease*target)+suffix;
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  setTimeout(()=>{document.querySelectorAll('.count-num[data-target]').forEach(el=>animateCount(el));},1200);
+})();
+
+/* ── SHOW MORE PROJECTS ── */
+(function(){
+  const btn=document.getElementById('show-more-btn');
+  const wrap=document.getElementById('proj-more-wrap');
+  if(!btn||!wrap)return;
+  btn.addEventListener('click',()=>{
+    const isOpen=wrap.classList.toggle('open');
+    btn.classList.toggle('open',isOpen);
+    btn.querySelector('span:first-child').textContent=isOpen?'Show fewer projects':'Show 10 more projects';
+  });
+})();
+
 /* ── PRELOADER ── */
 window.addEventListener('load',()=>setTimeout(()=>document.getElementById('preloader').classList.add('done'),950));
 
@@ -1194,6 +1389,7 @@ document.querySelectorAll('.pf-btn').forEach(b=>b.addEventListener('click',()=>{
   b.classList.add('active');
   const f=b.dataset.f;
   document.querySelectorAll('.proj-item').forEach(c=>c.style.display=(f==='all'||c.dataset.cat===f)?'grid':'none');
+  document.querySelectorAll('.proj-feat-card').forEach(c=>c.style.display=(f==='all'||c.dataset.cat===f)?'flex':'none');
 }));
 
 /* ── ARTICLES ── */
