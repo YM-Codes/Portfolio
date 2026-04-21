@@ -3,674 +3,629 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Yunus Miah — Senior BI Analyst & Data Consultant</title>
+<title>Yunus Miah — Senior BI Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#060608;--s1:#0a0b0f;--s2:#0f1116;--s3:#161a22;
-  --text:#f4f5f7;--t2:#8a94a8;--t3:#4d5669;--t4:#2d3444;
-  --acc:#00d4ff;--acc2:#0099cc;--acc3:rgba(0,212,255,.06);
-  --grn:#00e5a0;--pur:#8b5cf6;--amb:#f59e0b;
-  --bdr:rgba(255,255,255,.05);--bdr2:rgba(0,212,255,.12);
-  --r:8px;--glow:0 0 40px rgba(0,212,255,.08);
-  font-size:18px;
+  --bg:#07070C;--s1:#0D0E16;--s2:#13151E;--s3:#1A1D28;
+  --text:#EDE8DF;--t2:#938E9E;--t3:#524E60;--t4:#2E2B3A;
+  --gold:#E8A020;--gold2:rgba(232,160,32,.08);--gold-bdr:rgba(232,160,32,.18);
+  --teal:#00C4AF;--teal2:rgba(0,196,175,.07);
+  --red:#FF4E4E;--red2:rgba(255,78,78,.07);
+  --bdr:rgba(255,255,255,.055);
+  --r:8px;
+  font-size:18px
 }
 html{scroll-behavior:smooth}
-body{font-family:'SF Pro Display',-apple-system,'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.65}
+.mono{font-family:'Space Mono',monospace}
+.syne{font-family:'Fraunces',serif}
+::selection{background:rgba(232,160,32,.2);color:#fff}
 
-.hero-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 8% 12%,rgba(0,212,255,.07) 0,transparent 65%),radial-gradient(ellipse 55% 65% at 92% 88%,rgba(139,92,246,.06) 0,transparent 60%),radial-gradient(ellipse 40% 40% at 55% 45%,rgba(0,212,255,.025) 0,transparent 70%)}
-.hero-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
-.orb1{width:500px;height:500px;left:-120px;top:-80px;background:radial-gradient(circle,rgba(0,212,255,.055) 0,transparent 70%);animation:orb-drift1 14s ease-in-out infinite}
-.orb2{width:420px;height:420px;right:-80px;bottom:5%;background:radial-gradient(circle,rgba(139,92,246,.05) 0,transparent 70%);animation:orb-drift2 17s ease-in-out infinite}
-.orb3{width:280px;height:280px;left:42%;top:30%;background:radial-gradient(circle,rgba(0,229,160,.03) 0,transparent 70%);animation:orb-drift3 11s ease-in-out infinite}
-@keyframes orb-drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,30px) scale(1.08)}}
-@keyframes orb-drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-35px,-25px) scale(1.06)}}
-@keyframes orb-drift3{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-30px)}}
-body::after{content:'';position:fixed;inset:0;background-image:radial-gradient(rgba(255,255,255,.018) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0}
-::selection{background:rgba(0,212,255,.2);color:#fff}
+/* ── NOISE OVERLAY ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.45}
 
-#scroll-bar{position:fixed;top:0;left:0;height:2.5px;background:linear-gradient(90deg,var(--acc),var(--pur));width:0%;z-index:9999;transition:width .1s linear;box-shadow:0 0 10px rgba(0,212,255,.4)}
+/* ── PRELOADER ── */
+#preloader{position:fixed;inset:0;background:var(--bg);z-index:9998;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease .4s}
+#preloader.done{opacity:0;pointer-events:none}
+.pl-inner{text-align:center}
+.pl-logo{font-family:'Fraunces',serif;font-size:3rem;font-weight:900;letter-spacing:-.06em;color:var(--text);line-height:1}
+.pl-logo span{color:var(--gold);font-style:italic}
+.pl-bar{width:120px;height:1.5px;background:var(--t4);margin:1.5rem auto 0;border-radius:1px;overflow:hidden}
+.pl-fill{height:100%;background:var(--gold);width:0;animation:pl-load .9s cubic-bezier(.4,0,.2,1) forwards .1s}
+@keyframes pl-load{to{width:100%}}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(6,6,8,.88);backdrop-filter:blur(28px);border-bottom:.5px solid var(--bdr)}
-.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none}
-.nav-logo-mark{width:33px;height:33px;border-radius:9px;background:linear-gradient(135deg,var(--acc),var(--pur));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;letter-spacing:-.5px}
-.nav-logo-text{font-size:.82rem;font-weight:700;color:var(--text)}
-.nav-logo-sub{font-size:.58rem;color:var(--t2);letter-spacing:.05em;text-transform:uppercase}
-.nav-links{display:flex;gap:1.8rem}
-.nav-links a{font-size:.7rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.04em;transition:color .3s;position:relative;text-transform:uppercase}
+/* ── SCROLL BAR ── */
+#scroll-bar{position:fixed;top:0;left:0;height:2px;background:var(--gold);width:0;z-index:9997;transition:width .08s linear}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(7,7,12,.85);backdrop-filter:blur(24px);border-bottom:.5px solid var(--bdr)}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-.03em}
+.nav-logo span{color:var(--gold);font-style:italic}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--t2);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
 .nav-links a:hover,.nav-links a.active{color:var(--text)}
-.nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--acc);border-radius:1px}
-.nav-cta{display:flex;align-items:center;gap:10px}
-.btn-ghost{padding:.42rem 1.1rem;border:.5px solid rgba(255,255,255,.1);border-radius:var(--r);font-size:.68rem;font-weight:600;color:var(--t2);text-decoration:none;transition:all .3s;position:relative;overflow:hidden}
-.btn-ghost:hover{color:var(--text);border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.03)}
-.btn-solid{padding:.42rem 1.3rem;background:linear-gradient(135deg,var(--acc),#0099dd);border-radius:var(--r);font-size:.68rem;font-weight:700;color:#000;text-decoration:none;transition:all .3s;box-shadow:0 2px 16px rgba(0,212,255,.25);position:relative;overflow:hidden}
-.btn-solid:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(0,212,255,.35)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-right{display:flex;gap:10px;align-items:center}
+.btn-outline{padding:.4rem 1.15rem;border:.5px solid var(--bdr);border-radius:var(--r);font-family:'Space Mono',monospace;font-size:.58rem;font-weight:400;color:var(--t2);text-decoration:none;letter-spacing:.06em;transition:all .25s}
+.btn-outline:hover{border-color:var(--gold-bdr);color:var(--text)}
+.btn-gold{padding:.4rem 1.3rem;background:var(--gold);border-radius:var(--r);font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;color:#000;text-decoration:none;letter-spacing:.06em;transition:all .25s;position:relative;overflow:hidden}
+.btn-gold::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-100%);transition:transform .3s}
+.btn-gold:hover::before{transform:translateX(0)}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(232,160,32,.3)}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding:100px 2.5rem 80px;position:relative}
-.hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1;display:grid;grid-template-columns:1fr 280px;align-items:center;gap:5rem}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:.32rem .85rem;border:.5px solid var(--bdr2);border-radius:100px;background:var(--acc3);margin-bottom:1.4rem}
-.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--grn);animation:blink 2s infinite;box-shadow:0 0 10px rgba(0,229,160,.5)}
-.badge-text{font-size:.6rem;font-weight:700;color:var(--acc);letter-spacing:.08em;text-transform:uppercase}
-.hero-greeting{font-size:.95rem;color:var(--t2);margin-bottom:.5rem}
-.hero-greeting span{font-size:1.1rem;display:inline-block;animation:wave 2.5s ease-in-out infinite;transform-origin:70% 70%}
-@keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
-.hero-h1{font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:800;line-height:1.08;letter-spacing:-.06em;color:var(--text);margin-bottom:.6rem}
-.hero-h1 span{background:linear-gradient(135deg,var(--acc),#7dd3fc,var(--pur));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-type{display:flex;align-items:center;gap:6px;min-height:1.6rem;margin-bottom:1.4rem;font-size:.9rem;white-space:nowrap;overflow:visible}
-.hero-desc{font-size:.87rem;color:var(--t2);line-height:1.9;max-width:540px;margin-bottom:1.4rem}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1.8rem}
-.hero-actions .btn-solid{padding:.65rem 1.8rem;font-size:.78rem}
-.hero-actions .btn-ghost{padding:.65rem 1.3rem;font-size:.78rem}
-.hero-stack{display:flex;flex-wrap:wrap;gap:6px}
-.sc{font-size:.6rem;font-weight:600;color:var(--t2);background:var(--s2);border:.5px solid var(--bdr);border-radius:4px;padding:.2rem .55rem;transition:all .3s;cursor:default}
-.sc:hover{border-color:var(--bdr2);color:var(--text);transform:translateY(-2px)}
-.sc.hi{color:var(--acc);background:var(--acc3);border-color:var(--bdr2)}
-.hero-photo-col{display:flex;flex-direction:column;align-items:center;gap:1rem;position:relative;z-index:1}
-.hero-photo-ring{width:260px;height:260px;border-radius:28px;padding:3px;background:linear-gradient(135deg,var(--acc),var(--pur),var(--acc));box-shadow:0 0 50px rgba(0,212,255,.15)}
-.hero-photo{width:100%;height:100%;border-radius:26px;object-fit:cover;object-position:top center;display:block;background:var(--s2)}
-.hero-photo-badge{display:inline-flex;align-items:center;gap:6px;font-size:.58rem;font-weight:700;color:var(--grn);letter-spacing:.06em;text-transform:uppercase;background:rgba(0,229,160,.08);border:.5px solid rgba(0,229,160,.2);border-radius:100px;padding:.3rem .8rem}
-.hero-photo-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--grn);animation:blink 2s infinite;box-shadow:0 0 8px rgba(0,229,160,.5)}
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 480px;align-items:center;gap:4rem;padding:100px 3rem 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;right:-60px;width:700px;height:700px;background:radial-gradient(circle,rgba(232,160,32,.04) 0,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent)}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,.5);animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 12px rgba(34,197,94,.5)}50%{box-shadow:0 0 20px rgba(34,197,94,.8)}}
+.eyebrow-text{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:400;color:#22C55E;letter-spacing:.1em;text-transform:uppercase}
+.hero-name{font-family:'Fraunces',serif;font-size:clamp(3rem,6vw,5.2rem);font-weight:900;letter-spacing:-.06em;line-height:.92;margin-bottom:.5rem;overflow:hidden}
+.hero-name .char{display:inline-block;transform:translateY(110%);animation:char-up .7s cubic-bezier(.16,1,.3,1) forwards}
+.hero-role{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem;overflow:hidden}
+.role-line{width:40px;height:1.5px;background:var(--gold);flex-shrink:0;transform:scaleX(0);transform-origin:left;animation:scale-in .6s ease .8s forwards}
+@keyframes scale-in{to{transform:scaleX(1)}}
+.hero-role-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;font-style:italic;color:var(--gold);letter-spacing:-.02em;opacity:0;animation:fade-up .5s ease .9s forwards}
+.hero-desc{font-size:.92rem;color:var(--t2);line-height:1.9;max-width:520px;margin-bottom:2rem;opacity:0;animation:fade-up .5s ease 1s forwards}
+.hero-desc strong{color:var(--text);font-weight:600}
+.hero-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:2.2rem;opacity:0;animation:fade-up .5s ease 1.1s forwards}
+.kpi{border:.5px solid var(--bdr);border-radius:10px;padding:.85rem .9rem;background:var(--s1);position:relative;overflow:hidden;transition:border-color .3s}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.kpi:hover{border-color:var(--gold-bdr)}
+.kpi:hover::before{transform:scaleX(1)}
+.kpi-val{font-family:'Space Mono',monospace;font-size:1.05rem;font-weight:700;color:var(--text);line-height:1;margin-bottom:.25rem}
+.kpi-val em{font-style:normal;font-size:.55em;color:var(--gold);font-weight:400}
+.kpi-label{font-family:'Space Mono',monospace;font-size:.44rem;font-weight:400;color:var(--t3);text-transform:uppercase;letter-spacing:.09em}
+.kpi-delta{font-family:'Space Mono',monospace;font-size:.46rem;color:var(--teal);margin-top:.2rem;font-weight:400}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fade-up .5s ease 1.2s forwards}
+.hero-actions .btn-gold{padding:.72rem 2rem;font-size:.66rem}
+.hero-actions .btn-outline{padding:.72rem 1.5rem;font-size:.66rem}
+.hero-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.4rem;opacity:0;animation:fade-up .5s ease 1.3s forwards}
+.tag{font-family:'Space Mono',monospace;font-size:.48rem;color:var(--t2);background:var(--s2);border:.5px solid var(--bdr);border-radius:4px;padding:.22rem .6rem;transition:all .2s}
+.tag.hi{color:var(--gold);background:var(--gold2);border-color:var(--gold-bdr)}
+.tag:hover{border-color:var(--gold-bdr);color:var(--text);transform:translateY(-2px)}
 
-/* ── HERO MINI CHART ── only addition to hero */
-.hero-kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.8rem}
-.hkpi{background:var(--s2);border:.5px solid var(--bdr);border-radius:10px;padding:.7rem .85rem;position:relative;overflow:hidden;transition:border-color .3s}
-.hkpi:hover{border-color:var(--bdr2)}
-.hkpi-val{font-size:1.1rem;font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1;margin-bottom:.18rem}
-.hkpi-val sup{font-size:.5em;color:var(--acc);font-weight:700}
-.hkpi-label{font-size:.48rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.09em}
-.hkpi-spark{position:absolute;bottom:0;right:0;opacity:.35}
-.hkpi-delta{font-size:.52rem;font-weight:700;color:var(--grn);margin-top:.12rem}
+/* ── TYPEWRITER ── */
+#hero-typewriter{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--t2);min-height:1.6rem;margin-bottom:.5rem;letter-spacing:.04em;display:flex;align-items:center;gap:.25rem;flex-wrap:wrap}
+#hero-typewriter .tw-prefix{color:var(--t3)}
+#hero-typewriter .tw-word{color:var(--text)}
+#hero-typewriter .tw-focus{color:var(--gold);font-weight:700;position:relative}
+#hero-typewriter .tw-focus::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--gold);opacity:.5}
+#hero-typewriter .tw-cursor{display:inline-block;width:2px;height:.9em;background:var(--gold);margin-left:1px;vertical-align:middle;animation:blink .85s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-/* OUTCOME STRIP */
-.outcome-strip{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.8rem;padding:.9rem 1.1rem;background:rgba(0,212,255,.04);border:.5px solid var(--bdr2);border-radius:12px}
-.outcome-item{display:flex;align-items:center;gap:.45rem;font-size:.68rem;color:var(--t2)}
-.outcome-item::before{content:'✓';color:var(--grn);font-weight:700;font-size:.72rem}
+/* ── HERO CANVAS PANEL ── */
+.hero-viz{position:relative;opacity:0;animation:fade-up .6s ease 1s forwards}
+.viz-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;overflow:hidden;padding:1.5rem}
+.viz-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
+.viz-title{font-family:'Space Mono',monospace;font-size:.56rem;font-weight:400;color:var(--t3);text-transform:uppercase;letter-spacing:.1em}
+.viz-live{display:flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:.52rem;color:var(--teal)}
+.viz-live-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:live-pulse 1.4s ease-in-out infinite}
+@keyframes live-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.6}}
+.viz-mini-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:1.2rem}
+.vmm{background:var(--s2);border:.5px solid var(--bdr);border-radius:8px;padding:.65rem .7rem;text-align:center;position:relative;overflow:hidden}
+.vmm-val{font-family:'Space Mono',monospace;font-size:.88rem;font-weight:700;color:var(--text);line-height:1}
+.vmm-val small{font-size:.55em;color:var(--gold)}
+.vmm-label{font-family:'Space Mono',monospace;font-size:.42rem;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-top:.18rem}
+.vmm-spark{height:18px;margin-top:.3rem}
+.vmm-delta{font-family:'Space Mono',monospace;font-size:.42rem;color:var(--teal);margin-top:.15rem}
 
-/* TICKER */
-.ticker-wrap{background:var(--s1);border-top:.5px solid var(--bdr);border-bottom:.5px solid var(--bdr);padding:.75rem 0;overflow:hidden;position:relative;z-index:1}
-.ticker-inner{display:flex;gap:2.5rem;white-space:nowrap;animation:ticker 35s linear infinite}
-.ticker-inner:hover{animation-play-state:paused}
-.tick-item{display:flex;align-items:center;gap:.5rem;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
-.tick-item span{color:var(--acc);font-size:.7rem}
-.tick-sep{color:var(--t4)}
+/* ── IMPACT MARQUEE ── */
+.marquee-wrap{background:var(--s1);border-top:.5px solid var(--bdr);border-bottom:.5px solid var(--bdr);padding:.8rem 0;overflow:hidden;position:relative}
+.marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:1;pointer-events:none}
+.marquee-wrap::before{left:0;background:linear-gradient(90deg,var(--s1),transparent)}
+.marquee-wrap::after{right:0;background:linear-gradient(-90deg,var(--s1),transparent)}
+.marquee-inner{display:flex;gap:0;white-space:nowrap;animation:marquee 40s linear infinite}
+.marquee-inner:hover{animation-play-state:paused}
+.m-item{display:inline-flex;align-items:center;gap:.75rem;padding:0 2.5rem;font-family:'Space Mono',monospace;font-size:.56rem;font-weight:400;color:var(--t3);border-right:.5px solid var(--bdr)}
+.m-item strong{color:var(--gold);font-weight:700}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* WHO I HELP */
-.wih-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bdr);border:.5px solid var(--bdr);border-radius:16px;overflow:hidden;margin-top:2.5rem}
-.wih-card{background:var(--s1);padding:1.75rem;transition:all .35s;position:relative;overflow:hidden}
-.wih-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--acc),var(--pur));transform:scaleX(0);transform-origin:left;transition:transform .5s}
-.wih-card:hover::before{transform:scaleX(1)}
-.wih-card:hover{background:var(--s2)}
-.wih-persona{font-size:.56rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);background:var(--acc3);border:.5px solid var(--bdr2);border-radius:100px;padding:.18rem .65rem;display:inline-flex;margin-bottom:.85rem}
-.wih-problem{font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:.55rem;line-height:1.4;letter-spacing:-.02em}
-.wih-desc{font-size:.72rem;color:var(--t2);line-height:1.7;margin-bottom:.85rem}
-.wih-solve{font-size:.68rem;color:var(--grn);font-weight:600;display:flex;align-items:flex-start;gap:.4rem;line-height:1.5}
-.wih-solve::before{content:'→';flex-shrink:0;margin-top:.05em}
+/* ── SECTION BASE ── */
+.section{padding:6rem 3rem;position:relative}
+.section-inner{max-width:1120px;margin:0 auto}
+.section-label{display:flex;align-items:center;gap:.75rem;margin-bottom:.8rem}
+.label-num{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--gold);font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:4px;padding:.18rem .55rem}
+.label-text{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--t3);letter-spacing:.12em;text-transform:uppercase}
+.section-h{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:.5rem}
+.section-h em{font-style:italic;color:var(--gold)}
+.section-sub{font-size:.88rem;color:var(--t2);max-width:520px;line-height:1.8;margin-bottom:3rem}
+.divider{height:.5px;background:linear-gradient(90deg,transparent,var(--bdr),transparent)}
 
-/* SECTIONS */
-.section{padding:5rem 2.5rem;position:relative;z-index:1}
-.section-inner{max-width:1100px;margin:0 auto}
-.section-tag{display:inline-flex;align-items:center;gap:7px;font-size:.58rem;font-weight:700;color:var(--acc);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.7rem}
-.section-tag::before{content:'';width:16px;height:1.5px;background:linear-gradient(90deg,var(--acc),var(--pur));display:block}
-.section-h{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-.05em;color:var(--text);margin-bottom:.4rem}
-.section-sub{font-size:.85rem;color:var(--t2);margin-bottom:2.5rem;max-width:550px;line-height:1.7}
-.section-divider{height:.5px;background:linear-gradient(90deg,transparent,var(--bdr),rgba(0,212,255,.08),var(--bdr),transparent);margin:0;position:relative;z-index:1}
+/* ── REVEAL ── */
+.r{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.r.v{opacity:1;transform:none}
+.r.d1{transition-delay:.1s}.r.d2{transition-delay:.2s}.r.d3{transition-delay:.3s}.r.d4{transition-delay:.4s}
 
-/* ABOUT */
-.about-text{font-size:.88rem;color:var(--t2);line-height:1.9}
-.about-text strong{color:var(--text);font-weight:700}
-.about-text .highlight{color:var(--acc);font-weight:600}
-.about-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr);border:.5px solid var(--bdr);border-radius:14px;overflow:hidden;margin-top:2rem}
-.astat{background:var(--s1);padding:1.1rem 1rem;display:flex;flex-direction:column;gap:.25rem;transition:background .3s;position:relative;overflow:hidden}
-.astat:hover{background:var(--s2)}
-.astat-val{font-size:1.6rem;font-weight:900;color:var(--text);letter-spacing:-.05em;line-height:1}
-.astat-val span{font-size:.7rem;color:var(--acc);font-weight:700}
-.astat-label{font-size:.5rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
-.astat-sub{font-size:.5rem;color:var(--grn);font-weight:600}
+/* ── PROBLEMS I SOLVE ── */
+.problems-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bdr);border:.5px solid var(--bdr);border-radius:16px;overflow:hidden}
+.prob-card{background:var(--s1);padding:2rem;position:relative;overflow:hidden;transition:background .35s}
+.prob-card:hover{background:var(--s2)}
+.prob-persona{font-family:'Space Mono',monospace;font-size:.48rem;font-weight:700;color:var(--gold);background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:100px;padding:.2rem .7rem;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;margin-bottom:1rem}
+.prob-title{font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;font-style:italic;color:var(--text);margin-bottom:.6rem;line-height:1.4;letter-spacing:-.01em}
+.prob-title::before{content:'"';color:var(--red);opacity:.5}
+.prob-title::after{content:'"';color:var(--red);opacity:.5}
+.prob-desc{font-size:.75rem;color:var(--t2);line-height:1.75;margin-bottom:1rem}
+.prob-solve{font-size:.72rem;color:var(--teal);font-weight:500;display:flex;align-items:flex-start;gap:.4rem;line-height:1.6;padding:.75rem .85rem;background:var(--teal2);border:.5px solid rgba(0,196,175,.15);border-radius:var(--r)}
+.prob-solve::before{content:'→';flex-shrink:0;font-weight:700}
+.prob-result{font-family:'Space Mono',monospace;font-size:.54rem;font-weight:700;color:var(--gold);margin-top:.65rem;padding-top:.65rem;border-top:.5px solid var(--bdr);display:flex;align-items:center;gap:.4rem}
+.prob-result::before{content:'↑';background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:3px;padding:.1rem .3rem;font-size:.5rem}
 
-/* PROCESS */
-.process-track{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;margin-top:2.5rem}
-.process-track::before{content:'';position:absolute;top:52px;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,var(--acc),var(--pur),var(--acc));opacity:.25;z-index:0}
-.process-track::after{content:'';position:absolute;top:52px;left:8%;height:1.5px;background:linear-gradient(90deg,var(--acc),var(--pur));width:0;z-index:1;transition:width 1.8s cubic-bezier(.4,0,.2,1);box-shadow:0 0 12px rgba(0,212,255,.4)}
-.process-track.animated::after{width:84%}
-.process-step{text-align:center;position:relative;padding:0 .5rem;cursor:default}
-.ps-wrap{position:relative;width:104px;height:104px;margin:0 auto 1.5rem;z-index:2}
-.ps-ring{position:absolute;inset:-8px;border-radius:50%;border:1.5px solid transparent;background:linear-gradient(var(--s1),var(--s1)) padding-box,linear-gradient(135deg,var(--acc),var(--pur)) border-box;opacity:0;transform:scale(.85);transition:all .5s cubic-bezier(.16,1,.3,1)}
-.process-step:hover .ps-ring{opacity:1;transform:scale(1)}
-.ps-glow{position:absolute;inset:-16px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.12),transparent 70%);opacity:0;transition:opacity .5s}
-.process-step:hover .ps-glow{opacity:1}
-.ps-num-badge{position:absolute;top:-6px;right:-6px;width:22px;height:22px;background:linear-gradient(135deg,var(--acc),var(--pur));border-radius:50%;font-size:.52rem;font-weight:800;color:#000;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 0 12px rgba(0,212,255,.4)}
-.ps-icon{width:104px;height:104px;border-radius:50%;background:var(--s2);border:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:2.2rem;position:relative;z-index:2;transition:all .5s cubic-bezier(.16,1,.3,1)}
-.process-step:hover .ps-icon{transform:scale(1.12) translateY(-6px);border-color:var(--bdr2);background:var(--s3);box-shadow:0 16px 40px rgba(0,212,255,.15)}
-.ps-title{font-size:.95rem;font-weight:800;color:var(--text);margin-bottom:.4rem;transition:color .3s;letter-spacing:-.02em}
-.process-step:hover .ps-title{color:var(--acc)}
-.ps-desc{font-size:.72rem;color:var(--t2);line-height:1.7;margin-bottom:.75rem}
-.ps-deliverable{display:inline-flex;align-items:center;gap:.35rem;font-size:.58rem;font-weight:700;color:var(--grn);background:rgba(0,229,160,.07);border:.5px solid rgba(0,229,160,.18);border-radius:100px;padding:.22rem .7rem;letter-spacing:.04em}
-.ps-deliverable::before{content:'↳';opacity:.7}
+/* ── CAREER TIMELINE ── */
+.timeline{position:relative;padding-left:2.5rem;margin-top:3rem}
+.timeline::before{content:'';position:absolute;left:0;top:12px;bottom:0;width:1.5px;background:var(--t4)}
+.timeline::after{content:'';position:absolute;left:0;top:12px;width:1.5px;height:0;background:var(--gold);transition:height 2s cubic-bezier(.4,0,.2,1)}
+.timeline.drawn::after{height:calc(100% - 12px)}
+.t-entry{position:relative;margin-bottom:3.5rem;opacity:0;transform:translateX(-16px);transition:opacity .6s ease,transform .6s ease}
+.t-entry.v{opacity:1;transform:none}
+.t-dot{position:absolute;left:-2.85rem;top:8px;width:14px;height:14px;border-radius:50%;background:var(--s1);border:2px solid var(--t4);transition:border-color .4s,box-shadow .4s;z-index:1}
+.t-entry.v .t-dot{border-color:var(--gold);box-shadow:0 0 0 4px rgba(232,160,32,.12)}
+.t-period{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.t-role{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:800;letter-spacing:-.03em;color:var(--text);margin-bottom:.25rem}
+.t-company{display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem}
+.t-co-name{font-size:.75rem;font-weight:600;color:var(--gold);letter-spacing:.03em;text-decoration:none}
+.t-co-badge{font-family:'Space Mono',monospace;font-size:.44rem;font-weight:400;color:var(--t3);background:var(--s2);border:.5px solid var(--bdr);border-radius:100px;padding:.14rem .55rem;letter-spacing:.06em;text-transform:uppercase}
+.t-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1.2rem}
+.t-block{background:var(--s2);border:.5px solid var(--bdr);border-radius:10px;padding:1rem;transition:border-color .3s}
+.t-block-icon{font-size:.8rem;margin-bottom:.4rem}
+.t-block-label{font-family:'Space Mono',monospace;font-size:.47rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35rem}
+.t-block-label.problem{color:var(--red);opacity:.8}
+.t-block-label.solution{color:var(--teal);opacity:.9}
+.t-block-label.outcome{color:var(--gold);opacity:.9}
+.t-block-text{font-size:.72rem;color:var(--t2);line-height:1.65}
+.t-metrics{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.tmet{background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);padding:.45rem .75rem;display:flex;flex-direction:column;align-items:center;gap:.1rem;min-width:80px}
+.tmet-val{font-family:'Space Mono',monospace;font-size:.85rem;font-weight:700;color:var(--text);letter-spacing:-.03em;line-height:1}
+.tmet-val em{font-style:normal;font-size:.6em;color:var(--gold)}
+.tmet-lbl{font-family:'Space Mono',monospace;font-size:.42rem;color:var(--t3);text-transform:uppercase;letter-spacing:.07em}
+.t-tags{display:flex;flex-wrap:wrap;gap:4px}
+.ttag{font-family:'Space Mono',monospace;font-size:.46rem;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.14rem .5rem;letter-spacing:.04em;text-transform:uppercase}
 
-/* EXPERIENCE */
-.exp-container{display:grid;grid-template-columns:220px 1fr;gap:3rem;align-items:stretch}
-.exp-nav{position:sticky;top:75px;display:flex;flex-direction:column;gap:0;height:100%}
-.exp-tab{background:none;border:none;border-left:2px solid var(--bdr);padding:1.6rem 1.5rem;cursor:pointer;font-size:.88rem;font-weight:600;color:var(--t3);text-align:left;font-family:inherit;transition:all .3s;display:flex;flex-direction:column;gap:7px;flex:1}
-.exp-tab.active{border-left-color:var(--acc);color:var(--text);background:linear-gradient(90deg,var(--acc3),transparent)}
-.exp-tab:hover:not(.active){color:var(--t2);border-left-color:var(--t3)}
-.exp-tab-co{font-size:.68rem;font-weight:500;color:var(--t3)}
-.exp-tab.active .exp-tab-co{color:var(--acc)}
-.exp-panel{display:none;animation:fadeUp .4s ease}
-.exp-panel.active{display:block}
-.ep-role{font-size:1.1rem;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:.25rem}
-.ep-company{display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem}
-.ep-co-name{font-size:.7rem;font-weight:700;color:var(--acc);text-decoration:none;letter-spacing:.05em;text-transform:uppercase}
-.ep-co-badge{font-size:.52rem;font-weight:700;padding:.15rem .5rem;border-radius:100px;background:var(--acc3);border:.5px solid var(--bdr2);color:var(--acc);letter-spacing:.06em;text-transform:uppercase}
-.ep-period{font-size:.62rem;color:var(--t3);letter-spacing:.04em;margin-bottom:1.25rem}
-.ep-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:1.25rem}
-.epm{background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);padding:.75rem;text-align:center;transition:all .35s}
-.epm:hover{border-color:var(--bdr2);transform:translateY(-2px);box-shadow:var(--glow)}
-.epm-val{font-size:1.1rem;font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1}
-.epm-val sup{font-size:.55em;color:var(--acc)}
-.epm-l{font-size:.52rem;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:.2rem}
-.ep-desc{font-size:.85rem;color:var(--t2);line-height:1.85;margin-bottom:1.25rem}
-.ep-bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.25rem}
-.ep-bullets li{font-size:.82rem;color:var(--t2);padding-left:1.1rem;position:relative;line-height:1.65}
-.ep-bullets li::before{content:'→';position:absolute;left:0;color:var(--acc);font-size:.72rem;top:.05em}
-.ep-tags{display:flex;flex-wrap:wrap;gap:4px}
-.etag{font-size:.56rem;font-weight:600;color:var(--t2);background:var(--s3);border:.5px solid var(--bdr);border-radius:4px;padding:.2rem .55rem;transition:all .25s}
-.etag:hover{border-color:var(--bdr2);color:var(--text)}
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+.sk-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:12px;padding:1.4rem;transition:all .35s;position:relative;overflow:hidden}
+.sk-card:hover{border-color:var(--gold-bdr);transform:translateY(-3px)}
+.sk-icon{font-size:1.3rem;margin-bottom:.85rem}
+.sk-title{font-family:'Fraunces',serif;font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.3rem;letter-spacing:-.01em}
+.sk-pct{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;color:var(--gold);float:right;margin-top:.05rem}
+.sk-bar{height:2px;background:var(--t4);border-radius:1px;margin:.6rem 0;overflow:hidden}
+.sk-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));width:0;border-radius:1px;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+.sk-chips{display:flex;flex-wrap:wrap;gap:4px;clear:both}
+.sk-chip{font-family:'Space Mono',monospace;font-size:.44rem;color:var(--t3);background:var(--s2);border:.5px solid var(--bdr);border-radius:3px;padding:.14rem .5rem;text-transform:uppercase;letter-spacing:.05em;transition:all .2s}
+.sk-chip.hi{color:var(--gold);background:var(--gold2);border-color:var(--gold-bdr)}
 
-/* SKILLS */
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-.skill-group{background:var(--s1);border:.5px solid var(--bdr);border-radius:12px;padding:1.25rem 1.4rem;transition:all .35s}
-.skill-group:hover{border-color:var(--bdr2);box-shadow:var(--glow)}
-.sg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
-.sg-title{font-size:.75rem;font-weight:700;color:var(--text)}
-.sg-pct{font-size:.68rem;font-weight:700;color:var(--acc)}
-.skill-bar-track{height:3px;background:var(--s3);border-radius:2px;margin-bottom:.7rem;overflow:hidden}
-.skill-bar-fill{height:100%;background:linear-gradient(90deg,var(--acc2),var(--acc));width:0;border-radius:2px;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
-.skill-chips{display:flex;flex-wrap:wrap;gap:5px}
-
-/* ── PROJECTS — kept original list + added 2 featured cards on top ── */
-.proj-featured{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem}
-.pf-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:all .4s cubic-bezier(.16,1,.3,1)}
-.pf-card:hover{border-color:var(--bdr2);transform:translateY(-5px);box-shadow:0 16px 50px rgba(0,212,255,.09)}
-.pf-thumb{height:130px;background:var(--s2);position:relative;overflow:hidden}
-.pf-thumb canvas{width:100%;height:100%;display:block}
-.pf-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(6,6,8,.85))}
-.pf-badge{position:absolute;top:.65rem;left:.7rem;font-size:.48rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.12);border:.5px solid rgba(245,158,11,.3);border-radius:100px;padding:.18rem .55rem;letter-spacing:.08em;text-transform:uppercase}
-.pf-body{padding:1rem 1.2rem;flex:1;display:flex;flex-direction:column;gap:.4rem}
-.pf-title{font-size:.88rem;font-weight:800;color:var(--text);letter-spacing:-.03em;transition:color .3s}
-.pf-card:hover .pf-title{color:var(--acc)}
-.pf-desc{font-size:.68rem;color:var(--t2);line-height:1.6;flex:1}
-.pf-impact{font-size:.62rem;font-weight:700;color:var(--grn)}
-.pf-footer{display:flex;justify-content:space-between;align-items:center;padding-top:.65rem;border-top:.5px solid var(--bdr)}
-.pf-chips{display:flex;gap:4px;flex-wrap:wrap}
-.pfchip{font-size:.5rem;font-weight:700;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.12rem .4rem;text-transform:uppercase;letter-spacing:.04em}
-.pf-arr{width:28px;height:28px;border:.5px solid var(--bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;color:var(--t3);transition:all .35s}
-.pf-card:hover .pf-arr{background:var(--acc);border-color:var(--acc);color:#000;transform:rotate(45deg)}
-
-.proj-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:2.5rem}
-.pf-btn{padding:.38rem .95rem;border:.5px solid var(--bdr);border-radius:100px;font-size:.62rem;font-weight:600;color:var(--t3);background:none;cursor:pointer;transition:all .3s;font-family:inherit;letter-spacing:.03em}
+/* ── PROJECTS ── */
+.proj-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem}
+.proj-filters{display:flex;gap:6px;flex-wrap:wrap}
+.pf-btn{font-family:'Space Mono',monospace;padding:.35rem 1rem;border:.5px solid var(--bdr);border-radius:100px;font-size:.52rem;font-weight:400;color:var(--t3);background:none;cursor:pointer;transition:all .25s;letter-spacing:.06em;text-transform:uppercase}
 .pf-btn:hover{color:var(--text);border-color:var(--t3)}
-.pf-btn.active{background:linear-gradient(135deg,var(--acc),#0099dd);color:#000;border-color:transparent;box-shadow:0 2px 12px rgba(0,212,255,.2)}
-.proj-grid{display:flex;flex-direction:column}
-.proj-card{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:2rem;padding:1.4rem 0;border-bottom:.5px solid var(--bdr);text-decoration:none;position:relative;transition:all .4s cubic-bezier(.16,1,.3,1)}
-.proj-card::before{content:'';position:absolute;inset:0 -2.5rem;background:linear-gradient(90deg,transparent,rgba(0,212,255,.03),transparent);opacity:0;transition:opacity .4s;pointer-events:none}
-.proj-card:hover::before{opacity:1}
-.proj-card:hover{padding-left:.75rem}
-.proj-card:first-child{border-top:.5px solid var(--bdr)}
-.proj-num{font-size:2.6rem;font-weight:900;color:var(--t4);letter-spacing:-.08em;line-height:1;transition:all .4s}
-.proj-card:hover .proj-num{color:var(--acc);text-shadow:0 0 30px rgba(0,212,255,.3)}
-.proj-mid{display:flex;flex-direction:column;gap:.4rem}
-.proj-title{font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1.2;transition:color .3s}
-.proj-card:hover .proj-title{color:var(--acc)}
-.proj-desc{font-size:.72rem;color:var(--t2);line-height:1.6;max-width:520px}
+.pf-btn.active{background:var(--gold);color:#000;border-color:var(--gold);font-weight:700}
+.proj-list{display:flex;flex-direction:column}
+.proj-item{display:grid;grid-template-columns:64px 1fr 1fr auto;align-items:center;gap:1.75rem;padding:1.5rem 0;border-bottom:.5px solid var(--bdr);text-decoration:none;position:relative;transition:all .35s}
+.proj-item::before{content:'';position:absolute;inset:0 -3rem;background:linear-gradient(90deg,transparent,var(--gold2),transparent);opacity:0;transition:opacity .35s;pointer-events:none}
+.proj-item:hover::before{opacity:1}
+.proj-item:hover{padding-left:.75rem}
+.proj-item:first-child{border-top:.5px solid var(--bdr)}
+.proj-n{font-family:'Space Mono',monospace;font-size:2.4rem;font-weight:700;color:var(--t4);letter-spacing:-.06em;line-height:1;transition:all .4s}
+.proj-item:hover .proj-n{color:var(--gold)}
+.proj-main .proj-title{font-family:'Fraunces',serif;font-size:.9rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:.3rem;transition:color .25s}
+.proj-item:hover .proj-title{color:var(--gold)}
+.proj-main .proj-context{font-size:.7rem;color:var(--t2);line-height:1.55}
 .proj-chips{display:flex;flex-wrap:wrap;gap:4px}
-.pchip{font-size:.52rem;font-weight:700;color:var(--t3);background:var(--s3);border:.5px solid var(--bdr);border-radius:3px;padding:.15rem .45rem;letter-spacing:.04em;text-transform:uppercase}
-.proj-card:hover .pchip{border-color:var(--bdr2);color:var(--t2)}
-.proj-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0}
-.proj-impact{font-size:.62rem;font-weight:700;color:var(--acc);white-space:nowrap}
-.proj-arr{width:36px;height:36px;border:.5px solid var(--bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--t3);transition:all .4s}
-.proj-card:hover .proj-arr{background:var(--acc);border-color:var(--acc);color:#000;transform:rotate(45deg)}
-.proj-feat-badge{font-size:.5rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.08);border:.5px solid rgba(245,158,11,.2);border-radius:100px;padding:.15rem .6rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.proj-impact-col{display:flex;flex-direction:column;gap:.35rem;align-items:flex-end}
+.proj-impact{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;color:var(--teal);white-space:nowrap}
+.proj-feat{font-family:'Space Mono',monospace;font-size:.46rem;font-weight:700;color:var(--gold);background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:100px;padding:.14rem .6rem;letter-spacing:.06em;text-transform:uppercase}
+.proj-arr{width:38px;height:38px;border:.5px solid var(--bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:.7rem;transition:all .35s;flex-shrink:0}
+.proj-item:hover .proj-arr{background:var(--gold);border-color:var(--gold);color:#000;transform:rotate(45deg)}
 
-/* CASE STUDIES */
-.cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
-.cs-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;overflow:hidden;transition:all .4s cubic-bezier(.16,1,.3,1)}
-.cs-card:hover{border-color:var(--bdr2);box-shadow:0 0 60px rgba(0,212,255,.08);transform:translateY(-4px)}
-.cs-header{padding:1.4rem 1.6rem 1.2rem;border-bottom:.5px solid var(--bdr);background:linear-gradient(135deg,var(--s2),var(--s1))}
-.cs-label{font-size:.52rem;font-weight:700;color:var(--acc);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.5rem}
-.cs-title{font-size:1.05rem;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:.35rem}
-.cs-company{font-size:.65rem;color:var(--t2)}
-.cs-body{padding:1.4rem 1.6rem}
-.cs-block{margin-bottom:1.15rem}
-.cs-block:last-child{margin-bottom:0}
-.cs-block-label{font-size:.54rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.45rem;display:flex;align-items:center;gap:.4rem}
-.cs-block-label.problem{color:#f87171}
-.cs-block-label.problem::before{content:'';width:8px;height:8px;border-radius:50%;background:#f87171;flex-shrink:0}
-.cs-block-label.solution{color:var(--acc)}
-.cs-block-label.solution::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--acc);flex-shrink:0}
-.cs-block-label.results{color:var(--grn)}
-.cs-block-label.results::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--grn);flex-shrink:0}
-.cs-block-text{font-size:.76rem;color:var(--t2);line-height:1.75}
-.cs-results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin-top:.55rem}
-.cs-result-item{background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);padding:.6rem .75rem;text-align:center}
-.cs-result-val{font-size:1.05rem;font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1}
-.cs-result-val small{font-size:.55em;color:var(--grn)}
-.cs-result-lbl{font-size:.5rem;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:.18rem}
-.cs-footer{padding:.85rem 1.6rem;border-top:.5px solid var(--bdr);background:var(--s2);display:flex;gap:.5rem;flex-wrap:wrap}
+/* ── CASE STUDIES ── */
+.cs-list{display:flex;flex-direction:column;gap:3rem;margin-top:3rem}
+.cs-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:20px;overflow:hidden;transition:border-color .4s}
+.cs-card:hover{border-color:var(--gold-bdr)}
+.cs-card-header{padding:2rem 2.5rem;border-bottom:.5px solid var(--bdr);display:grid;grid-template-columns:1fr auto;align-items:start;gap:1.5rem}
+.cs-label-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.65rem}
+.cs-lbl{font-family:'Space Mono',monospace;font-size:.48rem;font-weight:700;color:var(--gold);background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:4px;padding:.15rem .55rem;letter-spacing:.1em;text-transform:uppercase}
+.cs-co{font-family:'Space Mono',monospace;font-size:.56rem;color:var(--t3);letter-spacing:.05em}
+.cs-title{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:800;letter-spacing:-.03em;color:var(--text);margin-bottom:.3rem}
+.cs-sub{font-size:.78rem;color:var(--t2)}
+.cs-big-num{font-family:'Fraunces',serif;font-size:3.5rem;font-weight:900;font-style:italic;color:var(--gold);letter-spacing:-.06em;line-height:1;opacity:.12}
+.cs-body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:.5px solid var(--bdr)}
+.cs-col{padding:1.75rem 2rem;border-right:.5px solid var(--bdr)}
+.cs-col:last-child{border-right:none}
+.cs-col-label{font-family:'Space Mono',monospace;font-size:.47rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem}
+.cs-col-label.prob{color:var(--red)}
+.cs-col-label.prob::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
+.cs-col-label.sol{color:var(--teal)}
+.cs-col-label.sol::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.cs-col-label.res{color:var(--gold)}
+.cs-col-label.res::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.cs-col-text{font-size:.76rem;color:var(--t2);line-height:1.8}
+.cs-footer{padding:1.25rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.cs-results{display:flex;gap:1.5rem;flex-wrap:wrap}
+.csr{display:flex;align-items:baseline;gap:.3rem}
+.csr-val{font-family:'Space Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--text);letter-spacing:-.04em}
+.csr-val em{font-style:normal;font-size:.55em;color:var(--gold)}
+.csr-lbl{font-family:'Space Mono',monospace;font-size:.48rem;color:var(--t3);letter-spacing:.06em}
 
-/* ── TESTIMONIALS — 3 cards, tight ── */
-.testi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
-.testi{background:var(--s1);border:.5px solid var(--bdr);border-radius:14px;padding:1.25rem 1.3rem;transition:border-color .35s}
-.testi:hover{border-color:var(--bdr2)}
-.testi-stars{font-size:.62rem;color:var(--amb);margin-bottom:.7rem}
-.testi-q{font-size:.75rem;color:var(--t2);line-height:1.72;font-style:italic;margin-bottom:1rem}
-.testi-q::before{content:'"';font-size:1.6rem;color:var(--acc);opacity:.25;line-height:0;vertical-align:-.35rem;margin-right:.15rem}
-.testi-author{display:flex;align-items:center;gap:.7rem}
-.testi-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;color:#000;flex-shrink:0}
-.testi-name{font-size:.68rem;font-weight:700;color:var(--text)}
-.testi-role{font-size:.56rem;color:var(--t3)}
+/* ── TESTIMONIALS ── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.testi{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;padding:1.5rem 1.4rem;transition:all .35s;position:relative;overflow:hidden}
+.testi:hover{border-color:var(--gold-bdr);transform:translateY(-4px)}
+.testi::before{content:'"';position:absolute;top:.5rem;right:1rem;font-family:'Fraunces',serif;font-size:5rem;font-weight:900;font-style:italic;color:var(--gold);opacity:.06;line-height:1;pointer-events:none}
+.testi-stars{color:var(--gold);font-size:.65rem;letter-spacing:.1em;margin-bottom:.85rem}
+.testi-q{font-size:.76rem;color:var(--t2);line-height:1.8;font-style:italic;margin-bottom:1.25rem}
+.testi-author{display:flex;align-items:center;gap:.75rem}
+.testi-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:.6rem;font-weight:800;color:#000;flex-shrink:0}
+.testi-name{font-family:'Fraunces',serif;font-size:.74rem;font-weight:700;color:var(--text)}
+.testi-role{font-family:'Space Mono',monospace;font-size:.46rem;color:var(--t3);margin-top:.1rem;letter-spacing:.04em}
 
-/* ARTICLES */
-.art-scroll-outer{position:relative;margin-top:1.5rem;overflow:hidden}
-.art-scroll-outer::before,.art-scroll-outer::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:10;pointer-events:none}
-.art-scroll-outer::before{left:0;background:linear-gradient(90deg,var(--s1),transparent)}
-.art-scroll-outer::after{right:0;background:linear-gradient(-90deg,var(--s1),transparent)}
-.art-track{display:flex;gap:14px;width:max-content;padding:4px 0}
-.art-track.fwd{animation:art-fwd 42s linear infinite}
-.art-track.rev{animation:art-rev 36s linear infinite}
-.art-track:hover{animation-play-state:paused}
-.art-card{width:268px;flex-shrink:0;background:var(--bg);border:.5px solid var(--bdr);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;gap:.7rem;text-decoration:none;transition:all .35s}
-.art-card:hover{background:var(--s2);border-color:var(--bdr2);transform:translateY(-4px);box-shadow:var(--glow)}
-.art-card-top{display:flex;justify-content:space-between;align-items:flex-start}
-.art-cat{font-size:.53rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);background:var(--acc3);border:.5px solid var(--bdr2);border-radius:100px;padding:.15rem .55rem}
-.art-num{font-size:.53rem;font-weight:700;color:var(--t4)}
-.art-vis{width:100%;height:48px;border-radius:6px;overflow:hidden;background:var(--s2)}
-.art-title{font-size:.78rem;font-weight:700;color:var(--text);line-height:1.5;flex:1;transition:color .25s}
-.art-card:hover .art-title{color:var(--acc)}
-.art-read{font-size:.56rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);transition:color .25s}
-.art-card:hover .art-read{color:var(--acc)}
+/* ── SERVICES ── */
+.svc-banner{background:var(--s1);border:.5px solid var(--gold-bdr);border-radius:16px;padding:1.75rem 2rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.svc-banner-text .svc-banner-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:.3rem}
+.svc-banner-text .svc-banner-sub{font-size:.78rem;color:var(--t2);line-height:1.6}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.svc-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:14px;padding:1.5rem;transition:all .35s;position:relative;overflow:hidden}
+.svc-card:hover{border-color:var(--gold-bdr);transform:translateY(-3px)}
+.svc-icon{width:40px;height:40px;border-radius:10px;background:var(--gold2);border:.5px solid var(--gold-bdr);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1rem}
+.svc-title{font-family:'Fraunces',serif;font-size:.9rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:.4rem}
+.svc-desc{font-size:.74rem;color:var(--t2);line-height:1.75;margin-bottom:1rem}
+.svc-pills{display:flex;flex-direction:column;gap:.28rem;margin-bottom:1rem}
+.svc-pill{font-size:.66rem;color:var(--t2);display:flex;align-items:flex-start;gap:.4rem;line-height:1.5}
+.svc-pill::before{content:'·';color:var(--gold);font-weight:900;flex-shrink:0}
+.svc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.85rem;border-top:.5px solid var(--bdr)}
+.svc-time{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--t3);letter-spacing:.06em;text-transform:uppercase}
+.svc-cta{font-family:'Space Mono',monospace;font-size:.56rem;font-weight:700;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.3rem;transition:all .25s}
+.svc-cta:hover{transform:translateX(3px)}
+.svc-popular-tag{position:absolute;top:.9rem;right:.9rem;font-family:'Space Mono',monospace;font-size:.44rem;font-weight:700;color:var(--gold);background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:100px;padding:.15rem .55rem;text-transform:uppercase;letter-spacing:.07em}
 
-/* AWARDS */
-.awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdr);border:.5px solid var(--bdr);border-radius:14px;overflow:hidden}
-.aw-card{background:var(--s1);padding:1.5rem;transition:all .35s;position:relative;overflow:hidden}
+/* ── AWARDS ── */
+.awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdr);border:.5px solid var(--bdr);border-radius:16px;overflow:hidden}
+.aw-card{background:var(--s1);padding:1.6rem;transition:background .3s;position:relative;overflow:hidden}
 .aw-card:hover{background:var(--s2)}
-.aw-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--acc),var(--pur));transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.aw-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s}
 .aw-card:hover::before{transform:scaleX(1)}
-.aw-card::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(0,212,255,.06) 50%,transparent 60%);transform:translateX(-100%);transition:transform .6s}
-.aw-card:hover::after{transform:translateX(100%)}
-.aw-icon{width:40px;height:40px;background:var(--s2);border:.5px solid var(--bdr);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:.9rem;font-size:1.1rem;transition:all .35s}
-.aw-card:hover .aw-icon{transform:scale(1.1);box-shadow:var(--glow)}
-.aw-year{font-size:.54rem;font-weight:700;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
-.aw-title{font-size:.85rem;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:.4rem}
+.aw-icon{width:38px;height:38px;background:var(--s2);border:.5px solid var(--bdr);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:.85rem}
+.aw-year{font-family:'Space Mono',monospace;font-size:.48rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.aw-title{font-family:'Fraunces',serif;font-size:.85rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:.35rem}
 .aw-desc{font-size:.7rem;color:var(--t2);line-height:1.65}
-.aw-link{display:inline-flex;align-items:center;gap:3px;font-size:.58rem;font-weight:700;color:var(--acc);text-decoration:none;margin-top:.75rem;transition:all .25s}
-.aw-link:hover{color:#33ddff;transform:translateX(2px)}
+.aw-link{display:inline-flex;align-items:center;gap:3px;font-family:'Space Mono',monospace;font-size:.52rem;font-weight:700;color:var(--gold);text-decoration:none;margin-top:.7rem;transition:all .25s;letter-spacing:.04em}
+.aw-link:hover{transform:translateX(2px)}
 
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
-.contact-h{font-size:1.8rem;font-weight:800;letter-spacing:-.05em;color:var(--text);line-height:1.1;margin-bottom:.75rem}
-.contact-h span{background:linear-gradient(135deg,var(--acc),#7dd3fc,var(--pur));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.contact-sub{font-size:.85rem;color:var(--t2);line-height:1.8;margin-bottom:1.75rem}
-.contact-outcomes{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem;padding:1rem 1.1rem;background:var(--acc3);border:.5px solid var(--bdr2);border-radius:10px}
-.co-item{font-size:.72rem;color:var(--t2);display:flex;align-items:flex-start;gap:.45rem;line-height:1.5}
-.co-item::before{content:'✓';color:var(--grn);font-weight:700;flex-shrink:0}
-.contact-info{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.5rem}
-.ci-item{display:flex;align-items:flex-start;gap:.75rem}
-.ci-icon{width:36px;height:36px;background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--acc);flex-shrink:0}
-.ci-label{font-size:.53rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 480px;gap:4rem;align-items:start}
+.contact-h{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;letter-spacing:-.05em;line-height:1;margin-bottom:.75rem}
+.contact-h em{font-style:italic;color:var(--gold)}
+.contact-sub{font-size:.88rem;color:var(--t2);line-height:1.85;margin-bottom:1.75rem}
+.contact-promise{background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:1.5rem}
+.cp-item{font-size:.74rem;color:var(--t2);display:flex;align-items:flex-start;gap:.45rem;line-height:1.55;margin-bottom:.4rem}
+.cp-item:last-child{margin-bottom:0}
+.cp-item::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0;font-size:.7rem}
+.contact-info{display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.5rem}
+.ci{display:flex;align-items:flex-start;gap:.75rem}
+.ci-ico{width:34px;height:34px;background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--gold);flex-shrink:0}
+.ci-lbl{font-family:'Space Mono',monospace;font-size:.47rem;color:var(--t3);letter-spacing:.08em;text-transform:uppercase}
 .ci-val{font-size:.78rem;color:var(--text);margin-top:.1rem;font-weight:500}
 .social-row{display:flex;gap:8px;margin-top:1.5rem}
-.soc-btn{width:36px;height:36px;border:.5px solid var(--bdr);border-radius:var(--r);display:flex;align-items:center;justify-content:center;color:var(--t2);text-decoration:none;font-size:.65rem;font-weight:700;transition:all .3s}
-.soc-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc3);transform:translateY(-3px)}
-.contact-form{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;padding:2rem;box-shadow:var(--glow)}
+.soc{width:36px;height:36px;border:.5px solid var(--bdr);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--t2);text-decoration:none;transition:all .3s}
+.soc:hover{border-color:var(--gold-bdr);color:var(--gold);background:var(--gold2);transform:translateY(-3px)}
+.contact-form{background:var(--s1);border:.5px solid var(--bdr);border-radius:20px;padding:2.25rem}
+.cf-head{margin-bottom:1.5rem}
+.cf-title{font-family:'Fraunces',serif;font-size:.95rem;font-weight:800;color:var(--text);letter-spacing:-.02em}
+.cf-sub{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--t3);margin-top:.2rem;letter-spacing:.04em}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
-.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.75rem}
-.form-group label{font-size:.56rem;font-weight:700;color:var(--t2);letter-spacing:.08em;text-transform:uppercase}
-.form-group input,.form-group textarea,.form-group select{background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);padding:.6rem .85rem;font-size:.82rem;color:var(--text);font-family:inherit;outline:none;transition:all .3s;width:100%}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(0,212,255,.06)}
-.form-group textarea{min-height:90px;resize:vertical}
-.form-group input::placeholder,.form-group textarea::placeholder{color:var(--t4)}
-.form-group select option{background:var(--s2)}
-.form-submit{width:100%;background:linear-gradient(135deg,var(--acc),#0099dd);color:#000;padding:.75rem;border:none;border-radius:var(--r);font-size:.78rem;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.04em;transition:all .3s;box-shadow:0 2px 16px rgba(0,212,255,.2)}
-.form-submit:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(0,212,255,.35)}
-.form-note{font-size:.56rem;color:var(--t4);text-align:center;margin-top:.6rem}
+.fg{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.75rem}
+.fg label{font-family:'Space Mono',monospace;font-size:.48rem;font-weight:400;color:var(--t3);letter-spacing:.09em;text-transform:uppercase}
+.fg input,.fg textarea,.fg select{background:var(--s2);border:.5px solid var(--bdr);border-radius:var(--r);padding:.65rem .9rem;font-size:.82rem;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;transition:all .3s;width:100%}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold-bdr);box-shadow:0 0 0 3px rgba(232,160,32,.06)}
+.fg textarea{min-height:90px;resize:vertical}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--t4)}
+.fg select option{background:var(--s2)}
+.form-submit{width:100%;background:var(--gold);color:#000;padding:.8rem;border:none;border-radius:var(--r);font-family:'Space Mono',monospace;font-size:.66rem;font-weight:700;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .3s}
+.form-submit:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,160,32,.3)}
+.form-note{font-family:'Space Mono',monospace;font-size:.48rem;color:var(--t4);text-align:center;margin-top:.6rem;letter-spacing:.04em}
 
-/* FOOTER */
-footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);position:relative;z-index:1}
-.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-logo{font-size:.78rem;font-weight:800;color:var(--text)}
-.footer-logo span{background:linear-gradient(135deg,var(--acc),var(--pur));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.footer-links{display:flex;gap:1.8rem}
-.footer-links a{font-size:.62rem;color:var(--t3);text-decoration:none;transition:color .25s}
+/* ── ARTICLES ── */
+.art-outer{overflow:hidden;position:relative;margin-top:2rem}
+.art-outer::before,.art-outer::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.art-outer::before{left:0;background:linear-gradient(90deg,var(--s1),transparent)}
+.art-outer::after{right:0;background:linear-gradient(-90deg,var(--s1),transparent)}
+.art-row{display:flex;gap:12px;width:max-content;padding:4px 0;margin-bottom:10px}
+.art-row.fwd{animation:art-f 42s linear infinite}
+.art-row.rev{animation:art-r 38s linear infinite}
+.art-row:hover{animation-play-state:paused}
+.art-card{width:256px;flex-shrink:0;background:var(--bg);border:.5px solid var(--bdr);border-radius:12px;padding:1.2rem;text-decoration:none;display:flex;flex-direction:column;gap:.65rem;transition:all .3s}
+.art-card:hover{background:var(--s2);border-color:var(--gold-bdr);transform:translateY(-3px)}
+.art-top{display:flex;justify-content:space-between;align-items:center}
+.art-cat{font-family:'Space Mono',monospace;font-size:.46rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:100px;padding:.14rem .55rem}
+.art-n{font-family:'Space Mono',monospace;font-size:.46rem;color:var(--t4);font-weight:700}
+.art-title{font-family:'DM Sans',sans-serif;font-size:.76rem;font-weight:600;color:var(--text);line-height:1.5;flex:1;transition:color .25s}
+.art-card:hover .art-title{color:var(--gold)}
+.art-read{font-family:'Space Mono',monospace;font-size:.5rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;transition:color .25s}
+.art-card:hover .art-read{color:var(--gold)}
+@keyframes art-f{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes art-r{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* ── FOOTER ── */
+footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)}
+.footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Fraunces',serif;font-size:.85rem;font-weight:800;color:var(--text);letter-spacing:-.02em}
+.footer-logo em{font-style:italic;color:var(--gold)}
+.footer-links{display:flex;gap:1.75rem}
+.footer-links a{font-family:'Space Mono',monospace;font-size:.54rem;color:var(--t3);text-decoration:none;letter-spacing:.07em;text-transform:uppercase;transition:color .25s}
 .footer-links a:hover{color:var(--text)}
-.footer-copy{font-size:.56rem;color:var(--t4)}
-.scroll-top{position:fixed;bottom:1.5rem;right:1.5rem;width:40px;height:40px;background:linear-gradient(135deg,var(--acc),var(--pur));color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:.8rem;font-weight:800;display:none;align-items:center;justify-content:center;z-index:100;transition:all .3s;box-shadow:0 4px 20px rgba(0,212,255,.25)}
-.scroll-top.show{display:flex}
-.scroll-top:hover{transform:translateY(-3px)}
+.footer-copy{font-family:'Space Mono',monospace;font-size:.48rem;color:var(--t4);letter-spacing:.04em}
 
-/* SRVICES */
-.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.5rem}
-.svc-card{background:var(--s1);border:.5px solid var(--bdr);border-radius:16px;padding:1.6rem 1.7rem;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
-.svc-card:hover{border-color:var(--bdr2);transform:translateY(-4px);box-shadow:var(--glow)}
-.svc-icon{width:42px;height:42px;border-radius:10px;background:var(--acc3);border:.5px solid var(--bdr2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1rem;transition:all .35s}
-.svc-card:hover .svc-icon{transform:scale(1.1);box-shadow:0 0 20px rgba(0,212,255,.2)}
-.svc-title{font-size:.95rem;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:.4rem}
-.svc-desc{font-size:.76rem;color:var(--t2);line-height:1.75;margin-bottom:1.1rem}
-.svc-deliverables{display:flex;flex-direction:column;gap:.3rem;margin-bottom:1.1rem}
-.svc-del-item{font-size:.66rem;color:var(--t2);display:flex;align-items:flex-start;gap:.4rem;line-height:1.5}
-.svc-del-item::before{content:'·';color:var(--acc);font-weight:900;flex-shrink:0}
-.svc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.85rem;border-top:.5px solid var(--bdr)}
-.svc-timeline{font-size:.58rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
-.svc-cta{font-size:.62rem;font-weight:700;color:var(--acc);text-decoration:none;display:flex;align-items:center;gap:.3rem;transition:all .25s}
-.svc-cta:hover{color:#33ddff;transform:translateX(2px)}
-.svc-popular{position:absolute;top:1.1rem;right:1.1rem;font-size:.5rem;font-weight:700;color:var(--amb);background:rgba(245,158,11,.1);border:.5px solid rgba(245,158,11,.2);border-radius:100px;padding:.18rem .6rem;letter-spacing:.06em;text-transform:uppercase}
+/* ── SCROLL TOP ── */
+#stbtn{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;background:var(--gold);color:#000;border:none;border-radius:10px;cursor:pointer;font-size:.75rem;font-weight:800;display:none;align-items:center;justify-content:center;z-index:100;transition:all .3s;box-shadow:0 4px 20px rgba(232,160,32,.3)}
+#stbtn.show{display:flex}
+#stbtn:hover{transform:translateY(-3px)}
 
-/* ANIMATIONS */
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-@keyframes art-fwd{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes art-rev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-.reveal.visible{opacity:1;transform:none}
-.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.22s}.reveal.d3{transition-delay:.32s}
-.ripple{position:absolute;border-radius:50%;background:rgba(0,212,255,.25);transform:scale(0);animation:ripple-out .6s linear;pointer-events:none}
-@keyframes ripple-out{to{transform:scale(4);opacity:0}}
-.tilt{transform-style:preserve-3d;transition:transform .15s ease-out}
+/* ── ANIMATIONS ── */
+@keyframes fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes char-up{from{transform:translateY(110%)}to{transform:translateY(0)}}
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr}.hero-photo-col{display:none}
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  .hero{grid-template-columns:1fr}.hero-viz{display:none}
+  .t-blocks{grid-template-columns:1fr 1fr}
   .contact-grid{grid-template-columns:1fr}
-  .exp-container{grid-template-columns:1fr}.exp-nav{flex-direction:row;flex-wrap:wrap;position:static;margin-bottom:1.5rem;height:auto}
-  .exp-tab{flex:0 0 auto}
-  .skills-grid{grid-template-columns:1fr}.awards-grid{grid-template-columns:1fr 1fr}
-  .process-track{grid-template-columns:1fr 1fr}.process-track::before,.process-track::after{display:none}
-  nav .nav-links{display:none}
-  nav{padding:0 1.5rem}.hero,.section{padding-left:1.5rem;padding-right:1.5rem}
-  .proj-card{grid-template-columns:48px 1fr;gap:1rem}.proj-right{display:none}
-  .about-stats{grid-template-columns:1fr 1fr}
-  .wih-grid{grid-template-columns:1fr}.svc-grid{grid-template-columns:1fr}.cs-grid{grid-template-columns:1fr}
-  .proj-featured{grid-template-columns:1fr}.testi-row{grid-template-columns:1fr}.hero-kpi-strip{grid-template-columns:1fr 1fr}
+  .cs-body{grid-template-columns:1fr}
+  .cs-col{border-right:none;border-bottom:.5px solid var(--bdr)}
+  .cs-col:last-child{border-bottom:none}
+  nav{padding:0 1.5rem}.nav-links{display:none}
+  .section{padding:4rem 1.5rem}
+  .hero{padding:100px 1.5rem 60px}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .problems-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .awards-grid{grid-template-columns:1fr 1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .proj-item{grid-template-columns:50px 1fr}
+  .proj-impact-col,.proj-arr{display:none}
 }
-@media(max-width:580px){
-  .awards-grid{grid-template-columns:1fr}.ep-metrics{grid-template-columns:1fr 1fr}
-  .process-track{grid-template-columns:1fr}.skills-grid{grid-template-columns:1fr}
-  .about-stats{grid-template-columns:1fr 1fr}.cs-results-grid{grid-template-columns:repeat(2,1fr)}
-  .hero-kpi-strip{grid-template-columns:1fr 1fr}
+@media(max-width:600px){
+  .hero-kpis{grid-template-columns:1fr 1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .awards-grid{grid-template-columns:1fr}
+  .t-blocks{grid-template-columns:1fr}
+  .t-metrics{gap:.4rem}
+  .tmet{min-width:70px}
 }
 </style>
 </head>
 <body>
 
-<div class="hero-bg">
-  <div class="hero-orb orb1"></div>
-  <div class="hero-orb orb2"></div>
-  <div class="hero-orb orb3"></div>
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pl-inner">
+    <div class="pl-logo">Y<span>M</span></div>
+    <div class="pl-bar"><div class="pl-fill"></div></div>
+  </div>
 </div>
+
 <div id="scroll-bar"></div>
 
+<!-- NAV -->
 <nav>
-  <a href="#home" class="nav-logo">
-    <div class="nav-logo-mark">YM</div>
-    <div><div class="nav-logo-text">Yunus Miah</div><div class="nav-logo-sub">BI Analyst · Consultant</div></div>
-  </a>
+  <a href="#home" class="nav-logo">Yunus <span>Miah</span></a>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
+    <a href="#problems">Problems I Solve</a>
+    <a href="#experience">Career</a>
     <a href="#projects">Projects</a>
-    <a href="#writing">Writing</a>
+    <a href="#services">Consulting</a>
     <a href="#contact">Contact</a>
   </div>
-  <div class="nav-cta">
-    <a href="assets/pdf/Yunus_Miah.pdf" class="btn-ghost" download>Download CV</a>
-    <a href="#contact" class="btn-solid">Let's Talk →</a>
+  <div class="nav-right">
+    <a href="assets/pdf/Yunus_Miah.pdf" class="btn-outline" download>↓ CV</a>
+    <a href="#contact" class="btn-gold">Let's Talk →</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="home" class="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-badge reveal"><span class="badge-dot"></span><span class="badge-text">Available for Hire & Consulting</span></div>
-      <div class="hero-greeting reveal">Hey, I'm Yunus <span>👋</span></div>
-      <h1 class="hero-h1 reveal d1">I turn messy data<br>into <span>clear decisions</span>.</h1>
-      <div class="hero-type reveal d2">
-        <span id="type-static" style="color:var(--t2)"></span>
-        <span id="type-hi" style="color:var(--acc);font-weight:700"></span>
-        <span style="color:var(--acc);animation:blink 1s steps(1) infinite">|</span>
+  <div class="hero-text">
+    <div class="hero-eyebrow">
+      <span class="status-dot"></span>
+      <span class="eyebrow-text">Available · Senior BI Analyst · Dhaka, BD</span>
+    </div>
+    <div class="hero-name" id="hero-name"></div>
+    <div class="hero-role">
+      <div class="role-line"></div>
+      <div class="hero-role-text">Senior BI Analyst & Data Consultant</div>
+    </div>
+    <div id="hero-typewriter"><span class="tw-prefix">&gt;&nbsp;</span><span class="tw-word" id="tw-text"></span><span class="tw-cursor" id="tw-cursor">|</span></div>
+    <p class="hero-desc">I turn fragmented business data into intelligence that <strong>executives trust</strong> and teams act on. 4+ years building enterprise analytics platforms that directly drive revenue, retention, and operational efficiency.</p>
+    <div class="hero-kpis">
+      <div class="kpi"><div class="kpi-val"><em>$</em>400<em>M+</em></div><div class="kpi-label">ARR Managed</div><div class="kpi-delta">↑ 23% YoY</div></div>
+      <div class="kpi"><div class="kpi-val">550<em>+</em></div><div class="kpi-label">Dashboard Users</div><div class="kpi-delta">↑ 10 Depts</div></div>
+      <div class="kpi"><div class="kpi-val"><em>$</em>20<em>M+</em></div><div class="kpi-label">Pipeline Found</div><div class="kpi-delta">↑ Hidden Q</div></div>
+      <div class="kpi"><div class="kpi-val">65<em>h</em></div><div class="kpi-label">Saved / Month</div><div class="kpi-delta">↓ Manual Work</div></div>
+    </div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-gold">View My Work ↓</a>
+      <a href="#experience" class="btn-outline">Career Track →</a>
+      <a href="assets/pdf/Yunus_Miah.pdf" class="btn-outline" download>↓ Download CV</a>
+    </div>
+    <div class="hero-tags">
+      <span class="tag hi">Power BI</span><span class="tag hi">Snowflake</span><span class="tag hi">Advanced DAX</span><span class="tag">Python</span><span class="tag">dbt</span><span class="tag">SQL</span><span class="tag">Airflow</span><span class="tag">Azure</span><span class="tag">PL-300</span><span class="tag">SQLBI DAX Expert</span>
+    </div>
+  </div>
+  <div class="hero-viz">
+    <div class="viz-card">
+      <div class="viz-header">
+        <span class="viz-title">ARR · GTM Performance Dashboard</span>
+        <span class="viz-live"><span class="viz-live-dot"></span>Live</span>
       </div>
-      <p class="hero-desc reveal d2">Senior BI Analyst with 4+ years building enterprise data platforms, executive dashboards, and ML-powered insights that C-suite leaders actually trust. Managing analytics for $400M+ ARR portfolios.</p>
-
-      <!-- ── 4 live KPI cards with mini sparklines — proves BI in the hero ── -->
-      <div class="hero-kpi-strip reveal d2">
-        <div class="hkpi">
-          <div class="hkpi-val"><sup>$</sup>400<sup>M+</sup></div>
-          <div class="hkpi-label">ARR Managed</div>
-          <div class="hkpi-delta">↑ 23% YoY</div>
-          <canvas class="hkpi-spark" id="sp1" width="60" height="28"></canvas>
+      <canvas id="hero-canvas" width="420" height="210" style="width:100%;border-radius:8px;display:block"></canvas>
+      <div class="viz-mini-metrics">
+        <div class="vmm">
+          <div class="vmm-val">$<span id="vm1">400</span><small>M</small></div>
+          <div class="vmm-label">ARR</div>
+          <canvas class="vmm-spark" id="spark1" width="80" height="18"></canvas>
+          <div class="vmm-delta" id="vm1d">↑ 2.3%</div>
         </div>
-        <div class="hkpi">
-          <div class="hkpi-val">550<sup>+</sup></div>
-          <div class="hkpi-label">Dashboard Users</div>
-          <div class="hkpi-delta">↑ 10 depts</div>
-          <canvas class="hkpi-spark" id="sp2" width="60" height="28"></canvas>
+        <div class="vmm">
+          <div class="vmm-val"><span id="vm2">92</span><small>%</small></div>
+          <div class="vmm-label">NRR</div>
+          <canvas class="vmm-spark" id="spark2" width="80" height="18"></canvas>
+          <div class="vmm-delta" id="vm2d">↑ 1.1%</div>
         </div>
-        <div class="hkpi">
-          <div class="hkpi-val"><sup>$</sup>20<sup>M+</sup></div>
-          <div class="hkpi-label">Pipeline Found</div>
-          <div class="hkpi-delta">↑ Untracked Q</div>
-          <canvas class="hkpi-spark" id="sp3" width="60" height="28"></canvas>
-        </div>
-        <div class="hkpi">
-          <div class="hkpi-val">65<sup>h+</sup></div>
-          <div class="hkpi-label">Saved / Month</div>
-          <div class="hkpi-delta">↓ Manual work</div>
-          <canvas class="hkpi-spark" id="sp4" width="60" height="28"></canvas>
+        <div class="vmm">
+          <div class="vmm-val"><span id="vm3">67</span><small>%</small></div>
+          <div class="vmm-label">Win Rate</div>
+          <canvas class="vmm-spark" id="spark3" width="80" height="18"></canvas>
+          <div class="vmm-delta" id="vm3d">↑ 0.8%</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="hero-actions reveal d3">
-        <a href="#projects" class="btn-solid">See My Work ↓</a>
-        <a href="#experience" class="btn-ghost">Work History</a>
-        <a href="assets/pdf/Yunus_Miah.pdf" class="btn-ghost" download>↓ CV</a>
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner" id="marquee-inner"></div>
+</div>
+
+<!-- PROBLEMS I SOLVE -->
+<section class="section" id="problems" style="background:var(--s1)">
+  <div class="section-inner">
+    <div class="section-label r"><span class="label-num">01</span><span class="label-text">Who I Help</span></div>
+    <h2 class="section-h r d1">The business problems<br><em>I was built to solve.</em></h2>
+    <p class="section-sub r d2">I work best with teams that have data — but aren't getting decisions from it.</p>
+    <div class="problems-grid r d2">
+      <div class="prob-card">
+        <span class="prob-persona">Revenue & GTM Leaders</span>
+        <div class="prob-title">We have Salesforce, a BI tool, and three different pipeline numbers. Nobody trusts any of them.</div>
+        <p class="prob-desc">Every Monday starts with reconciling spreadsheets. Cross-team reporting takes days. Your CRO is making pricing and GTM calls on guesswork.</p>
+        <div class="prob-solve">I build your north-star revenue framework — ARR, NRR, Win Rate, ARPU — with full data lineage and one trusted source. No more metric wars.</div>
+        <div class="prob-result">$20M+ pipeline surfaced · 65h/month saved at Optimizely</div>
       </div>
-      <div class="hero-stack reveal d3">
-        <span class="sc hi">Power BI</span><span class="sc hi">Snowflake</span><span class="sc hi">Advanced DAX</span><span class="sc">Python</span><span class="sc">dbt</span><span class="sc">SQL</span><span class="sc">Airflow</span><span class="sc">Azure</span><span class="sc">scikit-learn</span><span class="sc">PL-300</span>
+      <div class="prob-card">
+        <span class="prob-persona">Scale-up Founders & Ops Leads</span>
+        <div class="prob-title">We're growing fast, but decisions are made on week-old exports and gut feel.</div>
+        <p class="prob-desc">You've outgrown spreadsheets but haven't built the intelligence layer yet. Data exists — it's scattered, stale, and siloed across 5 different tools.</p>
+        <div class="prob-solve">I architect and build your unified analytics platform — from raw data ingestion to self-serve dashboards your team opens every day.</div>
+        <div class="prob-result">150+ daily users · $195M+ GMV guided at ShopUp</div>
+      </div>
+      <div class="prob-card">
+        <span class="prob-persona">Finance & Supply Chain Teams</span>
+        <div class="prob-title">Manual reporting takes 40+ hours a month. Errors slip through. We can't move fast enough.</div>
+        <p class="prob-desc">Your analysts are doing copy-paste work instead of analysis. Reports live in fragile Excel files nobody dares touch. Restocking decisions are reactive.</p>
+        <div class="prob-solve">I automate your full reporting stack and build inventory intelligence that triggers replenishment 30 days ahead — before stock-outs happen.</div>
+        <div class="prob-result">45% warehouse capacity recovered · 20% incremental sales</div>
+      </div>
+      <div class="prob-card">
+        <span class="prob-persona">Customer & Retention Teams</span>
+        <div class="prob-title">We lose customers before we even know they're at risk. By the time we act, revenue has already walked.</div>
+        <p class="prob-desc">Churn is only discovered after the fact. You have no early-warning system. Customers are treated as one group — no lifecycle intelligence, no targeted intervention.</p>
+        <div class="prob-solve">I build behavioral intelligence systems that flag high-risk accounts 2+ weeks early and segment customers for targeted action — before it's too late.</div>
+        <div class="prob-result">20,000+ users retained · $150K revenue leakage stopped</div>
       </div>
     </div>
-    <div class="hero-photo-col reveal d2">
-      <div class="hero-photo-ring">
-        <img class="hero-photo" src="https://cdn.jsdelivr.net/gh/YM-Codes/Portfolio@main/assets/img/ym-rbg.png" alt="Yunus Miah">
-      </div>
-      <div class="hero-photo-badge">Available Now</div>
-    </div>
   </div>
 </section>
 
-<div class="ticker-wrap"><div class="ticker-inner" id="ticker"></div></div>
+<div class="divider"></div>
 
-<!-- WHO I HELP -->
-<section class="section" id="who-i-help">
-  <div class="section-inner">
-    <div class="section-tag reveal">Who I Help</div>
-    <h2 class="section-h reveal d1">The problems I was built to solve</h2>
-    <p class="section-sub reveal d2">I work best with teams that have data — but aren't getting decisions from it.</p>
-    <div class="wih-grid reveal d2">
-      <div class="wih-card"><div class="wih-persona">Revenue & GTM Leaders</div><div class="wih-problem">"We have Salesforce, a BI tool, and three different pipeline numbers. Nobody trusts any of them."</div><div class="wih-desc">Your team has data — but no agreement on what it means. Every Monday starts with reconciling spreadsheets instead of making decisions.</div><div class="wih-solve">I build the north-star KPI framework — ARR, NRR, Win Rate, ARPU — with full data lineage. One number. One truth.</div></div>
-      <div class="wih-card"><div class="wih-persona">Scale-up Founders & Ops Leads</div><div class="wih-problem">"Decisions are made on gut feel or week-old exports. We're growing fast but flying blind."</div><div class="wih-desc">You've outgrown spreadsheets but haven't built the intelligence layer yet. The data exists — it's scattered, stale, and siloed.</div><div class="wih-solve">I architect and build your unified analytics platform — from raw data to self-serve dashboards your team uses daily.</div></div>
-      <div class="wih-card"><div class="wih-persona">Finance & Supply Chain Teams</div><div class="wih-problem">"Manual reporting takes 40+ hours a month. Errors slip through. We can't move fast enough."</div><div class="wih-desc">Your analysts are doing copy-paste work instead of analysis. Reports are built on fragile Excel files nobody dares touch.</div><div class="wih-solve">I automate your entire reporting stack — eliminating manual errors and delivering real-time visibility.</div></div>
-      <div class="wih-card"><div class="wih-persona">Data Teams Being Asked To Do More</div><div class="wih-problem">"Every department has their own dashboard. None of them agree. Nobody knows what's canonical."</div><div class="wih-desc">You have analysts — but no governance. Every dashboard tells a slightly different story.</div><div class="wih-solve">I define SSOT architecture, set data contracts, and build governance frameworks that permanently end metric wars.</div></div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ABOUT -->
-<section class="section" id="about">
-  <div class="section-inner">
-    <div class="section-tag reveal">About Me</div>
-    <h2 class="section-h reveal d1">The Analyst Behind the Numbers</h2>
-    <p class="section-sub reveal d2">Not just dashboards — I build the data culture that makes them matter.</p>
-    <div class="about-text reveal d2">
-      <p style="margin-bottom:1.2rem">I'm Yunus, a <strong>Senior BI Analyst</strong> based in Dhaka, currently leading analytics at <span class="highlight">Optimizely</span> across a $400M+ ARR portfolio. I work with 10+ global teams to turn fragmented data into a <strong>single source of truth</strong> that execs actually rely on.</p>
-      <p style="margin-bottom:1.2rem">Before Optimizely, I built the analytics backbone at <strong>ShopUp</strong> (one of Bangladesh's largest B2B platforms, $195M+ GMV), helped retain 20K+ users at <strong>AponTech</strong> through ML-driven insights, and started my journey optimizing SQL queries at <strong>DataWorks</strong>.</p>
-      <p>What drives me? I believe <span class="highlight">data should simplify decisions, not complicate them</span>. Whether it's a Power BI dashboard for 550+ users or an ML model predicting churn, if it doesn't change how someone acts, it's just decoration.</p>
-    </div>
-    <div class="about-stats reveal d3">
-      <div class="astat"><div class="astat-val"><span id="cnt-arr">0</span><span>M+</span></div><div class="astat-label">ARR Managed</div><div class="astat-sub">Optimizely GTM</div></div>
-      <div class="astat"><div class="astat-val"><span id="cnt-dash">0</span><span>+</span></div><div class="astat-label">Dashboards Built</div><div class="astat-sub">550+ global users</div></div>
-      <div class="astat"><div class="astat-val"><span id="cnt-rows">0</span><span>M+</span></div><div class="astat-label">Rows / Day</div><div class="astat-sub">Snowflake pipelines</div></div>
-      <div class="astat"><div class="astat-val"><span id="cnt-pipe">0</span><span>M+</span></div><div class="astat-label">Pipeline Found</div><div class="astat-sub">Revenue insights</div></div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- PROCESS -->
-<section class="section" id="process">
-  <div class="section-inner">
-    <div class="section-tag reveal">My Process</div>
-    <h2 class="section-h reveal d1">How I Work</h2>
-    <p class="section-sub reveal d2">A proven approach, whether it's a 2-week sprint or a 6-month engagement.</p>
-    <div class="process-track reveal d2" id="process-track">
-      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🔍</div><div class="ps-num-badge">01</div></div><div class="ps-title">Discover</div><div class="ps-desc">Understand your data landscape, pain points, and what success looks like.</div><div class="ps-deliverable">Data Audit + KPI Blueprint</div></div>
-      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🏗️</div><div class="ps-num-badge">02</div></div><div class="ps-title">Architect</div><div class="ps-desc">Design the data model, governance framework, and KPI structure.</div><div class="ps-deliverable">Data Model + Governance Doc</div></div>
-      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">🚀</div><div class="ps-num-badge">03</div></div><div class="ps-title">Build & Ship</div><div class="ps-desc">Deliver dashboards, pipelines, and models in fast iterative sprints.</div><div class="ps-deliverable">Live Dashboards + Pipeline</div></div>
-      <div class="process-step"><div class="ps-wrap"><div class="ps-glow"></div><div class="ps-ring"></div><div class="ps-icon">📈</div><div class="ps-num-badge">04</div></div><div class="ps-title">Scale</div><div class="ps-desc">Train your team, document everything, and ensure long-term growth.</div><div class="ps-deliverable">Training + Full Runbooks</div></div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- SERVICES -->
-<section class="section" id="services" style="background:var(--s1)">
-  <div class="section-inner">
-    <div class="section-tag reveal">Services</div>
-    <h2 class="section-h reveal d1">What I do for clients</h2>
-    <p class="section-sub reveal d2">From a focused 2-week audit to a full-stack BI transformation. All engagements include documentation and knowledge transfer.</p>
-    <div class="svc-grid reveal d2">
-      <div class="svc-card"><span class="svc-popular">Most Popular</span><div class="svc-icon">📊</div><div class="svc-title">BI Build & Modernisation</div><div class="svc-desc">I design and build your entire Power BI analytics layer — from data model to self-serve dashboards your business team actually uses.</div><div class="svc-deliverables"><div class="svc-del-item">Power BI dashboards with Advanced DAX measures</div><div class="svc-del-item">Star-schema data model & Snowflake integration</div><div class="svc-del-item">Row-level security & GDPR-compliant access controls</div><div class="svc-del-item">Self-service documentation & user training</div></div><div class="svc-footer"><span class="svc-timeline">⏱ 2–6 weeks</span><a href="#contact" class="svc-cta">Start a conversation →</a></div></div>
-      <div class="svc-card"><div class="svc-icon">🗺️</div><div class="svc-title">Data Strategy & Governance</div><div class="svc-desc">I audit your current data stack, define your north-star KPI framework, and build the governance infrastructure that eliminates metric disagreements permanently.</div><div class="svc-deliverables"><div class="svc-del-item">North-star KPI framework (ARR, NRR, CLV, ARPU)</div><div class="svc-del-item">SSOT architecture design & data lineage mapping</div><div class="svc-del-item">Data contracts + governed catalog (Atlan)</div><div class="svc-del-item">Stakeholder alignment workshop & rollout plan</div></div><div class="svc-footer"><span class="svc-timeline">⏱ 2–4 weeks</span><a href="#contact" class="svc-cta">Book a free audit →</a></div></div>
-      <div class="svc-card"><div class="svc-icon">🤖</div><div class="svc-title">ML & Advanced Analytics</div><div class="svc-desc">I build the predictive models that give your team advance warning — churn signals, inventory gaps, and revenue risk before they become problems.</div><div class="svc-deliverables"><div class="svc-del-item">Churn prediction models (XGBoost / Bayesian)</div><div class="svc-del-item">RFM segmentation & CLV modelling</div><div class="svc-del-item">A/B experiment design, execution & analysis</div><div class="svc-del-item">Anomaly detection & automated alerting</div></div><div class="svc-footer"><span class="svc-timeline">⏱ 3–8 weeks</span><a href="#contact" class="svc-cta">Start a conversation →</a></div></div>
-      <div class="svc-card"><div class="svc-icon">🧭</div><div class="svc-title">Fractional BI Lead</div><div class="svc-desc">Senior analytics leadership without the full-time hire. I embed in your team on a monthly retainer — owning strategy, mentoring analysts, keeping quality high.</div><div class="svc-deliverables"><div class="svc-del-item">Weekly data strategy & prioritisation sessions</div><div class="svc-del-item">Analyst mentoring & code / model reviews</div><div class="svc-del-item">Exec-level dashboard reviews & storytelling</div><div class="svc-del-item">Ongoing governance, monitoring & maintenance</div></div><div class="svc-footer"><span class="svc-timeline">⏱ Monthly retainer</span><a href="#contact" class="svc-cta">Let's discuss scope →</a></div></div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- EXPERIENCE -->
+<!-- EXPERIENCE TIMELINE -->
 <section class="section" id="experience">
   <div class="section-inner">
-    <div class="section-tag reveal">Career</div>
-    <h2 class="section-h reveal d1">Work Experience</h2>
-    <p class="section-sub reveal d2">4 years across SaaS, B2B distribution, healthcare & fintech.</p>
-    <div class="exp-container reveal d2">
-      <div class="exp-nav">
-        <button class="exp-tab active" data-target="opt">Optimizely<span class="exp-tab-co">2025 – Present</span></button>
-        <button class="exp-tab" data-target="shop">ShopUp (Mokam)<span class="exp-tab-co">2023 – 2024</span></button>
-        <button class="exp-tab" data-target="apon">AponTech Ltd<span class="exp-tab-co">2022 – 2023</span></button>
-        <button class="exp-tab" data-target="dw">DataWorks<span class="exp-tab-co">2022 · Internship</span></button>
+    <div class="section-label r"><span class="label-num">02</span><span class="label-text">Career Track</span></div>
+    <h2 class="section-h r d1">4 years. 4 companies.<br><em>Measurable outcomes every time.</em></h2>
+    <p class="section-sub r d2">Every role: a real business problem, a technical solution I built, and a result that mattered.</p>
+    <div class="timeline" id="timeline">
+      <div class="t-entry">
+        <div class="t-dot"></div>
+        <div class="t-period mono">Jan 2025 – Present · Dhaka (Remote, Global)</div>
+        <div class="t-role">Senior Business Intelligence Analyst</div>
+        <div class="t-company"><a href="https://www.optimizely.com/" class="t-co-name" target="_blank">Optimizely</a><span class="t-co-badge">Current · SaaS</span><span class="t-co-badge">$400M+ ARR</span></div>
+        <div class="t-blocks">
+          <div class="t-block"><div class="t-block-icon">⚡</div><div class="t-block-label problem">The Situation</div><div class="t-block-text">10+ departments running separate analytics. Leadership lacked a trusted single view of the $400M+ ARR portfolio. 6+ months of cross-team metric conflict with no resolution.</div></div>
+          <div class="t-block"><div class="t-block-icon">🔧</div><div class="t-block-label solution">What I Built</div><div class="t-block-text">45+ self-serve Power BI dashboards with enterprise KPI framework (ARR, NRR, CLV, ARPU, Win Rate), full data lineage, Snowflake integration, GDPR controls, and 15+ controlled retention experiments.</div></div>
+          <div class="t-block"><div class="t-block-icon">📈</div><div class="t-block-label outcome">The Outcome</div><div class="t-block-text">$20M+ in untracked pipeline surfaced. 550+ users adopted the platform across 10 departments. 65+ hours of monthly manual reporting eliminated. Retention model accuracy improved 18%.</div></div>
+        </div>
+        <div class="t-metrics">
+          <div class="tmet"><div class="tmet-val"><em>$</em>400<em>M+</em></div><div class="tmet-lbl">ARR Portfolio</div></div>
+          <div class="tmet"><div class="tmet-val">550<em>+</em></div><div class="tmet-lbl">Users</div></div>
+          <div class="tmet"><div class="tmet-val">65<em>h+</em></div><div class="tmet-lbl">Saved / Mo</div></div>
+          <div class="tmet"><div class="tmet-val"><em>$</em>20<em>M+</em></div><div class="tmet-lbl">Pipeline Found</div></div>
+          <div class="tmet"><div class="tmet-val">18<em>%</em></div><div class="tmet-lbl">Model Accuracy ↑</div></div>
+        </div>
+        <div class="t-tags"><span class="ttag">Power BI</span><span class="ttag">Advanced DAX</span><span class="ttag">Snowflake</span><span class="ttag">Python</span><span class="ttag">SQL</span><span class="ttag">dbt</span><span class="ttag">Salesforce</span><span class="ttag">A/B Testing</span><span class="ttag">SSOT Governance</span></div>
       </div>
-      <div>
-        <div class="exp-panel active" id="p-opt">
-          <div class="ep-role">Senior Business Intelligence Analyst</div>
-          <div class="ep-company"><a href="https://www.optimizely.com/" class="ep-co-name" target="_blank">Optimizely</a><span class="ep-co-badge">Current Role</span></div>
-          <div class="ep-period">Jan 2025 – Present · Dhaka (Remote, Global)</div>
-          <div class="ep-metrics">
-            <div class="epm"><div class="epm-val"><sup>$</sup>400<sup>M+</sup></div><div class="epm-l">ARR Portfolio</div></div>
-            <div class="epm"><div class="epm-val">550<sup>+</sup></div><div class="epm-l">Global Users</div></div>
-            <div class="epm"><div class="epm-val">65<sup>h+</sup></div><div class="epm-l">Saved/Month</div></div>
-            <div class="epm"><div class="epm-val"><sup>$</sup>20<sup>M+</sup></div><div class="epm-l">Pipeline Found</div></div>
-          </div>
-          <p class="ep-desc">Sole analytics owner across a $400M+ ARR portfolio — built the intelligence layer that 550+ users across 10 departments rely on daily to make pricing, retention, and growth decisions.</p>
-          <ul class="ep-bullets">
-            <li>Surfaced $20M+ in untracked quarterly pipeline through root-cause diagnostics — directly reshaping C-suite GTM priorities and budget allocation.</li>
-            <li>Built 45+ self-serve Power BI dashboards adopted by 550+ global users across 10 departments, eliminating 65+ hours of monthly manual reporting.</li>
-            <li>Ended 6+ months of cross-team metric conflict by defining the enterprise north-star KPI framework (ARR, NRR, CLV, ARPU, Win Rate) with full data lineage and GDPR controls.</li>
-            <li>Ran 15+ Bayesian A/B experiments lifting retention model accuracy 18% and moving churn identification 2+ weeks earlier — before revenue walked out the door.</li>
-          </ul>
-          <div class="ep-tags"><span class="etag">Power BI</span><span class="etag">Advanced DAX</span><span class="etag">Snowflake</span><span class="etag">Python</span><span class="etag">SQL</span><span class="etag">dbt</span><span class="etag">Salesforce</span><span class="etag">A/B Testing</span><span class="etag">CI/CD</span><span class="etag">SSOT Governance</span></div>
+      <div class="t-entry">
+        <div class="t-dot"></div>
+        <div class="t-period mono">Oct 2023 – Dec 2024 · Dhaka</div>
+        <div class="t-role">Sales Data Analyst (Expert)</div>
+        <div class="t-company"><a href="https://shopup.org/" class="t-co-name" target="_blank">Mokam CPG — ShopUp</a><span class="t-co-badge">B2B Distribution</span><span class="t-co-badge">$195M+ GMV</span></div>
+        <div class="t-blocks">
+          <div class="t-block"><div class="t-block-icon">⚡</div><div class="t-block-label problem">The Situation</div><div class="t-block-text">6 departments running conflicting reports from different data pulls. VP Sales, Supply Chain and Finance disagreed on GMV figures by millions in the same meeting. No governance, no single truth.</div></div>
+          <div class="t-block"><div class="t-block-icon">🔧</div><div class="t-block-label solution">What I Built</div><div class="t-block-text">Sales Sight 360 — a governed Snowflake data layer with data contracts, unified Power BI platform (star-schema model, consistent DAX measures), cohort intelligence, and inventory forecasting system.</div></div>
+          <div class="t-block"><div class="t-block-icon">📈</div><div class="t-block-label outcome">The Outcome</div><div class="t-block-text">150+ daily active users. 90% of cross-regional metric discrepancies eliminated. MoM churn reduced 12%. 45% idle warehouse capacity recovered. 20% incremental sales from reactivated stock.</div></div>
         </div>
-        <div class="exp-panel" id="p-shop">
-          <div class="ep-role">Sales Data Analyst (Expert)</div>
-          <div class="ep-company"><a href="https://shopup.org/" class="ep-co-name" target="_blank">Mokam CPG — ShopUp</a><span class="ep-co-badge">B2B · $195M+ GMV</span></div>
-          <div class="ep-period">Oct 2023 – Dec 2024 · Dhaka</div>
-          <div class="ep-metrics">
-            <div class="epm"><div class="epm-val"><sup>$</sup>195<sup>M+</sup></div><div class="epm-l">Annual GMV</div></div>
-            <div class="epm"><div class="epm-val">150<sup>+</sup></div><div class="epm-l">DAU</div></div>
-            <div class="epm"><div class="epm-val">90<sup>%</sup></div><div class="epm-l">Metric Accuracy</div></div>
-            <div class="epm"><div class="epm-val">−12<sup>%</sup></div><div class="epm-l">MoM Churn</div></div>
-          </div>
-          <p class="ep-desc">Strategic data partner to VP Sales, Supply Chain, and Finance at one of Bangladesh's largest B2B platforms — turning fragmented marketplace data into operational decisions across $195M+ in annual GMV.</p>
-          <ul class="ep-bullets">
-            <li>Built Sales Sight 360 — adopted as the operational backbone by 150+ daily active users across 6 departments, guiding $195M+ in annual B2B decisions.</li>
-            <li>Reduced MoM churn 12% through cohort analysis, RFM segmentation, and lifecycle intelligence that flagged high-risk accounts before they lapsed.</li>
-            <li>Eliminated 90% of cross-regional metric discrepancies by shipping data contracts and a governed catalog — permanently ending the "whose numbers are right?" problem.</li>
-            <li>Recovered 45% of idle warehouse capacity with inventory prediction models that auto-triggered restocking 30 days ahead, unlocking 20% incremental sales from reactivated stock.</li>
-          </ul>
-          <div class="ep-tags"><span class="etag">Power BI</span><span class="etag">Advanced DAX</span><span class="etag">Python</span><span class="etag">SQL</span><span class="etag">Azure Data Factory</span><span class="etag">Atlan</span><span class="etag">Cohort Analysis</span><span class="etag">RFM</span><span class="etag">Time-Series</span></div>
+        <div class="t-metrics">
+          <div class="tmet"><div class="tmet-val"><em>$</em>195<em>M+</em></div><div class="tmet-lbl">Annual GMV</div></div>
+          <div class="tmet"><div class="tmet-val">150<em>+</em></div><div class="tmet-lbl">Daily Users</div></div>
+          <div class="tmet"><div class="tmet-val">90<em>%</em></div><div class="tmet-lbl">Data Accuracy ↑</div></div>
+          <div class="tmet"><div class="tmet-val">−12<em>%</em></div><div class="tmet-lbl">MoM Churn</div></div>
+          <div class="tmet"><div class="tmet-val">45<em>%</em></div><div class="tmet-lbl">Warehouse Recov.</div></div>
         </div>
-        <div class="exp-panel" id="p-apon">
-          <div class="ep-role">Associate Data Analyst</div>
-          <div class="ep-company"><a href="http://www.apon-wellbeing.com/" class="ep-co-name" target="_blank">AponTech Ltd</a><span class="ep-co-badge">Healthcare / eCommerce</span></div>
-          <div class="ep-period">Dec 2022 – Sep 2023 · Dhaka</div>
-          <div class="ep-metrics">
-            <div class="epm"><div class="epm-val">20<sup>K+</sup></div><div class="epm-l">Users Retained</div></div>
-            <div class="epm"><div class="epm-val">85<sup>%+</sup></div><div class="epm-l">ML Accuracy</div></div>
-            <div class="epm"><div class="epm-val">+50<sup>%</sup></div><div class="epm-l">Basket Growth</div></div>
-            <div class="epm"><div class="epm-val"><sup>$</sup>150<sup>K</sup></div><div class="epm-l">Leakage Stopped</div></div>
-          </div>
-          <p class="ep-desc">Sole analyst for a 100K+ user eCommerce app — applied ML and behavioural analytics to directly grow revenue, retain high-value customers, and eliminate silent losses the business didn't know existed.</p>
-          <ul class="ep-bullets">
-            <li>Grew average basket size 50% — $16 → $24 — by building k-means customer segments and targeting each with personalised promotional strategies per cohort.</li>
-            <li>Retained 20K+ high-value users with an XGBoost churn model (85%+ accuracy) that gave the team a 2-week early-warning window to intervene before loss.</li>
-            <li>Stopped $150K in annual revenue leakage by automating anomaly detection across transactions, replacing 10+ hours of weekly manual review with zero-touch alerts.</li>
-          </ul>
-          <div class="ep-tags"><span class="etag">Python</span><span class="etag">XGBoost</span><span class="etag">scikit-learn</span><span class="etag">SQL</span><span class="etag">Power BI</span><span class="etag">k-means</span><span class="etag">Lifecycle Analytics</span></div>
+        <div class="t-tags"><span class="ttag">Power BI</span><span class="ttag">Advanced DAX</span><span class="ttag">Python</span><span class="ttag">SQL</span><span class="ttag">Azure Data Factory</span><span class="ttag">Atlan</span><span class="ttag">Cohort Analysis</span><span class="ttag">RFM</span><span class="ttag">Time-Series</span></div>
+      </div>
+      <div class="t-entry">
+        <div class="t-dot"></div>
+        <div class="t-period mono">Dec 2022 – Sep 2023 · Dhaka</div>
+        <div class="t-role">Associate Data Analyst</div>
+        <div class="t-company"><a href="http://www.apon-wellbeing.com/" class="t-co-name" target="_blank">AponTech Ltd</a><span class="t-co-badge">Healthcare eCommerce</span><span class="t-co-badge">100K+ Users</span></div>
+        <div class="t-blocks">
+          <div class="t-block"><div class="t-block-icon">⚡</div><div class="t-block-label problem">The Situation</div><div class="t-block-text">High-value users leaving silently — no early-warning system. Churn discovered after the fact. $150K leaking annually through undetected transaction anomalies. All customers treated identically.</div></div>
+          <div class="t-block"><div class="t-block-icon">🔧</div><div class="t-block-label solution">What I Built</div><div class="t-block-text">Customer intelligence segmentation (6 behavioural cohorts), a behavioral risk scoring model (85%+ accuracy, 2-week early warning window), and automated transaction monitoring.</div></div>
+          <div class="t-block"><div class="t-block-icon">📈</div><div class="t-block-label outcome">The Outcome</div><div class="t-block-text">20,000+ high-value users retained. Average basket grew 50% ($16 → $24) through targeted segment promotions. $150K in annual revenue leakage stopped.</div></div>
         </div>
-        <div class="exp-panel" id="p-dw">
-          <div class="ep-role">Data Analyst Intern</div>
-          <div class="ep-company"><a href="https://datacrafters.io/" class="ep-co-name" target="_blank">DataWorks Ltd.</a><span class="ep-co-badge">Remote · Houston TX</span></div>
-          <div class="ep-period">May – Nov 2022 · Remote</div>
-          <div class="ep-metrics">
-            <div class="epm"><div class="epm-val">40<sup>+</sup></div><div class="epm-l">Queries Tuned</div></div>
-            <div class="epm"><div class="epm-val">−25<sup>%</sup></div><div class="epm-l">Execution Time</div></div>
-            <div class="epm"><div class="epm-val">5<sup>+</sup></div><div class="epm-l">Sources Unified</div></div>
-            <div class="epm"><div class="epm-val">3</div><div class="epm-l">Business Units</div></div>
-          </div>
-          <p class="ep-desc">First data role — built production ETL pipelines and self-serve dashboards for a US-based consultancy serving 3 business units, establishing early foundations in data quality, governance, and stakeholder communication.</p>
-          <ul class="ep-bullets">
-            <li>Cut average query execution time 25% by tuning 40+ legacy SQL stored procedures — reducing reporting latency across all 3 business units.</li>
-            <li>Unified 5+ external data sources into a central warehouse, enabling campaign teams to self-serve analysis and eliminating the ad-hoc request queue entirely.</li>
-            <li>Introduced data quality documentation and lineage standards adopted as the team's UAT baseline across 6 analysts — setting the quality bar from day one.</li>
-          </ul>
-          <div class="ep-tags"><span class="etag">SQL</span><span class="etag">ETL</span><span class="etag">Power BI</span><span class="etag">Data Quality</span><span class="etag">DAX</span></div>
+        <div class="t-metrics">
+          <div class="tmet"><div class="tmet-val">20<em>K+</em></div><div class="tmet-lbl">Users Retained</div></div>
+          <div class="tmet"><div class="tmet-val">85<em>%+</em></div><div class="tmet-lbl">Score Accuracy</div></div>
+          <div class="tmet"><div class="tmet-val">+50<em>%</em></div><div class="tmet-lbl">Basket Growth</div></div>
+          <div class="tmet"><div class="tmet-val"><em>$</em>150<em>K</em></div><div class="tmet-lbl">Leakage Stopped</div></div>
         </div>
+        <div class="t-tags"><span class="ttag">Python</span><span class="ttag">Behavioral Analytics</span><span class="ttag">SQL</span><span class="ttag">Power BI</span><span class="ttag">Customer Intelligence</span><span class="ttag">Lifecycle Analytics</span></div>
+      </div>
+      <div class="t-entry">
+        <div class="t-dot"></div>
+        <div class="t-period mono">May – Nov 2022 · Remote · Houston TX</div>
+        <div class="t-role">Data Analyst Intern</div>
+        <div class="t-company"><a href="https://datacrafters.io/" class="t-co-name" target="_blank">DataWorks Ltd.</a><span class="t-co-badge">Internship</span></div>
+        <div class="t-metrics">
+          <div class="tmet"><div class="tmet-val">40<em>+</em></div><div class="tmet-lbl">Queries Tuned</div></div>
+          <div class="tmet"><div class="tmet-val">−25<em>%</em></div><div class="tmet-lbl">Exec. Time</div></div>
+          <div class="tmet"><div class="tmet-val">5<em>+</em></div><div class="tmet-lbl">Sources Unified</div></div>
+          <div class="tmet"><div class="tmet-val">3</div><div class="tmet-lbl">Business Units</div></div>
+        </div>
+        <div class="t-tags"><span class="ttag">SQL</span><span class="ttag">ETL</span><span class="ttag">Power BI</span><span class="ttag">Data Quality</span><span class="ttag">DAX</span></div>
       </div>
     </div>
   </div>
 </section>
+
+<div class="divider"></div>
 
 <!-- SKILLS -->
 <section class="section" id="skills" style="background:var(--s1)">
   <div class="section-inner">
-    <div class="section-tag reveal">Expertise</div>
-    <h2 class="section-h reveal d1">Technical Skills</h2>
-    <p class="section-sub reveal d2">Built through real enterprise delivery, not just tutorials.</p>
-    <div class="skills-grid reveal d2">
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">BI & Visualisation</span><span class="sg-pct">96%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="96"></div></div><div class="skill-chips"><span class="sc hi">Power BI</span><span class="sc hi">Advanced DAX</span><span class="sc">Tableau</span><span class="sc">Looker</span><span class="sc">Embedded Analytics</span><span class="sc">Self-Service BI</span></div></div>
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">Programming & SQL</span><span class="sg-pct">92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="92"></div></div><div class="skill-chips"><span class="sc hi">SQL (T-SQL)</span><span class="sc hi">Python</span><span class="sc">pandas</span><span class="sc">NumPy</span><span class="sc">scikit-learn</span><span class="sc">Git · CI/CD</span></div></div>
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">Analytics & Data Science</span><span class="sg-pct">90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="90"></div></div><div class="skill-chips"><span class="sc hi">Forecasting</span><span class="sc hi">Cohort Analysis</span><span class="sc">A/B Testing</span><span class="sc">CLV</span><span class="sc">ML Modeling</span><span class="sc">Segmentation</span></div></div>
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">Data Engineering</span><span class="sg-pct">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="88"></div></div><div class="skill-chips"><span class="sc hi">ETL / ELT</span><span class="sc hi">Snowflake</span><span class="sc">dbt</span><span class="sc">Airflow</span><span class="sc">Azure Data Factory</span><span class="sc">Dimensional Modeling</span></div></div>
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">Cloud & Platforms</span><span class="sg-pct">82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="82"></div></div><div class="skill-chips"><span class="sc hi">Azure</span><span class="sc">AWS · GCP</span><span class="sc">Databricks</span><span class="sc">Salesforce</span><span class="sc">Atlan</span><span class="sc">Confluence</span></div></div>
-      <div class="skill-group"><div class="sg-header"><span class="sg-title">Strategy & Leadership</span><span class="sg-pct">90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-p="90"></div></div><div class="skill-chips"><span class="sc hi">SSOT Architecture</span><span class="sc hi">Data Governance</span><span class="sc">OKR Design</span><span class="sc">Exec Storytelling</span><span class="sc">GTM Analytics</span><span class="sc">Mentorship</span></div></div>
+    <div class="section-label r"><span class="label-num">03</span><span class="label-text">Technical Expertise</span></div>
+    <h2 class="section-h r d1">The tools that<br><em>deliver results.</em></h2>
+    <p class="section-sub r d2">Built through real enterprise delivery — not tutorials.</p>
+    <div class="skills-grid r d2">
+      <div class="sk-card"><div class="sk-icon">📊</div><div class="sk-title">BI & Visualisation<span class="sk-pct">96%</span></div><div class="sk-bar"><div class="sk-fill" data-p="96"></div></div><div class="sk-chips"><span class="sk-chip hi">Power BI</span><span class="sk-chip hi">Advanced DAX</span><span class="sk-chip">Tableau</span><span class="sk-chip">Looker</span><span class="sk-chip">Embedded Analytics</span></div></div>
+      <div class="sk-card"><div class="sk-icon">💻</div><div class="sk-title">Programming & SQL<span class="sk-pct">92%</span></div><div class="sk-bar"><div class="sk-fill" data-p="92"></div></div><div class="sk-chips"><span class="sk-chip hi">SQL (T-SQL)</span><span class="sk-chip hi">Python</span><span class="sk-chip">pandas</span><span class="sk-chip">NumPy</span><span class="sk-chip">Git / CI/CD</span></div></div>
+      <div class="sk-card"><div class="sk-icon">🧠</div><div class="sk-title">Advanced Analytics<span class="sk-pct">90%</span></div><div class="sk-bar"><div class="sk-fill" data-p="90"></div></div><div class="sk-chips"><span class="sk-chip hi">Forecasting</span><span class="sk-chip hi">Cohort Analysis</span><span class="sk-chip">A/B Testing</span><span class="sk-chip">CLV Modelling</span><span class="sk-chip">RFM Segmentation</span></div></div>
+      <div class="sk-card"><div class="sk-icon">🏗️</div><div class="sk-title">Data Engineering<span class="sk-pct">88%</span></div><div class="sk-bar"><div class="sk-fill" data-p="88"></div></div><div class="sk-chips"><span class="sk-chip hi">ETL / ELT</span><span class="sk-chip hi">Snowflake</span><span class="sk-chip">dbt</span><span class="sk-chip">Airflow</span><span class="sk-chip">Azure Data Factory</span></div></div>
+      <div class="sk-card"><div class="sk-icon">☁️</div><div class="sk-title">Cloud & Platforms<span class="sk-pct">82%</span></div><div class="sk-bar"><div class="sk-fill" data-p="82"></div></div><div class="sk-chips"><span class="sk-chip hi">Azure</span><span class="sk-chip">AWS · GCP</span><span class="sk-chip">Databricks</span><span class="sk-chip">Salesforce</span><span class="sk-chip">Atlan</span></div></div>
+      <div class="sk-card"><div class="sk-icon">🎯</div><div class="sk-title">Strategy & Governance<span class="sk-pct">90%</span></div><div class="sk-bar"><div class="sk-fill" data-p="90"></div></div><div class="sk-chips"><span class="sk-chip hi">SSOT Architecture</span><span class="sk-chip hi">Data Governance</span><span class="sk-chip">OKR Design</span><span class="sk-chip">Exec Storytelling</span><span class="sk-chip">Mentorship</span></div></div>
     </div>
   </div>
 </section>
@@ -678,56 +633,35 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
 <!-- PROJECTS -->
 <section class="section" id="projects">
   <div class="section-inner">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem">
-      <div><div class="section-tag reveal">Portfolio</div><h2 class="section-h reveal d1">Selected Projects</h2></div>
-      <div class="proj-filters reveal d2">
+    <div class="proj-header">
+      <div>
+        <div class="section-label r"><span class="label-num">04</span><span class="label-text">Portfolio</span></div>
+        <h2 class="section-h r d1">Selected <em>Projects</em></h2>
+      </div>
+      <div class="proj-filters r d2">
         <button class="pf-btn active" data-f="all">All</button>
         <button class="pf-btn" data-f="sales">Sales</button>
         <button class="pf-btn" data-f="customer">Customer</button>
         <button class="pf-btn" data-f="marketing">Marketing</button>
-        <button class="pf-btn" data-f="operation">Operation</button>
+        <button class="pf-btn" data-f="operation">Operations</button>
       </div>
     </div>
-
-    <!-- 2 featured cards with visual chart thumbnails -->
-    <div class="proj-featured reveal d2">
-      <a class="pf-card" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank">
-        <div class="pf-thumb"><canvas id="ft1"></canvas><div class="pf-overlay"></div><div class="pf-badge">★ Featured · ShopUp</div></div>
-        <div class="pf-body">
-          <div class="pf-title">Sales Sight 360 Dashboard</div>
-          <div class="pf-desc">Unified real-time sales analytics platform — operational backbone for 150+ DAU guiding $195M+ in annual B2B decisions across 6 departments.</div>
-          <div class="pf-impact">150+ DAU · $195M+ GMV · −90% metric discrepancy</div>
-          <div class="pf-footer"><div class="pf-chips"><span class="pfchip">Power BI</span><span class="pfchip">DAX</span><span class="pfchip">Snowflake</span></div><div class="pf-arr">↗</div></div>
-        </div>
-      </a>
-      <a class="pf-card" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank">
-        <div class="pf-thumb"><canvas id="ft2"></canvas><div class="pf-overlay"></div><div class="pf-badge">★ Featured · AponTech</div></div>
-        <div class="pf-body">
-          <div class="pf-title">Retail Customer Analytics & ML</div>
-          <div class="pf-desc">XGBoost churn model + k-means segmentation for 100K+ users. 85%+ accuracy, 2-week early warning, $150K annual leakage stopped.</div>
-          <div class="pf-impact">↑ 50% basket · 20K+ retained · $150K recovered</div>
-          <div class="pf-footer"><div class="pf-chips"><span class="pfchip">Python</span><span class="pfchip">XGBoost</span><span class="pfchip">Power BI</span></div><div class="pf-arr">↗</div></div>
-        </div>
-      </a>
+    <div class="proj-list r d2" id="proj-list">
+      <a class="proj-item" data-cat="sales" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank"><div class="proj-n">01</div><div class="proj-main"><div class="proj-title">Sales Sight 360 Dashboard</div><div class="proj-context">Unified real-time platform guiding $195M+ in annual B2B decisions. Resolved 6-department metric conflict and became the operational backbone for daily decision-making.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Snowflake</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-feat">★ Featured</span><span class="proj-impact">150+ DAU · $195M+</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="customer" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank"><div class="proj-n">02</div><div class="proj-main"><div class="proj-title">Retail Customer Analytics & Intelligence</div><div class="proj-context">Behavioral risk scoring + customer segmentation for 100K+ users. 85%+ accuracy early-warning system. $150K annual revenue leakage stopped.</div><div class="proj-chips"><span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">Behavioral Analytics</span></div></div><div class="proj-impact-col"><span class="proj-feat">★ Featured</span><span class="proj-impact">↑ 50% basket · 20K retained</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="sales" href="https://github.com/YM-Codes/PipelineTrendDash" target="_blank"><div class="proj-n">03</div><div class="proj-main"><div class="proj-title">Pipeline Trend Dashboard</div><div class="proj-context">Real-time pipeline health, coverage %, pacing and rolling coverage for sales leadership. Improved forecast accuracy and GTM decisions.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Forecast accuracy</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="sales" href="https://github.com/YM-Codes/Close_Rate_Analysis" target="_blank"><div class="proj-n">04</div><div class="proj-main"><div class="proj-title">Win Rate & Close Rate Analysis</div><div class="proj-context">Tracks win rate across products, regions, and customer types. Identified deal patterns that improved conversion strategy across the sales team.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Deal conversion</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="customer" href="https://github.com/YM-Codes/Customer_Intelligence_Report" target="_blank"><div class="proj-n">05</div><div class="proj-main"><div class="proj-title">Customer Intelligence Report</div><div class="proj-context">Product adoption tracking, cross-sell opportunity analysis, and account health scoring across multi-product portfolios.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">Snowflake</span><span class="tag">DAX</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Cross-sell · ↓ Churn</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="customer" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank"><div class="proj-n">06</div><div class="proj-main"><div class="proj-title">Customer Cohort & Lifecycle Analysis</div><div class="proj-context">Cohort study evaluating churn patterns, revenue trajectories, basket size, and spending behaviour with RFM and CLV calculation.</div><div class="proj-chips"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">RFM</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ CLV · ↓ Churn</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Finance_Report" target="_blank"><div class="proj-n">07</div><div class="proj-main"><div class="proj-title">Campaign Finance & Efficiency Report</div><div class="proj-context">Multi-channel analytics aligning Email, SMS & Push campaign performance with cost and billing accuracy. Reduced operational waste.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">Snowflake</span><span class="tag">DAX</span></div></div><div class="proj-impact-col"><span class="proj-impact">↓ Op waste · ↑ NRR</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Revenue_Reporting" target="_blank"><div class="proj-n">08</div><div class="proj-main"><div class="proj-title">Campaign Revenue Reporting</div><div class="proj-context">Revenue and engagement tracking across SMS, Email, and Push with YoY/MoM trend analysis and channel attribution.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Revenue visibility</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Lead_Insights" target="_blank"><div class="proj-n">09</div><div class="proj-main"><div class="proj-title">Campaign Lead Intelligence</div><div class="proj-context">Tracks marketable vs non-marketable leads with source analysis, enabling sharper targeting and reduced cost-per-acquisition.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Lead targeting</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="operation" href="https://github.com/YM-Codes/Customer_Health_Check_Support" target="_blank"><div class="proj-n">10</div><div class="proj-main"><div class="proj-title">Support Health & SLA Dashboard</div><div class="proj-context">Ticket performance, SLA adherence and satisfaction score tracking. Flagged SLA violations before they escalated into churn risk.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↓ SLA violations</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="operation" href="https://github.com/YM-Codes/Zendesk_reporting" target="_blank"><div class="proj-n">11</div><div class="proj-main"><div class="proj-title">Zendesk Operations Report</div><div class="proj-context">Consolidated Zendesk ticket metrics, workflow performance, and SLA compliance reporting across support teams.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Ticket management</span></div><div class="proj-arr">↗</div></a>
+      <a class="proj-item" data-cat="operation" href="https://github.com/YM-Codes" target="_blank"><div class="proj-n">12</div><div class="proj-main"><div class="proj-title">Partner Health Score Dashboard</div><div class="proj-context">Consolidates partner performance, health metrics, ticket data and SLA compliance into a single accountability view.</div><div class="proj-chips"><span class="tag">Power BI</span><span class="tag">SQL</span></div></div><div class="proj-impact-col"><span class="proj-impact">↑ Partner accountability</span></div><div class="proj-arr">↗</div></a>
     </div>
-
-    <!-- Original full list unchanged -->
-    <div class="proj-grid reveal d2" id="proj-grid">
-      <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Sales%20Sight%20360%20Intro.pdf" target="_blank"><div class="proj-num">01</div><div class="proj-mid"><div class="proj-title">Sales Sight 360 Dashboard</div><div class="proj-desc">Unified real-time sales analytics platform — operational backbone for 150+ DAU guiding $195M+ in B2B decisions.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">DAX</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-feat-badge">★ Featured</span><span class="proj-impact">150+ DAU · $195M+</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/PipelineTrendDash" target="_blank"><div class="proj-num">02</div><div class="proj-mid"><div class="proj-title">Pipeline Trend Dashboard</div><div class="proj-desc">Monitors pipeline health, coverage %, pacing, and rolling coverage metrics for sales teams.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Forecast accuracy</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="sales" href="https://github.com/YM-Codes/Close_Rate_Analysis" target="_blank"><div class="proj-num">03</div><div class="proj-mid"><div class="proj-title">Close Rate Analysis</div><div class="proj-desc">Tracks win rate across products, regions, and customer types to optimise deal conversion.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Deal conversion</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Customer_Intelligence_Report" target="_blank"><div class="proj-num">04</div><div class="proj-mid"><div class="proj-title">Customer Intelligence Report</div><div class="proj-desc">Tracks product adoption, cross-sell opportunities, and account health across multi-product portfolios.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span></div></div><div class="proj-right"><span class="proj-impact">↑Cross-sell · ↓Churn</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Retail_Customer_Analytics" target="_blank"><div class="proj-num">05</div><div class="proj-mid"><div class="proj-title">Retail Customer Analytics</div><div class="proj-desc">Customer segmentation, forecasting & behavioral trends integrating demographics, product, and outlet data.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">85%+ accuracy · 100K users</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="customer" href="https://github.com/YM-Codes/Customer_Cohort_Analysis" target="_blank"><div class="proj-num">06</div><div class="proj-mid"><div class="proj-title">Customer Cohort Analysis</div><div class="proj-desc">Cohort study evaluating churn, revenue, basket size, and spending patterns with RFM and CLV calculation.</div><div class="proj-chips"><span class="pchip">Python</span><span class="pchip">SQL</span><span class="pchip">RFM</span></div></div><div class="proj-right"><span class="proj-impact">↑CLV · ↓Churn</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Finance_Report" target="_blank"><div class="proj-num">07</div><div class="proj-mid"><div class="proj-title">Campaign Finance Report</div><div class="proj-desc">Multi-channel analytics aligning Email, SMS & Push campaign performance with cost and billing accuracy.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">Snowflake</span><span class="pchip">DAX</span></div></div><div class="proj-right"><span class="proj-impact">↓Op. waste · ↑NRR</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Revenue_Reporting" target="_blank"><div class="proj-num">08</div><div class="proj-mid"><div class="proj-title">Campaign – Revenue</div><div class="proj-desc">Revenue and engagement tracking across SMS, Email, and Push with YoY/MoM trend analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Revenue visibility</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="marketing" href="https://github.com/YM-Codes/Campaign_Lead_Insights" target="_blank"><div class="proj-num">09</div><div class="proj-mid"><div class="proj-title">Campaign Lead Insights</div><div class="proj-desc">Tracks marketable vs non-marketable leads with source and segmentation analysis.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Lead targeting</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes/Customer_Health_Check_Support" target="_blank"><div class="proj-num">10</div><div class="proj-mid"><div class="proj-title">Customer Health Check – Support</div><div class="proj-desc">Support dashboard tracking ticket performance, SLA adherence, and satisfaction scores.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↓SLA violations</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes/Zendesk_reporting" target="_blank"><div class="proj-num">11</div><div class="proj-mid"><div class="proj-title">Zendesk Reporting</div><div class="proj-desc">Consolidated reporting of Zendesk ticket metrics, workflow, and SLA performance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Ticket mgmt</span><div class="proj-arr">↗</div></div></a>
-      <a class="proj-card" data-cat="operation" href="https://github.com/YM-Codes" target="_blank"><div class="proj-num">12</div><div class="proj-mid"><div class="proj-title">Partner Health Score Dashboard</div><div class="proj-desc">Consolidates partner performance, health metrics, ticket data, and SLA compliance.</div><div class="proj-chips"><span class="pchip">Power BI</span><span class="pchip">SQL</span></div></div><div class="proj-right"><span class="proj-impact">↑Partner accountability</span><div class="proj-arr">↗</div></div></a>
-    </div>
-    <div style="display:flex;justify-content:flex-end;margin-top:2rem" class="reveal d2">
-      <a href="https://github.com/YM-Codes" target="_blank" style="display:inline-flex;align-items:center;gap:.55rem;padding:.55rem 1.4rem;background:linear-gradient(135deg,var(--acc),#0099dd);border-radius:100px;font-size:.7rem;font-weight:700;color:#000;text-decoration:none;letter-spacing:.04em;box-shadow:0 2px 16px rgba(0,212,255,.2)">View All Projects on GitHub ↗</a>
+    <div style="text-align:right;margin-top:2rem" class="r d2">
+      <a href="https://github.com/YM-Codes" target="_blank" class="btn-gold" style="padding:.65rem 1.75rem;font-size:.66rem">View All on GitHub ↗</a>
     </div>
   </div>
 </section>
@@ -735,119 +669,144 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
 <!-- CASE STUDIES -->
 <section class="section" id="case-studies" style="background:var(--s1)">
   <div class="section-inner">
-    <div class="section-tag reveal">Deep Dives</div>
-    <h2 class="section-h reveal d1">Case Studies</h2>
-    <p class="section-sub reveal d2">Two engagements worth reading in full — the problem, the approach, and what actually changed.</p>
-    <div class="cs-grid reveal d2">
+    <div class="section-label r"><span class="label-num">05</span><span class="label-text">Deep Dives</span></div>
+    <h2 class="section-h r d1">Two engagements<br><em>worth reading in full.</em></h2>
+    <div class="cs-list r d2">
       <div class="cs-card">
-        <div class="cs-header"><div class="cs-label">Case Study 01 · Sales · Power BI · Governance</div><div class="cs-title">Sales Sight 360</div><div class="cs-company">ShopUp (Mokam CPG) · B2B · $195M+ Annual GMV</div></div>
-        <div class="cs-body">
-          <div class="cs-block"><div class="cs-block-label problem">The Problem</div><div class="cs-block-text">Six departments at ShopUp were each running their own sales reports from different data pulls. VP Sales, Supply Chain, and Finance were routinely disagreeing on GMV figures — sometimes by millions — in the same meeting. There was no single version of the truth, no data governance, and no unified view of the $195M+ in annual B2B transactions flowing through the platform.</div></div>
-          <div class="cs-block"><div class="cs-block-label solution">The Approach</div><div class="cs-block-text">I started by auditing every existing report, mapping the 8+ data sources, and running a KPI alignment workshop with all department heads. I then built a governed Snowflake data layer with data contracts, before constructing Sales Sight 360 — a unified Power BI platform with a single star-schema model, consistent DAX measures, and role-level access per department. Delivered in 6 sprints over 10 weeks.</div></div>
-          <div class="cs-block"><div class="cs-block-label results">Results</div><div class="cs-results-grid"><div class="cs-result-item"><div class="cs-result-val">150<small>+ DAU</small></div><div class="cs-result-lbl">Daily Active Users</div></div><div class="cs-result-item"><div class="cs-result-val">90<small>%</small></div><div class="cs-result-lbl">Metric discrepancy eliminated</div></div><div class="cs-result-item"><div class="cs-result-val">−12<small>%</small></div><div class="cs-result-lbl">MoM churn reduction</div></div><div class="cs-result-item"><div class="cs-result-val">45<small>%</small></div><div class="cs-result-lbl">Warehouse capacity recovered</div></div></div></div>
+        <div class="cs-card-header">
+          <div><div class="cs-label-row"><span class="cs-lbl">Case Study 01</span><span class="cs-co">ShopUp (Mokam CPG) · B2B · $195M+ Annual GMV</span></div><div class="cs-title">Sales Sight 360</div><div class="cs-sub">How I ended 6 months of cross-department metric conflict and built the single source of truth for $195M+ in B2B decisions.</div></div>
+          <div class="cs-big-num">01</div>
         </div>
-        <div class="cs-footer"><span class="etag">Power BI</span><span class="etag">Advanced DAX</span><span class="etag">Snowflake</span><span class="etag">Data Contracts</span><span class="etag">Atlan</span><span class="etag">RFM</span></div>
+        <div class="cs-body">
+          <div class="cs-col"><div class="cs-col-label prob">The Business Problem</div><div class="cs-col-text">Six departments at ShopUp were each running their own sales reports from different data pulls. VP Sales, Supply Chain, and Finance were routinely disagreeing on GMV figures — sometimes by millions — in the same meeting. There was no governance, no single version of the truth, and no unified view across $195M+ in annual B2B transactions.</div></div>
+          <div class="cs-col"><div class="cs-col-label sol">The Technical Solution</div><div class="cs-col-text">Audited every report, mapped 8+ data sources, ran a KPI alignment workshop. Built a governed Snowflake data layer with data contracts before constructing Sales Sight 360 — a unified Power BI platform with a star-schema model, consistent DAX measures, behavioral segmentation, inventory forecasting, and role-level access per department. Delivered in 6 sprints over 10 weeks.</div></div>
+          <div class="cs-col"><div class="cs-col-label res">The Business Impact</div><div class="cs-col-text">150+ users adopted it as their daily operational system. 90% of metric discrepancies permanently eliminated. MoM churn reduced 12%. 45% of idle warehouse capacity recovered through inventory intelligence, unlocking 20% incremental sales from reactivated stock.</div></div>
+        </div>
+        <div class="cs-footer">
+          <div class="cs-results">
+            <div class="csr"><div class="csr-val">150<em>+</em></div><div class="csr-lbl">Daily active users</div></div>
+            <div class="csr"><div class="csr-val">90<em>%</em></div><div class="csr-lbl">Discrepancy eliminated</div></div>
+            <div class="csr"><div class="csr-val">−12<em>%</em></div><div class="csr-lbl">MoM churn</div></div>
+            <div class="csr"><div class="csr-val">45<em>%</em></div><div class="csr-lbl">Warehouse recovered</div></div>
+          </div>
+          <div class="t-tags"><span class="ttag">Power BI</span><span class="ttag">Advanced DAX</span><span class="ttag">Snowflake</span><span class="ttag">Data Contracts</span><span class="ttag">Atlan</span><span class="ttag">RFM</span></div>
+        </div>
       </div>
       <div class="cs-card">
-        <div class="cs-header"><div class="cs-label">Case Study 02 · ML · Retention · Anomaly Detection</div><div class="cs-title">Churn Defence & Revenue Recovery</div><div class="cs-company">AponTech Ltd · Healthcare eCommerce · 100K+ Users</div></div>
-        <div class="cs-body">
-          <div class="cs-block"><div class="cs-block-label problem">The Problem</div><div class="cs-block-text">AponTech was losing high-value users silently — with no early-warning system, churn was only discovered after revenue had already walked out the door. Simultaneously, $150K in annual revenue was leaking through transaction anomalies that nobody was monitoring. Customer segments were treated as one homogeneous group, leaving significant basket-size growth on the table.</div></div>
-          <div class="cs-block"><div class="cs-block-label solution">The Approach</div><div class="cs-block-text">I ran k-means clustering to segment the 100K+ user base into 6 behavioural cohorts, each with a targeted promotional strategy. On top of that, I built an XGBoost churn model trained on 14 behavioural signals — giving the team a 2-week early-intervention window. Finally, I automated anomaly detection across all transactions using isolation forests, replacing the entire manual review process with real-time alerts.</div></div>
-          <div class="cs-block"><div class="cs-block-label results">Results</div><div class="cs-results-grid"><div class="cs-result-item"><div class="cs-result-val">20<small>K+</small></div><div class="cs-result-lbl">High-value users retained</div></div><div class="cs-result-item"><div class="cs-result-val">85<small>%+</small></div><div class="cs-result-lbl">Churn model accuracy</div></div><div class="cs-result-item"><div class="cs-result-val">+50<small>%</small></div><div class="cs-result-lbl">Avg basket size $16→$24</div></div><div class="cs-result-item"><div class="cs-result-val">$150<small>K</small></div><div class="cs-result-lbl">Annual leakage stopped</div></div></div></div>
+        <div class="cs-card-header">
+          <div><div class="cs-label-row"><span class="cs-lbl">Case Study 02</span><span class="cs-co">AponTech Ltd · Healthcare eCommerce · 100K+ Users</span></div><div class="cs-title">Customer Intelligence & Revenue Defence</div><div class="cs-sub">How I built an early-warning system that retained 20K users, grew basket size 50%, and stopped $150K in annual leakage.</div></div>
+          <div class="cs-big-num">02</div>
         </div>
-        <div class="cs-footer"><span class="etag">Python</span><span class="etag">XGBoost</span><span class="etag">scikit-learn</span><span class="etag">k-means</span><span class="etag">Anomaly Detection</span><span class="etag">Power BI</span></div>
+        <div class="cs-body">
+          <div class="cs-col"><div class="cs-col-label prob">The Business Problem</div><div class="cs-col-text">AponTech was losing high-value users silently — churn was only discovered after revenue had already walked out the door. Simultaneously, $150K in annual revenue was leaking through transaction anomalies that nobody was monitoring. All 100K+ customers were treated identically, leaving significant growth on the table.</div></div>
+          <div class="cs-col"><div class="cs-col-label sol">The Technical Solution</div><div class="cs-col-text">Built customer intelligence segmentation across 6 behavioural cohorts, each with a targeted promotional strategy. On top of that, I built a behavioral risk scoring model trained on 14 engagement signals — giving the team a 2-week intervention window before loss. Automated transaction monitoring across all activity, replacing 10+ hours of weekly manual review with real-time alerts.</div></div>
+          <div class="cs-col"><div class="cs-col-label res">The Business Impact</div><div class="cs-col-text">20,000+ high-value users retained with 2-week advance warning. Average basket grew 50% ($16 → $24) through targeted cohort promotions. $150K in annual revenue leakage permanently stopped. Full transaction monitoring automated — zero manual review required.</div></div>
+        </div>
+        <div class="cs-footer">
+          <div class="cs-results">
+            <div class="csr"><div class="csr-val">20<em>K+</em></div><div class="csr-lbl">Users retained</div></div>
+            <div class="csr"><div class="csr-val">85<em>%+</em></div><div class="csr-lbl">Model accuracy</div></div>
+            <div class="csr"><div class="csr-val">+50<em>%</em></div><div class="csr-lbl">Basket $16→$24</div></div>
+            <div class="csr"><div class="csr-val"><em>$</em>150<em>K</em></div><div class="csr-lbl">Leakage stopped</div></div>
+          </div>
+          <div class="t-tags"><span class="ttag">Python</span><span class="ttag">Behavioral Analytics</span><span class="ttag">Customer Segmentation</span><span class="ttag">Anomaly Detection</span><span class="ttag">Power BI</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS — 3 tight cards, no new section just slotted after case studies -->
+<!-- TESTIMONIALS -->
 <section class="section" id="testimonials">
   <div class="section-inner">
-    <div class="section-tag reveal">What People Say</div>
-    <h2 class="section-h reveal d1">Peer & Stakeholder Reviews</h2>
-    <p class="section-sub reveal d2">From the people who worked alongside the dashboards and the models.</p>
-    <div class="testi-row reveal d2">
-      <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-q">Yunus didn't just build dashboards — he changed how our GTM team thinks about data. The north-star KPI framework ended months of metric wars in one rollout. That level of thinking is rare.</div>
-        <div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,var(--acc),#0099dd)">SK</div><div><div class="testi-name">Sarah K.</div><div class="testi-role">VP Sales Operations · Optimizely</div></div></div>
-      </div>
-      <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-q">The churn model gave us a 2-week warning window we'd never had before. We saved accounts we would have lost. The $150K leakage detection alone paid for the engagement many times over.</div>
-        <div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,var(--grn),#007a55)">AR</div><div><div class="testi-name">Arif R.</div><div class="testi-role">Head of Product · AponTech</div></div></div>
-      </div>
-      <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-q">Sales Sight 360 became the one dashboard everyone opened at the start of their day. 150+ users across 6 departments, all aligned on one truth. That's not a BI project — that's a culture shift.</div>
-        <div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,var(--pur),#5b3bac)">MH</div><div><div class="testi-name">Minhaj H.</div><div class="testi-role">VP Sales · ShopUp (Mokam)</div></div></div>
-      </div>
+    <div class="section-label r"><span class="label-num">06</span><span class="label-text">Peer Reviews</span></div>
+    <h2 class="section-h r d1">What the people<br>who <em>worked alongside</em> the work say.</h2>
+    <div class="testi-grid r d2">
+      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">Yunus didn't just build dashboards — he changed how our GTM team thinks about data. The north-star KPI framework ended months of metric wars in one rollout. That level of thinking is rare.</div><div class="testi-author"><div class="testi-av" style="background:#E8A020">SK</div><div><div class="testi-name">Sarah K.</div><div class="testi-role">VP Sales Operations · Optimizely</div></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">The risk scoring system gave us a 2-week warning window we'd never had before. We saved accounts we would have lost. The $150K leakage detection alone paid for the engagement many times over.</div><div class="testi-author"><div class="testi-av" style="background:#00C4AF;color:#000">AR</div><div><div class="testi-name">Arif R.</div><div class="testi-role">Head of Product · AponTech</div></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-q">Sales Sight 360 became the one dashboard everyone opened at the start of their day. 150+ users across 6 departments, all aligned on one truth. That's not a BI project — that's a culture shift.</div><div class="testi-author"><div class="testi-av" style="background:#7C6AFF;color:#fff">MH</div><div><div class="testi-name">Minhaj H.</div><div class="testi-role">VP Sales · ShopUp (Mokam)</div></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- WRITING -->
-<section class="section" id="writing" style="overflow:hidden;background:var(--s1)">
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section class="section" id="services" style="background:var(--s1)">
   <div class="section-inner">
-    <div class="section-tag reveal">Writing</div>
-    <h2 class="section-h reveal d1">Published Articles</h2>
-    <p class="section-sub reveal d2">10+ deep-dives on DAX, Power BI architecture, sales analytics & data governance</p>
+    <div class="section-label r"><span class="label-num">07</span><span class="label-text">Open for Consulting</span></div>
+    <h2 class="section-h r d1">Hire me for your<br><em>data problem.</em></h2>
+    <p class="section-sub r d2">Senior analytics leadership — available for consulting engagements alongside my full-time role. All work includes documentation and knowledge transfer.</p>
+    <div class="svc-banner r d2">
+      <div class="svc-banner-text"><div class="svc-banner-title">Currently taking limited consulting engagements</div><div class="svc-banner-sub">I take on 1–2 consulting projects at a time to ensure quality. Typical engagement starts with a free 30-minute data audit call — no commitment needed.</div></div>
+      <a href="#contact" class="btn-gold" style="padding:.65rem 1.75rem;font-size:.66rem;white-space:nowrap">Book Free Audit →</a>
+    </div>
+    <div class="svc-grid r d3">
+      <div class="svc-card"><span class="svc-popular-tag">Most Popular</span><div class="svc-icon">📊</div><div class="svc-title">BI Build & Modernisation</div><div class="svc-desc">Design and build your Power BI analytics layer — from data model to self-serve dashboards that drive daily decisions across your business.</div><div class="svc-pills"><div class="svc-pill">Power BI dashboards with Advanced DAX</div><div class="svc-pill">Star-schema model & Snowflake integration</div><div class="svc-pill">Row-level security & access governance</div><div class="svc-pill">Self-service documentation & training</div></div><div class="svc-footer"><span class="svc-time">⏱ 2–6 weeks</span><a href="#contact" class="svc-cta">Start a conversation →</a></div></div>
+      <div class="svc-card"><div class="svc-icon">🗺️</div><div class="svc-title">Data Strategy & Governance</div><div class="svc-desc">Audit your data stack, define your north-star KPI framework, and build the governance infrastructure that permanently eliminates metric disagreements.</div><div class="svc-pills"><div class="svc-pill">North-star KPI framework (ARR, NRR, CLV, ARPU)</div><div class="svc-pill">SSOT architecture & data lineage mapping</div><div class="svc-pill">Data contracts + governed catalog (Atlan)</div><div class="svc-pill">Stakeholder alignment workshop</div></div><div class="svc-footer"><span class="svc-time">⏱ 2–4 weeks</span><a href="#contact" class="svc-cta">Book a free audit →</a></div></div>
+      <div class="svc-card"><div class="svc-icon">📡</div><div class="svc-title">Revenue & Customer Intelligence</div><div class="svc-desc">Predictive analytics that give your team advance warning — customer risk signals, inventory gaps, and revenue exposure before they become problems.</div><div class="svc-pills"><div class="svc-pill">Customer behavioral risk scoring</div><div class="svc-pill">RFM segmentation & CLV modelling</div><div class="svc-pill">Controlled experiment design & analysis</div><div class="svc-pill">Automated alerting & anomaly monitoring</div></div><div class="svc-footer"><span class="svc-time">⏱ 3–8 weeks</span><a href="#contact" class="svc-cta">Start a conversation →</a></div></div>
+      <div class="svc-card"><div class="svc-icon">🧭</div><div class="svc-title">Fractional BI Lead</div><div class="svc-desc">Senior analytics leadership without the full-time hire. I embed in your team on a monthly retainer — owning strategy, quality, and mentoring analysts.</div><div class="svc-pills"><div class="svc-pill">Weekly strategy & prioritisation sessions</div><div class="svc-pill">Analyst mentoring & model reviews</div><div class="svc-pill">Exec-level dashboard reviews & storytelling</div><div class="svc-pill">Ongoing governance, monitoring & maintenance</div></div><div class="svc-footer"><span class="svc-time">⏱ Monthly retainer</span><a href="#contact" class="svc-cta">Discuss scope →</a></div></div>
+    </div>
   </div>
-  <div class="art-scroll-outer reveal d2"><div class="art-track-wrap" style="display:flex;flex-direction:column;gap:12px"></div></div>
 </section>
 
 <!-- RECOGNITION -->
 <section class="section" id="recognition">
   <div class="section-inner">
-    <div class="section-tag reveal">Recognition</div>
-    <h2 class="section-h reveal d1">Awards & Certifications</h2>
-    <p class="section-sub reveal d2">Proof that the work speaks for itself.</p>
-    <div class="awards-grid reveal d2">
+    <div class="section-label r"><span class="label-num">08</span><span class="label-text">Recognition</span></div>
+    <h2 class="section-h r d1">Awards &<br><em>Certifications.</em></h2>
+    <div class="awards-grid r d2">
       <div class="aw-card"><div class="aw-icon">🏆</div><div class="aw-year">Optimizely · 2025</div><div class="aw-title">Formal Bonusly Recognition</div><div class="aw-desc">Peer-nominated for exceptional BI impact on the $400M+ ARR analytics framework across 10+ departments.</div><a href="https://github.com/YM-Codes/Opti_Recognition_Bonusly" class="aw-link" target="_blank">View Award ↗</a></div>
       <div class="aw-card"><div class="aw-icon">⭐</div><div class="aw-year">Optimizely · 2025</div><div class="aw-title">Cross-Channel Peer Recognition</div><div class="aw-desc">Acknowledged by 5+ teams for data quality advocacy and governance impact across 550+ global BI users.</div><a href="https://github.com/YM-Codes/Opti_Recognition_Others" class="aw-link" target="_blank">View Award ↗</a></div>
-      <div class="aw-card"><div class="aw-icon">🥇</div><div class="aw-year">ShopUp · Q4 2023</div><div class="aw-title">Best Performing Team</div><div class="aw-desc">Sales Sight 360, operational backbone for 150+ DAU guiding $195M+ in annual GMV decisions.</div><a href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard" class="aw-link" target="_blank">View Project ↗</a></div>
+      <div class="aw-card"><div class="aw-icon">🥇</div><div class="aw-year">ShopUp · Q4 2023</div><div class="aw-title">Best Performing Team</div><div class="aw-desc">Sales Sight 360 — operational backbone for 150+ DAU guiding $195M+ in annual GMV decisions.</div><a href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard" class="aw-link" target="_blank">View Project ↗</a></div>
       <div class="aw-card"><div class="aw-icon">⚡</div><div class="aw-year">ShopUp · 2024</div><div class="aw-title">Pace Over Perfection Award</div><div class="aw-desc">35% efficiency gain via rapid automation and pipeline delivery across 10+ cross-functional teams.</div><a href="https://github.com/YM-Codes/Sales-Sight-360-Dashboard/blob/main/Acknowledgment.pdf" class="aw-link" target="_blank">View ↗</a></div>
       <div class="aw-card"><div class="aw-icon">🎓</div><div class="aw-year">Microsoft · 2023</div><div class="aw-title">PL-300 Power BI Certified</div><div class="aw-desc">Microsoft Certified Power BI Data Analyst. Credential ID: 3BB17D0B5D0736D4</div><a href="https://learn.microsoft.com/api/credentials/share/en-us/YunusMiah-6407/3BB17D0B5D0736D4" class="aw-link" target="_blank">Verify ↗</a></div>
-      <div class="aw-card"><div class="aw-icon">📊</div><div class="aw-year">SQLBI · 2022</div><div class="aw-title">DAX Expert Certification</div><div class="aw-desc">SQLBI DAX Expert, one of the most rigorous Power BI certifications globally.</div><a href="https://www.sqlbi.com/cert/segvw8ij-220528/" class="aw-link" target="_blank">Verify ↗</a></div>
+      <div class="aw-card"><div class="aw-icon">📊</div><div class="aw-year">SQLBI · 2022</div><div class="aw-title">DAX Expert Certification</div><div class="aw-desc">SQLBI DAX Expert — one of the most rigorous Power BI certifications globally.</div><a href="https://www.sqlbi.com/cert/segvw8ij-220528/" class="aw-link" target="_blank">Verify ↗</a></div>
     </div>
   </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="section" id="writing" style="overflow:hidden;background:var(--s1)">
+  <div class="section-inner">
+    <div class="section-label r"><span class="label-num">09</span><span class="label-text">Writing</span></div>
+    <h2 class="section-h r d1">10+ articles on<br><em>DAX, Power BI & data strategy.</em></h2>
+  </div>
+  <div class="art-outer r d2"><div id="art-wrap" style="display:flex;flex-direction:column;gap:10px"></div></div>
 </section>
 
 <!-- CONTACT -->
 <section class="section" id="contact">
   <div class="section-inner">
-    <div class="section-tag reveal">Let's Connect</div>
-    <div class="contact-grid reveal d1">
+    <div class="section-label r"><span class="label-num">10</span><span class="label-text">Let's Connect</span></div>
+    <div class="contact-grid r d1">
       <div>
-        <h2 class="contact-h">Ready for your next<br><span>data leap?</span></h2>
-        <p class="contact-sub">Whether you're hiring for a senior BI role, need consulting on a data strategy, or just want to talk dashboards, I'd love to hear from you.</p>
-        <div class="contact-outcomes">
-          <div class="co-item">A clear diagnosis of your biggest data bottleneck</div>
-          <div class="co-item">A prioritised action plan you can use immediately</div>
-          <div class="co-item">Honest recommendations — even if that's not me</div>
-          <div class="co-item">No sales pitch, no commitment required</div>
+        <h2 class="contact-h">Ready for your<br>next <em>data leap?</em></h2>
+        <p class="contact-sub">Whether you're hiring for a senior BI role, need consulting on a data challenge, or just want to talk strategy — I'd love to hear from you.</p>
+        <div class="contact-promise">
+          <div class="cp-item">A clear diagnosis of your biggest data bottleneck</div>
+          <div class="cp-item">A prioritised action plan you can use immediately</div>
+          <div class="cp-item">Honest recommendations — even if that's not me</div>
+          <div class="cp-item">No sales pitch, no commitment required</div>
         </div>
         <div class="contact-info">
-          <div class="ci-item"><div class="ci-icon">✉</div><div><div class="ci-label">Email</div><div class="ci-val">yunus_miah@outlook.com</div></div></div>
-          <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-label">Location</div><div class="ci-val">Dhaka, Bangladesh · Remote OK · Open to Relocation</div></div></div>
+          <div class="ci"><div class="ci-ico">✉</div><div><div class="ci-lbl">Email</div><div class="ci-val">yunus_miah@outlook.com</div></div></div>
+          <div class="ci"><div class="ci-ico">📍</div><div><div class="ci-lbl">Location</div><div class="ci-val">Dhaka, Bangladesh · Remote OK · Open to Relocation</div></div></div>
         </div>
         <div class="social-row">
-          <a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="soc-btn" target="_blank">in</a>
-          <a href="https://github.com/YM-Codes" class="soc-btn" target="_blank">gh</a>
-          <a href="https://twitter.com/_Yunus_Miah_" class="soc-btn" target="_blank">tw</a>
-          <a href="https://www.researchgate.net/profile/Yunus-Miah" class="soc-btn" target="_blank">rg</a>
+          <a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="soc" target="_blank">in</a>
+          <a href="https://github.com/YM-Codes" class="soc" target="_blank">gh</a>
+          <a href="https://twitter.com/_Yunus_Miah_" class="soc" target="_blank">tw</a>
+          <a href="https://www.researchgate.net/profile/Yunus-Miah" class="soc" target="_blank">rg</a>
         </div>
       </div>
       <div class="contact-form">
-        <div style="margin-bottom:1.5rem"><div style="font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:.25rem">Send a Message</div><div style="font-size:.66rem;color:var(--t2)">I typically respond within 24 hours</div></div>
+        <div class="cf-head"><div class="cf-title">Send a Message</div><div class="cf-sub">Typically responds within 24 hours</div></div>
         <form action="https://formsubmit.co/ym16511042@gmail.com" method="POST">
-          <div class="form-row"><div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div><div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required></div></div>
-          <div class="form-group"><label>What Brings You Here?</label>
-            <select name="role_type"><option value="">Select...</option><option>Hiring</option><option>Consultancy</option><option>Freelance / Contract</option><option>Collaboration</option><option>Just a Chitchat</option></select>
-          </div>
-          <div class="form-group"><label>Company</label><input type="text" name="company" placeholder="Company name (optional)"></div>
-          <div class="form-group"><label>Message</label><textarea name="message" placeholder="What's on your mind?"></textarea></div>
+          <div class="form-row"><div class="fg"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div><div class="fg"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required></div></div>
+          <div class="fg"><label>What brings you here?</label><select name="role_type"><option value="">Select...</option><option>Hiring — Full-time</option><option>Consulting / Fractional</option><option>Freelance / Contract</option><option>Collaboration</option><option>Just a conversation</option></select></div>
+          <div class="fg"><label>Company</label><input type="text" name="company" placeholder="Company name (optional)"></div>
+          <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell me about the problem you're trying to solve..."></textarea></div>
           <button type="submit" class="form-submit">Send Message →</button>
           <div class="form-note">Goes directly to yunus_miah@outlook.com</div>
         </form>
@@ -858,137 +817,407 @@ footer{padding:2.5rem;border-top:.5px solid var(--bdr);background:var(--s1);posi
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">Yunus <span>Miah</span></div>
+    <div class="footer-logo">Yunus <em>Miah</em></div>
     <div class="footer-links">
-      <a href="#about">About</a><a href="#experience">Work</a><a href="#projects">Projects</a><a href="#recognition">Awards</a><a href="#contact">Contact</a><a href="assets/pdf/Yunus_Miah.pdf" download>CV</a>
+      <a href="#problems">Problems</a><a href="#experience">Career</a><a href="#projects">Projects</a><a href="#services">Consulting</a><a href="#recognition">Awards</a><a href="#contact">Contact</a>
     </div>
-    <span class="footer-copy">© 2025 Yunus Miah · Built with data and caffeine ☕</span>
+    <span class="footer-copy">© 2025 Yunus Miah · Built with data & caffeine</span>
   </div>
 </footer>
 
-<button class="scroll-top" id="scroll-top">↑</button>
+<button id="stbtn">↑</button>
 
 <script>
-/* SCROLL PROGRESS */
+/* ── PRELOADER ── */
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('preloader').classList.add('done'),950));
+
+/* ── SCROLL PROGRESS ── */
 window.addEventListener('scroll',()=>{
   document.getElementById('scroll-bar').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+  const st=document.getElementById('stbtn');if(st)st.classList.toggle('show',window.scrollY>600);
+  let cur2='';
+  document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur2=s.id});
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur2));
 });
+document.getElementById('stbtn').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-/* RIPPLE */
-document.querySelectorAll('.btn-solid,.btn-ghost,.pf-btn,.form-submit').forEach(b=>{b.addEventListener('click',e=>{const r=document.createElement('span');r.className='ripple';const rc=b.getBoundingClientRect(),s=Math.max(rc.width,rc.height);r.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-rc.left-s/2}px;top:${e.clientY-rc.top-s/2}px`;b.appendChild(r);setTimeout(()=>r.remove(),600)})});
+/* ── HERO NAME ANIMATION ── */
+(function(){
+  const name='Yunus Miah',el=document.getElementById('hero-name');
+  el.innerHTML=name.split('').map((c,i)=>`<span class="char" style="animation-delay:${.04+i*.04}s">${c===' '?'&nbsp;':c}</span>`).join('');
+})();
 
-/* TILT */
-document.querySelectorAll('.skill-group,.aw-card,.epm,.wih-card,.svc-card,.cs-result-item,.testi,.hkpi').forEach(c=>{c.classList.add('tilt');c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.transform=`perspective(600px) rotateY(${((e.clientX-r.left)/r.width-.5)*10}deg) rotateX(${((e.clientY-r.top)/r.height-.5)*-10}deg) scale(1.02)`});c.addEventListener('mouseleave',()=>{c.style.transform=''})});
+/* ── TYPEWRITER with FOCUS WORDS ── */
+(function(){
+  // Each phrase: [normalText, focusText]
+  const phrases=[
+    ['Senior ','BI Analyst'],
+    ['Data Platform ','Architect'],
+    ['Revenue ','Intelligence Expert'],
+    ['GTM Analytics ','Lead'],
+    ['Self-Serve ','BI Builder'],
+  ];
+  const el=document.getElementById('tw-text');
+  if(!el)return;
 
-/* COUNTERS */
-function animC(el,t){let s=null;(function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/1800,1);el.textContent=Math.round(p*t);if(p<1)requestAnimationFrame(step)})(performance.now())}
+  let pi=0,ci=0,erasing=false,phase='normal'; // phase: 'normal' | 'focus'
+  const PAUSE=1800,TYPE_SPEED=72,ERASE_SPEED=34;
 
-/* OBSERVER */
-let done=false;
-const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(!en.isIntersecting)return;en.target.classList.add('visible');if(en.target.closest('#about')&&!done){done=true;animC(document.getElementById('cnt-arr'),400);animC(document.getElementById('cnt-dash'),45);animC(document.getElementById('cnt-rows'),500);animC(document.getElementById('cnt-pipe'),20)}en.target.querySelectorAll('.skill-bar-fill[data-p]').forEach(f=>setTimeout(()=>f.style.width=f.dataset.p+'%',300))})},{threshold:.1});
-document.querySelectorAll('.reveal,section').forEach(el=>obs.observe(el));
-document.querySelectorAll('.skills-grid,.awards-grid,.wih-grid,.svc-grid,.cs-grid,.testi-row').forEach(g=>[...g.children].forEach((c,i)=>{c.style.transitionDelay=`${i*.08}s`;c.classList.add('reveal')}));
+  function getCurrent(){
+    const [norm,focus]=phrases[pi];
+    const full=norm+focus;
+    return{norm,focus,full};
+  }
 
-/* PROCESS */
-const pio=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('animated')}),{threshold:.3});
-const pt=document.getElementById('process-track');if(pt)pio.observe(pt);
-
-/* EXP TABS */
-document.querySelectorAll('.exp-tab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.exp-tab,.exp-panel').forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById('p-'+t.dataset.target).classList.add('active')}));
-
-/* PROJECT FILTER */
-document.querySelectorAll('.pf-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.pf-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.f;document.querySelectorAll('.proj-card').forEach(c=>c.style.display=(f==='all'||c.dataset.cat===f)?'grid':'none')}));
-
-/* SCROLL TOP */
-const st=document.getElementById('scroll-top');
-window.addEventListener('scroll',()=>st.classList.toggle('show',window.scrollY>600));
-st.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-
-/* NAV ACTIVE */
-window.addEventListener('scroll',()=>{let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id});document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur))});
-
-/* TYPEWRITER */
-(function(){const p=[{s:'Senior BI Analyst with ',h:'4+ years · $400M+ ARR'},{s:'Expert in ',h:'Power BI & Advanced DAX'},{s:'45+ dashboards. ',h:'Zero metric wars.'},{s:'Processing ',h:'500M+ rows/day in Snowflake'},{s:'PL-300 + SQLBI — ',h:'top 1% of DAX practitioners'},{s:'Surfaced ',h:'$20M+ pipeline you didn\'t know existed'},{s:'Churn down 12% — ',h:'cohort, RFM & lifecycle intelligence'}];const sEl=document.getElementById('type-static'),hEl=document.getElementById('type-hi');let pi=0,ci=0,er=false;function step(){const{s,h}=p[pi],full=s+h;if(!er){ci++;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci>=full.length){setTimeout(()=>{er=true;step()},2200);return}}else{ci--;sEl.textContent=full.slice(0,Math.min(ci,s.length));hEl.textContent=ci>s.length?full.slice(s.length,ci):'';if(ci<=0){er=false;pi=(pi+1)%p.length;setTimeout(step,400);return}}setTimeout(step,er?32:75)}setTimeout(step,1200)})();
-
-/* TICKER */
-const items=[{val:'$400M+',label:'ARR Portfolio'},{val:'45+',label:'BI Dashboards'},{val:'500M+',label:'Rows Per Day'},{val:'550+',label:'Global Users'},{val:'$20M+',label:'Pipeline Found'},{val:'90%',label:'Data Quality'},{val:'−12%',label:'Churn Reduced'},{val:'85%+',label:'ML Accuracy'},{val:'PL-300',label:'Certified'},{val:'SQLBI',label:'DAX Expert'},{val:'65h+',label:'Saved Monthly'},{val:'~4yr',label:'BI Experience'}];
-const tick=document.getElementById('ticker'),html=items.map(i=>`<span class="tick-item"><span>${i.val}</span>${i.label}<span class="tick-sep">·</span></span>`).join('');
-tick.innerHTML=html+html;
-
-/* ARTICLES */
-const articles=[{num:'01',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2024/09/big-problem-small-solution-using.html',title:'Big Problem, Small Solution: Using USERELATIONSHIP',vis:'line'},{num:'02',cat:'Sales',url:'https://daxwithyunus.blogspot.com/2024/09/unlocking-sales-insights-analyzing-tads.html',title:'Analysing TADS, ADS, Shortfall & Projections',vis:'bars'},{num:'03',cat:'Inventory',url:'https://daxwithyunus.blogspot.com/2024/09/solving-inventory-woes-at-better-buys.html',title:'Solving Inventory Woes at Better Buys',vis:'blocks'},{num:'04',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2023/09/calendar-code-for-dax.html',title:'Why Every Analyst Needs a Calendar Table',vis:'heat'},{num:'05',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2022/11/the-road-to-power-bi-datamart-from-data.html',title:'The Road to Power BI Datamart',vis:'network'},{num:'06',cat:'Healthcare',url:'https://walkwithyunus.blogspot.com/2023/09/health-care-analytics-case-study.html',title:'Health Care Analytics Case Study',vis:'pulse'},{num:'07',cat:'Excel',url:'https://walkwithyunus.blogspot.com/2023/09/approaches-for-maximizing-use-of-excel.html',title:'Maximising Excel with Power BI',vis:'scatter'},{num:'08',cat:'Viz',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-visualization-charts.html',title:'Power BI Visualization Deep Dive',vis:'bars'},{num:'09',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-dashboards.html',title:'Dashboard Design & Best Practices',vis:'grid'},{num:'10',cat:'Architecture',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-datamart-illustration.html',title:'Power BI Datamart Illustration',vis:'network'}];
-function artVis(t){const c='#00d4ff';if(t==='bars')return`<svg viewBox="0 0 200 48">${[30,45,35,60,72,65,80,72,90,95].map((v,i)=>`<rect x="${i*20+3}" y="${44-(v/100)*38}" width="14" height="${(v/100)*38}" rx="2" fill="${c}" opacity="${.2+.7*(v/100)}"/>`).join('')}</svg>`;if(t==='line'){const pts=[40,55,48,70,65,82,75,92,85,98].map((v,i)=>`${i*20+5},${44-(v/100)*36}`).join(' ');return`<svg viewBox="0 0 200 48"><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"/></svg>`}if(t==='blocks')return`<svg viewBox="0 0 200 48">${[0,1,2,3,4,5,6].map(i=>`<rect x="${i*27+3}" y="${4+i*2}" width="20" height="${40-i*4}" rx="2" fill="${c}" opacity="${.15+i*.12}"/>`).join('')}</svg>`;if(t==='heat')return`<svg viewBox="0 0 200 48">${Array.from({length:45},(_,i)=>`<rect x="${(i%9)*21+3}" y="${Math.floor(i/9)*10+2}" width="18" height="8" rx="2" fill="${c}" opacity="${.08+Math.abs(Math.sin(i*.9))*.5}"/>`).join('')}</svg>`;if(t==='pulse')return`<svg viewBox="0 0 200 48"><polyline points="0,24 25,24 35,6 48,42 60,24 85,24 98,12 112,38 124,24 200,24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"/></svg>`;if(t==='scatter')return`<svg viewBox="0 0 200 48">${Array.from({length:24},(_,i)=>`<circle cx="${(i*37+15)%190+5}" cy="${(i*23+8)%38+5}" r="${1.5+(i%3)*.8}" fill="${c}" opacity="${.25+(i%5)*.13}"/>`).join('')}</svg>`;if(t==='grid')return`<svg viewBox="0 0 200 48"><rect x="3" y="3" width="88" height="20" rx="3" fill="${c}" opacity=".15"/><rect x="96" y="3" width="101" height="20" rx="3" fill="${c}" opacity=".22"/><rect x="3" y="27" width="46" height="18" rx="3" fill="${c}" opacity=".28"/><rect x="53" y="27" width="144" height="18" rx="3" fill="${c}" opacity=".12"/></svg>`;return`<svg viewBox="0 0 200 48"><circle cx="100" cy="24" r="8" fill="${c}" opacity=".5"/>${[[24,10],[176,10],[24,38],[176,38],[58,24],[142,24]].map(([x,y])=>`<line x1="100" y1="24" x2="${x}" y2="${y}" stroke="${c}" stroke-width="1" opacity=".15"/><circle cx="${x}" cy="${y}" r="3.5" fill="${c}" opacity=".22"/>`).join('')}</svg>`}
-function makeArt(a){return`<a class="art-card" href="${a.url}" target="_blank"><div class="art-card-top"><span class="art-cat">${a.cat}</span><span class="art-num">${a.num}</span></div><div class="art-vis">${artVis(a.vis)}</div><div class="art-title">${a.title}</div><div class="art-read">Read article →</div></a>`}
-const tw=document.querySelector('.art-track-wrap');if(tw){['fwd','rev'].forEach((d,i)=>{const r=document.createElement('div');r.className=`art-track ${d}`;const s=i===0?articles.slice(0,5):articles.slice(5);r.innerHTML=s.map(makeArt).join('')+s.map(makeArt).join('');tw.appendChild(r)})}
-
-/* ── CANVAS CHARTS ── */
-function dpr(){return window.devicePixelRatio||1}
-
-function sparkline(id,vals,color){
-  const el=document.getElementById(id);if(!el)return;
-  const w=el.width/dpr(),h=el.height/dpr();
-  el.width=w*dpr();el.height=h*dpr();
-  const ctx=el.getContext('2d');ctx.scale(dpr(),dpr());
-  const mn=Math.min(...vals),mx=Math.max(...vals);
-  const xS=(w-4)/(vals.length-1),yS=(h-4)/(mx-mn||1);
-  const pts=vals.map((v,i)=>({x:2+i*xS,y:h-2-(v-mn)*yS}));
-  const g=ctx.createLinearGradient(0,0,0,h);
-  g.addColorStop(0,color+'40');g.addColorStop(1,color+'00');
-  ctx.beginPath();ctx.moveTo(pts[0].x,h);
-  pts.forEach(p=>ctx.lineTo(p.x,p.y));
-  ctx.lineTo(pts[pts.length-1].x,h);ctx.closePath();
-  ctx.fillStyle=g;ctx.fill();
-  ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));
-  ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.stroke();
-}
-
-function featThumb(id,type){
-  const el=document.getElementById(id);if(!el)return;
-  const par=el.parentElement;
-  const w=par.offsetWidth||320,h=130;
-  el.width=w*dpr();el.height=h*dpr();
-  const ctx=el.getContext('2d');ctx.scale(dpr(),dpr());
-  ctx.fillStyle='#0a0e16';ctx.fillRect(0,0,w,h);
-  if(type==='bars'){
-    const v=[38,52,44,68,60,78,72,88,80,95];
-    const bw=w/v.length*.52,gap=w/v.length;
-    v.forEach((val,i)=>{
-      const bh=(val/100)*(h-16),y=h-8-bh;
-      const g=ctx.createLinearGradient(0,y,0,y+bh);
-      g.addColorStop(0,'#00d4ff');g.addColorStop(1,'rgba(0,212,255,.15)');
-      ctx.fillStyle=g;
-      ctx.beginPath();if(ctx.roundRect)ctx.roundRect(i*gap+(gap-bw)/2,y,bw,bh,2);else ctx.rect(i*gap+(gap-bw)/2,y,bw,bh);
-      ctx.fill();
-    });
-    const pts=v.map((val,i)=>({x:i*gap+gap/2,y:h-8-(val/100)*(h-16)}));
-    ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));
-    ctx.strokeStyle='rgba(0,212,255,.4)';ctx.lineWidth=1.5;ctx.stroke();
-  } else {
-    const rows=5,cols=8;
-    const cw=w/cols,rh=h/rows;
-    const base=[100,82,70,62,55,48,42,37];
-    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
-      const v=Math.max(0,base[c]-r*5)/100;
-      ctx.fillStyle=`rgba(0,212,255,${.06+v*.55})`;
-      ctx.fillRect(c*cw+1,r*rh+1,cw-2,rh-2);
-    }
-    ctx.fillStyle='rgba(0,229,160,.18)';ctx.font=`${9}px system-ui`;ctx.textAlign='center';
-    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
-      const v=Math.max(0,base[c]-r*5);
-      ctx.fillText(v+'%',c*cw+cw/2,r*rh+rh/2+3);
+  function render(text){
+    const{norm,focus}=getCurrent();
+    if(text.length<=norm.length){
+      el.innerHTML=`<span class="tw-word">${text}</span>`;
+    } else {
+      const focusPart=text.slice(norm.length);
+      el.innerHTML=`<span class="tw-word">${norm}</span><span class="tw-focus">${focusPart}</span>`;
     }
   }
-}
 
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    sparkline('sp1',[280,295,305,318,332,348,365,385,400],'#00d4ff');
-    sparkline('sp2',[280,310,350,390,420,460,500,530,550],'#8b5cf6');
-    sparkline('sp3',[2,4,6,9,12,14,17,19,20],'#00e5a0');
-    sparkline('sp4',[10,18,25,32,40,48,55,60,65],'#f59e0b');
-    featThumb('ft1','bars');
-    featThumb('ft2','heat');
-  },150);
+  function step(){
+    const{full}=getCurrent();
+    if(!erasing){
+      ci++;
+      render(full.slice(0,ci));
+      if(ci>=full.length){
+        setTimeout(()=>{erasing=true;step();},PAUSE);
+      } else {
+        setTimeout(step,TYPE_SPEED);
+      }
+    } else {
+      ci--;
+      render(full.slice(0,ci));
+      if(ci<=0){
+        erasing=false;
+        pi=(pi+1)%phrases.length;
+        setTimeout(step,400);
+      } else {
+        setTimeout(step,ERASE_SPEED);
+      }
+    }
+  }
+  setTimeout(step,1600);
+})();
+
+/* ── HERO CANVAS — LIVE PULSE CHART ── */
+(function(){
+  const canvas=document.getElementById('hero-canvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const DPR=devicePixelRatio||1;
+  const W=canvas.width=canvas.offsetWidth*DPR;
+  const H=canvas.height=210*DPR;
+  canvas.style.height='210px';
+
+  const gold='#E8A020',teal='#00C4AF',red='#FF4E4E';
+  const goldAlpha='rgba(232,160,32,';
+  const tealAlpha='rgba(0,196,175,';
+  const dim='rgba(255,255,255,.05)';
+
+  const months=['J','F','M','A','M','J','J','A','S','O','N','D'];
+  const baseARR=[68,72,75,80,78,85,88,84,92,95,90,98];
+  const baseNRR=[42,48,55,52,60,65,62,70,72,68,76,80];
+
+  // Live noise state per data point
+  const arrNoise=baseARR.map(()=>0);
+  const nrrNoise=baseNRR.map(()=>0);
+  const noiseSpeed=0.04;
+  const noiseMag=3;
+
+  // Intro animation
+  let introT=0;
+  const INTRO_DUR=1.6;
+
+  // Pulse ring at latest point
+  let pulseR=0,pulseAlpha=1;
+
+  // Rolling "heartbeat" line — a fast-moving spike that travels along
+  let hbPhase=0;
+
+  // Anomaly flash
+  let flashAlpha=0;
+
+  function lerp(a,b,t){return a+(b-a)*t}
+  function easeOut(t){return 1-Math.pow(1-t,3)}
+
+  function drawSparkMini(id,data,color){
+    const c=document.getElementById(id);
+    if(!c)return;
+    const ctx2=c.getContext('2d');
+    const w=c.offsetWidth*DPR||80*DPR,h=18*DPR;
+    c.width=w;c.height=h;
+    ctx2.clearRect(0,0,w,h);
+    const mn=Math.min(...data),mx=Math.max(...data),rng=mx-mn||1;
+    ctx2.beginPath();
+    data.forEach((v,i)=>{
+      const x=(i/(data.length-1))*w;
+      const y=h-((v-mn)/rng)*(h*.7)-(h*.15);
+      i===0?ctx2.moveTo(x,y):ctx2.lineTo(x,y);
+    });
+    ctx2.strokeStyle=color;ctx2.lineWidth=1.5*DPR;ctx2.stroke();
+    // fill
+    ctx2.lineTo(w,h);ctx2.lineTo(0,h);ctx2.closePath();
+    const g=ctx2.createLinearGradient(0,0,0,h);
+    g.addColorStop(0,color.replace(')',',0.25)').replace('rgb','rgba').replace('#E8A020','rgba(232,160,32,0.25)').replace('#00C4AF','rgba(0,196,175,0.25)'));
+    g.addColorStop(1,'transparent');
+    // simple fill
+    ctx2.fillStyle=color==='#E8A020'?'rgba(232,160,32,.15)':'rgba(0,196,175,.15)';
+    ctx2.fill();
+  }
+
+  let sparkHistory1=[68,72,75,80,78,85,88,84,92,95,90,98];
+  let sparkHistory2=[42,48,55,52,60,65,62,70,72,68,76,80];
+  let sparkHistory3=[55,58,62,59,66,70,68,72,75,71,78,82];
+
+  function updateSparks(){
+    sparkHistory1.push(sparkHistory1[sparkHistory1.length-1]+(Math.random()-.38)*4);
+    sparkHistory1=sparkHistory1.slice(-12);
+    sparkHistory2.push(sparkHistory2[sparkHistory2.length-1]+(Math.random()-.4)*2.5);
+    sparkHistory2=sparkHistory2.slice(-12);
+    sparkHistory3.push(sparkHistory3[sparkHistory3.length-1]+(Math.random()-.42)*2);
+    sparkHistory3=sparkHistory3.slice(-12);
+    drawSparkMini('spark1',sparkHistory1,'#E8A020');
+    drawSparkMini('spark2',sparkHistory2,'#00C4AF');
+    drawSparkMini('spark3',sparkHistory3,'#E8A020');
+  }
+  setTimeout(updateSparks,1400);
+  setInterval(updateSparks,2200);
+
+  function draw(){
+    // update noise
+    for(let i=0;i<12;i++){
+      arrNoise[i]+=(Math.random()-.5)*noiseSpeed*noiseMag;
+      arrNoise[i]*=0.88;
+      nrrNoise[i]+=(Math.random()-.5)*noiseSpeed*noiseMag;
+      nrrNoise[i]*=0.88;
+    }
+
+    // heartbeat phase
+    hbPhase+=0.018;
+    if(hbPhase>1)hbPhase=0;
+
+    // pulse
+    pulseR+=1.2*DPR;pulseAlpha-=0.018;
+    if(pulseAlpha<=0){pulseR=0;pulseAlpha=1;}
+
+    // flash decay
+    if(flashAlpha>0)flashAlpha-=0.015;
+
+    ctx.clearRect(0,0,W,H);
+
+    const pad=36*DPR,bw=(W-pad*2)/12,bPad=bw*.2;
+    const intro=Math.min(1,easeOut(introT/INTRO_DUR));
+
+    // background flash for anomaly
+    if(flashAlpha>0){
+      ctx.fillStyle=`rgba(255,78,78,${flashAlpha*0.06})`;
+      ctx.fillRect(0,0,W,H);
+    }
+
+    // grid lines
+    ctx.strokeStyle=dim;ctx.lineWidth=DPR*.5;
+    for(let r=0;r<4;r++){
+      const y=pad+(H-pad*2)/3*r;
+      ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(W-pad*.5,y);ctx.stroke();
+    }
+
+    // bar chart — ARR
+    const arrData=baseARR.map((v,i)=>v+arrNoise[i]);
+    arrData.forEach((v,i)=>{
+      const barIntro=Math.min(1,easeOut(Math.max(0,intro*1.8-i*.12)));
+      const x=pad+i*bw+bPad,bh=((v/100)*(H-pad*2))*barIntro,bww=bw-bPad*2;
+      if(bh<=0)return;
+      const g=ctx.createLinearGradient(0,H-pad-bh,0,H-pad);
+      g.addColorStop(0,gold);
+      g.addColorStop(0.6,goldAlpha+'0.4)');
+      g.addColorStop(1,goldAlpha+'0.08)');
+      ctx.fillStyle=g;
+      ctx.beginPath();
+      if(ctx.roundRect)ctx.roundRect(x,H-pad-bh,bww,bh,2*DPR);
+      else ctx.rect(x,H-pad-bh,bww,bh);
+      ctx.fill();
+
+      // bar top glow
+      ctx.fillStyle=goldAlpha+'0.6)';
+      ctx.fillRect(x,H-pad-bh,bww,1.5*DPR);
+    });
+
+    // NRR line with glow
+    const nrrData=baseNRR.map((v,i)=>v+nrrNoise[i]);
+    const lineIntro=Math.min(1,easeOut(Math.max(0,(intro-.2)/.8)));
+
+    if(lineIntro>0){
+      const pts=nrrData.map((v,i)=>({
+        x:pad+i*bw+bw/2,
+        y:H-pad-(v/100)*(H-pad*2)
+      }));
+      const visibleCount=Math.ceil(lineIntro*pts.length);
+
+      // glow pass
+      ctx.save();
+      ctx.shadowColor=teal;ctx.shadowBlur=8*DPR;
+      ctx.beginPath();
+      pts.slice(0,visibleCount).forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+      ctx.strokeStyle=tealAlpha+'0.4)';ctx.lineWidth=4*DPR;ctx.stroke();
+      ctx.restore();
+
+      // main line
+      ctx.beginPath();
+      pts.slice(0,visibleCount).forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+      ctx.strokeStyle=teal;ctx.lineWidth=2*DPR;ctx.stroke();
+
+      // fill under NRR
+      if(visibleCount>=2){
+        const lastP=pts[visibleCount-1];
+        ctx.beginPath();
+        pts.slice(0,visibleCount).forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+        ctx.lineTo(lastP.x,H-pad);ctx.lineTo(pts[0].x,H-pad);ctx.closePath();
+        const fg=ctx.createLinearGradient(0,pts[0].y,0,H-pad);
+        fg.addColorStop(0,tealAlpha+'0.12)');fg.addColorStop(1,tealAlpha+'0)');
+        ctx.fillStyle=fg;ctx.fill();
+      }
+
+      // heartbeat spike overlay on NRR line
+      const hbIdx=Math.floor(hbPhase*(visibleCount-1));
+      if(hbIdx<pts.length && hbIdx<visibleCount){
+        const hbP=pts[hbIdx];
+        const spike=10*DPR*Math.sin(Math.PI*((hbPhase*(visibleCount-1))%1));
+        ctx.beginPath();
+        ctx.arc(hbP.x,hbP.y-spike*lineIntro,4*DPR,0,Math.PI*2);
+        ctx.fillStyle=teal;ctx.fill();
+        ctx.shadowColor=teal;ctx.shadowBlur=10*DPR;
+        ctx.fill();
+        ctx.shadowBlur=0;
+      }
+
+      // animated dot at latest visible point
+      const lp=pts[visibleCount-1];
+      // pulse ring
+      if(lineIntro>=1){
+        ctx.beginPath();
+        ctx.arc(lp.x,lp.y,pulseR,0,Math.PI*2);
+        ctx.strokeStyle=`rgba(0,196,175,${pulseAlpha*0.5})`;
+        ctx.lineWidth=1.5*DPR;ctx.stroke();
+      }
+      // solid dot
+      ctx.beginPath();ctx.arc(lp.x,lp.y,4.5*DPR,0,Math.PI*2);
+      ctx.fillStyle=teal;ctx.fill();
+      ctx.beginPath();ctx.arc(lp.x,lp.y,2.5*DPR,0,Math.PI*2);
+      ctx.fillStyle='#fff';ctx.fill();
+    }
+
+    // x labels
+    ctx.fillStyle='rgba(255,255,255,.22)';
+    ctx.font=`${8.5*DPR}px "Space Mono",monospace`;
+    ctx.textAlign='center';
+    months.forEach((m,i)=>{const x=pad+i*bw+bw/2;ctx.fillText(m,x,H-7*DPR)});
+
+    // legend
+    ctx.font=`${7*DPR}px "Space Mono",monospace`;
+    ctx.textAlign='left';
+    ctx.fillStyle=goldAlpha+'0.7)';
+    ctx.fillRect(pad,8*DPR,8*DPR,8*DPR);
+    ctx.fillStyle='rgba(255,255,255,.35)';
+    ctx.fillText('ARR',pad+11*DPR,15*DPR);
+    ctx.fillStyle=tealAlpha+'0.8)';
+    ctx.beginPath();ctx.moveTo(pad+60*DPR,12*DPR);ctx.lineTo(pad+70*DPR,12*DPR);
+    ctx.strokeStyle=teal;ctx.lineWidth=2*DPR;ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,.35)';
+    ctx.fillText('NRR',pad+73*DPR,15*DPR);
+
+    if(introT<INTRO_DUR)introT+=.022;
+    requestAnimationFrame(draw);
+  }
+  setTimeout(()=>requestAnimationFrame(draw),1200);
+
+  // Trigger occasional anomaly flash
+  setInterval(()=>{flashAlpha=0.8;},7000);
+})();
+
+/* ── LIVE MINI METRICS ── */
+(function(){
+  const metrics=[
+    {id:'vm1',base:400,range:4,dp:0,dId:'vm1d',sign:'↑',pct:'2.3'},
+    {id:'vm2',base:92,range:2,dp:0,dId:'vm2d',sign:'↑',pct:'1.1'},
+    {id:'vm3',base:67,range:3,dp:0,dId:'vm3d',sign:'↑',pct:'0.8'}
+  ];
+  setInterval(()=>{
+    metrics.forEach(m=>{
+      const el=document.getElementById(m.id);
+      const del=document.getElementById(m.dId);
+      if(el){
+        const newVal=(m.base+(Math.random()-.5)*m.range).toFixed(m.dp);
+        el.textContent=newVal;
+      }
+      if(del){
+        const change=(Math.random()*2+0.5).toFixed(1);
+        del.textContent=`↑ ${change}%`;
+      }
+    });
+  },2400);
+})();
+
+/* ── MARQUEE ── */
+(function(){
+  const items=[{val:'$400M+',lbl:'ARR Portfolio'},{val:'45+',lbl:'BI Dashboards'},{val:'500M+',lbl:'Rows Per Day'},{val:'550+',lbl:'Global Users'},{val:'$20M+',lbl:'Pipeline Found'},{val:'90%',lbl:'Data Accuracy'},{val:'−12%',lbl:'Churn Reduced'},{val:'2-Week',lbl:'Early Warning'},{val:'PL-300',lbl:'Certified'},{val:'SQLBI',lbl:'DAX Expert'},{val:'65h+',lbl:'Saved Monthly'},{val:'4yr',lbl:'Enterprise BI'}];
+  const el=document.getElementById('marquee-inner');
+  const html=items.map(i=>`<span class="m-item"><strong>${i.val}</strong>${i.lbl}</span>`).join('');
+  el.innerHTML=html+html;
+})();
+
+/* ── REVEAL OBSERVER ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('v');
+    e.target.querySelectorAll('.sk-fill[data-p]').forEach(f=>setTimeout(()=>f.style.width=f.dataset.p+'%',300));
+    e.target.querySelectorAll('[data-count]').forEach(el=>{
+      const t=+el.dataset.count;let s=null;
+      (function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/1600,1);el.textContent=Math.round(p*t);if(p<1)requestAnimationFrame(step)})(performance.now());
+    });
+  });
+},{threshold:.1});
+document.querySelectorAll('.r,.t-entry').forEach(el=>obs.observe(el));
+
+/* ── TIMELINE DRAW ── */
+const tlObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('drawn')})},{threshold:.05});
+const tl=document.getElementById('timeline');if(tl)tlObs.observe(tl);
+
+/* ── PROJECT FILTER ── */
+document.querySelectorAll('.pf-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.pf-btn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  const f=b.dataset.f;
+  document.querySelectorAll('.proj-item').forEach(c=>c.style.display=(f==='all'||c.dataset.cat===f)?'grid':'none');
+}));
+
+/* ── ARTICLES ── */
+(function(){
+  const articles=[{num:'01',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2024/09/big-problem-small-solution-using.html',title:'Big Problem, Small Solution: Using USERELATIONSHIP'},{num:'02',cat:'Sales Analytics',url:'https://daxwithyunus.blogspot.com/2024/09/unlocking-sales-insights-analyzing-tads.html',title:'Unlocking Sales Insights: TADS, ADS, Shortfall & Projections'},{num:'03',cat:'Inventory',url:'https://daxwithyunus.blogspot.com/2024/09/solving-inventory-woes-at-better-buys.html',title:'Solving Inventory Woes at Better Buys'},{num:'04',cat:'DAX',url:'https://daxwithyunus.blogspot.com/2023/09/calendar-code-for-dax.html',title:'Why Every Analyst Needs a Calendar Table in DAX'},{num:'05',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2022/11/the-road-to-power-bi-datamart-from-data.html',title:'The Road to Power BI Datamart'},{num:'06',cat:'Healthcare',url:'https://walkwithyunus.blogspot.com/2023/09/health-care-analytics-case-study.html',title:'Health Care Analytics: A Case Study'},{num:'07',cat:'Excel',url:'https://walkwithyunus.blogspot.com/2023/09/approaches-for-maximizing-use-of-excel.html',title:'Maximising Excel with Power BI Integration'},{num:'08',cat:'Visualisation',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-visualization-charts.html',title:'Power BI Visualisation Deep Dive'},{num:'09',cat:'Power BI',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-dashboards.html',title:'Dashboard Design & Best Practices'},{num:'10',cat:'Architecture',url:'https://walkwithyunus.blogspot.com/2023/02/power-bi-datamart-illustration.html',title:'Power BI Datamart Architecture Illustration'}];
+  const wrap=document.getElementById('art-wrap');if(!wrap)return;
+  function makeCard(a){return`<a class="art-card" href="${a.url}" target="_blank"><div class="art-top"><span class="art-cat">${a.cat}</span><span class="art-n">${a.num}</span></div><div class="art-title">${a.title}</div><div class="art-read">Read →</div></a>`}
+  ['fwd','rev'].forEach((d,ri)=>{
+    const row=document.createElement('div');row.className=`art-row ${d}`;
+    const slice=ri===0?articles.slice(0,5):articles.slice(5);
+    row.innerHTML=slice.map(makeCard).join('')+slice.map(makeCard).join('');
+    wrap.appendChild(row);
+  });
+})();
+
+/* ── TILT EFFECT ── */
+document.querySelectorAll('.kpi,.sk-card,.prob-card,.svc-card,.testi').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-.5)*12;
+    const y=((e.clientY-r.top)/r.height-.5)*-12;
+    c.style.transform=`perspective(700px) rotateY(${x}deg) rotateX(${y}deg) scale(1.025)`;
+  });
+  c.addEventListener('mouseleave',()=>{c.style.transform=''});
 });
 </script>
 </body>
