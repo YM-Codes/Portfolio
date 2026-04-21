@@ -1113,15 +1113,16 @@ footer{padding:2.5rem 3rem;border-top:.5px solid var(--bdr);background:var(--s1)
       </div>
       <div class="contact-form">
         <div class="cf-head"><div class="cf-title">Send a Message</div><div class="cf-sub">Typically responds within 24 hours</div></div>
-        <form action="https://api.web3forms.com/submit" method="POST">
+        <form id="contact-form">
           <input type="hidden" name="access_key" value="212d70f3-7b96-46b9-8e58-0c7944e45d3c">
-          <input type="hidden" name="subject" value="New message from portfolio">
-          <input type="hidden" name="redirect" value="false">
+          <input type="hidden" name="subject" value="New portfolio message from yunus_miah">
+          <input type="checkbox" name="botcheck" style="display:none">
           <div class="form-row"><div class="fg"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div><div class="fg"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required></div></div>
           <div class="fg"><label>What brings you here?</label><select name="role_type"><option value="">Select...</option><option>Hiring — Full-time</option><option>Consulting / Fractional</option><option>Freelance / Contract</option><option>Collaboration</option><option>Just a conversation</option></select></div>
           <div class="fg"><label>Company</label><input type="text" name="company" placeholder="Company name (optional)"></div>
-          <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell me about the problem you're trying to solve..."></textarea></div>
-          <button type="submit" class="form-submit">Send Message →</button>
+          <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell me about the problem you're trying to solve..." required></textarea></div>
+          <button type="submit" class="form-submit" id="form-submit-btn">Send Message →</button>
+          <div id="form-result" style="display:none;margin-top:.75rem;padding:.75rem 1rem;border-radius:var(--r);font-family:'Space Mono',monospace;font-size:.58rem;text-align:center"></div>
           <div class="form-note">Goes directly to yunus_miah@outlook.com · Powered by Web3Forms</div>
         </form>
       </div>
@@ -1566,7 +1567,48 @@ document.querySelectorAll('.pf-btn').forEach(b=>b.addEventListener('click',()=>{
   });
 })();
 
-/* ── TILT EFFECT ── */
+/* ── CONTACT FORM ── */
+(function(){
+  const form=document.getElementById('contact-form');
+  const btn=document.getElementById('form-submit-btn');
+  const result=document.getElementById('form-result');
+  if(!form)return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    btn.textContent='Sending...';
+    btn.disabled=true;
+    btn.style.opacity='.7';
+    const data=new FormData(form);
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});
+      const json=await res.json();
+      if(json.success){
+        result.style.display='block';
+        result.style.background='rgba(0,196,175,.1)';
+        result.style.border='.5px solid rgba(0,196,175,.3)';
+        result.style.color='#00C4AF';
+        result.textContent='✓ Message sent — Yunus will reply within 24 hours.';
+        form.reset();
+        btn.textContent='Sent ✓';
+        btn.style.background='#00C4AF';
+      } else {
+        throw new Error(json.message||'Submission failed');
+      }
+    } catch(err){
+      result.style.display='block';
+      result.style.background='rgba(255,78,78,.08)';
+      result.style.border='.5px solid rgba(255,78,78,.2)';
+      result.style.color='#FF4E4E';
+      result.textContent='✗ Something went wrong. Please email yunus_miah@outlook.com directly.';
+      btn.textContent='Send Message →';
+      btn.disabled=false;
+      btn.style.opacity='1';
+      btn.style.background='';
+    }
+  });
+})();
+
+
 document.querySelectorAll('.kpi,.sk-card,.prob-card,.svc-card,.testi').forEach(c=>{
   c.addEventListener('mousemove',e=>{
     const r=c.getBoundingClientRect();
