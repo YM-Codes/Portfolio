@@ -6,7 +6,7 @@
 <title>Yunus Miah — Senior BI Analyst & Data Consultant</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -83,8 +83,9 @@ nav.scrolled .nlcta{border-color:var(--gold-bdr)}
 @keyframes dr{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.4);opacity:0}}
 .eyt{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:#26D366;letter-spacing:.13em;text-transform:uppercase}
 
-.hname{font-family:'Space Grotesk',sans-serif;font-size:clamp(3.2rem,7vw,6rem);font-weight:800;letter-spacing:-.08em;line-height:.86;margin-bottom:.7rem}
-.hname .word{display:block;overflow:hidden}
+.hname{font-family:'Sora',sans-serif;font-size:clamp(2.4rem,5.2vw,4.4rem);font-weight:800;letter-spacing:-.04em;line-height:1.02;margin-bottom:.7rem;white-space:nowrap}
+.hname .word{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hname .word+.word{margin-left:.06em}
 .hname .ch{display:inline-block;transform:translateY(105%)}
 .hname .grad{background:linear-gradient(120deg,#F2EEE8 30%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
@@ -601,6 +602,7 @@ footer{position:relative;z-index:2;padding:2.2rem 2.5rem;border-top:.5px solid v
   .nlogo,.nl a,.nlcta{color:var(--text)}
   .nl{display:none}
   .hero{grid-template-columns:1fr;padding:90px 1.5rem 50px}
+  .hname{font-size:clamp(2.6rem,11vw,4.6rem)}
   .aip{order:-1}
   section.sec{padding:4rem 1.5rem}
   .wig,.pg,.svg{grid-template-columns:1fr}
