@@ -161,7 +161,7 @@ nav.scrolled .nlcta{border-color:var(--gold-bdr)}
 @keyframes mqa{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ── SECTIONS ── */
-section.sec{position:relative;z-index:2;padding:6rem 2.5rem;background:rgba(6,6,11,.80)}
+section.sec{position:relative;z-index:2;padding:4.5rem 2.5rem;background:rgba(6,6,11,.80)}
 .si{max-width:1120px;margin:0 auto}
 .sl{display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem}
 .sln{font-family:'JetBrains Mono',monospace;font-size:.48rem;color:var(--gold);font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:var(--gold2);border:.5px solid var(--gold-bdr);border-radius:4px;padding:.18rem .55rem}
@@ -623,6 +623,38 @@ footer{position:relative;z-index:2;padding:2.2rem 2.5rem;border-top:.5px solid v
   .flinks{display:none}
 }
 @media(max-width:480px){.skg{grid-template-columns:1fr}.awg{grid-template-columns:1fr}.pli{grid-template-columns:46px 1fr}.plii,.plarr{display:none}}
+
+/* ═══════════════ AESTHETIC POLISH ═══════════════ */
+/* card depth + glass top-edge (resting) */
+.wic,.skc,.pfc,.svc,.educ{box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 28px -16px rgba(0,0,0,.75)}
+.csc{box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 14px 38px -20px rgba(0,0,0,.7)}
+/* warmer, deeper hover glow */
+.wic:hover,.pfc:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 28px 60px -22px rgba(216,172,74,.28),0 8px 22px -10px rgba(0,0,0,.6);border-color:rgba(216,172,74,.45)}
+.skc:hover,.svc:hover,.educ:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 22px 50px -22px rgba(216,172,74,.22),0 6px 18px -10px rgba(0,0,0,.55);border-color:rgba(216,172,74,.45)}
+
+/* primary gold button — richer gradient + sweeping sheen */
+.bag{position:relative;overflow:hidden;background:linear-gradient(135deg,#E8BE5C,#CF9C3E 55%,#B8862C)}
+.bag::after{content:'';position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);transition:left .65s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.bag:hover::after{left:150%}
+
+/* AI presenter card — layered shadow + faint gold ring + glass edge */
+.aipc{box-shadow:0 30px 90px -32px rgba(0,0,0,.82),0 0 0 1px rgba(216,172,74,.09),inset 0 1px 0 rgba(255,255,255,.05)}
+
+/* section headings — whisper of warm light for depth */
+.sh{text-shadow:0 1px 34px rgba(216,172,74,.07)}
+
+/* nav CTA — subtle fill warmth on hover */
+.nlcta{transition:all .3s,box-shadow .3s}
+nav.scrolled .nlcta:hover{box-shadow:0 6px 20px rgba(216,172,74,.18)}
+
+/* refined focus ring for keyboard users (accessibility + polish) */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold-bdr);outline-offset:3px;border-radius:6px}
+
+/* respect reduced-motion preference */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.12s!important;scroll-behavior:auto!important}
+  .glow,#grain{animation:none!important}
+}
 </style>
 </head>
 <body>
@@ -1196,7 +1228,7 @@ function startCounters(){
    GSAP SCROLL REVEALS + SECTION TRANSITIONS
 ════════════════════════════════════════════ */
 window.addEventListener('load',()=>{
-  if(!window.gsap||!window.ScrollTrigger)return;
+  if(!window.gsap||!window.ScrollTrigger){document.querySelectorAll('.gs,.ch').forEach(el=>{el.style.opacity='1';el.style.transform='none';el.style.clipPath='none';});return;}
   gsap.registerPlugin(ScrollTrigger);
 
   // generic .gs reveal (skip ones we treat specially)
@@ -1312,6 +1344,20 @@ window.addEventListener('load',()=>{
   if(mw)gsap.fromTo(mw,{opacity:0},{opacity:1,duration:1,scrollTrigger:{trigger:mw,start:'top 95%'}});
 
   ScrollTrigger.refresh();
+
+  // ROBUSTNESS: re-measure after fonts/preloader settle layout, and force-show any
+  // label/heading already on-screen but stuck hidden (kills invisible headings + phantom gaps)
+  function _revealStuck(){
+    document.querySelectorAll('.gs').forEach(el=>{
+      const r=el.getBoundingClientRect();
+      if(r.top<window.innerHeight*0.96 && parseFloat(getComputedStyle(el).opacity)<0.05){
+        gsap.to(el,{opacity:1,y:0,clipPath:'none',duration:.5,ease:'power2.out'});
+      }
+    });
+  }
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{ScrollTrigger.refresh();_revealStuck();});
+  window.addEventListener('load',()=>{ScrollTrigger.refresh();setTimeout(_revealStuck,300);});
+  setTimeout(_revealStuck,2600);
 });
 
 /* MAGNETIC BUTTONS */
