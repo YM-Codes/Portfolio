@@ -520,7 +520,7 @@ footer{position:relative;z-index:2;padding:2.2rem 2.5rem;border-top:.5px solid v
 /* ═══════════ PIPELINE FLOWCHART ═══════════ */
 .flowwrap{margin-top:2.5rem;overflow-x:auto;padding:1.4rem 0}
 .flow{display:flex;align-items:flex-start;justify-content:center;min-width:min-content;gap:0}
-.fcap{flex:0 0 auto;align-self:center;width:92px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.48rem;letter-spacing:.09em;text-transform:uppercase;line-height:1.6;padding:.75rem .55rem;border-radius:12px}
+.fcap{flex:0 0 auto;align-self:flex-start;margin-top:-4px;width:92px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.48rem;letter-spacing:.09em;text-transform:uppercase;line-height:1.6;padding:.75rem .55rem;border-radius:12px}
 .fcap-in{color:var(--t2);background:rgba(255,255,255,.025);border:.5px dashed var(--bdr)}
 .fcap-out{color:var(--gold);background:var(--gold2);border:.5px solid var(--gold-bdr)}
 .fnode{flex:0 0 auto;width:148px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.45rem;padding:0 .3rem}
@@ -542,7 +542,7 @@ footer{position:relative;z-index:2;padding:2.2rem 2.5rem;border-top:.5px solid v
 @media(max-width:820px){
   .flowwrap{overflow:visible}
   .flow{flex-direction:column;align-items:center}
-  .fcap{width:auto;min-width:150px}
+  .fcap{width:auto;min-width:150px;align-self:center;margin-top:0}
   .fnode{width:auto;max-width:280px}
   .fdesc{min-height:0}
   .fconn{width:2px;height:30px;min-width:0;max-width:none;margin:0;background:linear-gradient(180deg,var(--gold-bdr),rgba(31,224,206,.45))}
@@ -711,7 +711,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <div class="aiptr" id="aiptr"><p><span class="sp">YM:</span> Tap play to hear my AI introduction. Switch topics above.</p></div>
     </div>
   </div>
-  <div class="scue" id="scue"><div class="mouse"><div class="wheel"></div></div>Scroll to explore</div>
+  
 </section>
 
 <div class="mw"><div class="mi" id="mqi"></div></div>
@@ -719,7 +719,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <!-- ABOUT / WHAT I DO -->
 <section id="about" class="sec">
 <div class="si">
-  <div class="sl gs"><span class="sln">01</span><span class="slt">What I Do</span></div>
+  
   <h2 class="sh gs">From raw data<br>to <em>decisions that move revenue.</em></h2>
   <p class="ss gs">My pipeline — how scattered data becomes decisions leaders act on.</p>
   <div class="flowwrap gs">
@@ -743,7 +743,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <!-- CAREER -->
 <section id="experience" class="sec">
 <div class="si">
-  <div class="sl gs"><span class="sln">02</span><span class="slt">Career Track</span></div>
+  
   <h2 class="sh gs">4 years. 4 companies.<br><em>Measurable outcomes every time.</em></h2>
   <p class="ss gs">Each role — one problem, one system I built, one result. Tap to expand.</p>
   <div class="tl" id="tl"><div class="tll" id="tll"></div>
@@ -831,7 +831,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <!-- TECH STACK -->
 <section id="skills" class="sec" style="background:rgba(10,10,18,.78)">
 <div class="si">
-  <div class="sl gs"><span class="sln">03</span><span class="slt">Tech Stack</span></div>
+  
   <h2 class="sh gs">The tools that <em>deliver results.</em></h2>
   <p class="ss gs">Sharpened in production — not tutorials.</p>
   <div class="skg">
@@ -848,7 +848,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <section id="work" class="sec">
 <div class="si">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem">
-    <div><div class="sl gs"><span class="sln">04</span><span class="slt">Selected Work</span></div><h2 class="sh gs">Things I've <em>built &amp; shipped.</em></h2></div>
+    <div><h2 class="sh gs">Things I've <em>built &amp; shipped.</em></h2></div>
     <div class="pfilt gs">
       <button class="acb act cur-h" data-f="all" onclick="filterProj(this,'all')">All</button>
       <button class="acb cur-h" data-f="sales" onclick="filterProj(this,'sales')">Sales</button>
@@ -904,7 +904,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <!-- TESTIMONIALS -->
 <section id="testimonials" class="sec">
 <div class="si">
-  <div class="sl gs"><span class="sln">05</span><span class="slt">Peer Reviews</span></div>
+  
   <h2 class="sh gs">What people who <em>worked alongside the work</em> say.</h2>
   <div class="testg">
     <div class="tcard gs tilt"><div class="tstars">★★★★★</div><div class="tq">Yunus played a crucial role in transforming complex data into actionable insights, driving informed decision-making across our distribution operations. His expertise in Power BI and advanced DAX helped streamline our performance metrics — greatly improving operational efficiency.</div><div class="tau"><div class="tav" style="background:#D8AC4A;color:#000">ZR</div><div><div class="tnm">Md. Zahir Raihan</div><div class="trl">Head of Distribution Planning · Mokam CPG, ShopUp</div><a href="https://www.linkedin.com/in/yunus-m-21ba2219a/" class="tvr cur-h" target="_blank">Verify on LinkedIn ↗</a></div></div></div>
@@ -918,7 +918,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <!-- SERVICES -->
 <section id="services" class="sec" style="background:rgba(10,10,18,.78)">
 <div class="si">
-  <div class="sl gs"><span class="sln">06</span><span class="slt">Open for Consulting</span></div>
+  
   <h2 class="sh gs">Hire me for your <em>data problem.</em></h2>
   <p class="ss gs">Senior analytics leadership, available alongside my full-time role.</p>
   <div class="svban gs"><div><div class="svbt">Taking 1–2 consulting engagements</div><div class="svbs">Every engagement opens with a free 30-minute data audit. No commitment.</div></div><a href="#contact" class="bag cur-h" style="font-size:.6rem;padding:.6rem 1.6rem;white-space:nowrap">Book Free Audit →</a></div>
@@ -927,7 +927,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <!-- EDU -->
 <section id="education" class="sec">
 <div class="si">
-  <div class="sl gs"><span class="sln">07</span><span class="slt">Education</span></div>
+  
   <h2 class="sh gs">Academic <em>foundation.</em></h2>
   <div class="edug eduflow">
     <div class="educ ed3d tilt"><div class="eduper">2016 – 2019</div><div class="edudeg">B.Sc. Information &amp; Communication Engineering</div><div class="edusch">Bangladesh University of Professionals (BUP) · Dhaka</div><div class="edud">Telecom, signal processing and digital systems — where the systems-thinking behind my data work began.</div><div class="edutags"><span class="tt">ICE Engineering</span><span class="tt">Networks</span><span class="tt">Digital Systems</span></div></div>
@@ -940,7 +940,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <!-- RECOGNITION -->
 <section id="recognition" class="sec" style="background:rgba(10,10,18,.78)">
 <div class="si">
-  <div class="sl gs"><span class="sln">08</span><span class="slt">Recognition</span></div>
+  
   <h2 class="sh gs">Awards &amp; <em>Certifications.</em></h2>
   <div class="awg">
     <div class="awc gs"><div class="awic">🏆</div><div class="awyr">Optimizely · 2025</div><div class="awt">Formal Bonusly Recognition</div><div class="awd">Peer-nominated for BI impact on the $400M+ ARR framework.</div><a href="https://github.com/YM-Codes/Opti_Recognition_Bonusly" class="awl cur-h" target="_blank">View ↗</a></div>
@@ -955,7 +955,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <!-- WRITING -->
 <section id="writing" class="sec" style="overflow:hidden">
 <div class="si">
-  <div class="sl gs"><span class="sln">09</span><span class="slt">Writing</span></div>
+  
   <h2 class="sh gs">10+ articles on <em>DAX, Power BI &amp; data strategy.</em></h2>
 </div>
 <div class="artout gs"><div id="artwrap" style="display:flex;flex-direction:column;gap:8px"></div></div>
@@ -965,7 +965,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <!-- CONTACT -->
 <section id="contact" class="sec" style="background:rgba(10,10,18,.78)">
 <div class="si">
-  <div class="sl gs"><span class="sln">10</span><span class="slt">Let's Connect</span></div>
+  
   <div class="cg gs">
     <div>
       <h2 class="ch">Ready for your<br>next <em>data leap?</em></h2>
@@ -1230,12 +1230,15 @@ function startCounters(){
 window.addEventListener('load',()=>{
   if(!window.gsap||!window.ScrollTrigger){document.querySelectorAll('.gs,.ch').forEach(el=>{el.style.opacity='1';el.style.transform='none';el.style.clipPath='none';});return;}
   gsap.registerPlugin(ScrollTrigger);
+  // every reveal now plays when scrolling INTO view and reverses when scrolling OUT —
+  // so each section transitions noticeably in both directions (scrub-based ones are unaffected)
+  ScrollTrigger.defaults({toggleActions:'play none none reverse'});
 
   // generic .gs reveal (skip ones we treat specially)
   const gridSel='.wig,.pg,.skg,.pfg,.testg,.svg,.awg,.edug';
   gsap.utils.toArray('.gs').forEach(el=>{
     if(el.classList.contains('sh')||el.classList.contains('sl')||el.classList.contains('ss')||el.classList.contains('csc')||el.closest(gridSel))return;
-    gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}});
+    gsap.fromTo(el,{opacity:0,y:42,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:1.1,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 90%'}});
   });
 
   // section labels slide in from left
@@ -1243,10 +1246,10 @@ window.addEventListener('load',()=>{
     gsap.fromTo(el,{opacity:0,x:-30},{opacity:1,x:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}});
   });
 
-  // section headings — clip-path sweep + rise
-  gsap.utils.toArray('.sh.gs, .ch').forEach(el=>{
-    gsap.set(el,{clipPath:'inset(0 0 110% 0)',y:30,opacity:1});
-    gsap.to(el,{clipPath:'inset(0 0 -15% 0)',y:0,duration:1.1,ease:'power4.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+  // section headings — clip-path sweep + blur-into-focus rise (hero name handled separately)
+  gsap.utils.toArray('.sh.gs, h2.ch').forEach(el=>{
+    gsap.set(el,{clipPath:'inset(0 0 115% 0)',y:44,opacity:1,filter:'blur(7px)'});
+    gsap.to(el,{clipPath:'inset(0 0 -18% 0)',y:0,filter:'blur(0px)',duration:1.25,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%'}});
   });
 
   // subheads — word-by-word reveal (plain-text .ss); .csub stays simple fade
@@ -1296,14 +1299,14 @@ window.addEventListener('load',()=>{
     const grid=document.querySelector(sel);if(!grid)return;
     const kids=grid.querySelectorAll('.gs');
     kids.forEach((k,i)=>{
-      gsap.set(k,{opacity:0,y:46,x:i%2?26:-26,scale:.95});
-      gsap.to(k,{opacity:1,y:0,x:0,scale:1,duration:.85,delay:(i%4)*.07,ease:'power3.out',scrollTrigger:{trigger:k,start:'top 88%'}});
+      gsap.set(k,{opacity:0,y:58,scale:.9,filter:'blur(12px)',rotationX:10,transformPerspective:1000,transformOrigin:'center top'});
+      gsap.to(k,{opacity:1,y:0,scale:1,filter:'blur(0px)',rotationX:0,duration:1,delay:(i%4)*.09,ease:'power4.out',scrollTrigger:{trigger:k,start:'top 90%'}});
     });
   });
 
   // case study cards — alternating slide
   gsap.utils.toArray('.csc.gs').forEach((el,i)=>{
-    gsap.fromTo(el,{opacity:0,y:60,scale:.96},{opacity:1,y:0,scale:1,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 82%'}});
+    gsap.fromTo(el,{opacity:0,y:70,scale:.95,filter:'blur(12px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:1.1,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 82%'}});
   });
 
   // animated dividers (draw left→right)
@@ -1351,7 +1354,7 @@ window.addEventListener('load',()=>{
     document.querySelectorAll('.gs').forEach(el=>{
       const r=el.getBoundingClientRect();
       if(r.top<window.innerHeight*0.96 && parseFloat(getComputedStyle(el).opacity)<0.05){
-        gsap.to(el,{opacity:1,y:0,clipPath:'none',duration:.5,ease:'power2.out'});
+        gsap.to(el,{opacity:1,y:0,clipPath:'none',filter:'blur(0px)',duration:.5,ease:'power2.out'});
       }
     });
   }
